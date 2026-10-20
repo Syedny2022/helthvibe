@@ -1,0 +1,156 @@
+---
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import CookieConsent from '@components/CookieConsent.astro';
+import { SITE } from '@data/site';
+import '@styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: object | object[];
+  bodyClass?: string;
+  /** Robots directives, e.g. "noindex, follow" for draft/stub pages. */
+  robots?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = `${SITE.url}${SITE.ogImage}`,
+  schema,
+  bodyClass = '',
+  robots,
+} = Astro.props;
+
+const siteUrl = SITE.url;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+
+// GA4 is opt-in via the PUBLIC_GA_ID build variable. Without it the site
+// ships zero third-party scripts and no consent banner.
+const gaId = import.meta.env.PUBLIC_GA_ID || '';
+
+// Site-wide structured data
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: SITE.name,
+  url: `${siteUrl}/`,
+  logo: { '@type': 'ImageObject', url: `${siteUrl}${SITE.logo}`, width: 512, height: 512 },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: SITE.supportEmail,
+    availableLanguage: 'en',
+  },
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  name: SITE.name,
+  url: `${siteUrl}/`,
+  description: 'Free, privacy-first health calculators — BMI, BMR, TDEE, body fat and more.',
+  publisher: { '@id': `${siteUrl}/#organization` },
+  inLanguage: 'en',
+};
+
+// Breadcrumbs for everything except the home page
+const pathname = Astro.url.pathname;
+const pageName = title.replace(/\s*[—–|-]\s*Helthvibe\s*$/, '').trim();
+const SECTION_LABELS: Record<string, string> = {
+  calculators: 'Calculators',
+  articles: 'Articles',
+  local: 'Local',
+  tools: 'Tools',
+};
+const breadcrumbItems: { name: string; item: string }[] = [];
+if (pathname !== '/') {
+  const segments = pathname.split('/').filter(Boolean);
+  breadcrumbItems.push({ name: 'Home', item: `${siteUrl}/` });
+  if (segments.length > 1 && SECTION_LABELS[segments[0]]) {
+    breadcrumbItems.push({
+      name: SECTION_LABELS[segments[0]],
+      item: `${siteUrl}${segments[0]}/`,
+    });
+  }
+  breadcrumbItems.push({ name: pageName, item: canonicalUrl });
+}
+const breadcrumbSchema = breadcrumbItems.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbItems.map((crumb, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: crumb.name,
+        item: crumb.item,
+      })),
+    }
+  : null;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {robots && <meta name="robots" content={robots} />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${SITE.name} — ${pageName}`} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={`${SITE.name} — ${pageName}`} />
+
+    <!-- Icons and PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#14b88a" />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- JSON-LD structured data -->
+    {[organizationSchema, websiteSchema, ...schemas, ...(breadcrumbSchema ? [breadcrumbSchema] : [])].map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+
+    <!-- Google Analytics 4 (Consent Mode v2) — only when PUBLIC_GA_ID is set -->
+    {gaId && <meta name="ga-measurement-id" content={gaId} />}
+    {gaId && <script is:inline src="/ga4.js" defer></script>}
+  </head>
+  <body class={bodyClass}>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    {gaId && <CookieConsent />}
+  </body>
+</html>

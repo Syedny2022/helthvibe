@@ -1,0 +1,379 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BMICalculator from '@components/BMICalculator.astro';
+
+const title = 'Free BMI Calculator & Health Tools | Helthvibe';
+const description =
+  'Free, accurate BMI calculator with healthy range, ideal weight tools, and practical guides. Metric & imperial. Privacy-first. Built for NYC–DC Metro users.';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe Adult BMI Calculator',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  url: 'https://helthvibe.com/calculators/bmi/',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  description:
+    'Free, accurate Adult BMI Calculator with healthy range, metric & imperial units. 100% client-side, no signup.',
+};
+
+const calculators = [
+  {
+    href: '/calculators/bmi/',
+    title: 'Adult BMI Calculator',
+    desc: 'The standard WHO BMI calculation with healthy range and category.',
+    badge: 'Most popular',
+  },
+  {
+    href: '/calculators/bmi-women/',
+    title: 'BMI for Women',
+    desc: 'BMI tailored with female-specific ranges and body composition context.',
+  },
+  {
+    href: '/calculators/bmi-men/',
+    title: 'BMI for Men',
+    desc: 'BMI for adult men with muscle-mass notes and healthy range.',
+  },
+  {
+    href: '/calculators/bmi-children/',
+    title: 'Child & Teen BMI',
+    desc: 'Age- and sex-specific BMI percentile for kids and teens.',
+  },
+  {
+    href: '/calculators/bmi-seniors/',
+    title: 'Senior BMI',
+    desc: 'Adjusted healthy range for adults 65+.',
+  },
+  {
+    href: '/calculators/bmi-asian/',
+    title: 'Asian BMI',
+    desc: 'WHO-aligned thresholds for Asian populations.',
+  },
+  {
+    href: '/calculators/bmi-athletes/',
+    title: 'Athlete BMI',
+    desc: 'BMI with muscle-mass context for athletic builds.',
+  },
+  {
+    href: '/calculators/ideal-weight/',
+    title: 'Ideal Weight',
+    desc: 'Find your healthy weight using 5 evidence-based formulas.',
+  },
+  {
+    href: '/calculators/body-fat/',
+    title: 'Body Fat %',
+    desc: 'Estimate body fat from BMI, age, and sex.',
+  },
+  {
+    href: '/calculators/waist-hip-ratio/',
+    title: 'Waist-to-Hip Ratio',
+    desc: 'Cardiometabolic risk from waist and hip measurements.',
+  },
+  {
+    href: '/calculators/waist-height-ratio/',
+    title: 'Waist-to-Height Ratio',
+    desc: 'Single 0.5 cutoff across populations.',
+  },
+  {
+    href: '/calculators/bmi-prime/',
+    title: 'BMI Prime',
+    desc: 'BMI / 25 — quick relative-to-healthy score.',
+  },
+  {
+    href: '/calculators/bsa/',
+    title: 'Body Surface Area',
+    desc: 'Mosteller formula for chemo dosing, cardiac index.',
+  },
+  {
+    href: '/calculators/bmr/',
+    title: 'BMR',
+    desc: 'Mifflin-St Jeor resting energy expenditure.',
+  },
+  {
+    href: '/calculators/tdee/',
+    title: 'TDEE',
+    desc: 'Total daily calories with activity factor.',
+  },
+  {
+    href: '/calculators/macro-split/',
+    title: 'Macro Split',
+    desc: 'Convert calorie target to grams of protein/carbs/fat.',
+  },
+  {
+    href: '/calculators/calorie-deficit/',
+    title: 'Calorie Deficit',
+    desc: 'Plan a safe weight-loss deficit and timeline.',
+  },
+  {
+    href: '/calculators/lean-body-mass/',
+    title: 'Lean Body Mass',
+    desc: 'Estimate fat-free mass via the Boer equation.',
+  },
+  {
+    href: '/calculators/ponderal-index/',
+    title: 'Ponderal Index',
+    desc: 'Cube-based alternative to BMI (Rohrer).',
+  },
+];
+
+const localPages = [
+  { href: '/local/nyc/', label: 'New York City' },
+  { href: '/local/brooklyn/', label: 'Brooklyn' },
+  { href: '/local/manhattan/', label: 'Manhattan' },
+  { href: '/local/dc-metro/', label: 'DC Metro' },
+  { href: '/local/washington-dc/', label: 'Washington DC' },
+  { href: '/local/northern-virginia/', label: 'Northern Virginia' },
+];
+---
+<Layout
+  title={title}
+  description={description}
+  schema={softwareSchema}
+>
+  <!-- =================== HERO =================== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="badge">Free · Privacy-first · No signup</span>
+        <h1>The BMI calculator that <span class="hl">actually explains</span> your number.</h1>
+        <p class="hero-sub">
+          Instant, accurate Body Mass Index with healthy range, category, and what to do next. Built for clarity, not ads.
+        </p>
+        <ul class="hero-points">
+          <li>✓ 100% client-side — your data never leaves your browser</li>
+          <li>✓ Metric & imperial with instant toggle</li>
+          <li>✓ Healthy weight range + category guidance</li>
+        </ul>
+        <div class="hero-ctas">
+          <a href="/calculators/bmi/" class="btn btn-primary">Open full calculator</a>
+          <a href="/articles/how-to-calculate-bmi-2026/" class="btn btn-secondary">How BMI works</a>
+        </div>
+      </div>
+
+      <div class="hero-calc">
+        <div class="hero-calc-card">
+          <h2 class="hero-calc-title">Quick BMI check</h2>
+          <p class="hero-calc-sub">Get your number in 5 seconds — no signup.</p>
+          <BMICalculator variant="compact" id="hero-bmi" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FEATURED TOOLS =================== -->
+  <section class="section section-soft">
+    <div class="container">
+      <header class="section-head">
+        <h2>All our calculators</h2>
+        <p>One for every body and life stage — all free, all private.</p>
+      </header>
+      <div class="grid grid-3">
+        {calculators.map((c) => (
+          <a href={c.href} class="card tool-card">
+            {c.badge && <span class="badge tool-badge">{c.badge}</span>}
+            <h3 class="card-title">{c.title}</h3>
+            <p class="card-desc">{c.desc}</p>
+            <span class="tool-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== WHY HELTHVIBE =================== -->
+  <section class="section">
+    <div class="container-narrow text-center">
+      <h2>Why Helthvibe?</h2>
+      <p class="lead">
+        Most BMI tools are ad-heavy, opaque, or ignore limitations. We do the opposite.
+      </p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon" aria-hidden="true">🔒</div>
+          <h3>Privacy-first</h3>
+          <p>All calculations run in your browser. No server, no tracking of your height or weight.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon" aria-hidden="true">🎯</div>
+          <h3>Honest context</h3>
+          <p>BMI is a useful signal but not the full picture. We tell you when it falls short.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon" aria-hidden="true">⚡</div>
+          <h3>Fast & clean</h3>
+          <p>Astro-powered. Sub-second load. No popups, no autoplay, no dark patterns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== LOCAL SEO =================== -->
+  <section class="section section-soft">
+    <div class="container">
+      <header class="section-head">
+        <h2>Built with East Coasters in mind</h2>
+        <p>Free BMI tools for NYC, Brooklyn, DC, and Northern Virginia.</p>
+      </header>
+      <div class="local-grid">
+        {localPages.map((l) => (
+          <a href={l.href} class="local-chip">{l.label} →</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== DISCLAIMER =================== -->
+  <section class="section">
+    <div class="container-narrow">
+      <div class="disclaimer">
+        <strong>Not medical advice.</strong>
+        Helthvibe provides general information and tools. Always consult a qualified healthcare professional for personal medical guidance.
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    padding: var(--space-8) 0 var(--space-9);
+    background:
+      radial-gradient(ellipse at top right, rgba(20, 184, 138, 0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+      var(--color-bg);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7);
+    align-items: center;
+  }
+  @media (max-width: 920px) {
+    .hero-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+  }
+
+  .hero-copy h1 { margin: var(--space-4) 0 var(--space-4); }
+  .hl { color: var(--color-brand-dark); }
+
+  .hero-sub {
+    font-size: 1.125rem;
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-5);
+  }
+  .hero-points {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6);
+  }
+  .hero-points li {
+    margin-bottom: 0.4rem;
+    color: var(--color-text);
+    font-size: 0.95rem;
+  }
+  .hero-ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+
+  .hero-calc-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-lg);
+  }
+  .hero-calc-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-2);
+  }
+  .hero-calc-sub {
+    color: var(--color-text-soft);
+    font-size: 0.95rem;
+    margin-bottom: var(--space-5);
+  }
+
+  /* Section heads */
+  .section-head {
+    text-align: center;
+    margin-bottom: var(--space-6);
+  }
+  .section-head h2 { margin-bottom: var(--space-2); }
+  .section-head p { font-size: 1.05rem; }
+
+  /* Tool cards */
+  .tool-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+  .tool-card:hover { color: inherit; }
+  .tool-badge {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+  }
+  .tool-arrow {
+    position: absolute;
+    bottom: var(--space-4);
+    right: var(--space-5);
+    color: var(--color-brand);
+    font-size: 1.2rem;
+    transition: transform 0.15s var(--ease-out);
+  }
+  .tool-card:hover .tool-arrow { transform: translateX(4px); }
+
+  /* Why */
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+    text-align: center;
+  }
+  @media (max-width: 720px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-card {
+    padding: var(--space-5);
+  }
+  .why-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-3);
+  }
+  .why-card h3 { font-size: 1.1rem; margin-bottom: var(--space-2); }
+
+  /* Local */
+  .local-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-3);
+  }
+  .local-chip {
+    display: block;
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-weight: 500;
+    color: var(--color-text);
+    transition: all 0.15s var(--ease-out);
+  }
+  .local-chip:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand-dark);
+    transform: translateY(-2px);
+  }
+
+  /* Disclaimer */
+  .disclaimer {
+    background: var(--color-bg-soft);
+    border-left: 3px solid var(--color-warning);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    color: var(--color-text-soft);
+  }
+</style>

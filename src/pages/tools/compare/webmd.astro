@@ -1,0 +1,35 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'WebMD BMI Calculator — Review & Comparison',
+  datePublished: '2026-09-27',
+  dateModified: '2026-09-27',
+  author: { '@type': 'Organization', name: 'Helthvibe' },
+  publisher: { '@type': 'Organization', name: 'Helthvibe', logo: { '@type': 'ImageObject', url: 'https://helthvibe.com/logo.png' } },
+};
+---
+<Layout
+  title="WebMD BMI Calculator — Review & Comparison | Helthvibe"
+  description="An independent review of the WebMD BMI calculator — features, accuracy, privacy, and how it compares to Helthvibe."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="WebMD BMI Calculator — Review & Comparison | Helthvibe"
+    description="An independent review of the WebMD BMI calculator — features, accuracy, privacy, and how it compares to Helthvibe."
+    h1="WebMD BMI Calculator — Review & Comparison"
+    intro="WebMD's BMI calculator is a long-standing reference. Here's how it works and how it compares to Helthvibe on accuracy, privacy, and UX."
+    status="reference"
+    features={[
+      'WebMD calculator feature breakdown',
+      'Side-by-side comparison with Helthvibe',
+      'Editorial source comparison',
+      'Privacy and data-handling comparison',
+      'Affiliate-friendly disclosures',
+    ]}
+    schema={schema}
+  />
+</Layout>

@@ -1,0 +1,86 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { SITE } from '@data/site';
+
+const title = 'Privacy Policy | Helthvibe';
+const description = 'Helthvibe privacy policy. We respect your data. All BMI calculations run locally in your browser.';
+---
+<Layout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container-narrow text-center">
+      <h1>Privacy Policy</h1>
+      <p class="lead">Last updated: October 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow legal-prose">
+      <h2>Summary</h2>
+      <p><strong>Helthvibe does not collect or store your height or weight.</strong> All calculator inputs are processed in your browser and never sent to our servers.</p>
+
+      <h2>1. Information we never collect</h2>
+      <ul>
+        <li>Your height or weight values entered into any calculator</li>
+        <li>Your BMI result</li>
+        <li>Any personal health data</li>
+      </ul>
+
+      <h2>2. Information we may collect</h2>
+      <p>
+        We use <strong>Cloudflare Web Analytics</strong> to count page views and understand which calculators are useful.
+        It is cookieless, collects no personal identifiers, and never sees your calculator inputs. If you request the
+        newsletter, we store your email address solely to send it to you — and you can unsubscribe from any email.
+      </p>
+
+      <h2>3. Cookies</h2>
+      <p>
+        Helthvibe does not use advertising cookies or third-party tracking cookies. We may use a single first-party cookie
+        to remember your unit preference (metric/imperial).
+      </p>
+
+      <h2>4. Analytics and consent</h2>
+      <p>
+        Google Analytics 4 is <strong>off by default</strong> and is only enabled if you accept analytics when prompted.
+        Until you accept, no analytics cookies are set and no analytics data is collected. You can decline and keep using
+        every calculator — nothing on the site is gated behind consent.
+      </p>
+
+      <h2>5. Third-party services</h2>
+      <p>We use the following third-party services, none of which receive your health inputs:</p>
+      <ul>
+        <li>Cloudflare (hosting, performance, security, cookieless analytics)</li>
+        <li>Google Analytics 4 (only with your consent, if enabled)</li>
+        <li>Your own email provider (newsletter delivery — email only, if you subscribe)</li>
+      </ul>
+      <p>Fonts and images are served from our own domain — we make no third-party font requests.</p>
+
+      <h2>6. Affiliate links</h2>
+      <p>
+        Some links on Helthvibe are affiliate links. If you click through and make a purchase, we may earn a small commission
+        at no extra cost to you. Affiliate links never influence our calculator results or recommendations.
+      </p>
+
+      <h2>7. Your rights</h2>
+      <p>
+        If you've subscribed to our newsletter, you can unsubscribe at any time using the link in any email.
+        Contact <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a> with any privacy questions.
+      </p>
+
+      <h2>8. Children's privacy</h2>
+      <p>Helthvibe does not knowingly collect data from children under 13.</p>
+
+      <h2>9. Changes</h2>
+      <p>We may update this policy. Material changes will be posted on this page with an updated "Last updated" date.</p>
+
+      <p class="contact-line">Questions? Email <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a>.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-prose h2 { margin-top: var(--space-6); }
+  .legal-prose h2:first-of-type { margin-top: 0; }
+  .legal-prose ul { padding-left: 1.25rem; }
+  .legal-prose li { margin-bottom: 0.4rem; }
+  .contact-line { margin-top: var(--space-7); font-weight: 500; }
+</style>

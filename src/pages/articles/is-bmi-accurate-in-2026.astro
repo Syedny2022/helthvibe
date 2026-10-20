@@ -1,0 +1,290 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'Is BMI an accurate measure of health?',
+    a: 'It is a useful population-level screening tool, but it has well-documented limitations for individuals — especially athletes, muscular people, the elderly, and certain ethnic groups.',
+  },
+  {
+    q: 'What is a better measure than BMI?',
+    a: 'Body-fat percentage, waist-to-height ratio, waist circumference, and DEXA scans all give a more direct view of body composition. Bloodwork and cardiorespiratory fitness predict health risk as well as or better than BMI.',
+  },
+  {
+    q: 'Why is BMI still used if it has limitations?',
+    a: 'It is cheap, fast, requires no equipment, and correlates with cardiometabolic risk at the population level. It works well enough for screening, even if it is wrong for some individuals.',
+  },
+  {
+    q: 'Does BMI overestimate body fat in athletes?',
+    a: 'Yes. Athletes with high muscle mass often read as overweight or obese by BMI despite having low body fat. Our [Athlete BMI calculator](/calculators/bmi-athletes) addresses this.',
+  },
+  {
+    q: 'Should I stop using BMI?',
+    a: 'No — but treat it as one signal among several. Pair it with waist circumference, body composition, bloodwork, and a clinician\'s assessment for the full picture.',
+  },
+];
+
+const related = [
+  { href: '/articles/bmi-vs-body-fat-percentage/', title: 'BMI vs Body Fat Percentage', desc: 'How the two compare and when each is more useful.' },
+  { href: '/articles/what-is-a-healthy-bmi/', title: 'What Is a Healthy BMI?', desc: 'The healthy range and its limits.' },
+  { href: '/calculators/bmi-athletes/', title: 'Athlete BMI Calculator', desc: 'BMI with muscle-mass context for athletic builds.' },
+];
+---
+<ArticleLayout
+  title="Is BMI Accurate in 2026? Limitations & Better Alternatives | Helthvibe"
+  description="A clear-eyed look at BMI in 2026 — where it works, where it fails, and which alternatives are worth using. Honest, evidence-based."
+  h1="Is BMI Accurate in 2026? Limitations & Better Alternatives"
+  excerpt="Where BMI works, where it fails, and what to use instead. A balanced look at the most-used body composition metric."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Deep dive"
+  readTime="10 min"
+  showCalculator={true}
+  faqs={faqs}
+  related={related}
+>
+  <p>
+    BMI has been the standard weight-status metric for decades. It's the number on every doctor's chart, every fitness
+    app, every "what's a healthy weight for my height?" article. But it's also been criticized for as long as it's
+    existed — and in 2026, those criticisms are well-supported by research.
+  </p>
+
+  <p>
+    This guide is an honest, evidence-based look at when BMI works, when it fails, and what to use instead. The answer
+    isn't "BMI is useless." It's "BMI is one signal among several — useful in some contexts, misleading in others."
+  </p>
+
+  <h2>Why BMI is still used</h2>
+  <p>
+    Before we get to the limits, it's worth understanding why BMI has stuck around for 30+ years despite its critics.
+    Five reasons:
+  </p>
+
+  <ol>
+    <li><strong>It is cheap.</strong> No equipment, no blood draw, no imaging. Just height and weight.</li>
+    <li><strong>It is fast.</strong> A calculation takes seconds.</li>
+    <li><strong>It correlates with cardiometabolic risk at the population level.</strong> Large epidemiological studies repeatedly show a J-shaped or U-shaped curve between BMI and mortality.</li>
+    <li><strong>It is comparable across studies and decades.</strong> Researchers can track changes in populations over time.</li>
+    <li><strong>It is simple enough for individuals to calculate.</strong> No clinical visit required.</li>
+  </ol>
+
+  <p>
+    These reasons explain why BMI survives — but they also explain the limits. A metric designed for population-level
+    screening gets used (often implicitly) as if it were a personal diagnosis. That's where the trouble starts.
+  </p>
+
+  <h2>Where BMI works well</h2>
+  <p>
+    BMI is a reasonable signal for:
+  </p>
+
+  <ul>
+    <li><strong>Population screening</strong> — public health agencies use it to estimate the prevalence of underweight, overweight, and obesity in a population.</li>
+    <li><strong>Average adults with average body composition</strong> — for someone who is neither very muscular nor very sedentary, BMI tracks cardiometabolic risk reasonably well.</li>
+    <li><strong>Trend monitoring</strong> — watching your BMI change over months or years gives a directional signal about weight trends.</li>
+    <li><strong>Quick screening in clinical settings</strong> — when time is short and a more detailed body-composition assessment isn't available.</li>
+  </ul>
+
+  <h2>Where BMI fails</h2>
+  <p>
+    BMI fails — sometimes badly — for several specific groups. If you fall into one of these, treat your BMI number with
+    extra caution.
+  </p>
+
+  <h3>1. Athletes and muscular individuals</h3>
+  <p>
+    This is the most common critique, and it's well-founded. Muscle is denser than fat, so a muscular person weighs more
+    per unit of height than a sedentary person of the same height. A lean, muscular bodybuilder at 15% body fat can easily
+    read as overweight or obese by BMI despite being metabolically healthy.
+  </p>
+
+  <p>
+    Example: A 6'0" (183 cm) male bodybuilder at 15% body fat weighs about 95 kg (209 lb) — a BMI of 28.3, technically
+    overweight. The same man at 30% body fat would weigh about 109 kg (240 lb) — a BMI of 32.5, obese. The first is
+    metabolically healthy; the second is not. BMI cannot distinguish them.
+  </p>
+
+  <p>
+    For a more honest read, see our [Athlete BMI calculator](/calculators/bmi-athletes), which adds body-fat percentage
+    and muscle-mass context.
+  </p>
+
+  <h3>2. The elderly</h3>
+  <p>
+    Older adults lose muscle mass (sarcopenia) and often gain visceral fat, even at stable weight. A "healthy" BMI of 22
+    in a 75-year-old may reflect lost muscle and increased fat — a different metabolic profile than the same BMI in a
+    30-year-old. Mortality research suggests older adults fare better with a BMI slightly above the standard healthy
+    range. See our [Senior BMI calculator](/calculators/bmi-seniors).
+  </p>
+
+  <h3>3. Asian, Black, and Hispanic populations</h3>
+  <p>
+    <strong>Asian populations</strong> develop cardiometabolic complications at lower BMIs than European-origin populations.
+    The WHO has issued lower cutoffs (18.5–22.9 healthy, 23–27.5 overweight, 27.5+ obese) for Asian adults. See our
+    [Asian BMI calculator](/calculators/bmi-asian).
+  </p>
+
+  <p>
+    <strong>Black populations</strong> tend to have higher bone density and lean mass at a given BMI, which may make BMI
+    slightly more accurate for them in some respects. However, the relationship between BMI and cardiometabolic risk
+    can differ — research is ongoing.
+  </p>
+
+  <p>
+    <strong>Hispanic populations</strong> show similar BMI–risk patterns to European-origin populations in most studies,
+    though some research suggests waist circumference may matter more. No consensus on adjusted BMI cutoffs exists yet.
+  </p>
+
+  <h3>4. Pregnant or breastfeeding women</h3>
+  <p>
+    BMI does not apply during pregnancy — gestational weight gain guidelines are based on pre-pregnancy BMI, not on
+    current weight. Breastfeeding changes body composition in ways BMI cannot capture. Use pre-pregnancy BMI as the
+    baseline, and consult your OB or midwife for personalized guidance.
+  </p>
+
+  <h3>5. People with very different body shapes</h3>
+  <p>
+    Two people with identical BMI can have meaningfully different body compositions — different waist circumference,
+    different limb-to-trunk ratios, different visceral fat. BMI is a single number; bodies are multidimensional.
+  </p>
+
+  <h2>What BMI misses</h2>
+  <p>
+    The biggest blind spot: BMI tells you nothing about <em>where</em> the weight is. Visceral (abdominal) fat is far more
+    dangerous than subcutaneous (limb) fat. A person with a 34-inch waist and BMI 26 has meaningfully higher cardiometabolic
+    risk than a person with a 30-inch waist and BMI 28 — even though the second has a higher BMI.
+  </p>
+
+  <p>
+    BMI also misses:
+  </p>
+
+  <ul>
+    <li><strong>Cardiorespiratory fitness.</strong> A "fit and fat" person consistently has lower mortality than an "unfit and thin" person, even at the same BMI.</li>
+    <li><strong>Metabolic health.</strong> Blood pressure, fasting glucose, HbA1c, and lipid panel all predict risk far better than BMI alone.</li>
+    <li><strong>Body composition.</strong> Two people with BMI 27 can have 15% vs. 35% body fat — the latter has substantially higher risk.</li>
+  </ul>
+
+  <h2>Better alternatives (and when to use them)</h2>
+  <p>
+    Five commonly used alternatives — each with their own strengths and weaknesses.
+  </p>
+
+  <h3>1. Waist circumference</h3>
+  <p>
+    <strong>What it measures:</strong> abdominal fat, which correlates more strongly with cardiometabolic risk than total
+    weight.
+  </p>
+  <p>
+    <strong>How to use it:</strong> measure at the level of your navel, relaxed. Above 40 in (102 cm) for men or 35 in
+    (88 cm) for women is considered elevated risk.
+  </p>
+  <p>
+    <strong>Best for:</strong> everyone. Cheap, fast, more informative than BMI on its own.
+  </p>
+
+  <h3>2. Waist-to-height ratio</h3>
+  <p>
+    <strong>What it measures:</strong> abdominal fat relative to height. Stronger predictor than BMI for cardiometabolic
+    risk in adults.
+  </p>
+  <p>
+    <strong>How to use it:</strong> divide waist circumference by height. Below 0.5 is generally considered low risk;
+    0.5–0.6 is elevated; above 0.6 is high.
+  </p>
+  <p>
+    <strong>Best for:</strong> everyone; particularly useful across ethnicities and body types.
+  </p>
+
+  <h3>3. Body-fat percentage</h3>
+  <p>
+    <strong>What it measures:</strong> the actual proportion of your weight that is fat.
+  </p>
+  <p>
+    <strong>How to measure it:</strong>
+  </p>
+  <ul>
+    <li><strong>DEXA scan</strong> — clinical gold standard. ~1% accuracy. Costs $50–150 out of pocket.</li>
+    <li><strong>Bioelectrical impedance (BIA)</strong> — scales and hand-held devices. Convenient but accuracy varies (3–5% error).</li>
+    <li><strong>Skinfold calipers</strong> — requires a trained operator; accuracy depends heavily on technique.</li>
+    <li><strong>Hydrostatic weighing</strong> — historically a gold standard, less common now.</li>
+  </ul>
+
+  <p>
+    <strong>Best for:</strong> athletes, anyone whose BMI doesn't match their lived experience.
+  </p>
+
+  <h3>4. DEXA scan</h3>
+  <p>
+    <strong>What it measures:</strong> total body composition — fat mass, lean mass, bone mass — plus visceral fat
+    estimate. Clinical gold standard.
+  </p>
+
+  <p>
+    <strong>How to get one:</strong> many sports medicine clinics, radiology centers, and some gyms offer DEXA scans
+    for $50–150 per session.
+  </p>
+
+  <p>
+    <strong>Best for:</strong> detailed body composition assessment, tracking changes over time.
+  </p>
+
+  <h3>5. Bloodwork + blood pressure</h3>
+  <p>
+    <strong>What it measures:</strong> actual cardiometabolic risk — not a body composition proxy.
+  </p>
+
+  <ul>
+    <li>Fasting glucose</li>
+    <li>HbA1c (3-month blood sugar average)</li>
+    <li>Lipid panel (LDL, HDL, triglycerides)</li>
+    <li>Blood pressure (systolic / diastolic)</li>
+    <li>Optional: hs-CRP (inflammation marker), liver enzymes (NAFLD screening)</li>
+  </ul>
+
+  <p>
+    <strong>Best for:</strong> everyone — this is the most clinically meaningful set of risk indicators.
+  </p>
+
+  <h2>A practical framework</h2>
+  <p>
+    How to use BMI in 2026 without over-relying on it:
+  </p>
+
+  <ol>
+    <li><strong>Calculate your BMI</strong> for context — use our calculator above or any tool.</li>
+    <li><strong>Measure your waist circumference.</strong> This is more informative on its own than BMI alone.</li>
+    <li><strong>Calculate waist-to-height ratio.</strong> Aim for under 0.5.</li>
+    <li><strong>Get bloodwork.</strong> Fasting glucose, HbA1c, lipid panel, blood pressure — annually for most adults.</li>
+    <li><strong>Assess cardiorespiratory fitness.</strong> How easily you can walk, climb stairs, exercise. This predicts mortality independently of BMI.</li>
+    <li><strong>Talk to a clinician</strong> about your personal risk profile — family history, medications, existing conditions all matter.</li>
+  </ol>
+
+  <p>
+    BMI is the start of that conversation, not the end of it.
+  </p>
+
+  <h2>The "obesity paradox" and other complications</h2>
+  <p>
+    One more nuance worth knowing: in some clinical contexts — heart failure, advanced kidney disease, certain cancers —
+    patients with higher BMI have <em>better</em> outcomes than patients with lower BMI. This is called the "obesity paradox."
+  </p>
+
+  <p>
+    It doesn't mean being overweight is healthy. It means BMI is too blunt to tell the whole story, and in some sick
+    populations, the protective effects of lean mass and energy reserves matter more than the metabolic costs of extra
+    weight.
+  </p>
+
+  <h2>The bottom line</h2>
+  <p>
+    BMI in 2026 is what it has always been: a useful, imperfect, population-level screening tool. Use it as one input
+    among several. Pair it with waist circumference, body composition where possible, bloodwork, and a clinician's
+    assessment. For athletes, muscular individuals, older adults, and Asian populations, BMI is meaningfully incomplete —
+    use the adjusted calculators we link to throughout this article.
+  </p>
+
+  <div class="callout">
+    <strong>Not medical advice.</strong> This article is informational. Always consult a qualified healthcare professional for personal medical decisions.
+  </div>
+</ArticleLayout>

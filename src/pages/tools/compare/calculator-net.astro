@@ -1,0 +1,35 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Calculator.net BMI Calculator — Review & Comparison',
+  datePublished: '2026-09-27',
+  dateModified: '2026-09-27',
+  author: { '@type': 'Organization', name: 'Helthvibe' },
+  publisher: { '@type': 'Organization', name: 'Helthvibe', logo: { '@type': 'ImageObject', url: 'https://helthvibe.com/logo.png' } },
+};
+---
+<Layout
+  title="Calculator.net BMI Calculator — Review & Comparison | Helthvibe"
+  description="An independent review of the Calculator.net BMI calculator — features, accuracy, privacy, and how it compares to Helthvibe."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Calculator.net BMI Calculator — Review & Comparison | Helthvibe"
+    description="An independent review of the Calculator.net BMI calculator — features, accuracy, privacy, and how it compares to Helthvibe."
+    h1="Calculator.net BMI Calculator — Review & Comparison"
+    intro="An independent, side-by-side look at the Calculator.net BMI calculator and how it stacks up against Helthvibe on accuracy, privacy, UX, and features."
+    status="reference"
+    features={[
+      'Calculator.net feature breakdown',
+      'Side-by-side comparison with Helthvibe',
+      'Accuracy and methodology notes',
+      'Privacy and data-handling comparison',
+      'Affiliate-friendly disclosures',
+    ]}
+    schema={schema}
+  />
+</Layout>

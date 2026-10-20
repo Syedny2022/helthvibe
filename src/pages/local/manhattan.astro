@@ -1,0 +1,33 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'BMI Calculator for Manhattan',
+  description: 'Free BMI calculator for Manhattan residents and professionals. Privacy-first.',
+};
+---
+<Layout
+  title="Free BMI Calculator for Manhattan, NY | Helthvibe"
+  description="Free BMI calculator for Manhattan residents and professionals — instant results, healthy range, privacy-first."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Free BMI Calculator for Manhattan, NY | Helthvibe"
+    description="Free BMI calculator for Manhattan residents and professionals — instant results, healthy range, privacy-first."
+    h1="BMI Calculator for Manhattan"
+    intro="A BMI calculator for Manhattan residents and professionals — built for speed and clarity."
+    status="coming-soon"
+    features={[
+      'WHO-standard BMI calculation',
+      'Healthy weight range for your height',
+      'Manhattan-specific lifestyle notes (commute, gym access)',
+      'Privacy-first — all math runs locally',
+      'Metric and imperial units',
+    ]}
+    schema={schema}
+    ctaHref="/calculators/bmi/"
+  />
+</Layout>

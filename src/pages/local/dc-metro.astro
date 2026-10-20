@@ -1,0 +1,505 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BMICalculator from '@components/BMICalculator.astro';
+
+const title = 'BMI Calculator for DC Metro — Federal Workers, Commuters & Capitol Residents | Helthvibe';
+const description = 'Free BMI calculator for the DC Metro region — DC, Arlington, Bethesda, Silver Spring, Alexandria. Built for federal-worker schedules, WMATA commuting, and National Mall running.';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe BMI Calculator for DC Metro',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: 'Free BMI calculator tailored for the DC Metro region. Same WHO-standard math, DMV-area specific lifestyle context.',
+  url: 'https://helthvibe.com/local/dc-metro/',
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'BMI Calculator for DC Metro',
+  description: 'BMI calculator for the DC Metro region with local context on National Mall running, federal-worker schedules, and DMV-area fitness resources.',
+  url: 'https://helthvibe.com/local/dc-metro/',
+  about: {
+    '@type': 'Place',
+    name: 'Washington DC Metro Area',
+    address: { '@type': 'PostalAddress', addressLocality: 'Washington', addressRegion: 'DC', addressCountry: 'US' },
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Where do people run in DC?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The National Mall at sunrise is iconic — a 4–5 mile monuments loop past the Capitol, Washington Monument, Lincoln Memorial, and WWII Memorial. Rock Creek Park (1,800 acres, runs from the National Mall to the Maryland border) is Washington\'s primary trail network. The C&O Canal towpath stretches 184 miles from Georgetown to Cumberland, MD.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do federal-worker schedules affect health?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Federal employees work GS-grade schedules (8:30am–5pm standard) with 11 paid federal holidays, generous leave, and the recurring risk of government shutdowns. Stable schedules support routine fitness; shutdown periods disrupt it. Many federal agencies have on-site fitness centers or partner with private gyms.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is the DC Metro region walkable?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It depends where you are. DC proper, Arlington (Rosslyn-Ballston corridor), Bethesda, and Silver Spring are walkable. Most of suburban Maryland and Virginia is car-dependent. WMATA (the DC subway) connects much of the urban core; commuters average 8,000–10,000 steps daily.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'Where do people run in DC?',
+    a: 'The National Mall at sunrise is iconic — a 4–5 mile monuments loop past the Capitol, Washington Monument, Lincoln Memorial, and WWII Memorial. Rock Creek Park (1,800 acres, running from the National Mall to the Maryland border) is Washington\'s primary trail network. The C&O Canal towpath stretches 184 miles from Georgetown to Cumberland, MD, and is a weekend cycling and running destination.',
+  },
+  {
+    q: 'How do federal-worker schedules affect health?',
+    a: 'Federal employees work GS-grade schedules (typically 8:30am–5pm) with 11 paid federal holidays, generous leave, and the recurring risk of government shutdowns. Stable schedules support routine fitness; shutdown periods disrupt it. Many federal agencies have on-site fitness centers (the Pentagon, State Department, and several large agencies maintain facilities) or partner with private gyms. The federal Thrift Savings Plan offers retirement savings but not direct health benefits beyond FEHB insurance.',
+  },
+  {
+    q: 'Is the DC Metro region walkable?',
+    a: 'It depends where you are. DC proper (especially the NW quadrant), Arlington\'s Rosslyn-Ballston corridor, Bethesda, and Silver Spring are walkable. Most of suburban Maryland and Virginia is car-dependent. WMATA (the DC subway) connects much of the urban core. Commuters who live in walkable neighborhoods and use Metro for commuting typically average 8,000–10,000 steps daily without structured exercise.',
+  },
+  {
+    q: 'What gym culture is DC known for?',
+    a: 'DC punches above its weight in boutique fitness. VIDA Fitness (multiple locations, flagship on 14th Street) is DC-headquartered and a defining brand. Solidcore (originally DC-based, now national) operates multiple studios. Equinox has DC presence. CrossFit boxes are everywhere. The "fit DC professional" is a real cultural archetype — many Hill staffers, lobbyists, and consultants maintain visible fitness routines.',
+  },
+  {
+    q: 'How does government shutdown stress affect BMI?',
+    a: 'Shutdowns disrupt income, routine, and stress hormones — the latter drives visceral fat accumulation and disrupted sleep. During 2018–19\'s 35-day shutdown, furloughed federal workers reported meaningful weight changes. The honest answer: chronic uncertainty is itself a health risk, separate from any individual\'s diet or exercise choices. If you\'re a federal worker or contractor affected by shutdowns, talk to your clinician about stress management.',
+  },
+];
+
+const related = [
+  { href: '/local/nyc/', title: 'NYC BMI Calculator', desc: 'Manhattan-focused: subway, walkability, 24/7 city.' },
+  { href: '/local/brooklyn/', title: 'Brooklyn BMI Calculator', desc: 'Neighborhood diversity, Prospect Park running.' },
+  { href: '/local/washington-dc/', title: 'Washington DC', desc: 'DC-specific: Mall running, federal-worker culture.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, webPageSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">DC Metro · WHO-standard · Private</span>
+      <h1>BMI Calculator for DC Metro</h1>
+      <p class="lead">
+        The DMV is more than a city — it's a region with its own rhythm. Federal-worker schedules, Metro commuting, monuments-loop running, and a specific political-class fitness culture all shape the inputs to your BMI in ways most calculators ignore.
+      </p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <BMICalculator variant="full" showAsianToggle={true} id="dc-metro-bmi" />
+        </div>
+
+        <aside class="calc-side">
+          <div class="info-card">
+            <h3>DC Metro fitness resources</h3>
+            <ul class="info-list">
+              <li><strong>National Mall</strong> — monuments loop, ~4.5 miles, free, open daily.</li>
+              <li><strong>Rock Creek Park</strong> — 1,800 acres of trails running NW from the Mall.</li>
+              <li><strong>C&O Canal towpath</strong> — 184.5 miles, Georgetown to Cumberland MD.</li>
+              <li><strong>Capital Bikeshare</strong> — 5,000+ bikes at 700+ stations across DC, Arlington, Alexandria, Bethesda.</li>
+              <li><strong>DC DPR</strong> — DC Department of Parks and Rec, free fitness classes citywide.</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Federal worker fitness</h3>
+            <ul class="info-list">
+              <li><strong>On-site fitness centers</strong> — many large federal agencies (Pentagon, State, etc.) maintain facilities.</li>
+              <li><strong>FEHB insurance</strong> — most plans cover preventive care, gym discounts.</li>
+              <li><strong>FEVS</strong> — Federal Employee Viewpoint Survey tracks wellness engagement.</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Privacy</h3>
+            <p>All calculations run in your browser. We never see your height or weight.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- What makes the DMV different -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">What makes the DMV its own thing</h2>
+      <p class="section-intro">
+        The DC Metro area is the political center of the United States, and that shapes everything from work schedules to
+        fitness culture to the rhythm of the year. Here's what makes the DMV specifically different from other major
+        metros — and what that means for the inputs to your BMI.
+      </p>
+
+      <div class="factor-grid">
+        <div class="factor-card">
+          <h3>The National Mall is your running track</h3>
+          <p>
+            Few cities have a defining open space like the National Mall. The monuments loop (Capitol → Washington
+            Monument → WWII Memorial → Lincoln Memorial → Reflecting Pool and back) is roughly 4.5 miles and is one of
+            the most distinctive urban runs in the world. At sunrise on weekday mornings you'll see Hill staffers,
+            lobbyists, journalists, and government contractors — DC's "fit professional" culture on full display.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>Rock Creek Park is the city's spine</h3>
+          <p>
+            Rock Creek Park is 1,800 acres running from the National Mall northwest to the Maryland border — Washington's
+            equivalent of Central Park, but more rugged. The paved Valley Trail and dirt trails support running, hiking,
+            and cycling. The Park is connected to the Potomac via the Chesapeake & Ohio Canal towpath, which extends 184
+            miles to Cumberland, MD — a defining weekend cycling and running resource for DMV residents.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>Federal schedules give you routine</h3>
+          <p>
+            About 2.9 million Americans work for the federal government — and roughly 350,000 of them work in the DMV
+            area. Federal employees typically work 8:30am–5pm schedules with 11 paid federal holidays, generous sick
+            leave, and structured vacation. That stability supports routine fitness in ways the gig economy and shift
+            work don't. Government shutdowns disrupt this — and the stress of shutdown periods has documented health
+            effects.
+          </p>
+          <p class="factor-note">
+            <strong>Shutdown reality:</strong> during the 2018–19 shutdown, federal workers reported meaningful weight
+            changes from stress eating, disrupted routines, and uncertainty. Federal-worker BMI management includes
+            planning for shutdown disruption.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>WMATA commuting is real, not theoretical</h3>
+          <p>
+            The DC Metro (WMATA) carries roughly 300,000 riders on a typical weekday. For commuters living in walkable
+            neighborhoods with Metro access, daily round-trip commutes include 15–25 minutes of walking (home to
+            station, transfer, station to office). That adds 3,000–5,000 steps daily. Combined with normal daily
+            movement, many Metro commuters hit 10,000+ steps without structured exercise.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>The suburbs are car-dependent</h3>
+          <p>
+            DC proper is walkable. Arlington's Rosslyn-Ballston corridor is walkable. Bethesda, Silver Spring, and
+            Alexandria have walkable cores. Most of suburban Maryland (Bethesda beyond the core, Rockville, Potomac)
+            and suburban Virginia (Fairfax, Loudoun, Prince William) is car-dependent — daily driving with no
+            incidental walking. The DMV has some of the nation's longest average commute times, which affects how
+            much incidental movement residents get.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>The political-class fitness culture is real</h3>
+          <p>
+            DC's "fit professional" is a cultural archetype for a reason. Hill staffers, lobbyists, consultants, and
+            journalists often maintain visible fitness routines — partly for the social and professional benefits,
+            partly for stress management in high-pressure jobs. Boutique studios (VIDA Fitness, Solidcore) and
+            boutique gyms are dense in NW DC, downtown, and Arlington. The federal workforce is heavier on big-box
+            gyms and on-site facilities.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>The cherry blossom season shapes the year</h3>
+          <p>
+            DC's annual cycle has a specific rhythm: cherry blossoms peak in late March to early April (the National
+            Cherry Blossom Festival runs 4+ weeks), summer humidity hits hard from June through August, fall is the
+            best outdoor running window (October–November), and winter is mild by NYC standards but cold enough that
+            the monuments loop is a year-round destination. The seasonal fitness swing is real.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>Capital Bikeshare changes the equation</h3>
+          <p>
+            Capital Bikeshare (CaBi) operates more than 5,000 bikes at 700+ stations across DC, Arlington, Alexandria,
+            Bethesda, and Silver Spring. For short trips, it's faster than walking and adds incidental movement. For
+            commuters solving the "last mile" problem, it's a way to extend Metro commuting with light cycling. The
+            annual membership is $95.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DMV subregions -->
+  <section class="section section-soft">
+    <div class="container">
+      <h2 class="section-title">The DMV isn't one thing — it's a region of distinct subareas</h2>
+      <p class="section-intro">
+        Within the DC Metro, the day-to-day life of a Capitol Hill staffer, a Bethesda parent, an Arlington contractor,
+        and a Silver Spring commuter are meaningfully different. That shapes everything from food access to commuting
+        patterns to stress.
+      </p>
+
+      <div class="hood-grid">
+        <div class="hood-card">
+          <h3>DC proper — Capitol Hill, NW, Dupont, Logan</h3>
+          <p>
+            The urban core. Walkable, Metro-rich, dense with restaurants and fitness studios. The "fit DC professional"
+            archetype lives here. Capitol Hill and the NW quadrant have a particular culture tied to Hill staffers and
+            journalists. Restaurant density is high; grocery density varies (whole neighborhoods have only convenience
+            stores, requiring weekly supermarket trips). Dupont Circle and Logan Circle have the strongest fitness
+            studio density.
+          </p>
+        </div>
+
+        <div class="hood-card">
+          <h3>Arlington, VA — Rosslyn-Ballston, Pentagon City</h3>
+          <p>
+            Across the Potomac from DC. The Rosslyn-Ballston Metro corridor is exceptionally walkable for a
+            Virginia suburb and has a strong residential-plus-office mix. Many federal contractors and military-adjacent
+            workers live here. Pentagon City and Crystal City have a more residential-suburban feel. Arlington's
+            fitness infrastructure is strong — multiple Equinox locations, VIDA, Orange Theory, and the Pentagon's
+            on-site facilities nearby.
+          </p>
+        </div>
+
+        <div class="hood-card">
+          <h3>Bethesda, MD — downtown core</h3>
+          <p>
+            Affluent Montgomery County suburb. Bethesda's downtown core is walkable (Bethesda Row, Bethesda Avenue) and
+            the Bethesda Metro station is a major commuter hub. Surrounding residential neighborhoods are quieter and
+            more family-oriented. Restaurant and grocery access is strong in the core; residents outside the core
+            typically drive to shop. Strong yoga and family-fitness scene.
+          </p>
+        </div>
+
+        <div class="hood-card">
+          <h3>Alexandria, VA — Old Town, Del Ray</h3>
+          <p>
+            Historic city just south of DC. Old Town Alexandria has a particular charm — cobblestone streets, walkable
+            King Street corridor, a strong independent restaurant scene. Del Ray is a smaller, family-oriented
+            neighborhood north of Old Town. Metro access is limited (the Blue and Yellow lines serve the area but
+            most residents drive or commute by car).
+          </p>
+        </div>
+
+        <div class="hood-card">
+          <h3>Silver Spring, MD</h3>
+          <p>
+            Urbanizing inner suburb north of DC. The Silver Spring Metro station anchors a downtown that has become
+            increasingly dense and walkable. Diverse, multi-ethnic population with strong restaurant diversity
+            (Ethiopian, Korean, Salvadoran particularly strong here). More affordable than Bethesda, with similar
+            commute patterns to downtown DC. Sligo Creek Park provides a north-south green corridor for running and
+            cycling.
+          </p>
+        </div>
+
+        <div class="hood-card">
+          <h3>Outer suburbs — Fairfax, Loudoun, Prince William, Howard</h3>
+          <p>
+            Car-dependent outer ring. Larger homes, larger yards, longer commutes. Many residents have home gym
+            setups (often a treadmill, stationary bike, or home weight setup). Restaurant density drops; grocery
+            trips are weekly big-stock events. Walking is mostly recreational and intentional rather than incidental.
+            Fitness happens at YMCAs, big-box gyms (Life Time, Gold's), and recreation centers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container-narrow">
+      <h2>DMV-specific questions</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="section section-soft">
+    <div class="container">
+      <h2>Keep exploring</h2>
+      <div class="grid grid-3">
+        {related.map((r) => (
+          <a href={r.href} class="card">
+            <h3 class="card-title">{r.title}</h3>
+            <p class="card-desc">{r.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: var(--space-7) 0 var(--space-6);
+    text-align: center;
+    background:
+      radial-gradient(ellipse at top, rgba(99, 102, 241, 0.10) 0%, transparent 60%),
+      var(--color-bg);
+  }
+  .page-hero .badge { margin-bottom: var(--space-3); }
+  .page-hero h1 { margin-bottom: var(--space-3); }
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 780px; margin: 0 auto; }
+
+  .calc-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+
+  .calc-main {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .info-card h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+  }
+  .info-card p { font-size: 0.95rem; margin: 0; }
+  .info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .info-list li {
+    margin-bottom: 0.6rem;
+    font-size: 0.92rem;
+  }
+
+  /* Section title */
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+  .section-intro {
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--color-text-soft);
+    max-width: 780px;
+    margin: 0 auto var(--space-6);
+  }
+
+  /* Factor grid */
+  .factor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-4);
+  }
+  .factor-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .factor-card:hover { border-color: var(--color-brand); }
+  .factor-card h3 {
+    font-size: 1.1rem;
+    color: var(--color-brand-dark);
+    margin-bottom: var(--space-3);
+  }
+  .factor-card p {
+    margin: 0 0 var(--space-3);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .factor-card p:last-child { margin-bottom: 0; }
+  .factor-note {
+    background: var(--color-bg-soft);
+    border-left: 2px solid var(--color-brand);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem !important;
+  }
+  .factor-note strong { color: var(--color-text); }
+
+  /* Hood grid */
+  .hood-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-4);
+  }
+  .hood-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .hood-card:hover { border-left-color: var(--color-brand); }
+  .hood-card h3 {
+    font-size: 1.05rem;
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+  }
+  .hood-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* FAQ */
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--color-brand);
+    transition: transform 0.15s var(--ease-out);
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; line-height: 1.7; }
+</style>

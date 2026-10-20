@@ -1,0 +1,123 @@
+---
+import Layout from '@layouts/Layout.astro';
+const title = 'Free Lean Body Mass Calculator — Boer Formula | Helthvibe';
+const description = 'Estimate your Lean Body Mass (LBM) — fat-free body weight — using the Boer (1984) equation. Useful for athletes and clinical dosing.';
+const softwareSchema = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Helthvibe Lean Body Mass Calculator', applicationCategory: 'HealthApplication', operatingSystem: 'Web', url: 'https://helthvibe.com/calculators/lean-body-mass/', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } };
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+  { '@type': 'Question', name: 'What is Lean Body Mass?', acceptedAnswer: { '@type': 'Answer', text: 'Lean Body Mass (LBM) is total body weight minus all body fat. It includes muscle, bone, organs, water, and connective tissue. LBM is the metabolically active mass that burns calories at rest.' } },
+  { '@type': 'Question', name: 'How accurate is the Boer formula?', acceptedAnswer: { '@type': 'Answer', text: 'The Boer (1984) equation estimates LBM from height, weight, and sex with standard error of approximately 3–4 kg compared with DEXA. Reasonably accurate for population estimates and tracking changes in an individual.' } },
+  { '@type': 'Question', name: 'Is my data private?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.' } },
+] };
+const faqs = [
+  { q: 'What is Lean Body Mass?', a: 'Total body weight minus all body fat. Includes muscle, bone, organs, water. The metabolically active mass.' },
+  { q: 'Why is LBM important?', a: 'Higher LBM = higher BMR = more calories burned at rest. Important for athletes, sarcopenia screening, and dosing.' },
+  { q: 'Boer vs Hume?', a: 'Both 1984 equations. Boer is slightly more accurate for clinical use; Hume tends to over-estimate LBM in women.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Free · Boer 1984 · Private</span>
+      <h1>Lean Body Mass Calculator</h1>
+      <p class="lead">Estimate your fat-free body mass — the part of you that burns calories, builds strength, and keeps you moving.</p>
+    </div>
+  </section>
+  <section class="section calc-section"><div class="container"><div class="calc-layout">
+    <div class="calc-main"><div class="calc" data-lbm-calc id="lbm-main">
+      <form class="form" data-form novalidate>
+        <div class="row">
+          <div class="field"><label class="field-label" for="lbm-h">Height (cm)</label><input type="number" id="lbm-h" name="h" min="100" max="250" step="0.1" placeholder="175" required /></div>
+          <div class="field"><label class="field-label" for="lbm-w">Weight (kg)</label><input type="number" id="lbm-w" name="w" min="30" max="300" step="0.1" placeholder="70" required /></div>
+        </div>
+        <div class="field"><label class="field-label">Biological sex</label><div class="sex-toggle"><button type="button" class="sex-btn" data-sex="female">Female</button><button type="button" class="sex-btn active" data-sex="male">Male</button></div></div>
+        <button type="submit" class="btn btn-primary btn-block">Calculate LBM</button>
+        <p class="privacy-note">🔒 All math runs in your browser. Data never leaves this device.</p>
+      </form>
+      <div class="result" data-result hidden>
+        <div class="result-score"><span class="result-label">Your lean body mass</span><span class="result-value" data-value>—</span><span class="result-unit">kg</span></div>
+        <p class="result-desc" data-desc></p>
+        <p class="result-note" data-note></p>
+      </div>
+    </div></div>
+    <aside class="calc-side">
+      <div class="info-card"><h3>Reference values</h3>
+        <table class="cat-table"><tbody><tr><th>Group</th><th>Typical LBM</th></tr><tr><td>Adult male (avg)</td><td>~62 kg</td></tr><tr><td>Adult female (avg)</td><td>~42 kg</td></tr><tr><td>Athletic male</td><td>65–80 kg</td></tr><tr><td>Athletic female</td><td>45–55 kg</td></tr></tbody></table>
+      </div>
+      <div class="info-card"><h3>Why LBM matters</h3><p>LBM drives your BMR — every additional kg of lean mass burns approximately 13 kcal/day more at rest. LBM is also the target of resistance training and the metric lost during rapid weight loss.</p></div>
+      <div class="info-card"><h3>Privacy</h3><p>All calculations happen locally. Nothing is sent to a server.</p></div>
+    </aside>
+  </div></div></section>
+  <section class="section section-soft"><div class="container-narrow"><h2>Frequently asked questions</h2><div class="faq-list">{faqs.map((f) => (<details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div></div></section>
+  <section class="section"><div class="container"><h2>Keep exploring</h2><div class="grid grid-3"><a href="/calculators/body-fat/" class="card"><h3 class="card-title">Body Fat %</h3><p class="card-desc">Estimate body fat from BMI/age/sex.</p></a><a href="/calculators/bmr/" class="card"><h3 class="card-title">BMR</h3><p class="card-desc">LBM drives your resting calorie burn.</p></a><a href="/calculators/bsa/" class="card"><h3 class="card-title">Body Surface Area</h3><p class="card-desc">BSA from height and weight.</p></a></div></div></section>
+</Layout>
+<style>
+  .page-hero { padding: var(--space-7) 0 var(--space-6); text-align: center; background: radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%), var(--color-bg); }
+  .page-hero .badge { margin-bottom: var(--space-3); } .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+  .calc-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-6); align-items: start; }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+  .calc-main { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card { background: var(--color-bg-soft); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: var(--space-5); }
+  .info-card h3 { font-size: 1rem; margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .cat-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .cat-table th, .cat-table td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid var(--color-border-soft); }
+  .cat-table th { font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.04em; }
+  .cat-table tr:last-child td { border-bottom: none; }
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+  .faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary { cursor: pointer; font-weight: 600; color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--color-brand); transition: transform 0.15s var(--ease-out); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+  .calc { display: grid; gap: var(--space-5); }
+  .form { display: grid; gap: var(--space-4); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+  input[type="number"] { padding: 0.75rem 0.9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); width: 100%; }
+  input[type="number"]:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 3px rgba(20, 184, 138, 0.12); }
+  .sex-toggle { display: grid; grid-template-columns: 1fr 1fr; background: var(--color-bg-soft); border-radius: var(--radius-md); padding: 4px; gap: 4px; }
+  .sex-btn { padding: 0.6rem; font-size: 0.9rem; font-weight: 500; color: var(--color-text-soft); border-radius: var(--radius-sm); transition: all 0.15s var(--ease-out); }
+  .sex-btn.active { background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-sm); }
+  .privacy-note { margin: 0; text-align: center; font-size: 0.82rem; color: var(--color-text-muted); }
+  .result { background: var(--color-bg-soft); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; gap: var(--space-4); border: 1px solid var(--color-border-soft); animation: slideIn 0.3s var(--ease-out); }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .result-score { text-align: center; }
+  .result-label { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  .result-value { display: inline-block; font-size: 3.5rem; font-weight: 800; color: var(--color-text); letter-spacing: -0.02em; }
+  .result-unit { display: block; margin-top: var(--space-1); color: var(--color-text-muted); font-size: 0.9rem; }
+  .result-desc { margin: 0; text-align: center; color: var(--color-text-soft); font-size: 0.95rem; }
+  .result-note { margin: 0; text-align: center; color: var(--color-text-muted); font-size: 0.85rem; }
+</style>
+<script>
+  import { calculateLBM, type Sex } from '@lib/health';
+  function init(root: HTMLElement) {
+    const form = root.querySelector('[data-form]') as HTMLFormElement;
+    const result = root.querySelector('[data-result]') as HTMLElement;
+    const valueEl = root.querySelector('[data-value]') as HTMLElement;
+    const desc = root.querySelector('[data-desc]') as HTMLElement;
+    const note = root.querySelector('[data-note]') as HTMLElement;
+    let sex: Sex = 'male';
+    root.querySelectorAll<HTMLButtonElement>('.sex-btn').forEach((b) => {
+      b.addEventListener('click', () => {
+        sex = b.dataset.sex as Sex;
+        root.querySelectorAll('.sex-btn').forEach((x) => x.classList.toggle('active', (x as HTMLElement).dataset.sex === sex));
+      });
+    });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(form);
+      const h = Number(d.get('h'));
+      const w = Number(d.get('w'));
+      if (!h || !w || h < 100) return;
+      const lbm = calculateLBM({ heightCm: h, weightKg: w, sex });
+      const bf = w - lbm;
+      valueEl.textContent = lbm.toFixed(1);
+      desc.textContent = `Approximately ${bf.toFixed(1)} kg of your body weight is fat; ${lbm.toFixed(1)} kg is lean mass.`;
+      note.textContent = `Boer (1984) equation. Standard error ~3–4 kg vs DEXA. LBM drives your BMR.`;
+      result.hidden = false;
+    });
+  }
+  document.querySelectorAll<HTMLElement>('[data-lbm-calc]').forEach(init);
+</script>

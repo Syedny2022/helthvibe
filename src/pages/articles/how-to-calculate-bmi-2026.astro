@@ -1,0 +1,240 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is the exact BMI formula?',
+    a: 'In metric units: BMI = weight (kg) ÷ height (m)². In imperial units: BMI = (weight (lb) × 703) ÷ height (in)². Both give the same number.',
+  },
+  {
+    q: 'How do I calculate BMI in metric?',
+    a: 'Square your height in meters (multiply it by itself), then divide your weight in kilograms by that number. Example: 70 kg ÷ (1.75 m × 1.75 m) = 22.9.',
+  },
+  {
+    q: 'How do I calculate BMI in imperial?',
+    a: 'Multiply your weight in pounds by 703. Then divide by your height in inches squared. Example: (154 lb × 703) ÷ (68 in × 68 in) = 23.9.',
+  },
+  {
+    q: 'Do I need a calculator to figure out my BMI?',
+    a: 'You can do the math by hand, but a calculator is faster and less error-prone. Use ours above — it runs entirely in your browser and stores nothing.',
+  },
+  {
+    q: 'What BMI is considered healthy?',
+    a: 'For most adults, 18.5 to 24.9 is the healthy range. See our [healthy BMI chart](/articles/what-is-a-healthy-bmi) for breakdowns by age, gender, and ethnicity.',
+  },
+];
+
+const related = [
+  { href: '/articles/bmi-categories-explained/', title: 'BMI Categories Explained', desc: 'Every BMI band — underweight through obese — with what each one means.' },
+  { href: '/articles/what-is-a-healthy-bmi/', title: 'What Is a Healthy BMI?', desc: 'Healthy BMI by age, gender, and ethnicity.' },
+  { href: '/calculators/bmi/', title: 'Adult BMI Calculator', desc: 'Get your number instantly with healthy range and category.' },
+];
+---
+<ArticleLayout
+  title="How to Calculate BMI – Formula, Chart & Complete Guide 2026 | Helthvibe"
+  description="Learn the exact BMI formula in metric and imperial, see the official WHO chart, and understand each category. Free calculator included."
+  h1="How to Calculate BMI — Formula, Chart & Complete Guide"
+  excerpt="The exact BMI formula, the WHO adult chart, and step-by-step worked examples in both metric and imperial units."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Guide"
+  readTime="8 min"
+  showCalculator={true}
+  faqs={faqs}
+  related={related}
+>
+  <p>
+    Body Mass Index (BMI) is the most widely used screening tool for weight categories. It is a single number that puts your
+    height and weight into a clinical context — underweight, healthy, overweight, or obese. The math behind it is simple, but
+    knowing what the number actually means (and what it doesn't) takes a bit more.
+  </p>
+
+  <p>
+    This guide covers the exact formula in metric and imperial, two worked examples, the official WHO adult chart, and the
+    places where BMI breaks down. Use the calculator above to get your number — or read on to do it by hand.
+  </p>
+
+  <h2>The metric BMI formula</h2>
+  <p>
+    The original BMI formula was developed in the 19th century by the Belgian mathematician Adolphe Quetelet and is sometimes
+    called the Quetelet index. In metric units, it is:
+  </p>
+
+  <p style="text-align:center;font-size:1.3rem;font-weight:600;padding:var(--space-4);background:var(--color-bg-soft);border-radius:var(--radius-md);">
+    BMI = weight (kg) ÷ height (m)²
+  </p>
+
+  <p>The two steps are:</p>
+  <ol>
+    <li>Square your height in meters (multiply it by itself).</li>
+    <li>Divide your weight in kilograms by that number.</li>
+  </ol>
+
+  <h3>Worked example — metric</h3>
+  <p>Imagine someone who is 1.75 m tall and weighs 70 kg.</p>
+  <ul>
+    <li><strong>Height squared:</strong> 1.75 × 1.75 = 3.0625</li>
+    <li><strong>BMI:</strong> 70 ÷ 3.0625 = <strong>22.9</strong></li>
+  </ul>
+  <p>22.9 falls into the WHO "healthy range" (18.5–24.9).</p>
+
+  <h2>The imperial BMI formula</h2>
+  <p>
+    In the United States, height is measured in inches and weight in pounds. The imperial formula uses a conversion constant
+    (703) so the resulting number matches the metric version:
+  </p>
+
+  <p style="text-align:center;font-size:1.3rem;font-weight:600;padding:var(--space-4);background:var(--color-bg-soft);border-radius:var(--radius-md);">
+    BMI = (weight (lb) × 703) ÷ height (in)²
+  </p>
+
+  <p>The two steps are:</p>
+  <ol>
+    <li>Square your height in inches.</li>
+    <li>Multiply your weight in pounds by 703, then divide by that number.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Tip:</strong> Don't confuse yourself with feet vs. inches. Convert your height to total inches first
+    (5'7" = 67 inches, 6'2" = 74 inches).
+  </div>
+
+  <h3>Worked example — imperial</h3>
+  <p>Imagine someone who is 5'7" (67 in) tall and weighs 154 lb.</p>
+  <ul>
+    <li><strong>Height in inches squared:</strong> 67 × 67 = 4,489</li>
+    <li><strong>Weight × 703:</strong> 154 × 703 = 108,262</li>
+    <li><strong>BMI:</strong> 108,262 ÷ 4,489 = <strong>24.1</strong></li>
+  </ul>
+  <p>24.1 is at the high end of the WHO healthy range.</p>
+
+  <h2>The official WHO adult BMI chart</h2>
+  <p>
+    The World Health Organization defines four adult BMI categories using these cutoffs:
+  </p>
+
+  <table>
+    <caption>WHO adult BMI classification (1995, in widespread use through 2026)</caption>
+    <thead>
+      <tr><th>BMI</th><th>Category</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Below 18.5</td><td>Underweight</td></tr>
+      <tr><td>18.5 – 24.9</td><td>Healthy range</td></tr>
+      <tr><td>25.0 – 29.9</td><td>Overweight</td></tr>
+      <tr><td>30.0 and above</td><td>Obese</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    "Obese" is often broken into three sub-classes: Class I (30–34.9), Class II (35–39.9), and Class III (≥40), sometimes
+    called "severe" or "morbid" obesity. Higher classes carry higher health risks. See our
+    [categories guide](/articles/bmi-categories-explained) for the full breakdown.
+  </p>
+
+  <h2>Asian-adjusted thresholds</h2>
+  <p>
+    Research shows that Asian populations tend to develop weight-related health complications at lower BMIs than
+    European-origin populations. The WHO has issued separate cutoffs that lower the "healthy" band and lower the
+    "overweight" and "obese" cutoffs:
+  </p>
+
+  <table>
+    <caption>WHO Asian-adjusted BMI classification</caption>
+    <thead>
+      <tr><th>BMI</th><th>Category</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Below 18.5</td><td>Underweight</td></tr>
+      <tr><td>18.5 – 22.9</td><td>Healthy range</td></tr>
+      <tr><td>23.0 – 27.4</td><td>Overweight</td></tr>
+      <tr><td>27.5 and above</td><td>Obese</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    If you have South, East, or Southeast Asian heritage, consider using our
+    [Asian BMI calculator](/calculators/bmi-asian) — it has a built-in toggle so you can see both.
+  </p>
+
+  <h2>How to find your healthy weight range from BMI</h2>
+  <p>
+    A useful next step after calculating your BMI is to find the weight range that puts your BMI in the healthy band
+    (18.5–24.9). The math is:
+  </p>
+  <ul>
+    <li><strong>Lower bound:</strong> 18.5 × (your height in meters)²</li>
+    <li><strong>Upper bound:</strong> 24.9 × (your height in meters)²</li>
+  </ul>
+
+  <p>For someone who is 1.75 m tall:</p>
+  <ul>
+    <li>Lower: 18.5 × 3.0625 = <strong>56.7 kg</strong> (about 125 lb)</li>
+    <li>Upper: 24.9 × 3.0625 = <strong>76.3 kg</strong> (about 168 lb)</li>
+  </ul>
+
+  <p>
+    That gives a healthy weight range of roughly <strong>56.7–76.3 kg (125–168 lb)</strong> for someone 1.75 m / 5'9"
+    tall. The calculator above does this for you automatically and shows it in your preferred units.
+  </p>
+
+  <h2>Where BMI breaks down</h2>
+  <p>
+    BMI is useful as a quick screening tool, but it has real limitations. It does not distinguish muscle from fat, and it
+    does not account for bone density, body shape, age, ethnicity, or sex-based differences in body composition.
+  </p>
+
+  <div class="callout callout--warning">
+    <strong>BMI is misleading for these groups:</strong>
+    Athletes and very muscular individuals (BMI may overestimate "overweight"), the elderly (who tend to lose muscle mass),
+    pregnant or breastfeeding women, and certain ethnic populations where standard cutoffs misclassify cardiometabolic risk.
+  </div>
+
+  <p>
+    For these groups, body-fat percentage, waist-to-height ratio, or a clinical assessment by a healthcare provider gives a
+    more accurate picture. See our [accuracy guide](/articles/is-bmi-accurate-in-2026) for the full breakdown.
+  </p>
+
+  <h2>BMI vs. body-fat percentage</h2>
+  <p>
+    Body-fat percentage measures what BMI cannot: how much of your weight is actually fat versus muscle, bone, and water.
+    A "healthy" body-fat percentage depends on age and sex:
+  </p>
+
+  <table>
+    <caption>Healthy body-fat percentage ranges (American Council on Exercise)</caption>
+    <thead>
+      <tr><th>Group</th><th>Essential fat</th><th>Athletes</th><th>Healthy</th><th>Acceptable</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Men</td><td>2–5%</td><td>6–13%</td><td>14–17%</td><td>18–24%</td></tr>
+      <tr><td>Women</td><td>10–13%</td><td>14–20%</td><td>21–24%</td><td>25–31%</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    You can measure body-fat percentage with calipers, bioelectrical impedance scales (BIA), DEXA scans, or hydrostatic
+    weighing. DEXA is the clinical gold standard. Our [BMI vs. body-fat guide](/articles/bmi-vs-body-fat-percentage)
+    compares the two in detail.
+  </p>
+
+  <h2>Common mistakes to avoid</h2>
+  <ul>
+    <li><strong>Measuring yourself at the wrong time of day.</strong> Weight fluctuates 1–2 kg from morning to evening due to food, water, and digestion.</li>
+    <li><strong>Using the wrong height.</strong> Self-reported height is often off by 1–2 cm; use a stadiometer if possible.</li>
+    <li><strong>Treating BMI as a verdict.</strong> It's a screening signal — not a diagnosis. Talk to a clinician for personalized guidance.</li>
+    <li><strong>Ignoring waist circumference.</strong> For waist-to-height ratio, a number above 0.5 signals elevated risk regardless of BMI.</li>
+  </ul>
+
+  <h2>What to do with your number</h2>
+  <p>
+    Once you have your BMI, the right next step depends on which band you fall into. See our
+    [categories guide](/articles/bmi-categories-explained) for action steps per band, or our
+    [action guide](/articles/from-bmi-to-action) for a quick decision tree.
+  </p>
+
+  <div class="callout">
+    <strong>Not medical advice.</strong> BMI is a screening tool, not a diagnosis. Always consult a qualified healthcare
+    professional for personal medical decisions.
+  </div>
+</ArticleLayout>

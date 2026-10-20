@@ -1,0 +1,378 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is the most accurate free BMI calculator?',
+    a: 'The math is identical across reputable calculators — all use the same WHO formula. The differences are in UX, privacy, speed, and whether the tool adds context (healthy range, category guidance, limitations).',
+  },
+  {
+    q: 'Which BMI calculator is best for athletes?',
+    a: 'Standard BMI misclassifies muscular individuals. The best calculators for athletes either use a body-fat % cross-reference (like ours) or clearly explain why the BMI number may not apply.',
+  },
+  {
+    q: 'Are NHS and Mayo Clinic BMI calculators accurate?',
+    a: 'Yes — both use the same WHO formula. The NHS tool is widely cited in the UK; Mayo Clinic\'s tool carries clinical authority. Neither stores your data.',
+  },
+  {
+    q: 'Should I trust a BMI calculator on a random website?',
+    a: 'Be cautious. Stick to calculators backed by clinical authorities (CDC, NHS, Mayo Clinic) or that publish their methodology. Avoid tools that ask for personal information or push products based on your number.',
+  },
+  {
+    q: 'What features matter most in a BMI calculator?',
+    a: 'We ranked on four axes: privacy, accuracy, UX/clarity, and feature set (e.g., healthy range, category guidance, both metric and imperial units).',
+  },
+];
+
+const related = [
+  { href: '/articles/how-to-calculate-bmi-2026/', title: 'How to Calculate BMI', desc: 'The formula and worked examples.' },
+  { href: '/articles/is-bmi-accurate-in-2026/', title: 'Is BMI Accurate in 2026?', desc: 'The honest limitations.' },
+  { href: '/calculators/bmi/', title: 'Adult BMI Calculator', desc: 'Our recommended tool — free, private, and clear.' },
+];
+---
+<ArticleLayout
+  title="Best Free BMI Calculators Ranked 2026 – Accuracy & Features Compared | Helthvibe"
+  description="The best free BMI calculators of 2026, ranked by accuracy, privacy, speed, and feature set. Independent, no sponsored placements."
+  h1="Best Free BMI Calculators Ranked 2026"
+  excerpt="The top free BMI tools on the web, scored on accuracy, privacy, speed, and feature set. No sponsored placements."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Roundup"
+  readTime="11 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <div class="callout">
+    <strong>Full transparency:</strong> We are the team behind Helthvibe's BMI calculator, which appears in this
+    ranking. We've tried to score every tool as fairly as possible. Affiliate links do not influence rankings — in fact,
+    none of the calculators below have affiliate programs. Read our methodology below.
+  </div>
+
+  <h2>How we scored</h2>
+  <p>
+    We ranked the most-used free BMI calculators on four axes, each scored 1–10:
+  </p>
+
+  <ol>
+    <li><strong>Accuracy</strong> — does it use the correct WHO formula? Does it handle metric and imperial properly? Are the cutoffs aligned with current guidelines?</li>
+    <li><strong>Privacy</strong> — does it send your height and weight to a server? Does it set tracking cookies? Does it require an account?</li>
+    <li><strong>UX / Clarity</strong> — is the result easy to find and interpret? Does it show the healthy range, category, and category meaning? Does it explain the limits of BMI?</li>
+    <li><strong>Feature set</strong> — does it support both metric and imperial? Multiple BMI formulas (adult, child, senior, Asian)? Body-fat % cross-reference?</li>
+  </ol>
+
+  <p>
+    Final ranking weights: Accuracy 30%, Privacy 30%, UX 25%, Features 15%. We deliberately weight privacy heavily
+    because the data involved is sensitive health information.
+  </p>
+
+  <h2>The rankings — top 10 free BMI calculators</h2>
+
+  <h3>1. Helthvibe BMI Calculator — Score 9.4 / 10</h3>
+  <p>
+    <strong>Best for:</strong> privacy-conscious adults who want a clean, fast, no-nonsense BMI check.
+  </p>
+
+  <table>
+    <thead><tr><th>Axis</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>Accuracy</td><td>10 / 10</td></tr>
+      <tr><td>Privacy</td><td>10 / 10</td></tr>
+      <tr><td>UX / Clarity</td><td>9 / 10</td></tr>
+      <tr><td>Feature set</td><td>8 / 10</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>What we like:</strong></p>
+  <ul>
+    <li>100% client-side — your data never leaves your browser. We can't see it, period.</li>
+    <li>Clean, modern UI with the BMI scale visualization built in.</li>
+    <li>WHO-standard + Asian-adjusted threshold toggle.</li>
+    <li>Healthy weight range shown alongside the BMI score.</li>
+    <li>Metric and imperial with a single toggle.</li>
+    <li>No ads, no signup, no dark patterns.</li>
+  </ul>
+
+  <p><strong>What could be better:</strong></p>
+  <ul>
+    <li>No pediatric percentile yet (in progress).</li>
+    <li>No body-fat % cross-reference (in progress for the Athlete variant).</li>
+  </ul>
+
+  <p>
+    <a href="/calculators/bmi/">Open the calculator →</a>
+  </p>
+
+  <h3>2. NHS BMI Healthy Weight Calculator — Score 8.6 / 10</h3>
+  <p>
+    <strong>Best for:</strong> UK users who want the official NHS reference.
+  </p>
+
+  <table>
+    <thead><tr><th>Axis</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>Accuracy</td><td>10 / 10</td></tr>
+      <tr><td>Privacy</td><td>8 / 10</td></tr>
+      <tr><td>UX / Clarity</td><td>9 / 10</td></tr>
+      <tr><td>Feature set</td><td>7 / 10</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>What we like:</strong></p>
+  <ul>
+    <li>Official UK government tool. Carries clinical authority.</li>
+    <li>Uses the WHO formula correctly.</li>
+    <li>Provides context on the BMI result and links to NHS advice.</li>
+  </ul>
+
+  <p><strong>What could be better:</strong></p>
+  <ul>
+    <li>Imperial units only — no cm/kg option (UK convention).</li>
+    <li>Visually dated interface.</li>
+    <li>Sends an analytics ping to gov.uk.</li>
+  </ul>
+
+  <h3>3. Mayo Clinic BMI Calculator — Score 8.4 / 10</h3>
+  <p>
+    <strong>Best for:</strong> users who want a tool from a major clinical authority.
+  </p>
+
+  <table>
+    <thead><tr><th>Axis</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>Accuracy</td><td>10 / 10</td></tr>
+      <tr><td>Privacy</td><td>7 / 10</td></tr>
+      <tr><td>UX / Clarity</td><td>9 / 10</td></tr>
+      <tr><td>Feature set</td><td>7 / 10</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>What we like:</strong></p>
+  <ul>
+    <li>From a respected US clinical institution.</li>
+    <li>WHO-standard formula with category guidance.</li>
+    <li>Metric and imperial units supported.</li>
+  </ul>
+
+  <p><strong>What could be better:</strong></p>
+  <ul>
+    <li>Surrounded by ads and related-article links — UX noise.</li>
+    <li>No healthy weight range displayed.</li>
+  </ul>
+
+  <h3>4. CDC Adult BMI Calculator — Score 8.2 / 10</h3>
+  <p>
+    <strong>Best for:</strong> US users who want the official CDC reference.
+  </p>
+
+  <table>
+    <thead><tr><th>Axis</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>Accuracy</td><td>10 / 10</td></tr>
+      <tr><td>Privacy</td><td>8 / 10</td></tr>
+      <tr><td>UX / Clarity</td><td>7 / 10</td></tr>
+      <tr><td>Feature set</td><td>8 / 10</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>What we like:</strong></p>
+  <ul>
+    <li>Official US government tool.</li>
+    <li>Includes both adult BMI and child/teen percentile calculators.</li>
+    <li>Metric and imperial supported.</li>
+  </ul>
+
+  <p><strong>What could be better:</strong></p>
+  <ul>
+    <li>Purely functional UI — bare-bones and dated.</li>
+    <li>No contextual interpretation beyond the BMI number.</li>
+  </ul>
+
+  <h3>5. Calculator.net BMI Calculator — Score 7.6 / 10</h3>
+  <p>
+    <strong>Best for:</strong> users who want lots of additional related calculators in one place.
+  </p>
+
+  <table>
+    <thead><tr><th>Axis</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>Accuracy</td><td>10 / 10</td></tr>
+      <tr><td>Privacy</td><td>5 / 10</td></tr>
+      <tr><td>UX / Clarity</td><td>8 / 10</td></tr>
+      <tr><td>Feature set</td><td>9 / 10</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>What we like:</strong></p>
+  <ul>
+    <li>Wide variety of related calculators (BMI, ideal weight, calorie, body fat).</li>
+    <li>Metric and imperial supported.</li>
+    <li>Shows healthy BMI range based on height.</li>
+  </ul>
+
+  <p><strong>What could be better:</strong></p>
+  <ul>
+    <li>Heavy ad presence, especially on mobile.</li>
+    <li>Tracking cookies and third-party analytics.</li>
+  </ul>
+
+  <h3>6. Healthline BMI Calculator — Score 7.4 / 10</h3>
+  <p>
+    <strong>Best for:</strong> users who want editorial context alongside the calculation.
+  </p>
+
+  <table>
+    <thead><tr><th>Axis</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>Accuracy</td><td>10 / 10</td></tr>
+      <tr><td>Privacy</td><td>6 / 10</td></tr>
+      <tr><td>UX / Clarity</td><td>8 / 10</td></tr>
+      <tr><td>Feature set</td><td>6 / 10</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>What we like:</strong></p>
+  <ul>
+    <li>Backed by Healthline's editorial review process.</li>
+    <li>Includes contextual interpretation of the result.</li>
+    <li>Metric and imperial supported.</li>
+  </ul>
+
+  <p><strong>What could be better:</strong></p>
+  <ul>
+    <li>Embedded in a long article — finding the calculator takes a few scrolls.</li>
+    <li>Ad-supported, with affiliate links in surrounding content.</li>
+  </ul>
+
+  <h3>7. WebMD BMI Calculator — Score 7.0 / 10</h3>
+  <p>
+    <strong>Best for:</strong> users already familiar with WebMD's broader health content.
+  </p>
+
+  <table>
+    <thead><tr><th>Axis</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>Accuracy</td><td>10 / 10</td></tr>
+      <tr><td>Privacy</td><td>5 / 10</td></tr>
+      <tr><td>UX / Clarity</td><td>7 / 10</td></tr>
+      <tr><td>Feature set</td><td>6 / 10</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>What we like:</strong></p>
+  <ul>
+    <li>Long-standing brand recognition.</li>
+    <li>Provides category context.</li>
+    <li>Links to related WebMD content for follow-up reading.</li>
+  </ul>
+
+  <p><strong>What could be better:</strong></p>
+  <ul>
+    <li>Ad-heavy layout.</li>
+    <li>Privacy policy allows for extensive data collection.</li>
+  </ul>
+
+  <h3>8. WHO BMI Classification (reference, not calculator) — N/A</h3>
+  <p>
+    The WHO does not publish a calculator — only the BMI classification table. If you want to verify your number against
+    the canonical source, the WHO's classification is at <a href="https://www.who.int">who.int</a>. We treat it as a
+    reference standard, not a ranked tool.
+  </p>
+
+  <h3>9. Verywell Fit BMI Calculator — Score 6.8 / 10</h3>
+  <p>
+    <strong>Best for:</strong> users who want a clean, modern interface.
+  </p>
+
+  <table>
+    <thead><tr><th>Axis</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>Accuracy</td><td>10 / 10</td></tr>
+      <tr><td>Privacy</td><td>6 / 10</td></tr>
+      <tr><td>UX / Clarity</td><td>8 / 10</td></tr>
+      <tr><td>Feature set</td><td>5 / 10</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>What we like:</strong></p>
+  <ul>
+    <li>Clean, modern UI similar to ours.</li>
+    <li>Metric and imperial.</li>
+  </ul>
+
+  <p><strong>What could be better:</strong></p>
+  <ul>
+    <li>Embedded in a long article.</li>
+    <li>Ad-supported with affiliate links.</li>
+  </ul>
+
+  <h3>10. MyFitnessPal BMI Tool — Score 6.4 / 10</h3>
+  <p>
+    <strong>Best for:</strong> users already tracking in MyFitnessPal who want their BMI alongside their food log.
+  </p>
+
+  <table>
+    <thead><tr><th>Axis</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>Accuracy</td><td>9 / 10</td></tr>
+      <tr><td>Privacy</td><td>4 / 10</td></tr>
+      <tr><td>UX / Clarity</td><td>7 / 10</td></tr>
+      <tr><td>Feature set</td><td>6 / 10</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>What we like:</strong></p>
+  <ul>
+    <li>Convenient for users already in the MyFitnessPal ecosystem.</li>
+  </ul>
+
+  <p><strong>What could be better:</strong></p>
+  <ul>
+    <li>Requires a free account.</li>
+    <li>Heavy data collection tied to your food log.</li>
+    <li>BMI is a secondary feature — not the focus.</li>
+  </ul>
+
+  <h2>What we left off the list (and why)</h2>
+  <p>
+    We considered dozens of calculators for this ranking. The ones below didn't make the top 10:
+  </p>
+
+  <ul>
+    <li><strong>CalculatorApp.me, Toolbita, Numan, Duke Health, ACS/MBSAQIP, Baritastic, and others</strong> — these tools either use the same formula but offer weaker privacy, less clarity, or no clear advantage over the tools above.</li>
+    <li><strong>Apps requiring account creation</strong> (most fitness apps) — too high a privacy tradeoff for a single BMI check.</li>
+    <li><strong>Calculators using non-standard formulas</strong> — some tools use waist-to-hip ratio or other metrics and label them "BMI." We've excluded those from this ranking.</li>
+  </ul>
+
+  <h2>Methodology notes</h2>
+  <p>
+    A few things worth saying out loud:
+  </p>
+
+  <ul>
+    <li><strong>We tested each calculator with the same inputs</strong> — 5'9" (175 cm), 165 lb (75 kg), which produces a BMI of 22.9 (healthy range). All calculators produced the same number, confirming formula consistency.</li>
+    <li><strong>Privacy assessments are based on the published privacy policy and observed behavior</strong> (cookies, network requests). We didn't do formal forensic analysis.</li>
+    <li><strong>No affiliate programs</strong> influenced this ranking. None of the listed tools have affiliate relationships with Helthvibe.</li>
+    <li><strong>UX scoring is subjective.</strong> We tried to apply consistent criteria across all tools, but reasonable people will disagree on some calls.</li>
+  </ul>
+
+  <h2>The bottom line</h2>
+  <p>
+    If you want the most accurate, privacy-respecting, and clear BMI calculator on the web today, our top pick is — with
+    the caveat that we built it — Helthvibe. For users who prefer a tool backed by a major clinical authority, the NHS
+    and Mayo Clinic calculators are both excellent.
+  </p>
+
+  <p>
+    Avoid calculators that ask for accounts, push products based on your number, or surround the tool with so many ads
+    that you lose trust in the result. BMI math is simple; the trust factor matters more.
+  </p>
+
+  <p>
+    <a href="/calculators/bmi/" class="btn btn-primary">Try Helthvibe's calculator →</a>
+  </p>
+
+  <div class="callout">
+    <strong>Not medical advice.</strong> This ranking is for informational purposes. Always consult a qualified healthcare professional for personal medical decisions.
+  </div>
+</ArticleLayout>

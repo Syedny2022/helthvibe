@@ -1,0 +1,24 @@
+{
+  "name": "Helthvibe — Free, privacy-first health calculators",
+  "short_name": "Helthvibe",
+  "description": "Free, accurate BMI, BMR, TDEE and body composition calculators. All math runs in your browser — no signup, no tracking.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#14b88a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

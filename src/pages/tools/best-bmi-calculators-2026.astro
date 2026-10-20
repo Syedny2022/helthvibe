@@ -1,0 +1,37 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Best Free BMI Calculators 2026 — Top 10 Ranked',
+  datePublished: '2026-09-27',
+  dateModified: '2026-09-27',
+  author: { '@type': 'Organization', name: 'Helthvibe' },
+  publisher: { '@type': 'Organization', name: 'Helthvibe', logo: { '@type': 'ImageObject', url: 'https://helthvibe.com/logo.png' } },
+};
+---
+<Layout
+  title="Best Free BMI Calculators 2026 — Top 10 Ranked | Helthvibe"
+  description="The top 10 free BMI calculators of 2026, ranked by accuracy, privacy, UX, and feature set. Independent, no sponsored placements."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Best Free BMI Calculators 2026 — Top 10 Ranked | Helthvibe"
+    description="The top 10 free BMI calculators of 2026, ranked by accuracy, privacy, UX, and feature set. Independent, no sponsored placements."
+    h1="Best Free BMI Calculators 2026 — Top 10 Ranked"
+    intro="Our independent ranking of the top free BMI calculators on the web. Scored on accuracy, privacy, speed, and feature set — no sponsored placements."
+    status="reference"
+    features={[
+      'Top 10 free BMI calculators ranked',
+      'Scoring rubric (accuracy, privacy, UX, features)',
+      'Calculator.net, Mayo Clinic, NHS, Healthline, WebMD, and more',
+      'Affiliate-friendly disclosures',
+      'Verdict for each tool',
+    ]}
+    schema={schema}
+    ctaHref="/calculators/bmi/"
+    ctaLabel="Try Helthvibe's BMI Calculator"
+  />
+</Layout>

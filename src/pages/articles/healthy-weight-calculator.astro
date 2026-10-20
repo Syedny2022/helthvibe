@@ -1,0 +1,98 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is a healthy weight for my height?',
+    a: 'Healthy weight depends on your height, frame size, sex, ethnicity, and body composition. The WHO defines healthy weight as the weight that produces a BMI between 18.5 and 24.9 (18.5–22.9 for Asian populations). For a 5\'9" (175 cm) adult, the BMI-based range is roughly 56–76 kg (123–168 lb). See the [Healthy Weight Calculator](/calculators/healthy-weight) for a personalized band.',
+  },
+  {
+    q: 'What formulas exist for calculating ideal weight?',
+    a: 'Five formulas are commonly cited: Devine (1974), Robinson (1983), Miller (1983), Hamwi (1964), and the WHO BMI 18.5–24.9 healthy range. The first four were developed primarily for clinical drug dosing; the BMI range is the only one that returns a range rather than a single point. Each gives a different number, and the spread between them (typically 5–10 kg) is normal.',
+  },
+  {
+    q: 'How do I calculate my frame size?',
+    a: 'Measure your wrist circumference or elbow breadth. Roughly: men with wrists under 17 cm (6.7 in) and women under 15 cm (5.9 in) are typically small-framed. Above 20 cm (7.9 in) for men or 17 cm (6.7 in) for women is large-framed. Medium frame is the most common. Frame size typically adjusts the ideal weight by ±10%.',
+  },
+  {
+    q: 'Is the BMI 18.5–24.9 range the best healthy weight target?',
+    a: 'It is more honest than the single-point formulas because it returns a band rather than a target. The band corresponds to the weight range where population-level cardiometabolic risk is lowest for most adults. It still needs adjustment for Asian populations (18.5–22.9), seniors (22–27), and athletes (use body-fat % instead).',
+  },
+];
+
+const related = [
+  { href: '/calculators/ideal-weight/', title: 'Ideal Weight Calculator', desc: 'Five formulas side by side with frame-size adjustment.' },
+  { href: '/calculators/bmi/', title: 'Adult BMI Calculator', desc: 'WHO-standard BMI with healthy range.' },
+  { href: '/calculators/healthy-weight/', title: 'Healthy Weight Range', desc: 'See your healthy weight band by height.' },
+];
+---
+<ArticleLayout
+  title="Healthy Weight Calculator – Find Your Ideal Weight by Height | Helthvibe"
+  description="Find your healthy weight range using WHO BMI standards, frame-size adjustment, and five evidence-based formulas. Privacy-first."
+  h1="Healthy Weight Calculator — Find Your Ideal Weight by Height"
+  excerpt="A healthy weight depends on more than height. Here's how the WHO BMI band, frame size, and five evidence-based formulas fit together."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Reference"
+  readTime="7 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>What Is a Healthy Weight for Your Height?</h2>
+  <p>The phrase "ideal weight" is misleading. There is no single number that represents the right weight for every person of a given height. The goal of clinical and public-health guidance is to identify a <em>healthy weight range</em> — a band within which population-level cardiometabolic risk is minimized, while acknowledging the wide variation introduced by frame size, bone density, muscle mass, age, sex, and ethnicity. The World Health Organization anchors this range to a Body Mass Index of <strong>18.5–24.9 kg/m²</strong>, which translates to a specific weight band for any given height.</p>
+  <p>For a 5-foot-9-inch (175 cm) adult, that band spans roughly <strong>56–76 kg (123–168 lb)</strong>. For a 6-foot-1-inch (185 cm) adult, the same BMI range corresponds to approximately <strong>63–86 kg (140–189 lb)</strong>. These are population-level reference points, not personal mandates. The National Institutes of Health and the National Heart, Lung, and Blood Institute have maintained this range since the 1998 clinical guidelines as the basis for overweight and obesity classification in adults aged 20 and older.</p>
+
+  <h2>How the Healthy Weight Range Is Calculated</h2>
+  <p>The simplest method for calculating a healthy weight range is to invert the BMI formula using the lower and upper boundaries of the healthy BMI band:</p>
+  <ul>
+    <li><strong>Lower bound:</strong> 18.5 × height² (in meters)</li>
+    <li><strong>Upper bound:</strong> 24.9 × height² (in meters)</li>
+  </ul>
+  <p>Beyond the raw BMI band, four historical formulas are widely cited for generating a single-point "ideal weight" estimate. None were designed for that purpose:</p>
+  <ul>
+    <li><strong>Devine (1974):</strong> Developed to estimate lean body mass for drug dosing (particularly gentamicin), not health. Male baseline: 50 kg + 2.3 kg/inch over 5 ft; female baseline: 45.5 kg + 2.3 kg/inch over 5 ft.</li>
+    <li><strong>Robinson (1983) and Miller (1983):</strong> Iterative refinements of the Devine baseline. Miller consistently produces slightly higher values; Robinson slightly lower.</li>
+    <li><strong>Hamwi (1964):</strong> Developed for estimating energy requirements. Uses 48 kg (women) and 50 kg (men) as base at 5 ft.</li>
+  </ul>
+  <p>These four formulas typically produce a spread of <strong>5–10 kg</strong> between the lowest and highest estimate for the same height. This is not measurement error — it is the natural consequence of applying a clinical drug-dosing tool to a general-health context. The Devine formula remains the basis for mechanical ventilation tidal-volume calculations in the ARDS Network protocol, where its purpose (estimating lung size from height) is physiologically appropriate.</p>
+
+  <h2>Healthy Weight Chart by Height</h2>
+  <p>The table below shows the healthy weight range (BMI 18.5–24.9) alongside Devine and Robinson estimates for common heights. All values are for adults; the ranges apply equally to both sexes, with ethnic adjustments noted separately.</p>
+  <table>
+    <thead><tr><th>Height</th><th>Healthy Weight Range (BMI 18.5–24.9)</th><th>Devine Estimate</th><th>Robinson Estimate</th></tr></thead>
+    <tbody>
+      <tr><td>5′2″ (157 cm)</td><td>46–62 kg (101–136 lb)</td><td>49.5 kg (109 lb)</td><td>49.0 kg (108 lb)</td></tr>
+      <tr><td>5′6″ (168 cm)</td><td>52–70 kg (115–155 lb)</td><td>57.0 kg (126 lb)</td><td>56.5 kg (124 lb)</td></tr>
+      <tr><td>5′10″ (178 cm)</td><td>59–79 kg (129–174 lb)</td><td>65.0 kg (143 lb)</td><td>64.2 kg (142 lb)</td></tr>
+      <tr><td>6′2″ (188 cm)</td><td>65–88 kg (144–194 lb)</td><td>72.0 kg (159 lb)</td><td>72.1 kg (159 lb)</td></tr>
+    </tbody>
+  </table>
+  <p>Note that the BMI-based range is wider than any single-point formula. A range accounts for individual variation; a single point does not. For Asian populations, the WHO recommends compressing this range to <strong>18.5–22.9 kg/m²</strong>, reflecting elevated cardiometabolic risk at lower body weights in South, East, and Southeast Asian populations.</p>
+
+  <h2>Why There Is No Single "Ideal" Weight</h2>
+  <p>The four single-point formulas were developed for clinical pharmacology applications — not for defining health targets. A muscular 5-foot-10 athlete and a sedentary office worker of the same height will have very different healthy weights, and neither is accurately captured by the same Devine number. Body composition — the ratio of fat mass to fat-free mass — is the missing variable that all these formulas ignore.</p>
+  <p>Frame size compounds this limitation. A large-framed adult carries more bone and muscle mass than a small-framed adult of the same height, naturally producing a higher weight at the same BMI. Wrist-circumference measurement is the simplest clinical proxy for frame size: men with wrists above 20 cm (7.9 in) and women above 17 cm (6.7 in) are typically large-framed and may sit comfortably at the upper end of the healthy BMI range without elevated risk.</p>
+
+  <h2>Limits of Healthy Weight Calculators</h2>
+  <p>All healthy weight tools share common blind spots. None account for:</p>
+  <ul>
+    <li><strong>Sarcopenia:</strong> Age-related muscle loss means the same weight represents less muscle mass as a person ages. A 70-year-old at 70 kg has substantially less muscle than a 30-year-old at 70 kg.</li>
+    <li><strong>Visceral vs. subcutaneous fat:</strong> Two people at the same weight and BMI can have radically different visceral fat stores. Waist circumference is a better proxy for visceral adiposity than BMI alone.</li>
+    <li><strong>Ethnic body composition variation:</strong> As noted, Asian populations develop metabolic risk at lower BMI; Black adults may have higher muscle mass at the same BMI.</li>
+    <li><strong>Fluid shifts:</strong> Hydration status, menstrual cycle phase, glycogen storage, and food in the digestive tract can shift weight by 1–3 kg over short periods.</li>
+  </ul>
+
+  <h2>When to Talk With a Healthcare Professional</h2>
+  <p>Use a healthy weight calculator as a screening reference, not a clinical diagnosis. Consult a clinician if your BMI is consistently outside the healthy range, if you are experiencing unintentional weight changes, or if you are considering a structured weight-management program. The NIH 1998 guidelines and the 2013 AHA/ACC/TOS obesity management guidelines provide the clinical framework that primary care providers use for individualized assessment.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>World Health Organization. <em>WHO Technical Report Series 854: Physical status: the use and interpretation of anthropometry.</em> Geneva: WHO, 1995.</li>
+    <li>Devine BJ. <em>Drug Intelligence &amp; Clinical Pharmacy.</em> 1974; 8: 650. (Original Devine formula.)</li>
+    <li>Robinson JD, Lupkiewicz SM, Palenik L, Lopez LM, Ariet M. <em>Drug Intelligence &amp; Clinical Pharmacy.</em> 1983; 17: 412. (Robinson revision.)</li>
+    <li>Miller DR, Carlson JD, Loyd BJ, Day B. <em>Drug Intelligence &amp; Clinical Pharmacy.</em> 1983; 17: 417. (Miller revision.)</li>
+    <li>Hamwi GJ. <em>Therapy: Changing Dietary Concepts.</em> American Journal of Clinical Nutrition, 1964.</li>
+    <li>National Institutes of Health. <em>Clinical Guidelines on the Identification, Evaluation, and Treatment of Overweight and Obesity in Adults.</em> NIH Publication 98-4083, 1998.</li>
+  </ul>
+</ArticleLayout>

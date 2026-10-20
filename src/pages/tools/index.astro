@@ -1,0 +1,97 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const title = 'BMI Tools, Comparisons & Roundups | Helthvibe';
+const description = 'Independent comparisons and reviews of the most-used BMI calculators on the web.';
+
+const tools = [
+  {
+    href: '/tools/best-bmi-calculators-2026/',
+    title: 'Best Free BMI Calculators 2026',
+    desc: 'Our ranked roundup of the top free BMI tools of the year.',
+    badge: 'Top roundup',
+  },
+  {
+    href: '/tools/compare/calculator-net/',
+    title: 'Calculator.net BMI Calculator',
+    desc: 'Independent review and side-by-side comparison.',
+  },
+  {
+    href: '/tools/compare/mayo-clinic/',
+    title: 'Mayo Clinic BMI Calculator',
+    desc: 'Independent review and side-by-side comparison.',
+  },
+  {
+    href: '/tools/compare/nhs/',
+    title: 'NHS BMI Calculator',
+    desc: 'Independent review and side-by-side comparison.',
+  },
+  {
+    href: '/tools/compare/healthline/',
+    title: 'Healthline BMI Calculator',
+    desc: 'Independent review and side-by-side comparison.',
+  },
+  {
+    href: '/tools/compare/webmd/',
+    title: 'WebMD BMI Calculator',
+    desc: 'Independent review and side-by-side comparison.',
+  },
+  {
+    href: '/tools/compare/who/',
+    title: 'WHO BMI Classification',
+    desc: 'The official WHO reference and how Helthvibe aligns.',
+  },
+  {
+    href: '/tools/compare/cdc/',
+    title: 'CDC Adult BMI Calculator',
+    desc: 'The CDC reference and how Helthvibe aligns.',
+  },
+];
+---
+<Layout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container text-center">
+      <h1>Tools & comparisons</h1>
+      <p class="lead">Independent, no-sponsored-placement reviews of BMI calculators across the web.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        {tools.map((t) => (
+          <a href={t.href} class="card tool-card">
+            {t.badge && <span class="badge tool-badge">{t.badge}</span>}
+            <h3 class="card-title">{t.title}</h3>
+            <p class="card-desc">{t.desc}</p>
+            <span class="tool-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .tool-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+  .tool-card:hover { color: inherit; }
+  .tool-badge {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+  }
+  .tool-arrow {
+    position: absolute;
+    bottom: var(--space-4);
+    right: var(--space-5);
+    color: var(--color-brand);
+    font-size: 1.2rem;
+    transition: transform 0.15s var(--ease-out);
+  }
+  .tool-card:hover .tool-arrow { transform: translateX(4px); }
+</style>

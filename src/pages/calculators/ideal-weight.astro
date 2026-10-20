@@ -1,0 +1,331 @@
+---
+import Layout from '@layouts/Layout.astro';
+import IdealWeightCalculator from '@components/IdealWeightCalculator.astro';
+
+const title = 'Ideal Weight Calculator — Find Your Healthy Weight by Height | Helthvibe';
+const description = 'Free ideal weight calculator using 5 evidence-based formulas: Devine, Robinson, Miller, Hamwi, and the WHO BMI 18.5–24.9 healthy range. Metric & imperial.';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe Ideal Weight Calculator',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description:
+    'Free ideal weight calculator using 5 formulas: Devine, Robinson, Miller, Hamwi, and WHO BMI 18.5–24.9 healthy range. Metric and imperial. 100% client-side.',
+  url: 'https://helthvibe.com/calculators/ideal-weight/',
+  featureList: [
+    'Five evidence-based formulas side by side',
+    'Frame-size adjustment (small / medium / large)',
+    'Metric and imperial units',
+    'WHO BMI 18.5–24.9 healthy range',
+    'Spread visualization across formulas',
+    '100% client-side for privacy',
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the most accurate ideal weight formula?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No single formula is "the most accurate." They disagree by 5–10 kg on average. That\'s why we show all five side by side — and why we recommend the BMI 18.5–24.9 healthy range as a more honest starting point than any single formula.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why do the five formulas give different numbers?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'They were developed using different population samples and different statistical methods. Devine (1974) was originally for drug dosing. Robinson, Miller, and Hamwi are revisions using more recent data. The spread is normal.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I know my body frame size?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Measure your wrist circumference or elbow breadth. Roughly: men with wrists under 17 cm / 6.7 in and women under 15 cm / 5.9 in are typically small-framed. Above 20 cm / 7.9 in (men) or 17 cm / 6.7 in (women) is large-framed.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is the BMI 18.5–24.9 range the best "ideal weight"?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It\'s more honest than the four single-point formulas because it gives a range, not a target. Use it as your starting band and adjust for frame size, ethnicity, and personal context.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is the most accurate ideal weight formula?',
+    a: 'No single formula is "the most accurate." The five formulas shown here disagree by 5–10 kg on average — that\'s why we show them all side-by-side. The BMI 18.5–24.9 healthy range is often a more honest starting point because it gives a band, not a single number.',
+  },
+  {
+    q: 'Why do the formulas give different numbers?',
+    a: 'They were developed using different population samples and statistical methods. Devine (1974) was originally for drug-dosing calculations. Robinson (1983), Miller (1983), and Hamwi (1964) are revisions using more recent data. The disagreement is normal and expected.',
+  },
+  {
+    q: 'How do I know my body frame size?',
+    a: 'Measure your wrist circumference: under 17 cm (6.7 in) for men or under 15 cm (5.9 in) for women is typically small-framed; over 20 cm (7.9 in) or 17 cm (6.7 in) is large-framed. Elbow breadth is a more accurate proxy but harder to self-measure. Most people are medium-framed.',
+  },
+  {
+    q: 'Should I aim for the lowest or highest number?',
+    a: 'Neither. The BMI 18.5–24.9 healthy range is the most useful — it gives a band you can stay within rather than a target to hit. The single-point formulas (Devine, Robinson, Miller, Hamwi) are starting estimates, not goals.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All calculations run in your browser. We never see, store, or transmit your height, sex, or frame choice.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmi/', title: 'Adult BMI Calculator', desc: 'The standard WHO BMI calculation with healthy range.' },
+  { href: '/calculators/healthy-weight/', title: 'Healthy Weight Range', desc: 'See your healthy weight band based on WHO BMI standards.' },
+  { href: '/articles/healthy-weight-calculator/', title: 'Healthy Weight Guide', desc: 'How to interpret "ideal weight" in context.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">5 formulas · Frame-adjusted · Private</span>
+      <h1>Ideal Weight Calculator</h1>
+      <p class="lead">
+        Find your ideal weight using 5 evidence-based formulas side by side — Devine, Robinson, Miller, Hamwi, and the WHO BMI 18.5–24.9 healthy range.
+      </p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <IdealWeightCalculator id="ideal-weight" />
+        </div>
+
+        <aside class="calc-side">
+          <div class="info-card">
+            <h3>About these formulas</h3>
+            <p>
+              No single formula is "right." The five shown here disagree by <strong>5–10 kg</strong> on average — that's
+              why we show them all side by side. Use them as a starting point, not a target.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>How frame size matters</h3>
+            <p>
+              A small frame (wrist under 17 cm / 6.7 in for men) typically subtracts 10% from the formula result. A large
+              frame (wrist over 20 cm / 7.9 in) adds 10%. Most people are medium-framed.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>The honest alternative</h3>
+            <p>
+              The WHO BMI 18.5–24.9 healthy range is more useful than any single-point formula. It gives a band you can
+              stay within rather than a number to chase.
+            </p>
+            <a href="/calculators/healthy-weight/" class="info-link">Try the Healthy Weight Range calculator →</a>
+          </div>
+
+          <div class="info-card">
+            <h3>Privacy</h3>
+            <p>All calculations happen locally in your browser. Your data is never sent to a server.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why formulas differ -->
+  <section class="section section-soft">
+    <div class="container">
+      <h2 class="section-title">Why the five formulas disagree</h2>
+      <div class="context-grid">
+        <div class="context-card">
+          <h3>Different populations</h3>
+          <p>
+            Each formula was developed using a different population sample. Devine (1974) used a small group of
+            hospitalized patients; Hamwi used broader clinical data. Different inputs, different outputs.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Different statistical methods</h3>
+          <p>
+            The formulas use different base weights (50 kg for men in Devine, 48 kg in Hamwi) and different per-inch
+            multipliers (2.3 kg in Devine vs. 2.7 kg in Hamwi). These choices reflect different assumptions about build.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>No "true" ideal weight</h3>
+          <p>
+            Ideal weight is a moving target — it depends on body composition, ethnicity, age, fitness, and personal goals.
+            A single-point formula can never capture that. The BMI range is a more honest reflection of reality.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Frame size is the biggest modifier</h3>
+          <p>
+            Within any single formula, frame size can shift the result by ±10%. Two people of the same height and sex can
+            reasonably have "ideal weights" 10 kg apart — and both can be healthy.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Use the range, not the target</h3>
+          <p>
+            The BMI 18.5–24.9 row shows a range for a reason. Staying within a band is more sustainable and more
+            scientifically defensible than chasing a single number.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Talk to a clinician</h3>
+          <p>
+            A clinician who knows your personal and family history can give you better guidance than any formula. Use the
+            calculator above as a starting point for that conversation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container-narrow">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="section section-soft">
+    <div class="container">
+      <h2>Keep exploring</h2>
+      <div class="grid grid-3">
+        {related.map((r) => (
+          <a href={r.href} class="card">
+            <h3 class="card-title">{r.title}</h3>
+            <p class="card-desc">{r.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: var(--space-7) 0 var(--space-6);
+    text-align: center;
+    background:
+      radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%),
+      var(--color-bg);
+  }
+  .page-hero .badge { margin-bottom: var(--space-3); }
+  .page-hero h1 { margin-bottom: var(--space-3); }
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 700px; margin: 0 auto; }
+
+  .calc-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+
+  .calc-main {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .info-card h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+  }
+  .info-card p { font-size: 0.95rem; margin: 0 0 var(--space-3); }
+  .info-link {
+    display: inline-block;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color-brand-dark);
+  }
+
+  /* Context grid */
+  .section-title { text-align: center; margin-bottom: var(--space-6); }
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+  .context-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .context-card h3 {
+    font-size: 1.05rem;
+    color: var(--color-brand-dark);
+    margin-bottom: var(--space-2);
+  }
+  .context-card p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* FAQ */
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--color-brand);
+    transition: transform 0.15s var(--ease-out);
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+</style>

@@ -1,0 +1,118 @@
+---
+import Layout from '@layouts/Layout.astro';
+const title = 'Free Body Surface Area Calculator — Mosteller Formula | Helthvibe';
+const description = 'Calculate Body Surface Area (BSA) using the Mosteller formula. Used in chemotherapy dosing, cardiac index, and burn assessment.';
+const softwareSchema = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Helthvibe BSA Calculator', applicationCategory: 'HealthApplication', operatingSystem: 'Web', url: 'https://helthvibe.com/calculators/bsa/', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } };
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+  { '@type': 'Question', name: 'What is BSA used for?', acceptedAnswer: { '@type': 'Answer', text: 'Body Surface Area is used for chemotherapy dosing, cardiac index calculation, burn area estimation, and pediatric drug dosing. Average adult BSA is approximately 1.9 m².' } },
+  { '@type': 'Question', name: 'How accurate is the Mosteller formula?', acceptedAnswer: { '@type': 'Answer', text: 'Mosteller is the most widely used BSA formula in clinical practice. Accuracy is within ±5% of the more complex DuBois formula, with much simpler arithmetic.' } },
+  { '@type': 'Question', name: 'Is my data private?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.' } },
+] };
+const faqs = [
+  { q: 'What is BSA used for?', a: 'Chemotherapy dosing, cardiac index, burn assessment, pediatric dosing. Average adult ~1.9 m².' },
+  { q: 'Mosteller vs DuBois?', a: 'Mosteller (1987) is simpler and within ±5% of DuBois (1916). Both are used clinically.' },
+  { q: 'Is BSA the same for men and women?', a: 'Average men ~2.0 m²; average women ~1.7 m². The formula itself does not use sex — differences are driven by height and weight.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Free · Mosteller 1987 · Private</span>
+      <h1>Body Surface Area Calculator</h1>
+      <p class="lead">BSA in square meters from height and weight. The standard clinical metric for chemotherapy and cardiac index.</p>
+    </div>
+  </section>
+  <section class="section calc-section"><div class="container"><div class="calc-layout">
+    <div class="calc-main"><div class="calc" data-bsa-calc id="bsa-main">
+      <form class="form" data-form novalidate>
+        <div class="row">
+          <div class="field"><label class="field-label" for="bsa-h">Height (cm)</label><input type="number" id="bsa-h" name="h" min="100" max="250" step="0.1" placeholder="175" required /></div>
+          <div class="field"><label class="field-label" for="bsa-w">Weight (kg)</label><input type="number" id="bsa-w" name="w" min="30" max="300" step="0.1" placeholder="70" required /></div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Calculate BSA</button>
+        <p class="privacy-note">🔒 All math runs in your browser. Data never leaves this device.</p>
+      </form>
+      <div class="result" data-result hidden>
+        <div class="result-score"><span class="result-label">Your body surface area</span><span class="result-value" data-value>—</span><span class="result-unit">m²</span></div>
+        <div class="result-category" data-pill><span class="dot" data-dot></span><span data-label>—</span></div>
+        <p class="result-desc" data-desc></p>
+      </div>
+    </div></div>
+    <aside class="calc-side">
+      <div class="info-card"><h3>Reference BSA</h3>
+        <table class="cat-table"><tbody><tr><th>Population</th><th>BSA</th></tr><tr><td>Adult men (avg)</td><td>~2.0 m²</td></tr><tr><td>Adult women (avg)</td><td>~1.7 m²</td></tr><tr><td>Children (10 yr)</td><td>~1.1 m²</td></tr><tr><td>Neonates</td><td>~0.25 m²</td></tr></tbody></table>
+      </div>
+      <div class="info-card"><h3>Clinical uses</h3><p>Chemotherapy dosing, cardiac index (L/min/m²), burn area (% BSA), pediatric drug dosing.</p></div>
+      <div class="info-card"><h3>Privacy</h3><p>All calculations happen locally. Nothing is sent to a server.</p></div>
+    </aside>
+  </div></div></section>
+  <section class="section section-soft"><div class="container-narrow"><h2>Frequently asked questions</h2><div class="faq-list">{faqs.map((f) => (<details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div></div></section>
+  <section class="section"><div class="container"><h2>Keep exploring</h2><div class="grid grid-3"><a href="/calculators/bmi/" class="card"><h3 class="card-title">Adult BMI</h3><p class="card-desc">Standard mass-to-height screening.</p></a><a href="/calculators/lean-body-mass/" class="card"><h3 class="card-title">Lean Body Mass</h3><p class="card-desc">Estimate fat-free body mass.</p></a><a href="/calculators/bmr/" class="card"><h3 class="card-title">BMR</h3><p class="card-desc">Resting energy expenditure.</p></a></div></div></section>
+</Layout>
+<style>
+  .page-hero { padding: var(--space-7) 0 var(--space-6); text-align: center; background: radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%), var(--color-bg); }
+  .page-hero .badge { margin-bottom: var(--space-3); } .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+  .calc-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-6); align-items: start; }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+  .calc-main { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card { background: var(--color-bg-soft); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: var(--space-5); }
+  .info-card h3 { font-size: 1rem; margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .cat-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .cat-table th, .cat-table td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid var(--color-border-soft); }
+  .cat-table th { font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.04em; }
+  .cat-table tr:last-child td { border-bottom: none; }
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+  .faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary { cursor: pointer; font-weight: 600; color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--color-brand); transition: transform 0.15s var(--ease-out); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+  .calc { display: grid; gap: var(--space-5); }
+  .form { display: grid; gap: var(--space-4); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+  input[type="number"] { padding: 0.75rem 0.9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); width: 100%; }
+  input[type="number"]:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 3px rgba(20, 184, 138, 0.12); }
+  .privacy-note { margin: 0; text-align: center; font-size: 0.82rem; color: var(--color-text-muted); }
+  .result { background: var(--color-bg-soft); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; gap: var(--space-4); border: 1px solid var(--color-border-soft); animation: slideIn 0.3s var(--ease-out); }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .result-score { text-align: center; }
+  .result-label { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  .result-value { display: inline-block; font-size: 3.5rem; font-weight: 800; color: var(--color-text); letter-spacing: -0.02em; }
+  .result-unit { display: block; margin-top: var(--space-1); color: var(--color-text-muted); font-size: 0.9rem; }
+  .result-category { display: inline-flex; align-self: center; align-items: center; gap: 0.5rem; padding: 0.45rem 1rem; border-radius: 999px; font-weight: 600; background: var(--color-surface); border: 1px solid var(--color-border); font-size: 0.95rem; }
+  .dot { width: 0.6rem; height: 0.6rem; border-radius: 999px; background: currentColor; }
+  .result-desc { margin: 0; text-align: center; color: var(--color-text-soft); font-size: 0.95rem; }
+</style>
+<script>
+  import { calculateBSA, getBSACategory } from '@lib/health';
+  function init(root: HTMLElement) {
+    const form = root.querySelector('[data-form]') as HTMLFormElement;
+    const result = root.querySelector('[data-result]') as HTMLElement;
+    const valueEl = root.querySelector('[data-value]') as HTMLElement;
+    const pill = root.querySelector('[data-pill]') as HTMLElement;
+    const label = root.querySelector('[data-label]') as HTMLElement;
+    const dot = root.querySelector('[data-dot]') as HTMLElement;
+    const desc = root.querySelector('[data-desc]') as HTMLElement;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(form);
+      const h = Number(d.get('h'));
+      const w = Number(d.get('w'));
+      if (!h || !w || h < 100) return;
+      const bsa = calculateBSA({ heightCm: h, weightKg: w });
+      const cat = getBSACategory(bsa);
+      const colors = { small: '#3b82f6', average: '#10b981', large: '#f59e0b' };
+      valueEl.textContent = bsa.toFixed(2);
+      pill.style.color = colors[cat.id];
+      dot.style.background = colors[cat.id];
+      label.textContent = cat.label;
+      desc.textContent = `Mosteller 1987 formula. Average adult is ~1.9 m². Used for chemotherapy, cardiac index, burn assessment.`;
+      result.hidden = false;
+    });
+  }
+  document.querySelectorAll<HTMLElement>('[data-bsa-calc]').forEach(init);
+</script>

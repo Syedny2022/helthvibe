@@ -1,0 +1,333 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BMICalculator from '@components/BMICalculator.astro';
+
+const title = 'BMI Calculator for Men — Body Mass Index & Health Risk Guide | Helthvibe';
+const description = 'Free BMI calculator for adult men with muscle-mass notes, healthy range, and health risk context. Privacy-first.';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe BMI Calculator for Men',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: 'Free BMI calculator for men. WHO-standard math, muscle-mass notes, waist-circumference guidance.',
+  url: 'https://helthvibe.com/calculators/bmi-men/',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How is BMI different for men?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The formula is identical. What differs is body composition — men carry more muscle and bone mass, and tend to store fat viscerally (around the abdomen), which carries higher cardiometabolic risk.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does BMI overestimate overweight in muscular men?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Muscle is denser than fat. A lean, muscular man at 15% body fat can easily read as overweight by BMI despite being metabolically healthy. Pair BMI with body-fat % for a clearer picture.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What waist circumference is risky for men?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Above 40 inches (102 cm) is considered elevated risk for men. This is often a stronger signal than BMI alone.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'How is BMI different for men?',
+    a: 'The BMI formula is identical for both sexes. What differs is body composition: men carry more muscle and bone mass, and tend to store fat viscerally (around the organs) rather than subcutaneously. Visceral fat is more metabolically dangerous, so men often face elevated cardiometabolic risk at the same BMI as women.',
+  },
+  {
+    q: 'Why does BMI overestimate overweight in muscular men?',
+    a: 'Muscle is denser than fat (~1.06 vs. ~0.9 g/cm³). A lean, muscular man at 15% body fat can easily read as overweight by BMI despite being metabolically healthy. If you train regularly, pair your BMI with a body-fat percentage measurement (calipers, BIA, or DEXA) for a clearer picture.',
+  },
+  {
+    q: 'What waist circumference is risky for men?',
+    a: 'Above 40 inches (102 cm) is considered elevated risk for men. Waist circumference is often a stronger signal of cardiometabolic risk than BMI alone — especially for men, who tend to store fat abdominally.',
+  },
+  {
+    q: 'What is a healthy body-fat percentage for men?',
+    a: 'Healthy body fat for men ranges from about 14–24%, depending on age and activity level. Athletes typically run 6–13%; essential fat is 2–5%.',
+  },
+  {
+    q: 'Does age affect BMI interpretation for men?',
+    a: 'Yes. After 40–50, men tend to lose muscle mass (sarcopenia) and gain visceral fat at the same weight. The same BMI at 50 carries more risk than at 30. Waist circumference and body composition become more important at this stage.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmi-women/', title: 'BMI for Women', desc: 'Female-specific ranges and body composition context.' },
+  { href: '/calculators/bmi-athletes/', title: 'Athlete BMI Calculator', desc: 'BMI with muscle-mass context for athletic builds.' },
+  { href: '/articles/bmi-vs-body-fat-percentage/', title: 'BMI vs Body Fat %', desc: 'When body composition tells the truth that BMI misses.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">For men · WHO-standard · Private</span>
+      <h1>BMI Calculator for Men</h1>
+      <p class="lead">
+        The standard BMI math — with male-specific context: muscle mass, waist circumference, visceral fat, and the limits of BMI for men.
+      </p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <BMICalculator variant="full" showAsianToggle={true} id="men-bmi" />
+        </div>
+
+        <aside class="calc-side">
+          <div class="info-card">
+            <h3>Healthy BMI for men</h3>
+            <p style="margin:0 0 var(--space-3);font-size:0.92rem;">
+              The WHO healthy range (18.5–24.9) applies to both sexes.
+            </p>
+            <table class="cat-table">
+              <tbody>
+                <tr><td>Below 18.5</td><td>Underweight</td></tr>
+                <tr><td>18.5 – 24.9</td><td>Healthy range</td></tr>
+                <tr><td>25.0 – 29.9</td><td>Overweight</td></tr>
+                <tr><td>30.0+</td><td>Obese</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-card">
+            <h3>Waist circumference matters more</h3>
+            <p>
+              For men, waist circumference predicts cardiometabolic risk better than BMI alone. <strong>Above 40 in (102 cm)</strong> signals elevated risk regardless of BMI.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Healthy body-fat % (men)</h3>
+            <table class="cat-table">
+              <tbody>
+                <tr><td>Essential</td><td>2 – 5%</td></tr>
+                <tr><td>Athletes</td><td>6 – 13%</td></tr>
+                <tr><td>Healthy</td><td>14 – 17%</td></tr>
+                <tr><td>Acceptable</td><td>18 – 24%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-card">
+            <h3>Privacy</h3>
+            <p>All calculations happen locally in your browser. Your data is never sent to a server.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Men-specific context section -->
+  <section class="section section-soft">
+    <div class="container">
+      <h2 class="section-title">What makes BMI different for men</h2>
+      <div class="context-grid">
+        <div class="context-card">
+          <h3>Muscle mass</h3>
+          <p>
+            Men typically carry 10–15 kg more muscle mass than women of the same height and weight. This is why BMI can read
+            "overweight" for a lean, muscular man — muscle is denser than fat.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Visceral fat</h3>
+          <p>
+            Men tend to store fat viscerally (around the organs in the abdomen) rather than subcutaneously (under the skin).
+            Visceral fat is more metabolically active and carries higher cardiometabolic risk.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Waist circumference</h3>
+          <p>
+            Because of the visceral-fat pattern, waist circumference is a particularly strong signal for men. Above 40 in
+            (102 cm) signals elevated risk regardless of BMI.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Cardiometabolic risk</h3>
+          <p>
+            Men tend to develop type 2 diabetes and cardiovascular disease at lower BMIs than women, partly because of the
+            visceral-fat pattern. Earlier screening (lipid panel, fasting glucose) is often recommended.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Aging and muscle loss</h3>
+          <p>
+            After age 40–50, men lose 3–8% of muscle mass per decade (sarcopenia). The same BMI at 50 represents a different
+            body composition than at 30 — less muscle, more fat. Waist circumference becomes more important.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Testosterone</h3>
+          <p>
+            Low testosterone (increasingly common after 40) is associated with increased visceral fat and reduced muscle
+            mass. Both shift the BMI–risk relationship — talk to your clinician about a testosterone panel if relevant.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container-narrow">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="section section-soft">
+    <div class="container">
+      <h2>Keep exploring</h2>
+      <div class="grid grid-3">
+        {related.map((r) => (
+          <a href={r.href} class="card">
+            <h3 class="card-title">{r.title}</h3>
+            <p class="card-desc">{r.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: var(--space-7) 0 var(--space-6);
+    text-align: center;
+    background:
+      radial-gradient(ellipse at top, rgba(99, 102, 241, 0.08) 0%, transparent 60%),
+      var(--color-bg);
+  }
+  .page-hero .badge { margin-bottom: var(--space-3); }
+  .page-hero h1 { margin-bottom: var(--space-3); }
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+
+  .calc-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+
+  .calc-main {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .info-card h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+  }
+  .info-card p { font-size: 0.95rem; margin: 0; }
+
+  .cat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .cat-table td {
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .cat-table tr:last-child td { border-bottom: none; }
+  .cat-table td:last-child {
+    text-align: right;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  /* Context grid */
+  .section-title { text-align: center; margin-bottom: var(--space-6); }
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+  .context-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .context-card h3 {
+    font-size: 1.05rem;
+    color: var(--color-accent);
+    margin-bottom: var(--space-2);
+  }
+  .context-card p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* FAQ */
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--color-brand);
+    transition: transform 0.15s var(--ease-out);
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+</style>

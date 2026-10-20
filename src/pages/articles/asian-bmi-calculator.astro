@@ -1,0 +1,114 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'Why are Asian BMI thresholds lower than the standard WHO ranges?',
+    a: 'Research starting in the 1990s showed that South, East, and Southeast Asian populations develop type 2 diabetes, hypertension, and cardiovascular disease at lower BMIs than European-origin populations. The WHO issued separate thresholds in 2004: healthy 18.5–22.9, overweight 23–27.5, obese 27.5+. These reflect higher cardiometabolic risk at lower body weights.',
+  },
+  {
+    q: 'Which populations use the Asian-adjusted thresholds?',
+    a: 'The WHO recommends the Asian thresholds for South Asian (Indian, Pakistani, Bangladeshi, Sri Lankan), East Asian (Chinese, Japanese, Korean), and Southeast Asian (Filipino, Vietnamese, Thai, Indonesian) populations. The thresholds may also apply to Middle Eastern populations, though evidence is less strong. Research on Black and Hispanic populations is ongoing.',
+  },
+  {
+    q: 'Should everyone with Asian heritage use Asian thresholds?',
+    a: 'The WHO recommendation is ancestry-based, not country of birth or current residence. A second-generation South Asian-American typically uses Asian thresholds. A person of mixed Asian/European heritage should discuss with a clinician familiar with both reference populations.',
+  },
+  {
+    q: 'How much higher is cardiometabolic risk at the same BMI?',
+    a: 'Multiple meta-analyses show that at a given BMI (say, 24), Asian adults have roughly 2–3x the type 2 diabetes risk of European-origin adults. Cardiovascular disease risk rises similarly. This is partly due to higher visceral adiposity at the same BMI in Asian populations.',
+  },
+  {
+    q: 'Is waist circumference more important than BMI for Asians?',
+    a: 'Yes. Waist circumference cutoffs for elevated risk are also lower in Asian populations: above 35.5 in (90 cm) for men and above 31.5 in (80 cm) for women, vs. 40 in and 35 in for European-origin populations. Some guidelines recommend waist-to-height ratio below 0.5 as the threshold.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmi-asian/', title: 'Asian BMI Calculator', desc: 'WHO-aligned thresholds with toggle.' },
+  { href: '/articles/what-is-a-healthy-bmi/', title: 'What Is a Healthy BMI?', desc: 'Healthy range by ethnicity.' },
+  { href: '/articles/bmi-and-health-risks/', title: 'BMI and Health Risks', desc: 'Cardiometabolic correlations by BMI band.' },
+];
+---
+<ArticleLayout
+  title="Asian BMI Calculator – Adjusted Thresholds for Better Accuracy | Helthvibe"
+  description="Free BMI calculator using WHO-aligned thresholds for Asian populations. Lower cutoffs reflect higher cardiometabolic risk at lower BMI."
+  h1="Asian BMI Calculator — Adjusted Thresholds for Better Accuracy"
+  excerpt="Why the WHO recommends lower BMI thresholds for Asian populations, and how to apply them to South, East, and Southeast Asian body composition."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Calculator"
+  readTime="6 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>Standard BMI vs Asian BMI Thresholds</h2>
+  <p>The WHO established universal BMI cutoffs (underweight below 18.5, healthy weight 18.5–24.9, overweight 25.0–29.9, obese 30.0 and above) as population-level screening benchmarks based primarily on epidemiological data from European and North American cohorts. These cutoffs do not accurately capture cardiometabolic risk in South, East, and Southeast Asian populations — a limitation that was formally recognized by the WHO Expert Consultation in 2004.</p>
+  <p>The 2004 WHO Expert Consultation concluded that the relationship between BMI and body fat percentage differs systematically across ethnic groups, that Asian populations develop metabolic complications at lower BMI than European-origin populations, and that public health action thresholds should be lower for Asian populations. The consultation did not issue a single unified Asian classification, instead recommending that national health organizations develop their own cutoffs based on local epidemiological data.</p>
+  <p>The WHO Asia-Pacific perspective (2000, refined in subsequent guidelines) established an interim classification:</p>
+  <ul>
+    <li><strong>18.5–22.9 kg/m²:</strong> Healthy weight (lowest risk)</li>
+    <li><strong>23.0–24.9 kg/m²:</strong> Overweight — increased risk</li>
+    <li><strong>25.0 kg/m² and above:</strong> Obese — high risk</li>
+  </ul>
+  <p>The Cooperative Meta-Analysis Group of the Working Group on Obesity in China further refined these for Chinese populations: <strong>overweight at BMI ≥ 24</strong> and <strong>obesity at BMI ≥ 28</strong>, noting that these cutoffs align precisely with the inflection point in the risk curve for the "five highs" — hypertension, dyslipidemia, diabetes, hyperuricemia, and hyperhomocysteinemia.</p>
+
+  <h2>Why Health Risks Begin at a Lower BMI</h2>
+  <p>The mechanistic basis for ethnic differences in the BMI–adiposity relationship involves body composition, fat distribution, and possibly pancreatic beta-cell function. Multiple lines of evidence support why South and East Asian populations face elevated cardiometabolic risk at lower BMI:</p>
+  <ul>
+    <li><strong>Higher body fat at the same BMI:</strong> Studies using DEXA and other body composition methods consistently find that Asian adults have higher percentage body fat than Caucasian adults of the same age, sex, and BMI. The Deurenberg equation (Deurenberg P, et al., <em>Obesity Reviews</em>, 2002) — developed specifically to address this — shows that at a BMI of 25, an Asian adult may carry 3–5 percentage points more body fat than a European adult of the same height and weight.</li>
+    <li><strong>Greater visceral adiposity at the same BMI:</strong> Asian populations tend to store fat viscerally even at lower BMI levels. Visceral fat — the fat around the liver, pancreas, and intestines — is the primary driver of insulin resistance, the fundamental metabolic abnormality underlying type 2 diabetes and metabolic syndrome.</li>
+    <li><strong>Ethnic differences in beta-cell function:</strong> Some evidence suggests that Asian populations have lower pancreatic beta-cell reserve relative to European populations, making them more susceptible to hyperglycemia when exposed to the same degree of insulin resistance. This may explain why type 2 diabetes risk in Indian populations begins rising steeply at <strong>BMI 23</strong> — compared to <strong>BMI 27</strong> in European populations.</li>
+  </ul>
+  <p>A landmark meta-analysis published in <em>The Lancet</em> found that at any given BMI, the relative risk of type 2 diabetes in South Asian populations is approximately <strong>2–3 times higher</strong> than in European populations. Cardiovascular disease risk follows a similar pattern.</p>
+
+  <h2>Asian BMI Categories and What They Mean</h2>
+  <p>Using the WHO Asia-Pacific adjusted thresholds:</p>
+  <table>
+    <thead><tr><th>Category</th><th>BMI Range (Asia-Pacific)</th><th>Cardiometabolic Risk</th></tr></thead>
+    <tbody>
+      <tr><td>Underweight</td><td>Below 18.5</td><td>Elevated risk of infectious disease, malnutrition; monitor for underlying causes</td></tr>
+      <tr><td>Healthy Weight</td><td>18.5–22.9</td><td>Lowest population-level cardiometabolic risk</td></tr>
+      <tr><td>Overweight (Increased Risk)</td><td>23.0–24.9</td><td>Above this threshold, risk rises steeply; lifestyle intervention indicated</td></tr>
+      <tr><td>Obese (High Risk)</td><td>25.0 and above</td><td>High cardiometabolic risk; clinical assessment and management warranted</td></tr>
+    </tbody>
+  </table>
+  <p>These are not personal thresholds — they are population-level risk bands. An individual with a BMI of 23.5 may have healthy metabolic markers if they are physically active, have no family history of diabetes, and do not smoke. Conversely, an individual with BMI 21 may have elevated visceral fat if they are sedentary, smoke, and have a strong family history of type 2 diabetes. BMI is a screening tool, not a diagnosis.</p>
+
+  <h2>Differences Across Asian Populations</h2>
+  <p>"Asian" encompasses enormous genetic, dietary, and lifestyle diversity. The WHO recommendation does not imply a single classification applies uniformly to all Asian subgroups:</p>
+  <ul>
+    <li><strong>South Asian</strong> (Indian, Pakistani, Bangladeshi, Sri Lankan, Nepali): The most data on lowered thresholds. The India-specific cutoff for overweight is BMI 23 (vs. 25 internationally). A waist circumference above <strong>90 cm in men</strong> and <strong>80 cm in women</strong> (per IDF metabolic syndrome criteria) signals elevated risk.</li>
+    <li><strong>East Asian</strong> (Chinese, Japanese, Korean): The Cooperative Meta-Analysis Group's Chinese thresholds (overweight ≥ 24, obesity ≥ 28) are the most clinically validated for these populations. Japanese data suggest somewhat higher cutoffs may be appropriate, reflecting differences in body composition within East Asian subgroups.</li>
+    <li><strong>Southeast Asian</strong> (Filipino, Vietnamese, Thai, Indonesian): IDF and WHO Asia-Pacific thresholds are generally appropriate, though local epidemiological data vary. Filipino-specific cutoffs are among the best-studied within this subgroup.</li>
+    <li><strong>Middle Eastern and Pacific Islander populations</strong>: These populations also show elevated cardiometabolic risk at lower BMI, though the evidence base is less extensive. IDF criteria provide the most commonly used guidance for these groups.</li>
+  </ul>
+  <p>For individuals of mixed heritage, clinical judgment is required. A person of mixed South Asian and European ancestry may fall between the two reference populations. Discussing body composition with a clinician familiar with both reference populations is the most appropriate approach.</p>
+
+  <h2>Waist Size and Diabetes Screening</h2>
+  <p>Waist circumference is especially important for Asian populations. The IDF metabolic syndrome criteria (Alberti, Zimmet, Shaw, 2006) set the following thresholds for Asian populations:</p>
+  <ul>
+    <li><strong>Men: ≥ 90 cm (35.5 in)</strong></li>
+    <li><strong>Women: ≥ 80 cm (31.5 in)</strong></li>
+  </ul>
+  <p>These compare to 102 cm / 88 cm for European-origin populations — a substantial difference that reflects the greater propensity for visceral fat accumulation at lower BMI in Asian populations. The waist-to-height ratio provides an even more accessible screening proxy: a ratio above <strong>0.5</strong> is associated with elevated metabolic risk across Asian populations; above <strong>0.55</strong> with substantially elevated risk.</p>
+  <p>The International Diabetes Federation (IDF Atlas, 10th edition, 2023) recommends that diabetes screening in Asian populations should begin at <strong>BMI 23</strong> for South and Southeast Asian populations — compared to BMI 25 for European populations — reflecting the earlier inflection in the diabetes risk curve.</p>
+
+  <h2>How to Use Your Result</h2>
+  <p>For anyone of South, East, or Southeast Asian heritage:</p>
+  <ul>
+    <li><strong>Use the adjusted thresholds</strong> (18.5–22.9 healthy, 23–24.9 overweight, 25+ obese) as your reference framework, rather than the standard WHO categories.</li>
+    <li><strong>Measure your waist circumference</strong> at the navel. Compare to 90 cm (men) and 80 cm (women).</li>
+    <li><strong>Request a fasting glucose or HbA1c</strong> test at your next physical. IDF recommends screening from BMI 23 for South and Southeast Asian adults.</li>
+    <li><strong>Consider family history</strong>. If type 2 diabetes is prevalent in your family, your personal risk threshold may be lower than the population average.</li>
+  </ul>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>WHO Expert Consultation. <em>Appropriate body-mass index for Asian populations and its implications for policy and intervention strategies.</em> The Lancet, 2004.</li>
+    <li>Deurenberg P, Deurenberg-Yap M, Guricci S. <em>Asians are different from Caucasians and from each other in their body mass index/body fat percent relationship.</em> Obesity Reviews, 2002.</li>
+    <li>International Diabetes Federation. <em>Atlas of Diabetes.</em> 10th ed., 2023.</li>
+    <li>Alberti KGMM, Zimmet P, Shaw J. <em>Metabolic syndrome — a new world-wide definition.</em> IDF Consensus, 2006.</li>
+  </ul>
+</ArticleLayout>

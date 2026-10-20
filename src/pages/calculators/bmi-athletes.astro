@@ -1,0 +1,34 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe Athlete BMI Calculator',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Layout
+  title="Athlete BMI Calculator — Why Standard BMI Fails Muscle Mass | Helthvibe"
+  description="Free BMI calculator for athletes with muscle-mass context. Understand when BMI misclassifies athletic builds."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Athlete BMI Calculator — Why Standard BMI Fails Muscle Mass | Helthvibe"
+    description="Free BMI calculator for athletes with muscle-mass context. Understand when BMI misclassifies athletic builds."
+    h1="Athlete BMI Calculator"
+    intro="Standard BMI doesn't distinguish muscle from fat. Athletes and very muscular individuals often get labeled overweight or obese despite being healthy. Use this calculator with the muscle-mass context built in."
+    status="coming-soon"
+    features={[
+      'Standard BMI calculation',
+      'Optional body-fat % input for cross-reference',
+      'Muscle-mass notes per sport/activity',
+      'Lean-mass-adjusted BMI',
+      'Honest "this number may not apply to you" guidance',
+    ]}
+    schema={schema}
+  />
+</Layout>

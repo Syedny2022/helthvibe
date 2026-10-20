@@ -1,0 +1,94 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is a healthy waist-to-hip ratio?',
+    a: 'For men, below 0.90 indicates low risk. For women, below 0.80 indicates low risk. Above 0.99 in men or 0.84 in women signals elevated cardiometabolic risk.',
+  },
+  {
+    q: 'How do I measure waist and hip correctly?',
+    a: 'Waist: measure at the level of the navel, after a normal exhale, without sucking in. Hip: measure at the widest point of the buttocks. Use a flexible tape measure.',
+  },
+  {
+    q: 'Is WHR better than BMI?',
+    a: 'WHR captures fat distribution — specifically visceral fat — that BMI cannot detect. A normal-BMI person with central adiposity has elevated risk that BMI misses.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All math runs in your browser. Your measurements never leave your device.',
+  },
+];
+
+const related = [
+  { href: '/calculators/waist-hip-ratio/', title: 'Waist-to-Hip Ratio Calculator', desc: 'Get your WHR with WHO thresholds.' },
+  { href: '/calculators/waist-height-ratio/', title: 'Waist-to-Height Ratio', desc: 'Single 0.5 cutoff.' },
+  { href: '/articles/bmi-and-health-risks/', title: 'BMI and Health Risks', desc: 'Cardiometabolic risk by BMI band.' },
+];
+---
+<ArticleLayout
+  title="Waist-to-Hip Ratio: A Better Predictor of Heart Risk Than BMI | Helthvibe"
+  description="Waist-to-hip ratio (WHR) captures visceral fat that BMI misses. Here's how to measure it, what the numbers mean, and why cardiologists trust it."
+  h1="Waist-to-Hip Ratio — A Better Predictor of Heart Risk Than BMI"
+  excerpt="WHR captures visceral fat distribution that BMI cannot detect. Here's how to measure it correctly, what the WHO thresholds mean, and why cardiologists use it."
+  datePublished="2026-09-29"
+  dateModified="2026-09-29"
+  category="Reference"
+  readTime="7 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>Why Waist-to-Hip Ratio Matters More Than the Scale</h2>
+  <p>Two adults at the same BMI can have radically different health profiles. The difference almost always comes down to where their fat is stored. Visceral fat — the deep abdominal fat that surrounds the liver, pancreas, and intestines — is metabolically distinct from subcutaneous fat and is the primary driver of insulin resistance, type 2 diabetes, and cardiovascular disease.</p>
+  <p>The waist-to-hip ratio (WHR) is the simplest single measurement that captures this distribution difference. The World Health Organization Expert Consultation on Waist Circumference and Waist-Hip Ratio (Geneva, 2008) established the threshold values that are now the international standard.</p>
+
+  <h2>WHO Thresholds for Cardiometabolic Risk</h2>
+  <table>
+    <thead><tr><th>Risk</th><th>Men</th><th>Women</th></tr></thead>
+    <tbody>
+      <tr><td>Low</td><td>&lt; 0.90</td><td>&lt; 0.80</td></tr>
+      <tr><td>Moderate</td><td>0.90–0.99</td><td>0.80–0.84</td></tr>
+      <tr><td>High</td><td>≥ 1.00</td><td>≥ 0.85</td></tr>
+    </tbody>
+  </table>
+  <p>A man with WHR 1.05 has roughly twice the cardiovascular mortality risk of a man with WHR 0.85 — independent of BMI. The relationship is graded and continuous: even small differences in WHR within the "low risk" category predict meaningful differences in long-term cardiometabolic outcomes.</p>
+
+  <h2>How to Measure Correctly</h2>
+  <p>Measurement error is the single most common reason for misleading WHR readings. Two precise measurements, same technique, same time of day:</p>
+  <ul>
+    <li><strong>Waist:</strong> Stand relaxed. Place a flexible tape measure at the level of the navel, parallel to the floor. Exhale normally — do not suck in. Read to the nearest 0.1 cm.</li>
+    <li><strong>Hip:</strong> Measure at the widest point of the buttocks, typically over light clothing. Tape parallel to the floor. Read to the nearest 0.1 cm.</li>
+  </ul>
+  <p>Take both measurements twice and average. If the two measurements differ by more than 0.5 cm, take a third. Use the average of the closest two.</p>
+
+  <h2>What WHR Captures That BMI Cannot</h2>
+  <p>BMI measures total mass relative to height squared. WHR measures the ratio of two specific circumferences, capturing the distribution of adipose tissue. The two metrics answer different questions:</p>
+  <ul>
+    <li><strong>BMI:</strong> Is your overall weight appropriate for your height?</li>
+    <li><strong>WHR:</strong> Is your fat stored in a way that elevates cardiometabolic risk?</li>
+  </ul>
+  <p>Visceral adipose tissue is the primary site of inflammatory cytokine production (IL-6, TNF-α), free fatty acid release into the portal circulation, and hepatic de novo lipogenesis. People with normal BMI but elevated WHR — sometimes called "normal weight central obesity" — carry metabolic risk that BMI alone does not flag.</p>
+
+  <h2>Sex Differences in Fat Distribution</h2>
+  <p>Women typically store fat in the gluteofemoral region (hips, thighs, buttocks) under estrogen's influence. This "gynoid" or "pear" distribution is metabolically less harmful than the "android" or "apple" distribution common in men. Post-menopausally, women shift toward visceral storage as estrogen declines, narrowing the sex difference in WHR at older ages.</p>
+  <p>This is why WHO established separate WHR thresholds by sex. The same WHR value (e.g., 0.90) means different things for a man than for a woman because the underlying adipose biology is different.</p>
+
+  <h2>When WHR and BMI Disagree</h2>
+  <p>Disagreement between WHR and BMI is informative. Common patterns:</p>
+  <ul>
+    <li><strong>High BMI, normal WHR:</strong> Often a muscular athlete or someone with predominantly subcutaneous fat storage. The high BMI is not metabolically threatening.</li>
+    <li><strong>Normal BMI, elevated WHR:</strong> Central adiposity despite normal weight. Common in sedentary populations and in some Asian ethnicities. Carries elevated cardiometabolic risk despite normal weight.</li>
+    <li><strong>Both elevated:</strong> Highest-risk phenotype. Combined with blood pressure and lipid panel results, this combination typically meets criteria for metabolic syndrome.</li>
+  </ul>
+
+  <h2>Using WHR Alongside BMI</h2>
+  <p>WHR is a complement to BMI, not a replacement. The two metrics together give a more complete picture than either alone. For population screening, BMI is faster and cheaper. For individual cardiometabolic risk assessment, WHR adds information that BMI misses.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>World Health Organization. <em>Waist Circumference and Waist-Hip Ratio: Report of a WHO Expert Consultation.</em> Geneva: WHO, 2008.</li>
+    <li>Yusuf S, et al. <em>Obesity and the risk of myocardial infarction in 27,000 participants from 52 countries: a case-control study.</em> Lancet. 2005;366(9497):1640–1649.</li>
+    <li>Canoy D, et al. <em>Body fat distribution and risk of coronary heart disease in men and women in the European Prospective Investigation into Cancer and Nutrition in Norfolk cohort.</em> Circulation. 2007;116(25):2933–2943.</li>
+  </ul>
+</ArticleLayout>

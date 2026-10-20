@@ -1,0 +1,96 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'Is the BMI formula different for women?',
+    a: 'No. The BMI formula (weight in kg ÷ height in meters squared) is the same for both sexes. What differs is body composition: women carry a higher essential-fat percentage and tend to store fat subcutaneously (hips, thighs) rather than viscerally (abdomen). The same BMI does not mean the same body composition in women and men.',
+  },
+  {
+    q: 'Is the healthy BMI range different for women?',
+    a: 'No — the WHO healthy range (18.5–24.9) applies to both sexes. However, waist circumference is a particularly important signal for women: above 35 in (88 cm) signals elevated cardiometabolic risk regardless of BMI. Women with normal BMI but high waist circumference still carry elevated risk.',
+  },
+  {
+    q: 'How does pregnancy affect BMI?',
+    a: 'BMI is calculated from pre-pregnancy weight. Gestational weight-gain guidelines from ACOG depend on the pre-pregnancy BMI category. Trying to lose weight during pregnancy is generally not recommended; the focus is on adequate nutrition and clinically-guided weight gain. Post-partum BMI stabilizes 6–12 months after delivery in most cases.',
+  },
+  {
+    q: 'Do hormonal contraceptives affect BMI?',
+    a: 'Combined oral contraceptives can cause 1–3 kg of fluid retention that is not fat mass. For a stable BMI reading, weigh yourself at the same point in your cycle (typically just after menstruation). Progestin-only methods (IUDs, implants) have less effect on weight.',
+  },
+  {
+    q: 'How does menopause affect BMI interpretation?',
+    a: 'Post-menopausal women tend to shift fat distribution toward the abdomen, which increases visceral adiposity. The same BMI at 55 carries more cardiometabolic risk than the same BMI at 35. Waist circumference becomes more meaningful. HRT can affect weight distribution; talk to your clinician.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmi-women/', title: 'BMI Calculator for Women', desc: 'Free, private BMI with female-specific context.' },
+  { href: '/articles/bmi-vs-body-fat-percentage/', title: 'BMI vs Body Fat %', desc: 'How the two compare for women.' },
+  { href: '/calculators/bmi/', title: 'Adult BMI Calculator', desc: 'WHO-standard BMI with healthy range.' },
+];
+---
+<ArticleLayout
+  title="BMI Calculator for Women – Accurate Results + Ideal Weight Range | Helthvibe"
+  description="Free BMI calculator tailored for women — body composition context, healthy ranges, pregnancy guidance, and waist-circumference thresholds."
+  h1="BMI Calculator for Women — Accurate Results + Ideal Weight Range"
+  excerpt="Standard BMI math plus female-specific context: body composition, fat distribution, pregnancy, menopause, and waist circumference."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Calculator"
+  readTime="7 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>BMI Categories for Adult Women</h2>
+  <p>The BMI formula — weight in kilograms divided by the square of height in meters — is identical for women and men. The WHO cutoffs for BMI categories are not sex-specific and apply uniformly to all adults aged 20 and older. A BMI below <strong>18.5</strong> classifies as underweight; <strong>18.5–24.9</strong> is healthy weight; <strong>25.0–29.9</strong> is overweight; and <strong>30.0 or above</strong> falls within obesity classifications. These categories are based on epidemiological associations with cardiovascular disease, type 2 diabetes, and all-cause mortality in large population datasets.</p>
+  <p>What differs between sexes is not the formula or the categories, but the <em>body composition context</em> that surrounds those categories. Women carry more essential body fat than men by biological design. Essential fat — the minimum amount required for normal physiological function — is approximately <strong>10–13% of body mass in adult women</strong>, compared to just <strong>2–5% in men</strong>. This difference reflects the reproductive demands of female physiology, including hormonal regulation, fertility, and lactation. A body-fat percentage below 14–20% in most women is typically achievable only through competitive athletics or restrictive eating, and is not a sustainable general-health target.</p>
+
+  <h2>Does BMI Work Differently for Women?</h2>
+  <p>BMI works the same way mathematically for women as it does for men. Where it diverges is in what it fails to capture. Female adiposity distribution undergoes at least two clinically significant transitions across the lifespan:</p>
+  <ul>
+    <li><strong>Pre-menopausal women</strong> predominantly store fat in the gluteofemoral region — hips, thighs, and buttocks. This pattern, driven by estrogen's effect on lipoprotein lipase activity, is sometimes called "gynoid" or "pear-shaped" fat distribution. It is metabolically less harmful than central fat storage because subcutaneous gluteofemoral fat has a lower inflammatory profile than visceral fat.</li>
+    <li><strong>Post-menopausal women</strong> experience a redistribution of fat storage toward the abdominal cavity. As systemic estrogen declines following the menopausal transition, lipoprotein lipase activity shifts toward the visceral depot. Post-menopausal women accumulate visceral fat more similarly to age-matched men. This shift is independent of weight change — a woman can maintain the same BMI from age 45 to 55 while her visceral fat stores increase substantially.</li>
+  </ul>
+  <p>Because BMI measures total mass relative to height squared, it cannot detect this critical redistribution. The same BMI at 55 carries a higher cardiometabolic risk than the same BMI at 35. This is one of the most important limitations of BMI for women across midlife and beyond.</p>
+
+  <h2>BMI, Body Fat, and Waist Circumference</h2>
+  <p>For women, BMI should not be interpreted in isolation. The WHO Expert Consultation on Waist Circumference and Waist-Hip Ratio (2008) established sex-specific thresholds for elevated cardiometabolic risk:</p>
+  <ul>
+    <li><strong>Waist circumference ≥ 35 inches (88 cm)</strong> for women indicates elevated risk and is an independent predictor of metabolic syndrome, regardless of BMI.</li>
+    <li><strong>Waist-to-hip ratio (WHR) below 0.7</strong> is associated with lower cardiovascular and metabolic risk in women. A WHR above 0.85 in women signals substantially elevated risk.</li>
+  </ul>
+  <p>These measurements address BMI's central blind spot: they detect excess visceral fat, which is the primary driver of insulin resistance, dyslipidemia, and hypertension in both sexes, but particularly in post-menopausal women. A woman with a normal BMI (18.5–24.9) but a waist circumference above 88 cm — sometimes called "normal weight central obesity" — carries cardiometabolic risk that BMI alone would miss.</p>
+  <p>Body-fat percentage provides the most granular individual assessment. Healthy body-fat ranges for adult women, per the American Council on Exercise, are approximately <strong>21–31%</strong> for general fitness; <strong>14–20%</strong> for athletic populations; and <strong>10–13%</strong> as the physiological minimum. Women who score within the "healthy" BMI range but above these body-fat percentages are at elevated risk that a BMI calculation will not surface.</p>
+
+  <h2>When BMI May Be Misleading for Women</h2>
+  <p>Standard BMI misclassifies women in several common scenarios:</p>
+  <ul>
+    <li><strong>Highly muscular women</strong> (powerlifters, rugby players, elite CrossFit athletes) may read as overweight or obese despite possessing low body-fat percentages. Female athletes in strength sports regularly present with BMI 25–29 despite body-fat percentages in the 14–20% athletic range.</li>
+    <li><strong>Women of Asian, South Asian, or East Asian descent</strong> develop metabolic complications at lower BMI than Caucasian populations. For South Asian women, type 2 diabetes risk rises steeply above BMI 23. Standard BMI categories do not account for this, and the healthy range should be compressed to <strong>18.5–22.9 kg/m²</strong> for this population.</li>
+    <li><strong>Women during or after pregnancy</strong>: BMI calculated during pregnancy uses pre-pregnancy weight as the reference. Gestational weight gain is expected and healthy — applying standard BMI categories during pregnancy would be clinically inappropriate.</li>
+    <li><strong>Hormonal contraceptive users</strong>: Combined oral contraceptives can cause 1–3 kg of fluid retention that is not fat mass. Weighing at the same point in the menstrual cycle (typically just after menstruation ends) gives the most consistent reading.</li>
+  </ul>
+
+  <h2>Pregnancy and Other Times Not to Use This Calculator</h2>
+  <p>BMI is an inappropriate tool during pregnancy. The ACOG 2013 Committee Opinion (reaffirmed 2023) on gestational weight gain provides pre-pregnancy BMI-specific targets for total weight gain and rate of gain — these are not BMI categories. Post-partum BMI typically stabilizes 6–12 months after delivery, and the standard adult categories can be reapplied at that point.</p>
+  <p>Other situations where standard adult BMI should not be applied include: eating disorder recovery (where weight monitoring can be psychologically harmful), active treatment for certain cancers, and end-stage renal disease (where fluid shifts make weight an unreliable proxy for body composition).</p>
+
+  <h2>What to Do After You Get Your Result</h2>
+  <p>Whether your BMI falls within or outside the healthy range, the next practical step is context. For all women:</p>
+  <ul>
+    <li><strong>Measure your waist circumference</strong> using a flexible tape at the level of the navel. This takes 30 seconds and provides a signal BMI cannot.</li>
+    <li><strong>Review your menstrual history</strong> — irregular or absent periods can signal hypothalamic or hormonal disruptions that affect body composition independently of BMI.</li>
+    <li><strong>Request standard bloodwork</strong> at your next physical: fasting glucose or HbA1c, full lipid panel, liver enzymes. These add meaning to your BMI number.</li>
+    <li><strong>Consider your menopausal status</strong> if you are over 45. If you are post-menopausal, your visceral fat risk profile has shifted regardless of whether your BMI has changed.</li>
+  </ul>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>American College of Obstetricians and Gynecologists. <em>Committee Opinion No. 548: Weight Gain During Pregnancy.</em> 2013 (reaffirmed 2023).</li>
+    <li>World Health Organization. <em>Waist Circumference and Waist-Hip Ratio: Report of a WHO Expert Consultation.</em> Geneva: WHO, 2008.</li>
+    <li>Lovejoy JC, et al. <em>Ethnic differences in dietary intake and the relationship with BMI.</em> International Journal of Obesity, 2001.</li>
+    <li>NIH Office of Research on Women's Health. <em>Body Composition and BMI in Women's Health Research.</em> 2022.</li>
+  </ul>
+</ArticleLayout>

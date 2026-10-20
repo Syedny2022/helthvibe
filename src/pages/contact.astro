@@ -1,0 +1,144 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { SITE } from '@data/site';
+
+const title = 'Contact Helthvibe';
+const description = 'Get in touch with the Helthvibe team. Support, feedback, partnerships.';
+---
+<Layout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container-narrow text-center">
+      <h1>Contact us</h1>
+      <p class="lead">Questions, feedback, or partnership ideas? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow">
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Support</h3>
+          <p>Questions about a calculator or feature.</p>
+          <a href={`mailto:${SITE.supportEmail}`} class="contact-link">{SITE.supportEmail}</a>
+        </div>
+        <div class="contact-card">
+          <h3>Newsletter</h3>
+          <p>Get the weekly healthy range guide and product tips.</p>
+          <a href={SITE.newsletterUrl} class="contact-link">Newsletter signup →</a>
+        </div>
+        <div class="contact-card">
+          <h3>Partnerships</h3>
+          <p>Affiliate, sponsored content, or press inquiries.</p>
+          <a href={`mailto:${SITE.partnersEmail}`} class="contact-link">{SITE.partnersEmail}</a>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contact-form" action={`mailto:${SITE.supportEmail}`} method="post" enctype="text/plain">
+        <h2>Send us a message</h2>
+        <label>
+          <span>Your name</span>
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          <span>Topic</span>
+          <select name="topic">
+            <option>General feedback</option>
+            <option>Bug report</option>
+            <option>Feature request</option>
+            <option>Partnership</option>
+          </select>
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Send message</button>
+        <p class="form-note" id="form-note">
+          Opens your email app with the message pre-filled — nothing is sent to a server.
+        </p>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-7);
+  }
+  @media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    text-align: center;
+  }
+  .contact-card h3 { font-size: 1.05rem; margin-bottom: var(--space-2); }
+  .contact-card p { font-size: 0.9rem; color: var(--color-text-soft); margin-bottom: var(--space-3); }
+  .contact-link { font-weight: 600; }
+
+  .contact-form {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: grid;
+    gap: var(--space-4);
+  }
+  .contact-form h2 { margin-bottom: var(--space-2); }
+  .contact-form label {
+    display: grid;
+    gap: 0.4rem;
+    font-weight: 500;
+    color: var(--color-text);
+    font-size: 0.92rem;
+  }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    padding: 0.7rem 0.9rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    font-family: inherit;
+    font-size: 1rem;
+  }
+  .contact-form textarea { resize: vertical; }
+  .form-note {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin: 0;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const note = document.getElementById('form-note');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    const name = String(data.get('name') ?? '').trim();
+    const email = String(data.get('email') ?? '').trim();
+    const topic = String(data.get('topic') ?? 'General feedback').trim();
+    const message = String(data.get('message') ?? '').trim();
+
+    const subject = `Helthvibe — ${topic}`;
+    const body = [`Name: ${name}`, `Email: ${email}`, `Topic: ${topic}`, '', message].join('\n');
+
+    window.location.href = `mailto:${form.getAttribute('action')?.replace('mailto:', '') ?? ''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    if (note) {
+      note.textContent = 'Your email app should open with the message ready to send.';
+    }
+  });
+</script>

@@ -1,0 +1,35 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Mayo Clinic BMI Calculator — Review & Comparison',
+  datePublished: '2026-09-27',
+  dateModified: '2026-09-27',
+  author: { '@type': 'Organization', name: 'Helthvibe' },
+  publisher: { '@type': 'Organization', name: 'Helthvibe', logo: { '@type': 'ImageObject', url: 'https://helthvibe.com/logo.png' } },
+};
+---
+<Layout
+  title="Mayo Clinic BMI Calculator — Review & Comparison | Helthvibe"
+  description="An independent review of the Mayo Clinic BMI calculator — features, accuracy, privacy, and how it compares to Helthvibe."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Mayo Clinic BMI Calculator — Review & Comparison | Helthvibe"
+    description="An independent review of the Mayo Clinic BMI calculator — features, accuracy, privacy, and how it compares to Helthvibe."
+    h1="Mayo Clinic BMI Calculator — Review & Comparison"
+    intro="The Mayo Clinic BMI calculator is a respected clinical reference. Here's how it works, what it does well, and how it differs from Helthvibe."
+    status="reference"
+    features={[
+      'Mayo Clinic calculator feature breakdown',
+      'Side-by-side comparison with Helthvibe',
+      'Clinical authority context',
+      'Privacy and data-handling comparison',
+      'Affiliate-friendly disclosures',
+    ]}
+    schema={schema}
+  />
+</Layout>

@@ -1,0 +1,167 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const title = 'Free Waist-to-Height Ratio Calculator — 0.5 Cutoff | Helthvibe';
+const description = 'Calculate your waist-to-height ratio (WHtR). Single 0.5 cutoff across all populations — Ashwell & Hsieh 2005.';
+const softwareSchema = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Helthvibe Waist-to-Height Ratio Calculator', applicationCategory: 'HealthApplication', operatingSystem: 'Web', url: 'https://helthvibe.com/calculators/waist-height-ratio/', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } };
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+  { '@type': 'Question', name: 'What is the waist-to-height ratio cutoff?', acceptedAnswer: { '@type': 'Answer', text: 'Your waist circumference should be less than half your height. WHtR below 0.5 indicates healthy; 0.5–0.59 increased risk; 0.60 or higher substantially elevated risk. The cutoff is the same for men and women and across ethnic groups.' } },
+  { '@type': 'Question', name: 'How is WHtR measured?', acceptedAnswer: { '@type': 'Answer', text: 'Measure waist at the level of the navel after a normal exhale. Divide by your height (in the same units). Result is a single dimensionless ratio.' } },
+  { '@type': 'Question', name: 'Is WHtR better than BMI?', acceptedAnswer: { '@type': 'Answer', text: 'For population cardiometabolic risk screening, WHtR is at least as good as BMI and is simpler — a single cutoff across populations. It captures visceral adiposity that BMI misses.' } },
+  { '@type': 'Question', name: 'Is my data private?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All calculations happen in your browser. Nothing is sent to a server.' } },
+] };
+const faqs = [
+  { q: 'What is the waist-to-height ratio cutoff?', a: 'Below 0.5 is healthy, 0.5–0.59 is increased risk, ≥0.60 is substantially elevated risk. Same cutoff across populations.' },
+  { q: 'How do I measure?', a: 'Waist at the navel after a normal exhale. Divide by your height in the same units.' },
+  { q: 'WHtR vs BMI?', a: 'For cardiometabolic risk, WHtR is at least as good as BMI and simpler. Single 0.5 cutoff across populations.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Free · Ashwell & Hsieh · Private</span>
+      <h1>Waist-to-Height Ratio Calculator</h1>
+      <p class="lead">If your waist is less than half your height, you're in a healthy range. A simple rule with strong cardiometabolic evidence behind it.</p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <div class="calc" data-whtr-calc id="whtr-main">
+            <form class="form" data-form novalidate>
+              <div class="row">
+                <div class="field">
+                  <label class="field-label" for="whtr-waist">Waist (cm)</label>
+                  <input type="number" id="whtr-waist" name="waistCm" min="40" max="200" step="0.1" placeholder="80" required />
+                </div>
+                <div class="field">
+                  <label class="field-label" for="whtr-height">Height (cm)</label>
+                  <input type="number" id="whtr-height" name="heightCm" min="100" max="250" step="0.1" placeholder="175" required />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Calculate WHtR</button>
+              <p class="privacy-note">🔒 All math runs in your browser. Data never leaves this device.</p>
+            </form>
+            <div class="result" data-result hidden>
+              <div class="result-score">
+                <span class="result-label">Your waist-to-height ratio</span>
+                <span class="result-value" data-value>—</span>
+              </div>
+              <div class="result-category" data-pill><span class="dot" data-dot></span><span data-label>—</span></div>
+              <p class="result-desc" data-desc></p>
+              <div class="result-note" data-note></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="calc-side">
+          <div class="info-card">
+            <h3>Risk thresholds</h3>
+            <table class="cat-table">
+              <tbody><tr><th>WHtR</th><th>Risk</th></tr><tr><td>&lt; 0.50</td><td>Healthy</td></tr><tr><td>0.50–0.59</td><td>Increased</td></tr><tr><td>≥ 0.60</td><td>Substantially elevated</td></tr></tbody>
+            </table>
+          </div>
+          <div class="info-card">
+            <h3>The simple rule</h3>
+            <p>Your waist circumference should be <strong>less than half your height</strong>. This rule applies across men, women, and ethnic groups — including populations where BMI cutoffs are unreliable (Asians, children, older adults).</p>
+          </div>
+          <div class="info-card"><h3>Privacy</h3><p>All calculations happen locally. Nothing is sent to a server.</p></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container-narrow">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">{faqs.map((f) => (<details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Keep exploring</h2>
+      <div class="grid grid-3">
+        <a href="/calculators/waist-hip-ratio/" class="card"><h3 class="card-title">Waist-to-Hip Ratio</h3><p class="card-desc">Sex-specific cardiometabolic risk.</p></a>
+        <a href="/calculators/bmi/" class="card"><h3 class="card-title">Adult BMI</h3><p class="card-desc">The starting-point mass-to-height measure.</p></a>
+        <a href="/articles/bmi-and-health-risks/" class="card"><h3 class="card-title">BMI and Health Risks</h3><p class="card-desc">How BMI categories map to disease risk.</p></a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero { padding: var(--space-7) 0 var(--space-6); text-align: center; background: radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%), var(--color-bg); }
+  .page-hero .badge { margin-bottom: var(--space-3); }
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+  .calc-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-6); align-items: start; }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+  .calc-main { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card { background: var(--color-bg-soft); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: var(--space-5); }
+  .info-card h3 { font-size: 1rem; margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .cat-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .cat-table th, .cat-table td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid var(--color-border-soft); }
+  .cat-table th { font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.04em; }
+  .cat-table tr:last-child td { border-bottom: none; }
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+  .faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary { cursor: pointer; font-weight: 600; color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--color-brand); transition: transform 0.15s var(--ease-out); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+
+  .calc { display: grid; gap: var(--space-5); }
+  .form { display: grid; gap: var(--space-4); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+  input[type="number"] { padding: 0.75rem 0.9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); width: 100%; }
+  input[type="number"]:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 3px rgba(20, 184, 138, 0.12); }
+  .privacy-note { margin: 0; text-align: center; font-size: 0.82rem; color: var(--color-text-muted); }
+
+  .result { background: var(--color-bg-soft); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; gap: var(--space-4); border: 1px solid var(--color-border-soft); animation: slideIn 0.3s var(--ease-out); }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .result-score { text-align: center; }
+  .result-label { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  .result-value { display: inline-block; font-size: 3.5rem; font-weight: 800; color: var(--color-text); letter-spacing: -0.02em; }
+  .result-category { display: inline-flex; align-self: center; align-items: center; gap: 0.5rem; padding: 0.45rem 1rem; border-radius: 999px; font-weight: 600; background: var(--color-surface); border: 1px solid var(--color-border); font-size: 0.95rem; }
+  .dot { width: 0.6rem; height: 0.6rem; border-radius: 999px; background: currentColor; }
+  .result-desc { margin: 0; text-align: center; color: var(--color-text-soft); font-size: 0.95rem; }
+  .result-note { margin: 0; text-align: center; color: var(--color-text-muted); font-size: 0.85rem; }
+</style>
+
+<script>
+  import { calculateWHtR, getWHtRCategory } from '@lib/health';
+  function init(root: HTMLElement) {
+    const form = root.querySelector('[data-form]') as HTMLFormElement;
+    const result = root.querySelector('[data-result]') as HTMLElement;
+    const valueEl = root.querySelector('[data-value]') as HTMLElement;
+    const pill = root.querySelector('[data-pill]') as HTMLElement;
+    const label = root.querySelector('[data-label]') as HTMLElement;
+    const dot = root.querySelector('[data-dot]') as HTMLElement;
+    const desc = root.querySelector('[data-desc]') as HTMLElement;
+    const note = root.querySelector('[data-note]') as HTMLElement;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(form);
+      const waistCm = Number(d.get('waistCm'));
+      const heightCm = Number(d.get('heightCm'));
+      if (!waistCm || !heightCm || heightCm < waistCm) return;
+      const ratio = calculateWHtR({ waistCm, heightCm });
+      const cat = getWHtRCategory(ratio);
+      const colors = { healthy: '#10b981', increased: '#f59e0b', elevated: '#ef4444' };
+      valueEl.textContent = ratio.toFixed(2);
+      pill.style.color = colors[cat.id];
+      dot.style.background = colors[cat.id];
+      label.textContent = cat.label;
+      desc.textContent = cat.description;
+      note.textContent = `Healthy rule: keep your waist below half your height (${(heightCm / 2).toFixed(0)} cm at your height).`;
+      result.hidden = false;
+    });
+  }
+  document.querySelectorAll<HTMLElement>('[data-whtr-calc]').forEach(init);
+</script>

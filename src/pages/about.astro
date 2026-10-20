@@ -1,0 +1,80 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { SITE } from '@data/site';
+
+const title = 'About Helthvibe — Free, Privacy-First Health Calculators';
+const description = 'Helthvibe is a free, accurate, privacy-first suite of health calculators. Learn about our mission and how we keep your data private.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Helthvibe',
+  url: 'https://helthvibe.com/about/',
+};
+---
+<Layout title={title} description={description} schema={schema}>
+  <section class="page-hero">
+    <div class="container-narrow text-center">
+      <h1>About Helthvibe</h1>
+      <p class="lead">
+        Free, accurate, privacy-first health calculators that help you understand your numbers — and take practical next steps.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow about-prose">
+      <h2>Our mission</h2>
+      <p>
+        Most BMI tools are either ad-heavy, lack context, or ignore important limitations like muscle mass, age, and ethnicity.
+        Helthvibe focuses on clarity, speed, and honesty.
+      </p>
+
+      <h2>What we offer</h2>
+      <ul>
+        <li>Adult, Women, Men, Child, Senior, Asian, and Athlete BMI calculators</li>
+        <li>Ideal weight & healthy range tools</li>
+        <li>Clear explanations and actionable guides</li>
+        <li>Comparison and reference pages so you can pick the right tool for the job</li>
+      </ul>
+
+      <h2>Why we built it</h2>
+      <p>
+        We wanted a BMI tool that respected privacy, didn't hide the math behind a signup wall, and actually explained the result.
+        Helthvibe does all three. Every calculation runs locally in your browser — your height and weight never leave your device.
+      </p>
+
+      <h2>Local focus</h2>
+      <p>
+        Built with East Coast users in mind, especially NYC and the DC Metro area. Our local landing pages (NYC, Brooklyn,
+        Washington DC, Northern Virginia, and more) are tailored for commuters, professionals, and families who want quick,
+        trustworthy tools.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions or feedback? Email <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a> or visit our
+        <a href="/contact/">contact page</a>. For wellness tips and updates, sign up for the
+        <a href={SITE.newsletterUrl}>newsletter</a>.
+      </p>
+
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> Helthvibe is not a substitute for medical advice. Always consult a qualified healthcare professional.
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-prose h2 { margin-top: var(--space-6); }
+  .about-prose h2:first-of-type { margin-top: 0; }
+  .disclaimer {
+    margin-top: var(--space-6);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-bg-soft);
+    border-left: 3px solid var(--color-warning);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    color: var(--color-text-soft);
+  }
+</style>

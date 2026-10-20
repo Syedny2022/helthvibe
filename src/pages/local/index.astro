@@ -1,0 +1,71 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const title = 'Local BMI Calculators — NYC, Brooklyn, DC Metro & Beyond | Helthvibe';
+const description = 'BMI calculators tailored for East Coast users — NYC, Brooklyn, Manhattan, DC Metro, Northern Virginia, Arlington, Bethesda, and more.';
+
+const localPages = [
+  { href: '/local/nyc/', label: 'New York City', desc: 'BMI for NYC professionals and residents.' },
+  { href: '/local/brooklyn/', label: 'Brooklyn', desc: 'BMI tailored for Brooklyn residents.' },
+  { href: '/local/manhattan/', label: 'Manhattan', desc: 'BMI for Manhattan professionals and commuters.' },
+  { href: '/local/flatbush/', label: 'Flatbush', desc: 'BMI tailored for Flatbush, Brooklyn.' },
+  { href: '/local/dc-metro/', label: 'DC Metro', desc: 'BMI for the broader DC Metro region.' },
+  { href: '/local/washington-dc/', label: 'Washington DC', desc: 'BMI tailored for DC residents.' },
+  { href: '/local/northern-virginia/', label: 'Northern Virginia', desc: 'BMI for NOVA residents.' },
+  { href: '/local/arlington/', label: 'Arlington', desc: 'BMI for Arlington, VA.' },
+  { href: '/local/bethesda/', label: 'Bethesda', desc: 'BMI for Bethesda, MD.' },
+];
+---
+<Layout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container text-center">
+      <h1>BMI calculators for East Coast cities</h1>
+      <p class="lead">Tailored BMI tools and content for NYC, Brooklyn, DC, Northern Virginia, and surrounding communities.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="local-grid">
+        {localPages.map((l) => (
+          <a href={l.href} class="local-card">
+            <h3 class="card-title">{l.label}</h3>
+            <p class="card-desc">{l.desc}</p>
+            <span class="local-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .local-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+  }
+  .local-card {
+    display: block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.15s var(--ease-out);
+  }
+  .local-card:hover {
+    border-color: var(--color-brand);
+    color: inherit;
+    transform: translateY(-2px);
+  }
+  .local-arrow {
+    position: absolute;
+    bottom: var(--space-4);
+    right: var(--space-5);
+    color: var(--color-brand);
+    font-size: 1.1rem;
+  }
+</style>

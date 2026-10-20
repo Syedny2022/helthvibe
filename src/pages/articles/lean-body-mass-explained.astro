@@ -1,0 +1,97 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is Lean Body Mass?',
+    a: 'Lean Body Mass (LBM) is total body weight minus all body fat. It includes muscle, bone, organs, water, and connective tissue. LBM is the metabolically active mass.',
+  },
+  {
+    q: 'Why is LBM important?',
+    a: 'Higher LBM = higher BMR = more calories burned at rest. Important for athletes, sarcopenia screening, and clinical drug dosing.',
+  },
+  {
+    q: 'How accurate is the Boer formula?',
+    a: 'Standard error ~3–4 kg vs DEXA. Accurate for population estimates and tracking changes in an individual.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.',
+  },
+];
+
+const related = [
+  { href: '/calculators/lean-body-mass/', title: 'Lean Body Mass Calculator', desc: 'Boer formula.' },
+  { href: '/calculators/body-fat/', title: 'Body Fat %', desc: 'Deurenberg equation.' },
+  { href: '/calculators/bmr/', title: 'BMR', desc: 'LBM drives resting energy burn.' },
+];
+---
+<ArticleLayout
+  title="Lean Body Mass: What It Is and Why It Drives Your Metabolism | Helthvibe"
+  description="Lean Body Mass (LBM) is everything in your body that isn't fat. It's the metabolic engine that drives BMR, strength, and resilience."
+  h1="Lean Body Mass — What It Is and Why It Drives Your Metabolism"
+  excerpt="Lean Body Mass is the metabolically active mass that burns calories, builds strength, and keeps you alive. Here's the Boer formula and why LBM matters more than weight."
+  datePublished="2026-09-29"
+  dateModified="2026-09-29"
+  category="Reference"
+  readTime="6 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>What Lean Body Mass Actually Includes</h2>
+  <p>Lean Body Mass (LBM) is everything in your body that is not adipose tissue. It includes:</p>
+  <ul>
+    <li><strong>Skeletal muscle:</strong> The largest component in most adults. The part you build through resistance training.</li>
+    <li><strong>Bone mineral content:</strong> The structural mass of your skeleton.</li>
+    <li><strong>Organ mass:</strong> Heart, liver, kidneys, brain, and other soft tissues.</li>
+    <li><strong>Body water:</strong> Intracellular and extracellular fluid associated with lean tissues.</li>
+  </ul>
+  <p>For most adults, LBM is approximately 60–90% of total body weight, with the higher end in muscular athletes and the lower end in sedentary populations with higher body fat percentage.</p>
+
+  <h2>Why LBM Drives Your Metabolism</h2>
+  <p>Resting metabolic rate is determined primarily by fat-free mass. The Mifflin-St Jeor and Harris-Benedict BMR equations both implicitly weight LBM through height, weight, age, and sex. Per kilogram, lean tissue burns approximately 13 kcal/day at rest, compared with 4.5 kcal/day for adipose tissue. This is why a pound of muscle "burns more calories" than a pound of fat — the difference is real but smaller than often claimed.</p>
+  <p>The clinical implications:</p>
+  <ul>
+    <li><strong>Athletes</strong> with high LBM have higher BMRs and can eat more while maintaining weight.</li>
+    <li><strong>Older adults</strong> with sarcopenia have lower BMRs and tend to gain fat at constant caloric intake.</li>
+    <li><strong>Weight loss</strong> that preserves LBM (via adequate protein and resistance training) is metabolically protective compared to loss that includes significant lean mass.</li>
+  </ul>
+
+  <h2>The Boer Equation (1984)</h2>
+  <p>The Boer formula estimates LBM from height, weight, and sex:</p>
+  <p><strong>Men:</strong> LBM = (0.407 × weight_kg) + (0.267 × height_cm) − 19.2</p>
+  <p><strong>Women:</strong> LBM = (0.252 × weight_kg) + (0.473 × height_cm) − 48.3</p>
+  <p>For a 175 cm, 75 kg man:</p>
+  <p><code>LBM = 30.5 + 46.7 − 19.2 = 58.0 kg</code></p>
+  <p>Standard error against DEXA is approximately 3–4 kg. Reasonable accuracy for population estimates and trend tracking; not precise enough for individual clinical decisions.</p>
+
+  <h2>Reference Values</h2>
+  <table>
+    <thead><tr><th>Group</th><th>Typical LBM</th></tr></thead>
+    <tbody>
+      <tr><td>Adult male (average)</td><td>~62 kg</td></tr>
+      <tr><td>Adult female (average)</td><td>~42 kg</td></tr>
+      <tr><td>Athletic male</td><td>65–80 kg</td></tr>
+      <tr><td>Athletic female</td><td>45–55 kg</td></tr>
+      <tr><td>Elderly male (75 yr)</td><td>50–55 kg</td></tr>
+    </tbody>
+  </table>
+
+  <h2>LBM in Clinical Contexts</h2>
+  <p>Outside of athletics, LBM matters most for two populations:</p>
+  <ul>
+    <li><strong>Older adults at risk of sarcopenia.</strong> Loss of LBM accelerates after age 60 and is associated with falls, fractures, dependency, and mortality. Resistance training and adequate protein intake are the primary interventions.</li>
+    <li><strong>Patients on GLP-1 agonists (semaglutide, tirzepatide).</strong> Meta-analyses using DEXA show that 20–40% of weight lost via these medications is lean mass. Concurrent resistance training and high-protein intake reduce this loss but cannot eliminate it.</li>
+  </ul>
+
+  <h2>When to Use LBM Calculators vs DEXA</h2>
+  <p>The Boer formula is a useful estimate for tracking change over time. For clinical decisions where precise body composition matters — chemotherapy dosing, sarcopenia diagnosis, athletic performance optimization — DEXA is the gold standard. Use the calculator for self-monitoring and trend estimation; use DEXA when precision matters.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Boer P. <em>Estimated lean body mass as an index for normalization of body fluid volumes in man.</em> Clin Sci. 1984;67(5):523–531.</li>
+    <li>Wang Z, et al. <em>Specific metabolic rates of major organs and tissues across adulthood.</em> Obesity. 2010;18(4):757–764.</li>
+    <li>Cruz-Jentoft AJ, et al. <em>Sarcopenia: revised European consensus on definition and diagnosis.</em> Age Ageing. 2019;48(1):16–31.</li>
+  </ul>
+</ArticleLayout>

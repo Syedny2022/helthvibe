@@ -1,0 +1,34 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe Asian BMI Calculator',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Layout
+  title="Asian BMI Calculator — Adjusted Thresholds for Better Accuracy | Helthvibe"
+  description="Free BMI calculator using WHO-aligned thresholds for Asian populations. Lower cutoffs reflect higher cardiometabolic risk at lower BMI."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Asian BMI Calculator — Adjusted Thresholds for Better Accuracy | Helthvibe"
+    description="Free BMI calculator using WHO-aligned thresholds for Asian populations. Lower cutoffs reflect higher cardiometabolic risk at lower BMI."
+    h1="Asian BMI Calculator"
+    intro="Asian populations face elevated cardiometabolic risk at lower BMIs than the standard WHO cutoffs. The WHO recommends lower thresholds: 18.5–22.9 healthy, 23–27.5 overweight, 27.5+ obese."
+    status="coming-soon"
+    features={[
+      'WHO-aligned Asian thresholds',
+      'Switchable between standard and Asian ranges',
+      'Cardiometabolic risk context',
+      'Healthy weight range for Asian cutoffs',
+      'Notes on South Asian, East Asian, and Southeast Asian variation',
+    ]}
+    schema={schema}
+  />
+</Layout>

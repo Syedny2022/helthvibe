@@ -1,0 +1,102 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'Which is more accurate — BMI or body-fat percentage?',
+    a: 'Body-fat percentage is more accurate for individuals because it directly measures what BMI tries to estimate. However, BMI is faster, cheaper, requires no equipment, and is good enough for population screening. For athletes, very muscular individuals, the elderly, and some ethnic groups, body-fat % is meaningfully more accurate.',
+  },
+  {
+    q: 'What is a healthy body-fat percentage?',
+    a: 'For men, healthy body fat ranges from 14–24% (athletes 6–13%, essential 2–5%). For women, healthy ranges from 21–31% (athletes 14–20%, essential 10–13%). Ranges vary by age and source. The American Council on Exercise and the American Council on Sports Medicine publish widely-cited tables.',
+  },
+  {
+    q: 'How do I measure body-fat percentage at home?',
+    a: 'Bioelectrical impedance scales (BIA) and handheld devices are convenient but 3–5% inaccurate. Skinfold calipers are accurate when used by a trained operator. DEXA scans are the clinical gold standard (~1% accurate) and increasingly available at gyms and clinics. Hydrostatic weighing is accurate but rare.',
+  },
+  {
+    q: 'Can I convert BMI to body-fat percentage?',
+    a: 'Conversion formulas exist (Deurenberg, Gallagher) but they have meaningful error margins and assume specific body compositions. They are useful for population estimates, not personal readings. For a real body-fat %, you need a measurement device.',
+  },
+  {
+    q: 'Do I need body-fat % if my BMI is normal?',
+    a: 'You can — metabolically obese normal weight (MONW) individuals have normal BMI but high body fat and elevated cardiometabolic risk. They\'re estimated at ~20% of normal-BMI adults. Body-fat % is the better signal for this group. Waist circumference is a cheaper screening proxy.',
+  },
+];
+
+const related = [
+  { href: '/articles/is-bmi-accurate-in-2026/', title: 'Is BMI Accurate in 2026?', desc: 'Where BMI works and where it falls short.' },
+  { href: '/calculators/bmi-athletes/', title: 'Athlete BMI Calculator', desc: 'For muscular builds.' },
+  { href: '/articles/how-to-interpret-your-bmi-result/', title: 'How to Interpret Your BMI Result', desc: 'Putting BMI in context.' },
+];
+---
+<ArticleLayout
+  title="BMI vs Body Fat Percentage – Which Is Better for Health? | Helthvibe"
+  description="BMI vs body-fat percentage — what each measures, how they differ, accuracy, and when each is more useful for individual health assessment."
+  h1="BMI vs Body Fat Percentage — Which Is Better for Health?"
+  excerpt="Two popular ways to think about body composition, side by side. When each works, when each fails, and how to measure body fat accurately."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Comparison"
+  readTime="8 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>What Body Fat Percentage Measures</h2>
+  <p>Body fat percentage (BFP) expresses the proportion of total body mass that is adipose tissue. It is a direct physical measurement — or an estimate of one — as opposed to BMI's proxy relationship. A man at 180 cm and 85 kg with 20% body fat carries 17 kg of fat mass and 68 kg of fat-free mass (muscle, bone, organs, water). The same weight and height at 30% body fat means 25.5 kg of fat — a clinically significant difference that BMI cannot detect.</p>
+  <p>Fat mass itself is not uniformly metabolically active. The clinical and health risk implications depend heavily on <em>where</em> fat is stored:</p>
+  <ul>
+    <li><strong>Subcutaneous fat</strong> (under the skin) is relatively inert metabolically. It serves as insulation, energy storage, and padding.</li>
+    <li><strong>Visceral fat</strong> (around the organs, in the abdominal cavity) is metabolically highly active. It releases free fatty acids into the portal circulation, produces inflammatory cytokines (IL-6, TNF-α), and is the primary driver of insulin resistance and hepatic steatosis (fatty liver disease).</li>
+    <li><strong>Intramuscular and ectopic fat</strong> (within muscle fibers and in organs like the liver and pancreas) is the most directly pathogenic depot, though it is the most difficult to measure non-invasively.</li>
+  </ul>
+  <p>No single body composition metric captures all three depots. Body fat percentage measures total fat mass but cannot localize it. This is a meaningful limitation — two individuals with identical BFP can have very different visceral fat stores.</p>
+
+  <h2>BMI vs Body Fat Percentage at a Glance</h2>
+  <table>
+    <thead><tr><th>Metric</th><th>What it measures</th><th>What it ignores</th><th>Best used for</th></tr></thead>
+    <tbody>
+      <tr><td><strong>BMI</strong></td><td>Weight ÷ height² (proxy for adiposity)</td><td>Muscle, bone, fat location, hydration</td><td>Population screening, large-scale epidemiology</td></tr>
+      <tr><td><strong>Body Fat %</strong></td><td>Total fat mass as proportion of weight</td><td>Fat depot location, organ-specific ectopic fat</td><td>Individual body composition assessment</td></tr>
+      <tr><td><strong>Waist Circumference</strong></td><td>Proxy for visceral fat mass</td><td>Total body fat, lean mass</td><td>Cardiometabolic risk screening</td></tr>
+      <tr><td><strong>DEXA</strong></td><td>3-compartment: fat, lean soft tissue, bone mineral</td><td>Ectopic organ fat specifically</td><td>Clinical individual assessment</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Which Measure Is More Accurate for Individuals?</h2>
+  <p>For <em>individual</em> health assessment, body fat percentage is meaningfully more accurate than BMI. However, the comparison depends critically on which body-fat measurement method is used. A DEXA scan is substantially more accurate than a bioelectrical impedance scale, and both are more informative than BMI for most individuals in the overweight and obese BMI categories.</p>
+  <p>The most important population where BFP outperforms BMI is the <strong>"normal weight obesity"</strong> or metabolically obese normal weight (MONW) phenotype. These individuals present with BMI in the healthy range (18.5–24.9) but carry elevated total body fat — typically above 25% for men and above 32% for women — with elevated cardiometabolic risk markers. Studies estimate that approximately <strong>20% of adults with healthy BMI</strong> actually fall into this category. BMI alone would miss this risk entirely.</p>
+  <p>Conversely, for highly muscular individuals, BFP provides a more accurate reflection of health status than BMI. A male bodybuilder at 15% body fat will typically register BMI 26–32 on standard tables. Body fat percentage correctly identifies this person as metabolically healthy; BMI incorrectly classifies them as overweight or obese.</p>
+  <p>BFP conversion formulas derived from BMI (Deurenberg, Gallagher) exist but carry meaningful error margins because they assume specific body compositions based on age, sex, and BMI alone. The Deurenberg equation (1991) has a standard error of estimate of approximately 4–5% body fat — clinically significant when the healthy range for adult men is 14–24%. These formulas are useful for population estimation, not individual diagnosis.</p>
+
+  <h2>How Body Fat Percentage Is Measured</h2>
+  <p>Methods ranked from most to least accurate for individual assessment:</p>
+  <ul>
+    <li><strong>DEXA (Dual-Energy X-ray Absorptiometry):</strong> The clinical gold standard. Uses two X-ray energies to separate bone mineral, fat mass, and lean soft tissue. Accuracy approximately ±1%. Increasingly available at sports medicine clinics, radiology centers, and some gyms. Best choice for individuals who want a precise body composition baseline.</li>
+    <li><strong>Hydrostatic weighing:</strong> Measures body density by underwater weighing. Assumes fat-free mass has a fixed density of 1.1 g/cm³. Accuracy approximately ±1.5–2%. Rare outside research settings due to equipment requirements.</li>
+    <li><strong>Bod Pod (air displacement plethysmography):</strong> Measures body volume via air displacement. Similar accuracy to hydrostatic weighing (±1.5–2.5%). More accessible and less claustrophobic than underwater weighing.</li>
+    <li><strong>Skinfold calipers:</strong> Measure subcutaneous fat thickness at standardized anatomical sites. Accuracy depends heavily on the operator's skill (±3–4% in trained hands, much higher in untrained). Useful for tracking change over time in the same person by the same operator.</li>
+    <li><strong>Bioelectrical impedance analysis (BIA):</strong> The method used by most consumer smart scales. Measures impedance to a small electrical current. Accuracy is ±3–8% and highly susceptible to hydration status, recent food intake, and menstrual cycle phase. Fine for tracking directional trends in the same person under consistent conditions; unreliable for absolute BFP values.</li>
+  </ul>
+
+  <h2>Why Waist Circumference Adds Critical Context</h2>
+  <p>Neither BMI nor BFP tells you how fat is distributed. Waist circumference is the most practical single measure of visceral fat mass. The WHO recommends <strong>94 cm (37 in) for men</strong> and <strong>80 cm (31.5 in) for women</strong> as thresholds for elevated metabolic risk, with <strong>102 cm / 88 cm</strong> as the substantially elevated threshold for men and women respectively. For Asian populations, the thresholds are lower (90 cm for men, 80 cm for women).</p>
+  <p>The waist-to-height ratio provides an even more accessible proxy: a ratio above 0.5 in adults is associated with elevated cardiometabolic risk; above 0.6 is substantially elevated. A man with healthy BMI and BFP but waist-to-height ratio above 0.6 may have dangerous ectopic fat accumulation that neither BMI nor BFP would flag.</p>
+
+  <h2>Which Measure Should You Track?</h2>
+  <p>Use all three in combination:</p>
+  <ul>
+    <li><strong>BMI</strong> as a quick initial screen — it takes 30 seconds with a calculator and is useful for comparing yourself to population-level risk curves.</li>
+    <li><strong>Waist circumference</strong> as a visceral fat proxy — measure monthly with a tape measure.</li>
+    <li><strong>Body fat percentage</strong> (via DEXA or consistent BIA tracking) as your primary individual metric — measure every 3–6 months to track actual body composition change.</li>
+  </ul>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Deurenberg P, Weststrate JA, Seidell JC. <em>Body mass index as a measure of body fatness: age- and sex-specific prediction formulas.</em> British Journal of Nutrition, 1991.</li>
+    <li>Gallagher D, et al. <em>Healthy percentage body fat ranges: an approach for developing guidelines based on body mass index.</em> American Journal of Clinical Nutrition, 2000.</li>
+    <li>American Council on Exercise. <em>ACE Personal Trainer Manual.</em> 5th ed., 2014. (Healthy body-fat % ranges.)</li>
+    <li>Duren DL, et al. <em>Body composition methods: comparisons and interpretation.</em> J Appl Physiol, 2008.</li>
+  </ul>
+</ArticleLayout>

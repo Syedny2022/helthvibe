@@ -1,0 +1,94 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'Is the BMI formula different for men?',
+    a: 'No. The formula is the same. What differs is body composition: men carry more muscle and bone mass, and tend to store fat viscerally (around the organs) rather than subcutaneously. A lean, muscular man can easily read as overweight or obese by BMI despite being metabolically healthy.',
+  },
+  {
+    q: 'Why does BMI overestimate body fat in muscular men?',
+    a: 'Muscle is denser than fat. Men who train seriously — at a gym, in a CrossFit box, or in a sport — carry 10–15 kg more muscle than sedentary men of the same height and weight. Standard BMI cannot distinguish muscle from fat. Pair BMI with a body-fat percentage measurement for a clearer picture.',
+  },
+  {
+    q: 'What waist circumference is risky for men?',
+    a: 'Above 40 in (102 cm) is considered elevated risk for men. For Asian men, the threshold is lower (above 35.5 in / 90 cm). Waist circumference is often a stronger signal of cardiometabolic risk than BMI alone for men, who tend to store fat abdominally.',
+  },
+  {
+    q: 'Does low testosterone affect BMI?',
+    a: 'Yes. Low testosterone (increasingly common after age 40) is associated with increased visceral fat, reduced muscle mass, and insulin resistance. The relationship is bidirectional — visceral fat suppresses testosterone production. Hypogonadism affects 10–30% of men over 40; a testosterone panel is worth discussing with your clinician.',
+  },
+  {
+    q: 'How does aging affect male BMI interpretation?',
+    a: 'Men lose 3–8% of muscle mass per decade after age 30–40 (sarcopenia). The same BMI at 55 represents less muscle and more visceral fat than at 30. Waist circumference and body composition become more important, and resistance training is especially valuable after 40.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmi-men/', title: 'BMI Calculator for Men', desc: 'Free, private BMI with male-specific context.' },
+  { href: '/calculators/bmi-athletes/', title: 'Athlete BMI Calculator', desc: 'For muscular builds where standard BMI misclassifies.' },
+  { href: '/articles/is-bmi-accurate-in-2026/', title: 'Is BMI Accurate in 2026?', desc: 'Where BMI works and where it falls short.' },
+];
+---
+<ArticleLayout
+  title="BMI Calculator for Men – Body Mass Index & Health Risk Guide | Helthvibe"
+  description="Free BMI calculator for men with muscle-mass notes, waist-circumference thresholds, and visceral-fat context. Privacy-first."
+  h1="BMI Calculator for Men — Body Mass Index & Health Risk Guide"
+  excerpt="Standard BMI math plus male-specific context: muscle mass, waist circumference, visceral fat, testosterone, and aging."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Calculator"
+  readTime="7 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>BMI Categories for Adult Men</h2>
+  <p>The WHO BMI classification system applies the same mathematical formula and the same category thresholds to men and women. For adults aged 20 and older, the clinical categories are: underweight (below 18.5), healthy weight (18.5–24.9), overweight (25.0–29.9), and obesity (30.0 and above), with Class I (30.0–34.9), Class II (35.0–39.9), and Class III (40.0 or above) subdivisions within obesity. These thresholds were derived from large epidemiological cohorts that included both sexes and are not sex-specific.</p>
+  <p>What is distinct about male physiology — and what makes standard BMI categories potentially misleading for men — is the pattern of fat storage. Men are predisposed to accumulate adipose tissue in the <strong>android</strong> or "apple-shaped" distribution: centrally, viscerally, and around vital organs. This pattern is driven by the androgenic hormonal environment and becomes more pronounced with age, testosterone decline, and physical inactivity.</p>
+
+  <h2>How to Interpret a Man's BMI Result</h2>
+  <p>A man with BMI 27 (technically "overweight") and a lean, muscular build is categorically indistinguishable from a man with BMI 27 and significant visceral adiposity. This is not a failure of BMI categories — they are designed for population-level screening, not individual body-composition diagnosis. But it means that for men, a BMI in the overweight range is a <em>signal to investigate further</em>, not a verdict.</p>
+  <p>Key interpretive principles for men:</p>
+  <ul>
+    <li>A BMI in the <strong>25–29.9 range</strong> frequently masks elevated visceral fat. Do not assume metabolic health from a "just overweight" category.</li>
+    <li>A BMI in the <strong>healthy range (18.5–24.9)</strong> does not exclude high visceral fat, particularly in older men or those with androgen deficiency.</li>
+    <li>A BMI above <strong>30</strong> (obese) carries the strongest population-level association with cardiovascular disease, type 2 diabetes, and all-cause mortality in men — but even here, body composition matters for individual risk stratification.</li>
+  </ul>
+
+  <h2>BMI, Muscle Mass, and Body Fat</h2>
+  <p>Skeletal muscle mass is the primary variable that BMI cannot detect in men. Muscle tissue is approximately <strong>1.06 g/cm³</strong> in density — significantly denser than adipose tissue at roughly <strong>0.90 g/cm³</strong>. A pound of muscle and a pound of fat have identical mass, but occupy different volumes. A man who adds 10 kg of muscle through resistance training over a year may see his BMI rise by 0.5–1.5 points despite measurable improvement in metabolic health.</p>
+  <p>Research published in the <em>Journal of Applied Physiology</em> (Duren et al., 2008) confirms that two-compartment models like BMI — which separate the body into only fat mass and fat-free mass — cannot distinguish between increases in muscle, bone mineral content, and total body water. For men engaged in regular strength training, BMI becomes increasingly unreliable as a health metric.</p>
+  <p>The <strong>Fat-Free Mass Index (FFMI)</strong> is a more useful alternative for muscular men. FFMI normalizes fat-free mass by height squared, similar to BMI but subtracting fat mass. An FFMI above 22 is considered above average for men; values above 25 are rare outside of elite strength training. Men with FFMI 24–26 frequently present with BMI 27–32 despite healthy body-fat percentages in the 10–15% range.</p>
+
+  <h2>Why Waist Circumference Also Matters for Men</h2>
+  <p>The WHO Expert Consultation on Waist Circumference (2008) established <strong>40 inches (102 cm)</strong> as the threshold for elevated cardiometabolic risk in men. For men of South, East, or Southeast Asian heritage, the threshold is lower: <strong>35.5 inches (90 cm)</strong>.</p>
+  <p>Visceral fat — the adipose tissue that surrounds the liver, pancreas, and intestines — is metabolically distinct from subcutaneous fat. It functions as a highly active endocrine organ that secretes <strong>free fatty acids</strong> directly into the portal vein, along with pro-inflammatory cytokines including <strong>interleukin-6 (IL-6)</strong> and <strong>tumor necrosis factor-alpha (TNF-α)</strong>. This chronic inflammatory state directly disrupts insulin signaling at the cellular level, promotes hepatic de novo lipogenesis, and drives the hypertension that characterizes metabolic syndrome.</p>
+  <p>Waist circumference captures this visceral depot more directly than BMI. A man with BMI 27 but a waist of 98 cm (38.6 in) carries substantially more visceral risk than a man with BMI 27 and a waist of 88 cm. The combination of elevated BMI <em>and</em> elevated waist circumference represents the highest-risk phenotype for cardiovascular and metabolic disease.</p>
+
+  <h2>Health Risks Associated With Higher BMI in Men</h2>
+  <p>The epidemiological association between elevated BMI and adverse health outcomes is among the most consistently replicated findings in clinical medicine. For men specifically:</p>
+  <ul>
+    <li><strong>Cardiovascular disease:</strong> Each 5-unit BMI increase above 25 approximately doubles the relative risk of coronary heart disease in men, per the Lancet meta-analysis by Singh et al. (2013).</li>
+    <li><strong>Type 2 diabetes:</strong> The relationship is exponential. A man with BMI 35 has approximately 10x the lifetime risk of type 2 diabetes compared to a man with BMI 23.</li>
+    <li><strong>Obstructive sleep apnea (OSA):</strong> Obesity is the dominant modifiable risk factor. Approximately 70% of OSA patients have BMI ≥ 30. Weight loss of 10% reduces OSA severity by 30–50%.</li>
+    <li><strong>Sarcopenia and testosterone decline:</strong> Men lose 3–8% of muscle mass per decade after age 30. Hypogonadism — low testosterone — affects an estimated <strong>10–30% of men over 40</strong> (NIH AUA Guidelines, 2018). Low testosterone and visceral adiposity have a bidirectional relationship: visceral fat suppresses testosterone through aromatase activity; low testosterone drives further visceral fat accumulation. This cycle keeps BMI stable while metabolic health deteriorates.</li>
+  </ul>
+
+  <h2>Practical Next Steps After Your Result</h2>
+  <p>For men at any BMI category:</p>
+  <ul>
+    <li><strong>Measure your waist circumference</strong> at the level of the navel in centimeters. Compare to the 102 cm threshold (90 cm for Asian heritage).</li>
+    <li><strong>Request a blood panel</strong> at your next physical: fasting glucose, HbA1c, lipid panel (LDL, HDL, triglycerides), and a total testosterone measurement if you are over 40.</li>
+    <li><strong>Incorporate resistance training</strong> 2–3 times per week. This is the most effective intervention for both preserving muscle mass (countering sarcopenia) and improving insulin sensitivity independent of weight loss.</li>
+    <li><strong>Prioritize sleep:</strong> Poor sleep elevates cortisol, suppresses testosterone, increases appetite, and independently raises type 2 diabetes risk. Seven to nine hours of consistent sleep is a metabolic intervention.</li>
+  </ul>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>World Health Organization. <em>Waist Circumference and Waist-Hip Ratio: Report of a WHO Expert Consultation.</em> Geneva: WHO, 2008.</li>
+    <li>NIH. <em>Testosterone Therapy in Adult Men with Testosterone Deficiency.</em> AUA Guideline 2018 (amended 2021).</li>
+    <li>Gallagher D, et al. <em>Healthy percentage body fat ranges: an approach for developing guidelines based on body mass index.</em> American Journal of Clinical Nutrition, 2000.</li>
+    <li>Janssen I, Heymsfield SB, Ross R. <em>Low relative skeletal muscle mass (sarcopenia) in older persons is associated with functional impairment and physical disability.</em> J Am Geriatr Soc, 2002.</li>
+  </ul>
+</ArticleLayout>

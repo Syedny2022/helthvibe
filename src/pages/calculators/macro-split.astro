@@ -1,0 +1,140 @@
+---
+import Layout from '@layouts/Layout.astro';
+const title = 'Free Macro Split Calculator — Protein/Carbs/Fat Grams | Helthvibe';
+const description = 'Convert a daily calorie target into grams of protein, carbs, and fat using balanced, keto, Mediterranean, and custom splits.';
+const softwareSchema = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Helthvibe Macro Split Calculator', applicationCategory: 'HealthApplication', operatingSystem: 'Web', url: 'https://helthvibe.com/calculators/macro-split/', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } };
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+  { '@type': 'Question', name: 'How are macros converted from calories?', acceptedAnswer: { '@type': 'Answer', text: 'Protein and carbs each provide 4 kcal per gram. Fat provides 9 kcal per gram. Total protein grams = (calories × protein%) / 4. Same formula for carbs and fat.' } },
+  { '@type': 'Question', name: 'Which macro split is best?', acceptedAnswer: { '@type': 'Answer', text: 'There is no single best split. For general health, balanced (30/40/30) or Mediterranean (20/50/30) work well. For weight loss with preserved muscle, high-protein (35/35/30). For epilepsy or specific medical conditions, ketogenic.' } },
+  { '@type': 'Question', name: 'Is my data private?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.' } },
+] };
+const faqs = [
+  { q: 'How do macros convert from calories?', a: 'Protein 4 kcal/g, carbs 4 kcal/g, fat 9 kcal/g.' },
+  { q: 'Which split is best for weight loss?', a: 'High-protein (35/35/30) preserves lean mass during a deficit. Balanced (30/40/30) is the safe default.' },
+  { q: 'How much protein do I need?', a: '1.2–1.6 g per kg of target body weight for active adults. For older adults or during weight loss, 1.6–2.2 g/kg.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Free · 5 strategies · Private</span>
+      <h1>Macro Split Calculator</h1>
+      <p class="lead">Convert a calorie target into grams of protein, carbs, and fat. Pick from five evidence-based strategies or set custom ratios.</p>
+    </div>
+  </section>
+  <section class="section calc-section"><div class="container"><div class="calc-layout">
+    <div class="calc-main"><div class="calc" data-macro-calc id="macro-main">
+      <form class="form" data-form novalidate>
+        <div class="field"><label class="field-label" for="macro-cal">Daily calorie target (kcal)</label><input type="number" id="macro-cal" name="cal" min="800" max="6000" step="50" placeholder="2000" required /></div>
+        <div class="field">
+          <label class="field-label">Macro strategy</label>
+          <div class="strategy-grid">
+            <button type="button" class="strat-btn" data-strat="balanced">Balanced<br/><span>30P · 40C · 30F</span></button>
+            <button type="button" class="strat-btn" data-strat="high_protein">High-protein<br/><span>35P · 35C · 30F</span></button>
+            <button type="button" class="strat-btn" data-strat="low_carb">Low-carb<br/><span>30P · 20C · 50F</span></button>
+            <button type="button" class="strat-btn" data-strat="mediterranean">Mediterranean<br/><span>20P · 50C · 30F</span></button>
+            <button type="button" class="strat-btn" data-strat="keto">Keto<br/><span>25P · 5C · 70F</span></button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Calculate macros</button>
+        <p class="privacy-note">🔒 All math runs in your browser. Data never leaves this device.</p>
+      </form>
+      <div class="result" data-result hidden>
+        <div class="result-grid">
+          <div class="macro-card macro-protein"><span class="macro-label">Protein</span><span class="macro-value" data-protein>—</span><span class="macro-unit">g</span></div>
+          <div class="macro-card macro-carbs"><span class="macro-label">Carbs</span><span class="macro-value" data-carbs>—</span><span class="macro-unit">g</span></div>
+          <div class="macro-card macro-fat"><span class="macro-label">Fat</span><span class="macro-value" data-fat>—</span><span class="macro-unit">g</span></div>
+        </div>
+        <p class="result-desc" data-desc></p>
+      </div>
+    </div></div>
+    <aside class="calc-side">
+      <div class="info-card"><h3>Energy per gram</h3>
+        <table class="cat-table"><tbody><tr><th>Macro</th><th>kcal/g</th></tr><tr><td>Protein</td><td>4</td></tr><tr><td>Carbs</td><td>4</td></tr><tr><td>Fat</td><td>9</td></tr></tbody></table>
+      </div>
+      <div class="info-card"><h3>When to use each</h3><p><strong>Balanced:</strong> default for general health. <strong>High-protein:</strong> during weight loss to preserve muscle. <strong>Mediterranean:</strong> long-term metabolic health. <strong>Keto:</strong> epilepsy, refractory metabolic conditions.</p></div>
+      <div class="info-card"><h3>Privacy</h3><p>All calculations happen locally. Nothing is sent to a server.</p></div>
+    </aside>
+  </div></div></section>
+  <section class="section section-soft"><div class="container-narrow"><h2>Frequently asked questions</h2><div class="faq-list">{faqs.map((f) => (<details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div></div></section>
+  <section class="section"><div class="container"><h2>Keep exploring</h2><div class="grid grid-3"><a href="/calculators/tdee/" class="card"><h3 class="card-title">TDEE</h3><p class="card-desc">Find your calorie target first.</p></a><a href="/calculators/bmr/" class="card"><h3 class="card-title">BMR</h3><p class="card-desc">Resting energy expenditure.</p></a><a href="/calculators/calorie-deficit/" class="card"><h3 class="card-title">Calorie Deficit</h3><p class="card-desc">Plan a safe weight-loss deficit.</p></a></div></div></section>
+</Layout>
+<style>
+  .page-hero { padding: var(--space-7) 0 var(--space-6); text-align: center; background: radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%), var(--color-bg); }
+  .page-hero .badge { margin-bottom: var(--space-3); } .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+  .calc-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-6); align-items: start; }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+  .calc-main { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card { background: var(--color-bg-soft); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: var(--space-5); }
+  .info-card h3 { font-size: 1rem; margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .cat-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .cat-table th, .cat-table td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid var(--color-border-soft); }
+  .cat-table th { font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.04em; }
+  .cat-table tr:last-child td { border-bottom: none; }
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+  .faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary { cursor: pointer; font-weight: 600; color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--color-brand); transition: transform 0.15s var(--ease-out); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+  .calc { display: grid; gap: var(--space-5); }
+  .form { display: grid; gap: var(--space-4); }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+  input[type="number"] { padding: 0.75rem 0.9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); width: 100%; }
+  input[type="number"]:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 3px rgba(20, 184, 138, 0.12); }
+  .strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-2); }
+  .strat-btn { padding: var(--space-3) var(--space-2); font-size: 0.85rem; font-weight: 600; color: var(--color-text-soft); background: var(--color-bg-soft); border-radius: var(--radius-md); line-height: 1.3; transition: all 0.15s var(--ease-out); border: 1.5px solid transparent; }
+  .strat-btn span { display: block; font-size: 0.72rem; font-weight: 400; color: var(--color-text-muted); margin-top: 2px; }
+  .strat-btn.active { background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-sm); border-color: var(--color-brand); }
+  .privacy-note { margin: 0; text-align: center; font-size: 0.82rem; color: var(--color-text-muted); }
+  .result { background: var(--color-bg-soft); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; gap: var(--space-4); border: 1px solid var(--color-border-soft); animation: slideIn 0.3s var(--ease-out); }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .result-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-3); }
+  @media (max-width: 480px) { .result-grid { grid-template-columns: 1fr; } }
+  .macro-card { background: var(--color-surface); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: var(--space-4); text-align: center; border-top: 3px solid var(--color-brand); }
+  .macro-card.macro-protein { border-top-color: #6366f1; }
+  .macro-card.macro-carbs { border-top-color: #f59e0b; }
+  .macro-card.macro-fat { border-top-color: #14b88a; }
+  .macro-label { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  .macro-value { display: inline-block; font-size: 2.4rem; font-weight: 800; color: var(--color-text); letter-spacing: -0.02em; }
+  .macro-unit { font-size: 0.9rem; color: var(--color-text-muted); margin-left: 2px; }
+  .result-desc { margin: 0; text-align: center; color: var(--color-text-soft); font-size: 0.95rem; }
+</style>
+<script>
+  import { calculateMacros, MACRO_STRATEGIES, type MacroStrategy } from '@lib/health';
+  function init(root: HTMLElement) {
+    const form = root.querySelector('[data-form]') as HTMLFormElement;
+    const result = root.querySelector('[data-result]') as HTMLElement;
+    const proteinEl = root.querySelector('[data-protein]') as HTMLElement;
+    const carbsEl = root.querySelector('[data-carbs]') as HTMLElement;
+    const fatEl = root.querySelector('[data-fat]') as HTMLElement;
+    const desc = root.querySelector('[data-desc]') as HTMLElement;
+    let strat: MacroStrategy = 'balanced';
+    root.querySelectorAll<HTMLButtonElement>('.strat-btn').forEach((b) => {
+      b.addEventListener('click', () => {
+        strat = b.dataset.strat as MacroStrategy;
+        root.querySelectorAll('.strat-btn').forEach((x) => x.classList.toggle('active', (x as HTMLElement).dataset.strat === strat));
+      });
+    });
+    // Default selection
+    const defaultBtn = root.querySelector('[data-strat="balanced"]');
+    if (defaultBtn) defaultBtn.classList.add('active');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(form);
+      const cal = Number(d.get('cal'));
+      if (!cal || cal < 800) return;
+      const m = calculateMacros({ calories: cal, strategy: strat });
+      proteinEl.textContent = m.proteinG.toString();
+      carbsEl.textContent = m.carbsG.toString();
+      fatEl.textContent = m.fatG.toString();
+      const cfg = MACRO_STRATEGIES[strat as Exclude<MacroStrategy, 'custom'>];
+      desc.textContent = `${cal.toLocaleString()} kcal split ${cfg.label.toLowerCase()}: ${cfg.description}`;
+      result.hidden = false;
+    });
+  }
+  document.querySelectorAll<HTMLElement>('[data-macro-calc]').forEach(init);
+</script>

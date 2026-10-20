@@ -1,0 +1,35 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'WHO BMI Classification — Official Reference',
+  datePublished: '2026-09-27',
+  dateModified: '2026-09-27',
+  author: { '@type': 'Organization', name: 'Helthvibe' },
+  publisher: { '@type': 'Organization', name: 'Helthvibe', logo: { '@type': 'ImageObject', url: 'https://helthvibe.com/logo.png' } },
+};
+---
+<Layout
+  title="WHO BMI Classification — Official Reference | Helthvibe"
+  description="The official WHO adult BMI classification — underweight, normal, overweight, obese — and how Helthvibe aligns with it."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="WHO BMI Classification — Official Reference | Helthvibe"
+    description="The official WHO adult BMI classification — underweight, normal, overweight, obese — and how Helthvibe aligns with it."
+    h1="WHO BMI Classification — Official Reference"
+    intro="The WHO adult BMI classification is the international standard. Here's the full breakdown and how Helthvibe aligns with it."
+    status="reference"
+    features={[
+      'Full WHO adult BMI classification',
+      'Asian-adjusted WHO thresholds',
+      'How Helthvibe implements both',
+      'Source citations',
+      'Notes on pediatric classifications',
+    ]}
+    schema={schema}
+  />
+</Layout>

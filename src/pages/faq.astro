@@ -1,0 +1,249 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const title = 'Helthvibe FAQ — BMI Questions Answered';
+const description = 'Common questions about BMI, our calculators, privacy, and how Helthvibe works.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is BMI and how is it calculated?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'BMI (Body Mass Index) is weight in kilograms divided by height in meters squared. For imperial units: (weight in pounds × 703) ÷ height in inches².',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is BMI accurate in 2026?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'BMI is a useful population-level screening tool but has limitations. It does not distinguish muscle from fat, and may misclassify athletes, very muscular individuals, the elderly, and some ethnic groups. For those groups, consider body-fat percentage or a clinician’s assessment.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is a healthy BMI range?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For most adults, 18.5–24.9 is the healthy range. Asian populations often use 18.5–22.9 as the healthy range, and seniors 65+ may have slightly different optimal ranges.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does BMI work the same for men and women?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The formula is the same, but body composition differs. Women typically have a higher essential fat percentage. Our Women-specific calculator provides context.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why do Asian BMI thresholds differ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Research shows Asian populations often face higher health risks at lower BMIs. The WHO recommends adjusted thresholds: 18.5–22.9 healthy, 23–27.5 overweight, 27.5+ obese.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is BMI useful for athletes and muscular people?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'BMI can overstate "overweight" or "obese" categories in muscular individuals. Our Athlete BMI calculator adds context for athletic builds.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How often should I check my BMI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For most adults, every few months is plenty. Day-to-day weight fluctuates due to water, food, and other factors.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I lower my BMI safely?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sustainable changes to diet and physical activity are safest. Avoid crash diets. Read our practical guide for evidence-based steps.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you store my height and weight data?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. All calculations run 100% client-side in your browser. We never see, store, or transmit your height or weight.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is Helthvibe different from Calculator.net or Mayo Clinic?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Helthvibe is faster, ad-free, and explicitly privacy-first. We also surface context and limitations instead of just a number.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is Helthvibe free forever?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. The calculators will remain free. We may recommend relevant products via transparent affiliate links, but the core tools stay free.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do you make money?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Transparent affiliate links to relevant products (like fitness apps, telehealth, scales) plus an optional newsletter you can sign up for by email.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is BMI and how is it calculated?',
+    a: 'BMI (Body Mass Index) is your weight in kilograms divided by your height in meters squared. For imperial units: (weight in pounds × 703) ÷ (height in inches)².',
+    category: 'Basics',
+  },
+  {
+    q: 'Is BMI accurate in 2026?',
+    a: 'BMI is a useful population-level screening tool but has limitations. It does not distinguish muscle from fat, and can misclassify athletes, the elderly, and some ethnic groups. For those groups, body-fat percentage or a clinician’s assessment is more accurate.',
+    category: 'Accuracy',
+  },
+  {
+    q: 'What is a healthy BMI range?',
+    a: 'For most adults, 18.5–24.9 is the healthy range. Below 18.5 is underweight, 25–29.9 is overweight, 30+ is obese. Asian populations often use 18.5–22.9 as healthy.',
+    category: 'Ranges',
+  },
+  {
+    q: 'Does BMI work the same for men and women?',
+    a: 'The formula is the same. Body composition differs — women typically have higher essential fat. Our Women-specific calculator provides more context.',
+    category: 'Demographics',
+  },
+  {
+    q: 'Why do Asian BMI thresholds differ?',
+    a: 'Research shows Asian populations face elevated health risks at lower BMI. The WHO recommends 18.5–22.9 healthy, 23–27.5 overweight, 27.5+ obese.',
+    category: 'Demographics',
+  },
+  {
+    q: 'Is BMI useful for athletes?',
+    a: 'BMI can overstate "overweight" or "obese" in muscular individuals. Try our Athlete BMI calculator for added context.',
+    category: 'Demographics',
+  },
+  {
+    q: 'How often should I check my BMI?',
+    a: 'Every few months is plenty for most adults. Daily weight fluctuates from water, food, and other factors.',
+    category: 'Usage',
+  },
+  {
+    q: 'Can I lower my BMI safely?',
+    a: 'Yes — through sustainable changes to diet and physical activity. Avoid crash diets. See our practical guide.',
+    category: 'Usage',
+  },
+  {
+    q: 'Do you store my height and weight?',
+    a: 'No. All calculations run 100% client-side in your browser. We never see, store, or transmit your data.',
+    category: 'Privacy',
+  },
+  {
+    q: 'How is Helthvibe different from Calculator.net or Mayo Clinic?',
+    a: 'Helthvibe is faster, ad-free, and explicitly privacy-first. We also surface context and limitations instead of just a number.',
+    category: 'About',
+  },
+  {
+    q: 'Is Helthvibe free forever?',
+    a: 'Yes. The calculators will remain free. We may recommend products via transparent affiliate links, but the core tools stay free.',
+    category: 'About',
+  },
+  {
+    q: 'How do you make money?',
+    a: 'Transparent affiliate links to relevant products and an optional newsletter. Affiliate links never influence our math or recommendations.',
+    category: 'About',
+  },
+];
+---
+<Layout title={title} description={description} schema={schema}>
+  <section class="page-hero">
+    <div class="container-narrow text-center">
+      <h1>Frequently Asked Questions</h1>
+      <p class="lead">Everything you need to know about BMI, our calculators, and how Helthvibe works.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow">
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>
+              <span>{f.q}</span>
+              <span class="faq-cat">{f.category}</span>
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <div class="more-help">
+        <p>Still have questions?</p>
+        <a href="/contact/" class="btn btn-primary">Contact us</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .faq-list { display: grid; gap: var(--space-3); }
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--color-brand);
+    transition: transform 0.15s var(--ease-out);
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+  .faq-cat {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-brand-dark);
+    background: var(--color-brand-soft);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+  .more-help {
+    margin-top: var(--space-7);
+    text-align: center;
+    padding: var(--space-6);
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-lg);
+  }
+</style>

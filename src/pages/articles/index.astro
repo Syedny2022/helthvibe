@@ -1,0 +1,91 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const title = 'BMI Articles, Guides & Resources | Helthvibe';
+const description = 'In-depth guides on BMI, body composition, healthy weight, and what your number really means. Free, evidence-based.';
+
+const articles = [
+  { href: '/articles/free-bmi-calculator-instant-check/', title: 'Free BMI Calculator – Instant Body Mass Index Check with Healthy Range', tag: 'Calculator' },
+  { href: '/articles/how-to-calculate-bmi-2026/', title: 'How to Calculate BMI – Formula, Chart & Complete Guide 2026', tag: 'Guide' },
+  { href: '/articles/what-is-a-healthy-bmi/', title: 'What Is a Healthy BMI? Chart by Age, Gender & Height', tag: 'Reference' },
+  { href: '/articles/bmi-calculator-for-women/', title: 'BMI Calculator for Women – Accurate Results + Ideal Weight Range', tag: 'Calculator' },
+  { href: '/articles/bmi-calculator-for-men/', title: 'BMI Calculator for Men – Body Mass Index & Health Risk Guide', tag: 'Calculator' },
+  { href: '/articles/is-bmi-accurate-in-2026/', title: 'Is BMI Accurate in 2026? Limitations & Better Alternatives', tag: 'Deep dive' },
+  { href: '/articles/bmi-categories-explained/', title: 'BMI Categories Explained – Underweight, Normal, Overweight, Obese', tag: 'Reference' },
+  { href: '/articles/healthy-weight-calculator/', title: 'Healthy Weight Calculator – Find Your Ideal Weight by Height', tag: 'Calculator' },
+  { href: '/articles/bmi-vs-body-fat-percentage/', title: 'BMI vs Body Fat Percentage – Which Is Better for Health?', tag: 'Comparison' },
+  { href: '/articles/how-to-lower-your-bmi-safely/', title: 'How to Lower Your BMI Safely – Practical Steps That Work', tag: 'Action' },
+  { href: '/articles/child-teen-bmi-calculator/', title: 'Child & Teen BMI Calculator – Age-Specific Percentile Charts', tag: 'Calculator' },
+  { href: '/articles/senior-bmi-calculator/', title: 'Senior BMI Calculator – Why the Healthy Range Changes After 65', tag: 'Calculator' },
+  { href: '/articles/asian-bmi-calculator/', title: 'Asian BMI Calculator – Adjusted Thresholds for Better Accuracy', tag: 'Calculator' },
+  { href: '/articles/athlete-bmi-calculator/', title: 'Athlete BMI Calculator – Why Standard BMI Fails Muscle Mass', tag: 'Calculator' },
+  { href: '/articles/bmi-and-health-risks/', title: 'BMI and Health Risks – Heart Disease, Diabetes & More', tag: 'Health' },
+  { href: '/articles/best-free-bmi-calculators-ranked-2026/', title: 'Best Free BMI Calculators Ranked 2026 – Accuracy & Features Compared', tag: 'Roundup' },
+  { href: '/articles/how-to-interpret-your-bmi-result/', title: 'How to Interpret Your BMI Result – What the Number Really Means', tag: 'Guide' },
+  { href: '/articles/bmi-chart-for-adults/', title: 'BMI Chart for Adults – Quick Lookup by Height and Weight', tag: 'Reference' },
+  { href: '/articles/from-bmi-to-action/', title: 'From BMI to Action – Next Steps After Checking Your Score', tag: 'Action' },
+  { href: '/articles/bmi-calculator-metric-imperial/', title: 'BMI Calculator with Metric & Imperial Units – Instant Results', tag: 'Calculator' },
+];
+---
+<Layout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container text-center">
+      <h1>Articles & guides</h1>
+      <p class="lead">In-depth, evidence-based writing on BMI, body composition, and healthy weight.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <ul class="article-list">
+        {articles.map((a) => (
+          <li>
+            <a href={a.href} class="article-row">
+              <span class="article-tag">{a.tag}</span>
+              <span class="article-title">{a.title}</span>
+              <span class="article-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .article-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+  .article-row {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: var(--space-4);
+    align-items: center;
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    transition: all 0.15s var(--ease-out);
+  }
+  .article-row:hover {
+    border-color: var(--color-brand);
+    transform: translateX(2px);
+    color: var(--color-text);
+  }
+  @media (max-width: 640px) {
+    .article-row { grid-template-columns: 1fr; gap: var(--space-2); }
+    .article-arrow { display: none; }
+  }
+  .article-tag {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-brand-dark);
+    background: var(--color-brand-soft);
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    text-align: center;
+    font-weight: 600;
+  }
+  .article-title { font-weight: 500; }
+  .article-arrow { color: var(--color-brand); font-size: 1.1rem; }
+</style>

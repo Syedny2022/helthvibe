@@ -1,0 +1,340 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BMICalculator from '@components/BMICalculator.astro';
+
+const title = 'BMI Calculator for Women — Accurate Results + Ideal Weight Range | Helthvibe';
+const description = 'Free BMI calculator tailored for women, with female-specific healthy ranges, body composition context, and practical guidance. Privacy-first.';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe BMI Calculator for Women',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: 'Free BMI calculator for women. WHO-standard math, female-specific healthy ranges, body composition context.',
+  url: 'https://helthvibe.com/calculators/bmi-women/',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How is BMI different for women?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The formula is identical. What differs is body composition — women carry a higher percentage of essential fat and tend to store fat subcutaneously (hips, thighs) rather than viscerally (abdomen).',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is the healthy BMI range different for women?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No — the WHO healthy range is 18.5–24.9 for both sexes. But waist circumference matters more for women: above 35 inches (88 cm) signals elevated risk regardless of BMI.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use BMI during pregnancy?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'BMI is calculated from pre-pregnancy weight. Gestational weight gain guidelines are based on your pre-pregnancy BMI category, not your current weight.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does birth control affect BMI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Hormonal contraceptives can cause 1–3 kg of fluid retention that is not fat. For a more accurate BMI check, weigh yourself at the same point in your cycle.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'How is BMI different for women?',
+    a: 'The BMI formula is identical for men and women. What differs is body composition: women carry a higher percentage of essential fat (10–13% vs. 2–5% in men) and tend to store fat subcutaneously (hips, thighs) rather than viscerally (abdomen). The same BMI in a woman and a man does not mean the same body composition.',
+  },
+  {
+    q: 'Is the healthy BMI range different for women?',
+    a: 'No — the WHO healthy range of 18.5–24.9 applies to both sexes. However, waist circumference is a stronger signal for women: above 35 inches (88 cm) signals elevated cardiometabolic risk regardless of BMI.',
+  },
+  {
+    q: 'What is a healthy weight range for women?',
+    a: 'It depends on your height. For a woman 5\'4" (163 cm), the healthy BMI range corresponds to roughly 108–146 lb (49–66 kg). Use the calculator above to see your specific range.',
+  },
+  {
+    q: 'Can I use BMI during pregnancy?',
+    a: 'BMI is calculated from pre-pregnancy weight. Gestational weight gain guidelines are based on your pre-pregnancy BMI category, not your current weight. Talk to your OB or midwife for personalized recommendations.',
+  },
+  {
+    q: 'Does menopause affect BMI?',
+    a: 'Menopause tends to shift fat distribution toward the abdomen (more visceral fat) and can change the BMI–risk relationship. Post-menopausal women should pay particular attention to waist circumference, not just BMI.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmi-men/', title: 'BMI for Men', desc: 'Muscle-mass notes and male-specific context.' },
+  { href: '/calculators/ideal-weight/', title: 'Ideal Weight Calculator', desc: 'Find your ideal weight with 5 evidence-based formulas.' },
+  { href: '/articles/bmi-vs-body-fat-percentage/', title: 'BMI vs Body Fat %', desc: 'How the two compare for women specifically.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">For women · WHO-standard · Private</span>
+      <h1>BMI Calculator for Women</h1>
+      <p class="lead">
+        The standard BMI math — but with female-specific healthy ranges, body composition context, and the limits of BMI for women explained.
+      </p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <BMICalculator variant="full" showAsianToggle={true} id="women-bmi" />
+        </div>
+
+        <aside class="calc-side">
+          <div class="info-card">
+            <h3>Healthy BMI for women</h3>
+            <p style="margin:0 0 var(--space-3);font-size:0.92rem;">
+              The WHO healthy range (18.5–24.9) applies to both sexes.
+            </p>
+            <table class="cat-table">
+              <tbody>
+                <tr><td>Below 18.5</td><td>Underweight</td></tr>
+                <tr><td>18.5 – 24.9</td><td>Healthy range</td></tr>
+                <tr><td>25.0 – 29.9</td><td>Overweight</td></tr>
+                <tr><td>30.0+</td><td>Obese</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-card">
+            <h3>Waist circumference matters more</h3>
+            <p>
+              For women, waist circumference predicts cardiometabolic risk better than BMI alone. <strong>Above 35 in (88 cm)</strong> signals elevated risk regardless of BMI.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Healthy body-fat % (women)</h3>
+            <table class="cat-table">
+              <tbody>
+                <tr><td>Essential</td><td>10 – 13%</td></tr>
+                <tr><td>Athletes</td><td>14 – 20%</td></tr>
+                <tr><td>Healthy</td><td>21 – 24%</td></tr>
+                <tr><td>Acceptable</td><td>25 – 31%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-card">
+            <h3>Privacy</h3>
+            <p>All calculations happen locally in your browser. Your data is never sent to a server.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Women-specific context section -->
+  <section class="section section-soft">
+    <div class="container">
+      <h2 class="section-title">What makes BMI different for women</h2>
+      <div class="context-grid">
+        <div class="context-card">
+          <h3>Body composition</h3>
+          <p>
+            Women carry a higher percentage of essential fat (10–13% vs. 2–5% in men) for hormonal and reproductive reasons.
+            A given BMI typically corresponds to a higher body-fat percentage in women than in men.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Fat distribution</h3>
+          <p>
+            Women tend to store fat subcutaneously — hips, thighs, buttocks. Men store more viscerally (around the organs).
+            Visceral fat is more metabolically dangerous, so men often have higher cardiometabolic risk at a given BMI.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Hormonal cycles</h3>
+          <p>
+            Weight can fluctuate 1–3 kg through the menstrual cycle due to fluid retention. For consistency, weigh yourself
+            at the same point in your cycle when tracking BMI over time.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Pregnancy</h3>
+          <p>
+            BMI is calculated from pre-pregnancy weight. Gestational weight gain guidelines depend on your pre-pregnancy BMI category — see your OB for personalized targets.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Menopause</h3>
+          <p>
+            Post-menopause, fat distribution shifts toward the abdomen (more visceral). The same BMI may carry higher risk
+            than it did pre-menopause. Waist circumference becomes more important.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>Bone density</h3>
+          <p>
+            Women are at higher risk of osteoporosis, especially post-menopause. Being in the lower end of the BMI range can
+            increase this risk — discuss with your clinician.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container-narrow">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="section section-soft">
+    <div class="container">
+      <h2>Keep exploring</h2>
+      <div class="grid grid-3">
+        {related.map((r) => (
+          <a href={r.href} class="card">
+            <h3 class="card-title">{r.title}</h3>
+            <p class="card-desc">{r.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: var(--space-7) 0 var(--space-6);
+    text-align: center;
+    background:
+      radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%),
+      var(--color-bg);
+  }
+  .page-hero .badge { margin-bottom: var(--space-3); }
+  .page-hero h1 { margin-bottom: var(--space-3); }
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+
+  .calc-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+
+  .calc-main {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .info-card h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+  }
+  .info-card p { font-size: 0.95rem; margin: 0; }
+
+  .cat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .cat-table td {
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .cat-table tr:last-child td { border-bottom: none; }
+  .cat-table td:last-child {
+    text-align: right;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  /* Context grid */
+  .section-title { text-align: center; margin-bottom: var(--space-6); }
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+  .context-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .context-card h3 {
+    font-size: 1.05rem;
+    color: var(--color-brand-dark);
+    margin-bottom: var(--space-2);
+  }
+  .context-card p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* FAQ */
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--color-brand);
+    transition: transform 0.15s var(--ease-out);
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+</style>

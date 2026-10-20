@@ -1,0 +1,76 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is the waist-to-height ratio cutoff?',
+    a: 'Below 0.5 is healthy, 0.5–0.59 is increased risk, ≥ 0.60 is substantially elevated risk. The cutoff is the same for men, women, and across ethnic groups.',
+  },
+  {
+    q: 'How is WHtR measured?',
+    a: 'Measure waist at the level of the navel after a normal exhale. Divide by your height in the same units. The result is a single dimensionless ratio.',
+  },
+  {
+    q: 'Is WHtR better than BMI?',
+    a: 'For population cardiometabolic risk screening, WHtR is at least as good as BMI and simpler — a single cutoff across populations.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All calculations happen in your browser. Nothing is sent to a server.',
+  },
+];
+
+const related = [
+  { href: '/calculators/waist-height-ratio/', title: 'Waist-to-Height Calculator', desc: 'Simple 0.5 rule.' },
+  { href: '/calculators/waist-hip-ratio/', title: 'Waist-to-Hip Ratio', desc: 'Sex-specific cardiometabolic risk.' },
+  { href: '/articles/bmi-and-health-risks/', title: 'BMI and Health Risks', desc: 'How BMI maps to disease risk.' },
+];
+---
+<ArticleLayout
+  title="Waist-to-Height Ratio: The Simple Rule Cardiologists Use | Helthvibe"
+  description="Waist-to-height ratio (WHtR) — a single 0.5 cutoff that works across men, women, and ethnicities. Simpler and stronger than BMI for cardiometabolic risk."
+  h1="Waist-to-Height Ratio — The Simple Rule Cardiologists Use"
+  excerpt="Keep your waist less than half your height. One simple rule, strong cardiometabolic evidence behind it, and it works across populations."
+  datePublished="2026-09-29"
+  dateModified="2026-09-29"
+  category="Reference"
+  readTime="6 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>The Rule: Waist Less Than Half Your Height</h2>
+  <p>If your waist circumference is less than half your height, you are in a healthy cardiometabolic range. The same cutoff (0.5) applies across men, women, and ethnic groups — a striking simplicity in a field full of population-specific thresholds. Above 0.5, cardiometabolic risk begins to rise. Above 0.6, risk is substantially elevated.</p>
+  <p>Margaret Ashwell and Shigeo Hsieh proposed this single-cutoff approach in 2005 in the <em>International Journal of Food Sciences and Nutrition</em>, arguing that the simplicity had public-health value beyond what BMI's sex- and ethnicity-specific categories could offer.</p>
+
+  <h2>Risk Thresholds</h2>
+  <table>
+    <thead><tr><th>WHtR</th><th>Risk level</th></tr></thead>
+    <tbody>
+      <tr><td>&lt; 0.50</td><td>Healthy</td></tr>
+      <tr><td>0.50–0.59</td><td>Increased risk</td></tr>
+      <tr><td>≥ 0.60</td><td>Substantially elevated risk</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Why a Single Cutoff Works Across Populations</h2>
+  <p>BMI cutoffs are population-specific because the BMI–fat mass relationship differs by sex and ethnicity. WHtR's single cutoff works because it normalizes waist by height, removing the height-dependent bias that affects BMI. Once height is accounted for, the cardiometabolic risk associated with a given proportion of visceral fat appears to be remarkably consistent across populations.</p>
+  <p>Comparative studies have found WHtR to be at least as good as BMI at identifying cardiometabolic risk — and in some studies better, particularly in populations where BMI cutoffs are unreliable (Asian, pediatric, older adult).</p>
+
+  <h2>What About WHR?</h2>
+  <p>Waist-to-hip ratio (WHR) is sex-specific — different cutoffs for men and women. WHtR uses the same single cutoff across sexes. This makes WHtR simpler to communicate: "your waist should be less than half your height" requires no sex-specific lookup table.</p>
+  <p>For individual cardiometabolic risk assessment, both WHR and WHtR add information beyond BMI. For population screening and public-health messaging, WHtR is the more accessible metric.</p>
+
+  <h2>Children and Adolescents</h2>
+  <p>WHtR is particularly useful in pediatric populations because it does not require age- and sex-specific reference curves the way BMI-for-age percentiles do. The single 0.5 cutoff applies from age 5 through adulthood — a major practical advantage for screening in school or clinical settings.</p>
+
+  <h2>Limitations</h2>
+  <p>WHtR is a screening tool, not a diagnostic. It does not distinguish between subcutaneous and visceral fat with full precision, and it is insensitive to muscle mass at the waist (relevant in highly muscular athletes). Use it alongside other clinical markers for individual decisions.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Ashwell M, Hsieh SD. <em>Six reasons why the waist-to-height ratio is a rapid and effective global indicator for health risks of obesity and how its use could simplify the international public health message on obesity.</em> Int J Food Sci Nutr. 2005;56(5):303–307.</li>
+    <li>Ashwell M, Gunn P, Gibson S. <em>Waist-to-height ratio is a better screening tool than waist circumference and BMI for adult cardiometabolic risk factors.</em> Obes Rev. 2012;13(3):275–286.</li>
+    <li>Browning LM, Hsieh SD, Ashwell M. <em>A systematic review of waist-to-height ratio as a screening tool for the prediction of cardiovascular disease and diabetes.</em> Nutr Res Rev. 2010;23(2):247–269.</li>
+  </ul>
+</ArticleLayout>

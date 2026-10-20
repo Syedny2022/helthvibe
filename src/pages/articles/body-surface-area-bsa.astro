@@ -1,0 +1,80 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is BSA used for?',
+    a: 'Body Surface Area is used for chemotherapy dosing, cardiac index calculation, burn area estimation, and pediatric drug dosing. Average adult BSA is approximately 1.9 m².',
+  },
+  {
+    q: 'How accurate is the Mosteller formula?',
+    a: 'Mosteller is the most widely used BSA formula in clinical practice. Accuracy is within ±5% of the more complex DuBois formula, with much simpler arithmetic.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bsa/', title: 'BSA Calculator', desc: 'Mosteller formula.' },
+  { href: '/calculators/bmi/', title: 'Adult BMI', desc: 'Standard mass-to-height screening.' },
+  { href: '/calculators/lean-body-mass/', title: 'Lean Body Mass', desc: 'Fat-free body mass estimate.' },
+];
+---
+<ArticleLayout
+  title="Body Surface Area (BSA): What It Is and Why Doctors Use It | Helthvibe"
+  description="Body surface area (BSA) is the standard clinical metric for chemo dosing, cardiac index, and burn assessment. Here's the Mosteller formula and when it matters."
+  h1="Body Surface Area (BSA) — What It Is and Why Doctors Use It"
+  excerpt="BSA is the standard clinical metric for chemotherapy dosing, cardiac index, and pediatric pharmacology. Here's the Mosteller formula and what the number means."
+  datePublished="2026-09-29"
+  dateModified="2026-09-29"
+  category="Clinical"
+  readTime="6 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>What BSA Measures</h2>
+  <p>Body Surface Area (BSA) is the total area of the exterior surface of the human body, expressed in square meters. For an average adult, BSA is approximately 1.9 m² — about the size of a small bathroom floor. Children have smaller BSAs (a 10-year-old is around 1.1 m²), and neonates are around 0.25 m².</p>
+  <p>BSA correlates better than body weight with metabolic mass — the part of the body that interacts with drugs, performs work, and consumes oxygen. This is why clinical pharmacology has used BSA as a dosing reference for nearly a century.</p>
+
+  <h2>The Mosteller Formula (1987)</h2>
+  <p>The most widely used BSA formula today is the Mosteller equation, published by RD Mosteller in the <em>New England Journal of Medicine</em> in 1987:</p>
+  <p><code>BSA (m²) = √(height_cm × weight_kg ÷ 3600)</code></p>
+  <p>For an adult at 175 cm and 70 kg:</p>
+  <p><code>BSA = √(175 × 70 ÷ 3600) = √3.403 = 1.84 m²</code></p>
+  <p>Mosteller's formula replaced the earlier DuBois formula (1916) for many clinical uses because the arithmetic is far simpler and accuracy is comparable. Both remain in use; Mosteller is more common in modern oncology and critical care.</p>
+
+  <h2>Clinical Applications</h2>
+  <p>BSA is the standard metric in several clinical contexts:</p>
+  <ul>
+    <li><strong>Chemotherapy dosing:</strong> Most cytotoxic drugs are dosed in mg per m². This narrows the variability in drug exposure across patients of different body sizes compared with flat dosing.</li>
+    <li><strong>Cardiac index:</strong> Cardiac output (L/min) divided by BSA gives cardiac index (L/min/m²), which is more comparable across patients than raw cardiac output.</li>
+    <li><strong>Burn assessment:</strong> The percentage of body surface area burned (using the Rule of Nines) determines fluid resuscitation protocols and prognosis.</li>
+    <li><strong>Pediatric drug dosing:</strong> Many pediatric medications are dosed per m² rather than per kg because of the better correlation with metabolic mass.</li>
+  </ul>
+
+  <h2>Reference Values</h2>
+  <table>
+    <thead><tr><th>Population</th><th>Typical BSA</th></tr></thead>
+    <tbody>
+      <tr><td>Adult men (average)</td><td>~2.0 m²</td></tr>
+      <tr><td>Adult women (average)</td><td>~1.7 m²</td></tr>
+      <tr><td>Children (10 years)</td><td>~1.1 m²</td></tr>
+      <tr><td>Neonates</td><td>~0.25 m²</td></tr>
+      <tr><td>Obese adults</td><td>2.5–3.0 m²</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Limitations of BSA</h2>
+  <p>BSA is a geometric construct — it does not directly measure metabolic mass, body composition, or organ function. For obesity pharmacology in particular, BSA-based dosing is increasingly questioned because adipose tissue is less metabolically active than lean mass. Drugs dosed per m² may be overdosed in patients with very high BMI.</p>
+  <p>For most clinical purposes, however, Mosteller's formula remains the standard. Its simplicity and reproducibility make it preferable to alternatives, and its limitations are well understood.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Mosteller RD. <em>Simplified calculation of body surface area.</em> N Engl J Med. 1987;317(17):1098.</li>
+    <li>DuBois D, DuBois EF. <em>A formula to estimate the approximate surface area if height and weight be known.</em> Arch Intern Med. 1916;17:863–871.</li>
+    <li>Verbraecken J, Van de Heyning P, De Backer W, Van Gaal L. <em>Body surface area in normal-weight, overweight, and obese adults. A comparison study.</em> Metabolism. 2006;55(4):515–524.</li>
+  </ul>
+</ArticleLayout>

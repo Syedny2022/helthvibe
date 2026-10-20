@@ -1,0 +1,497 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BMICalculator from '@components/BMICalculator.astro';
+
+const title = 'BMI Calculator for Brooklyn, NY — Neighborhood-Specific Insights | Helthvibe';
+const description = 'Free BMI calculator for Brooklyn residents. Park Slope strollers, Williamsburg lofts, Bay Ridge families, Prospect Park loops — see how your specific neighborhood shapes your health inputs.';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe BMI Calculator for Brooklyn',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: 'Free BMI calculator tailored for Brooklyn, NY. Same WHO-standard math, Brooklyn-specific neighborhood context.',
+  url: 'https://helthvibe.com/local/brooklyn/',
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'BMI Calculator for Brooklyn, NY',
+  description: 'BMI calculator with Brooklyn-specific neighborhood context, fitness resources, and local food landscape.',
+  url: 'https://helthvibe.com/local/brooklyn/',
+  about: {
+    '@type': 'Place',
+    name: 'Brooklyn',
+    address: { '@type': 'PostalAddress', addressLocality: 'Brooklyn', addressRegion: 'NY', addressCountry: 'US' },
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is walking in Brooklyn enough exercise?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For many Brooklyn residents, yes — brownstone-lined blocks, errands, and Prospect Park visits add up. But walking is moderate-intensity cardio. Pair it with strength training 2–3x per week for body composition. Most Brooklyn apartments have more room for home fitness than Manhattan studios.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where do people run in Brooklyn?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Prospect Park (3.35-mile loop, Olmsted-designed) is the flagship. Brooklyn Bridge Park waterfront (1.3 miles with Manhattan skyline views), Domino Park in Williamsburg, and Marine Park in southern Brooklyn are also popular. The Brooklyn Bridge itself is a tourist route but walkable year-round.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does Brooklyn\'s diversity affect food access?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Brooklyn is one of the most ethnically diverse counties in the US. That shows up in food access: Caribbean markets in Flatbush and Crown Heights, Italian-American shops in Bensonhurst and Bay Ridge, Chinese supermarkets on 8th Avenue in Sunset Park, Hasidic-friendly kosher groceries in Borough Park, Mexican bakeries in Bushwick. You can eat well on a budget.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'Is walking in Brooklyn enough exercise?',
+    a: 'For many Brooklyn residents, yes — brownstone-lined blocks, daily errands, and Prospect Park visits add up to 8,000–12,000 steps without trying. But walking is moderate-intensity cardio, not strength training. Pair it with resistance training 2–3x per week for body composition. The good news: most Brooklyn apartments have more room for home fitness than Manhattan studios.',
+  },
+  {
+    q: 'Where do people run in Brooklyn?',
+    a: 'Prospect Park (3.35-mile loop, designed by Olmsted and Vaux — same architects as Central Park) is the flagship running spot. Brooklyn Bridge Park waterfront (1.3 miles with Manhattan skyline views), Domino Park in Williamsburg, and Marine Park in southern Brooklyn are popular year-round. The Brooklyn Bridge itself is tourist-heavy but walkable on weekend mornings.',
+  },
+  {
+    q: 'How does Brooklyn\'s diversity affect food access?',
+    a: 'Brooklyn is one of the most ethnically diverse counties in the US, and that shows up in food access: Caribbean markets in Flatbush and Crown Heights, Italian-American shops in Bensonhurst and Bay Ridge, Chinese supermarkets on 8th Avenue in Sunset Park, kosher groceries in Borough Park, Mexican bakeries in Bushwick, Middle Eastern markets on Atlantic Avenue. You can build a produce-heavy diet affordably if you shop where your neighbors shop.',
+  },
+  {
+    q: 'How is Brooklyn fitness culture different from Manhattan?',
+    a: 'More boutique studios (SoulCycle started in NYC, Barry\'s Bootcamp is huge here), more home gyms in larger apartments, more family-oriented fitness (stroller yoga in Prospect Park, family-friendly climbing gyms). Less of the 5am-before-commute rush; more of the 9am-after-school-drop-off window. Gyms like Brooklyn Boulders, ClassPass studios in Williamsburg, and the YMCA network serve a wider demographic.',
+  },
+  {
+    q: 'Is BMI accurate for very muscular Brooklyn residents?',
+    a: 'Standard BMI understates leanness in muscular individuals. If you train seriously — at a climbing gym like Brooklyn Boulders, at a CrossFit box, or in a martial arts studio — pair your BMI with body-fat percentage. DEXA scans in Brooklyn run $50–150 at clinics like DexaFit Park Slope or hospital-affiliated practices.',
+  },
+];
+
+const related = [
+  { href: '/local/nyc/', title: 'NYC BMI Calculator', desc: 'Manhattan-focused: walkability, subway, 24/7 city.' },
+  { href: '/local/dc-metro/', title: 'DC Metro BMI Calculator', desc: 'Federal-worker culture, Metro commuting.' },
+  { href: '/calculators/bmi-athletes/', title: 'Athlete BMI Calculator', desc: 'For muscular builds where standard BMI misclassifies.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, webPageSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Brooklyn · WHO-standard · Private</span>
+      <h1>BMI Calculator for Brooklyn</h1>
+      <p class="lead">
+        Brooklyn isn't one borough — it's thirty neighborhoods with different lifestyles. Park Slope strollers, Williamsburg lofts, Bay Ridge families, Flatbush Caribbean markets. Your BMI math is universal; your inputs are local.
+      </p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <BMICalculator variant="full" showAsianToggle={true} id="brooklyn-bmi" />
+        </div>
+
+        <aside class="calc-side">
+          <div class="info-card">
+            <h3>Brooklyn fitness resources</h3>
+            <ul class="info-list">
+              <li><strong>Prospect Park</strong> — 3.35-mile loop, designed by Olmsted and Vaux.</li>
+              <li><strong>Brooklyn Bridge Park</strong> — 1.3-mile waterfront, skyline views.</li>
+              <li><strong>Domino Park</strong> — Williamsburg waterfront, year-round.</li>
+              <li><strong>NYC Parks Rec Centers</strong> — multiple Brooklyn locations, $150/year adults.</li>
+              <li><strong>Brooklyn Boulders</strong> — climbing gym with locations in Gowanus and Industry City.</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Brooklyn food landscape</h3>
+            <ul class="info-list">
+              <li><strong>Flatbush / Crown Heights</strong> — Caribbean markets, fresh produce, low prices.</li>
+              <li><strong>Sunset Park</strong> — 8th Avenue Chinese supermarkets, fresh fish, produce.</li>
+              <li><strong>Bay Ridge / Bensonhurst</strong> — Italian-American shops, fresh bread, mozzarella.</li>
+              <li><strong>Atlantic Avenue</strong> — Middle Eastern markets in Boerum Hill.</li>
+              <li><strong>Greenmarkets</strong> — Grand Army Plaza (Sat), Fort Greene (Sat), Carroll Gardens (Sun).</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Privacy</h3>
+            <p>All calculations run in your browser. We never see your height or weight.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brooklyn's defining trait: neighborhood diversity -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Brooklyn is 30 neighborhoods — your health inputs depend on which one</h2>
+      <p class="section-intro">
+        Manhattan is monolithic in lifestyle terms. Brooklyn isn't. The daily life — and therefore the daily activity,
+        food access, and stress levels — of a Park Slope parent pushing a stroller to PS 321 is fundamentally different
+        from a Bushwick artist's loft life or a Bay Ridge family in a semi-detached house. Here's how that maps to the
+        things that affect your BMI.
+      </p>
+
+      <div class="hood-grid">
+        <div class="hood-card">
+          <h3>Park Slope · Brooklyn Heights · Cobble Hill</h3>
+          <p>
+            Family-dense brownstone belt. Walking is built in — school runs, Prospect Park, 5th Avenue errands. Brownstone
+            walkups add stair climbing to daily life. Many residents have home gym setups (a Peloton or squat rack in the
+            parlor floor) — apartment sizes allow it. Family fitness culture is strong: stroller yoga in Prospect Park,
+            family climbing sessions, weekend bike rides.
+          </p>
+        </div>
+
+        <div class="hood-card">
+          <h3>Williamsburg · Greenpoint · Bushwick</h3>
+          <p>
+            Young professional and creative-class concentration. Loft-style apartments with high ceilings favor home gym
+            setups. The L train commute to Manhattan shapes daily life — a 15–30 minute trip that adds incidental
+            walking. Boutique fitness (SoulCycle, Barry's, F45) dominates over big-box gyms. Domino Park, McCarren Park,
+            and the Williamsburg waterfront are the running/cycling hubs.
+          </p>
+        </div>
+
+        <div class="hood-card">
+          <h3>Bay Ridge · Bensonhurst · Dyker Heights</h3>
+          <p>
+            Suburban-feel southern Brooklyn. Semi-detached houses with garages mean many residents actually have home
+            gyms. Strong Italian-American food culture means restaurants and markets are excellent but caloric. The
+            Verrazzano Bridge walk/run is a local institution. Less subway commuting — many residents drive or rely on
+            express buses.
+          </p>
+        </div>
+
+        <div class="hood-card">
+          <h3>Flatbush · East Flatbush · Crown Heights</h3>
+          <p>
+            Brooklyn's Caribbean heartland. Fresh produce markets are denser here than anywhere else in NYC — and prices
+            are noticeably lower than Manhattan. Walking culture is strong, partly because car ownership is lower. The
+            food culture is rich, sometimes heavy, and easy to eat well on a budget if you know what's available. Prospect
+            Park is the fitness anchor.
+          </p>
+        </div>
+
+        <div class="hood-card">
+          <h3>Sunset Park · Bay Ridge border · Borough Park</h3>
+          <p>
+            Brooklyn's most linguistically diverse area. 8th Avenue in Sunset Park is one of the best fresh-fish and
+            produce corridors in NYC, with Chinese, Latin American, and Middle Eastern markets side by side. Borough Park
+            has strong kosher food infrastructure. Industrial-Brooklyn feel in parts; residential in others. NYC's
+            highest-density of immigrant-owned food businesses.
+          </p>
+        </div>
+
+        <div class="hood-card">
+          <h3>DUMBO · Brooklyn Heights waterfront · Navy Yard</h3>
+          <p>
+            The "new Brooklyn" — tech and creative offices alongside expensive condos. Brooklyn Bridge Park (1.3 miles of
+            waterfront) is the running/walking anchor. Jane's Carousel, the Brooklyn Bridge walkway, and the Empire-Fulton
+            Ferry lawn are weekend fitness destinations. Higher incomes here mean more gym memberships and boutique fitness
+            spend, but also more sedentary white-collar work patterns.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brooklyn-specific factors -->
+  <section class="section section-soft">
+    <div class="container">
+      <h2 class="section-title">Brooklyn-specific factors that affect your BMI</h2>
+
+      <div class="factor-grid">
+        <div class="factor-card">
+          <h3>More apartment space, more home fitness</h3>
+          <p>
+            Brooklyn apartments average 50–100% more square footage than Manhattan studios at comparable prices. That
+            extra space routinely gets used for home gyms: a Peloton bike ($1,500–2,500), a squat rack ($300–800),
+            adjustable dumbbells ($300), or a yoga + bodyweight setup. Many Brooklyn residents train at home 3–5x per
+            week without ever entering a commercial gym.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>Prospect Park is your gym</h3>
+          <p>
+            Prospect Park (526 acres) was designed by the same architects as Central Park — Olmsted and Vaux — but feels
+            more like a neighborhood park. The 3.35-mile loop is a running institution; the long meadow is where pickup
+            soccer and frisbee happen year-round; the boathouse has rowboat and kayak rentals in summer. For many Brooklyn
+            residents, Prospect Park is where fitness happens — for free.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>The brownstone walkup is built-in cardio</h3>
+          <p>
+            Brooklyn has more pre-war walkup buildings than almost anywhere in America. Third-floor and fourth-floor
+            walkups are common in Park Slope, Brooklyn Heights, Bushwick, and Bedford-Stuyvesant. Daily stair climbing —
+            4 flights, twice a day, with groceries — adds 5–10 minutes of stair work to most residents' lives. That's not
+            nothing.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>The food landscape is dense and diverse</h3>
+          <p>
+            Brooklyn's ethnic diversity is one of its biggest health assets. The borough has the lowest grocery prices
+            in NYC in many neighborhoods, and the fresh-produce quality in places like Flatbush, Sunset Park, and
+            Bensonhurst is exceptional. The challenge is the same as anywhere: navigating the high-calorie-density options
+            that sit alongside the healthy ones.
+          </p>
+          <p class="factor-note">
+            <strong>Practical move:</strong> identify your neighborhood's "produce anchor" — a market that has fresh
+            vegetables at prices you'll actually pay. For many Brooklyn residents, that's the corner bodega or a single
+            specialized market, not a chain supermarket.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>Family fitness culture is real</h3>
+          <p>
+            Brooklyn skews younger-family than Manhattan in many neighborhoods. That shows up in the fitness infrastructure:
+            stroller-friendly running groups (Stroller Strides meets in Prospect Park), family climbing sessions at
+            Brooklyn Boulders, weekend youth sports leagues, and parent-child yoga classes. If you have kids, the
+            infrastructure to keep you moving is built in.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>The commute is gentler than Manhattan</h3>
+          <p>
+            Most Brooklyn commutes involve a single subway line to Manhattan (Q, B, F, 2, 3, 4, 5, A, C, L depending on
+            neighborhood) — 20–45 minutes. That's shorter and less stressful than many Manhattan commutes, which often
+            require transfers. Less commute stress means lower cortisol, which affects weight regulation independent of
+            diet and exercise.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>Prospect Park's summer vs. winter reality</h3>
+          <p>
+            Prospect Park in summer (May–September) is packed — concerts, fitness events, the Celebrate Brooklyn series.
+            Winter (November–March) is quieter but the loop remains popular with runners. The seasonal swing affects how
+            much outdoor movement Brooklyn residents get. Layered running gear extends the outdoor fitness season well
+            into the cold months.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>The diversity of food is the diversity of BMI strategies</h3>
+          <p>
+            There's no single "Brooklyn diet." A Bay Ridge Italian-American household, a Sunset Park Chinese-American
+            household, a Flatbush Caribbean household, and a Park Slope professional household all eat very differently —
+            and have very different levers to pull when BMI needs attention. The honest answer: there's no universal
+            "Brooklyn plan." Find what works in your specific neighborhood.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container-narrow">
+      <h2>Brooklyn-specific questions</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="section section-soft">
+    <div class="container">
+      <h2>Keep exploring</h2>
+      <div class="grid grid-3">
+        {related.map((r) => (
+          <a href={r.href} class="card">
+            <h3 class="card-title">{r.title}</h3>
+            <p class="card-desc">{r.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: var(--space-7) 0 var(--space-6);
+    text-align: center;
+    background:
+      radial-gradient(ellipse at top, rgba(99, 102, 241, 0.08) 0%, transparent 60%),
+      var(--color-bg);
+  }
+  .page-hero .badge { margin-bottom: var(--space-3); }
+  .page-hero h1 { margin-bottom: var(--space-3); }
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 760px; margin: 0 auto; }
+
+  .calc-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+
+  .calc-main {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .info-card h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+  }
+  .info-card p { font-size: 0.95rem; margin: 0; }
+  .info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .info-list li {
+    margin-bottom: 0.6rem;
+    font-size: 0.92rem;
+  }
+
+  /* Section title */
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+  .section-intro {
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--color-text-soft);
+    max-width: 760px;
+    margin: 0 auto var(--space-6);
+  }
+
+  /* Hood grid */
+  .hood-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-4);
+  }
+  .hood-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .hood-card:hover { border-left-color: var(--color-brand); }
+  .hood-card h3 {
+    font-size: 1.05rem;
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+  }
+  .hood-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* Factor grid */
+  .factor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-4);
+  }
+  .factor-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .factor-card:hover { border-color: var(--color-brand); }
+  .factor-card h3 {
+    font-size: 1.1rem;
+    color: var(--color-brand-dark);
+    margin-bottom: var(--space-3);
+  }
+  .factor-card p {
+    margin: 0 0 var(--space-3);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .factor-card p:last-child { margin-bottom: 0; }
+  .factor-note {
+    background: var(--color-bg-soft);
+    border-left: 2px solid var(--color-brand);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem !important;
+  }
+  .factor-note strong { color: var(--color-text); }
+
+  /* FAQ */
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--color-brand);
+    transition: transform 0.15s var(--ease-out);
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; line-height: 1.7; }
+</style>

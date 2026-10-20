@@ -1,0 +1,407 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BMICalculator from '@components/BMICalculator.astro';
+
+const title = 'BMI Calculator for NYC — Built for New Yorkers | Helthvibe';
+const description = 'Free BMI calculator for New York City. Walkable miles, subway stairs, late-night bodegas, and a 24/7 city — see how NYC life affects your number, plus resources that actually help.';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe BMI Calculator for NYC',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: 'Free BMI calculator tailored for New York City. Same WHO-standard math, NYC-specific lifestyle context.',
+  url: 'https://helthvibe.com/local/nyc/',
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'BMI Calculator for NYC',
+  description: 'BMI calculator with NYC-specific lifestyle context, fitness resources, and local eating landscape.',
+  url: 'https://helthvibe.com/local/nyc/',
+  about: {
+    '@type': 'Place',
+    name: 'New York City',
+    address: { '@type': 'PostalAddress', addressLocality: 'New York', addressRegion: 'NY', addressCountry: 'US' },
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does walking in NYC count as exercise?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes — the average New Yorker logs 6+ miles a day just moving through the city, which is meaningful activity. Many people who never set foot in a gym still hit 10,000+ steps daily. That said, walking is moderate-intensity activity; pairing it with strength training 2–3x/week still matters.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are there free fitness options in NYC?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. NYC Parks operates 60+ recreation centers citywide with gym access for ~$150/year for adults. Central Park, Prospect Park, and Hudson River Park have free outdoor fitness equipment and running loops. Shape Up NYC offers free fitness classes in all five boroughs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does NYC stress affect BMI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Chronic stress raises cortisol, which is associated with visceral (abdominal) fat accumulation and disrupted sleep. NYC work cultures — finance, media, healthcare, hospitality — can drive both. The honest answer: a stressful job doesn\'t doom your BMI, but managing stress and sleep is part of the picture alongside diet and movement.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'Does walking in NYC count as exercise?',
+    a: 'Yes — the average New Yorker logs 6+ miles a day just moving through the city, which qualifies as meaningful moderate-intensity activity. Many people who never set foot in a gym still hit 10,000+ steps daily. That said, walking is moderate-intensity cardio; pairing it with strength training 2–3x per week still matters for body composition and metabolic health.',
+  },
+  {
+    q: 'Are there free fitness options in NYC?',
+    a: 'Yes. NYC Parks operates more than 60 recreation centers citywide, with gym access for roughly $150/year for adults. Central Park (6.1-mile outer loop), Prospect Park (3.35-mile loop), and Hudson River Park (5+ miles of waterfront path) are free and have outdoor fitness equipment. Shape Up NYC offers free fitness classes in all five boroughs.',
+  },
+  {
+    q: 'How does NYC stress affect BMI?',
+    a: 'Chronic stress raises cortisol, which is associated with visceral fat accumulation and disrupted sleep. NYC work cultures — finance, media, healthcare, hospitality, tech — can drive both. A stressful job does not doom your BMI, but managing stress and sleep is part of the picture alongside diet and movement. The calculator above gives you a snapshot, but a clinician who knows your full context can give you better guidance.',
+  },
+  {
+    q: 'Where can I get healthy food in NYC on a budget?',
+    a: 'NYC has more options than most cities. Greenmarkets (Union Square, Fort Greene, Grand Army Plaza) accept EBT and offer fresh produce at competitive prices. NYC Health + Hospitals operates farmers markets citywide. Many bodegas carry fresh fruit, and most neighborhoods have at least one affordable ethnic grocery with vegetables you can\'t find at chain supermarkets.',
+  },
+  {
+    q: 'How accurate is BMI for very muscular New Yorkers?',
+    a: 'Standard BMI understates leanness in muscular individuals. If you train regularly — at a serious gym, in a CrossFit box, or as a serious recreational athlete — pair your BMI with a body-fat percentage measurement. A DEXA scan in NYC runs $50–150 at clinics like DexaFit or Precision Nutrition-affiliated practices.',
+  },
+];
+
+const related = [
+  { href: '/local/brooklyn/', title: 'Brooklyn BMI Calculator', desc: 'Larger apartments, neighborhood diversity, Prospect Park running.' },
+  { href: '/local/dc-metro/', title: 'DC Metro BMI Calculator', desc: 'Federal-worker culture, Metro commuting, monument-loop runs.' },
+  { href: '/calculators/bmi-athletes/', title: 'Athlete BMI Calculator', desc: 'For muscular builds where standard BMI misclassifies.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, webPageSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">New York City · WHO-standard · Private</span>
+      <h1>BMI Calculator for NYC</h1>
+      <p class="lead">
+        New York runs on footsteps, subway stairs, and bodega sandwiches at midnight. Your BMI math is the same as anywhere — but the city you live in shapes the inputs. Here's what actually matters for New Yorkers.
+      </p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <BMICalculator variant="full" showAsianToggle={true} id="nyc-bmi" />
+        </div>
+
+        <aside class="calc-side">
+          <div class="info-card">
+            <h3>NYC fitness resources</h3>
+            <ul class="info-list">
+              <li><strong>NYC Parks Rec Centers</strong> — 60+ citywide, $150/year for adults. Includes gyms, pools, classes.</li>
+              <li><strong>Shape Up NYC</strong> — Free fitness classes in all five boroughs.</li>
+              <li><strong>Central Park</strong> — 6.1-mile outer loop + outdoor fitness equipment.</li>
+              <li><strong>Hudson River Park</strong> — 5+ miles of waterfront path from Battery Park to Hell's Kitchen.</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>NYC food access</h3>
+            <ul class="info-list">
+              <li><strong>Greenmarkets</strong> — Union Square, Fort Greene, Grand Army Plaza. EBT accepted.</li>
+              <li><strong>NYC Health + Hospitals</strong> — Free/low-cost clinics + farmers markets citywide.</li>
+              <li><strong>Bodega basics</strong> — Fruit, eggs, milk, beans — easier than you think.</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>Privacy</h3>
+            <p>All calculations run in your browser. We never see your height or weight.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- The NYC factor -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">How living in NYC shapes your BMI inputs</h2>
+      <p class="section-intro">
+        The math is the same wherever you live, but the lifestyle inputs are not. New York City has a specific fitness
+        culture, food landscape, and stress environment that affect everything from how many steps you log to what you eat
+        at 11pm. Here are the factors that actually matter for New Yorkers.
+      </p>
+
+      <div class="factor-grid">
+        <div class="factor-card">
+          <h3>You're already walking a lot</h3>
+          <p>
+            The average New Yorker logs 6+ miles of walking per day through daily life — commuting, errands, social life.
+            That's roughly 10,000–15,000 steps before you ever set foot in a gym. Some neighborhoods push that higher:
+            Midtown office workers, Upper East Side residents with daily errands, and Brooklyn Heights parents pushing
+            strollers can easily hit 12,000+ without trying.
+          </p>
+          <p class="factor-note">
+            <strong>The catch:</strong> walking is moderate-intensity cardio. It burns calories but doesn't build muscle the
+            way strength training does. Pair your daily walking with resistance training 2–3x per week for better body
+            composition — even if it's a 30-minute bodyweight routine in your apartment.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>Subway stairs add up</h3>
+          <p>
+            New York's deep subway stations turn every commute into a stair workout. The 191st Street station on the 1
+            train has the longest escalator in the system (the depth of a 9-story building), and many stations in
+            Washington Heights, the Bronx, and Brooklyn have long stair climbs. Daily round-trip commutes through deep
+            stations can burn 100–200 extra calories.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>Apartment space is precious</h3>
+          <p>
+            Most Manhattan apartments don't have room for a full home gym setup. A common workaround: a set of adjustable
+            dumbbells (5–50 lb, ~$300), a pull-up bar ($30), resistance bands, and a yoga mat. That's enough for a full
+            strength program in a 400-square-foot studio. Brooklyn apartments, on average, have more room — see our
+            <a href="/local/brooklyn/">Brooklyn-specific guide</a> for that context.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>Late-night eating is the norm</h3>
+          <p>
+            NYC's 24/7 culture means dinner at 9pm, snacks at 11pm, and bodega runs at 1am are normal. That doesn't make
+            them metabolically neutral — late-night eating tends to push calories higher and disrupt sleep, both of
+            which affect BMI over time. Strategies that work: pre-deciding your late-night options (fruit, yogurt,
+            nuts), avoiding the bodega pastry case when you're tired, and not skipping earlier meals to "save" calories.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>NYC stress is its own factor</h3>
+          <p>
+            New York ranks consistently among the most-stressed metros in the US. High-pressure industries (finance on the
+            Street, media in Midtown, healthcare across the boroughs, hospitality in the service economy) push cortisol up.
+            Chronic cortisol is associated with visceral fat accumulation and disrupted sleep — both of which affect weight
+            regulation independent of diet and exercise.
+          </p>
+          <p class="factor-note">
+            <strong>NYC Well</strong> is a free, confidential 24/7 mental health hotline (1-888-NYC-WELL) for stress,
+            anxiety, depression, and substance use. Free regardless of insurance.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>The food landscape is unmatched</h3>
+          <p>
+            NYC has more cuisines per square mile than almost any city in the world. That cuts both ways: it makes healthy
+            eating easier (any cuisine you want can be had in a healthier form) and harder (every cuisine has its
+            caloric-density traps). Halal cart chicken and rice, a slice of pizza, a $30 omakase — all are part of the
+            landscape.
+          </p>
+          <p class="factor-note">
+            <strong>Practical move:</strong> identify 3–4 default orders at your regular spots that hit protein + fiber +
+            vegetables at a reasonable calorie load. Then you don't have to decide every meal.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>Seasonal swings are real</h3>
+          <p>
+            New York has hot, humid summers (June–September) that suppress appetite and disrupt sleep, and cold, dark
+            winters (November–March) that push people toward heavier, warmer food and less outdoor movement. SAD
+            (seasonal affective disorder) affects an estimated 5–10% of New Yorkers. Light therapy boxes ($30–100) help;
+            so does keeping your morning routine anchored through winter.
+          </p>
+        </div>
+
+        <div class="factor-card">
+          <h3>The diversity of NYC is a health asset</h3>
+          <p>
+            Roughly 36% of New Yorkers were born outside the US, and the city has more than 200 languages spoken. That
+            diversity shows up in food access: Caribbean markets in Flatbush, Italian-American butchers in Bensonhurst,
+            Chinese herbalists in Flushing, South Asian grocers in Jackson Heights. The variety makes a produce-heavy
+            diet easy — the challenge is choosing vegetables over the bakery next door.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NYC-specific FAQ -->
+  <section class="section section-soft">
+    <div class="container-narrow">
+      <h2>NYC-specific questions</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="section">
+    <div class="container">
+      <h2>Keep exploring</h2>
+      <div class="grid grid-3">
+        {related.map((r) => (
+          <a href={r.href} class="card">
+            <h3 class="card-title">{r.title}</h3>
+            <p class="card-desc">{r.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: var(--space-7) 0 var(--space-6);
+    text-align: center;
+    background:
+      radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%),
+      var(--color-bg);
+  }
+  .page-hero .badge { margin-bottom: var(--space-3); }
+  .page-hero h1 { margin-bottom: var(--space-3); }
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 720px; margin: 0 auto; }
+
+  .calc-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+
+  .calc-main {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .info-card h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+  }
+  .info-card p { font-size: 0.95rem; margin: 0; }
+  .info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .info-list li {
+    margin-bottom: 0.6rem;
+    font-size: 0.92rem;
+    padding-left: 0;
+  }
+
+  /* Section title */
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+  .section-intro {
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--color-text-soft);
+    max-width: 720px;
+    margin: 0 auto var(--space-6);
+  }
+
+  /* Factor grid */
+  .factor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-4);
+  }
+  .factor-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .factor-card:hover { border-color: var(--color-brand); }
+  .factor-card h3 {
+    font-size: 1.1rem;
+    color: var(--color-brand-dark);
+    margin-bottom: var(--space-3);
+  }
+  .factor-card p {
+    margin: 0 0 var(--space-3);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .factor-card p:last-child { margin-bottom: 0; }
+  .factor-note {
+    background: var(--color-bg-soft);
+    border-left: 2px solid var(--color-brand);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem !important;
+  }
+  .factor-note strong { color: var(--color-text); }
+
+  /* FAQ */
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--color-brand);
+    transition: transform 0.15s var(--ease-out);
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; line-height: 1.7; }
+</style>

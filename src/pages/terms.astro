@@ -1,0 +1,57 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const title = 'Terms of Service | Helthvibe';
+const description = 'Helthvibe terms of service. Free calculators for personal use. Not medical advice.';
+---
+<Layout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container-narrow text-center">
+      <h1>Terms of Service</h1>
+      <p class="lead">Last updated: January 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow legal-prose">
+      <h2>1. Acceptance</h2>
+      <p>By using Helthvibe, you agree to these terms.</p>
+
+      <h2>2. Not medical advice</h2>
+      <p>
+        Helthvibe provides general health calculators and educational content. <strong>Nothing on this site is medical advice.</strong>
+        Always consult a qualified healthcare professional for personal medical decisions.
+      </p>
+
+      <h2>3. Use of calculators</h2>
+      <p>Our calculators are free for personal, non-commercial use. Do not scrape, republish, or use them to build competing services.</p>
+
+      <h2>4. Accuracy</h2>
+      <p>
+        We strive for accuracy but do not guarantee that calculator results are error-free. Verify important decisions with a healthcare professional.
+      </p>
+
+      <h2>5. Affiliate disclosure</h2>
+      <p>
+        Some links on Helthvibe are affiliate links. We may earn a commission if you purchase through them, at no extra cost to you.
+        Affiliate relationships never influence our calculator math or recommendations.
+      </p>
+
+      <h2>6. Limitation of liability</h2>
+      <p>
+        Helthvibe is provided "as is." We are not liable for any decisions made based on calculator results.
+      </p>
+
+      <h2>7. Changes</h2>
+      <p>We may update these terms. Continued use after changes means acceptance.</p>
+
+      <h2>8. Contact</h2>
+      <p>Questions? Email <a href="mailto:support@helthvibe.com">support@helthvibe.com</a>.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-prose h2 { margin-top: var(--space-6); }
+  .legal-prose h2:first-of-type { margin-top: 0; }
+</style>

@@ -1,0 +1,138 @@
+---
+import { SITE } from '@data/site';
+
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="8" fill="#14b88a"/>
+              <path d="M16 8a8 8 0 1 0 8 8" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <circle cx="16" cy="16" r="2.5" fill="white"/>
+            </svg>
+          </span>
+          <span class="brand-text">Helthvibe</span>
+        </a>
+        <p class="footer-tag">
+          Free, privacy-first health calculators. Built for clarity, speed, and honesty — never a substitute for medical advice.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Calculators</h4>
+        <ul class="footer-list">
+          <li><a href="/calculators/bmi/">Adult BMI</a></li>
+          <li><a href="/calculators/bmi-women/">BMI for Women</a></li>
+          <li><a href="/calculators/bmi-men/">BMI for Men</a></li>
+          <li><a href="/calculators/bmi-children/">Child & Teen BMI</a></li>
+          <li><a href="/calculators/bmi-seniors/">Senior BMI</a></li>
+          <li><a href="/calculators/ideal-weight/">Ideal Weight</a></li>
+          <li><a href="/calculators/body-fat/">Body Fat %</a></li>
+          <li><a href="/calculators/waist-hip-ratio/">Waist-to-Hip Ratio</a></li>
+          <li><a href="/calculators/bmr/">BMR</a></li>
+          <li><a href="/calculators/tdee/">TDEE</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Resources</h4>
+        <ul class="footer-list">
+          <li><a href="/articles/">All Articles</a></li>
+          <li><a href="/tools/best-bmi-calculators-2026/">Best BMI Tools 2026</a></li>
+          <li><a href="/local/nyc/">NYC</a></li>
+          <li><a href="/local/dc-metro/">DC Metro</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Company</h4>
+        <ul class="footer-list">
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} Helthvibe. Not medical advice. Always consult a qualified healthcare professional.</p>
+      <p>
+        <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a>
+        <span aria-hidden="true">·</span>
+        <a href={SITE.newsletterUrl}>Newsletter signup</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-9);
+    padding: var(--space-8) 0 var(--space-6);
+    background: var(--color-bg-soft);
+    border-top: 1px solid var(--color-border-soft);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-7);
+  }
+
+  @media (max-width: 880px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 520px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-tag {
+    font-size: 0.92rem;
+    color: var(--color-text-soft);
+    max-width: 340px;
+  }
+
+  .footer-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-list { list-style: none; padding: 0; margin: 0; }
+  .footer-list li { margin-bottom: 0.5rem; }
+  .footer-list a { color: var(--color-text-soft); font-size: 0.95rem; }
+  .footer-list a:hover { color: var(--color-brand-dark); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--color-border-soft);
+    padding-top: var(--space-5);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+  }
+
+  .footer-bottom a { color: var(--color-text-soft); }
+</style>

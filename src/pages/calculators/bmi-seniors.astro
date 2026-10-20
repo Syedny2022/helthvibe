@@ -1,0 +1,34 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe Senior BMI Calculator',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Layout
+  title="Senior BMI Calculator — Why the Healthy Range Changes After 65 | Helthvibe"
+  description="Free BMI calculator for adults 65+, with adjusted healthy range and notes on muscle mass, bone density, and longevity."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Senior BMI Calculator — Why the Healthy Range Changes After 65 | Helthvibe"
+    description="Free BMI calculator for adults 65+, with adjusted healthy range and notes on muscle mass, bone density, and longevity."
+    h1="Senior BMI Calculator"
+    intro="After 65, the standard 18.5–24.9 healthy range can be too strict. Some research suggests a slightly higher BMI may be protective against frailty and mortality."
+    status="coming-soon"
+    features={[
+      'Standard WHO calculation',
+      'Optional senior-adjusted range (22–27)',
+      'Sarcopenia and muscle-mass notes',
+      'Frailty risk context',
+      'Bone-density considerations',
+    ]}
+    schema={schema}
+  />
+</Layout>

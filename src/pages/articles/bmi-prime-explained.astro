@@ -1,0 +1,85 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is BMI Prime?',
+    a: 'BMI Prime is your BMI divided by 25 — the upper bound of the WHO healthy range. A BMI Prime of 1.0 means you are exactly at the overweight threshold.',
+  },
+  {
+    q: 'How is BMI Prime different from BMI?',
+    a: 'BMI Prime is a dimensionless ratio that makes cross-population comparison easier. "1.20× the upper healthy bound" is more intuitive than "BMI 30".',
+  },
+  {
+    q: 'Is BMI Prime used clinically?',
+    a: 'Not widely in clinical practice, but endorsed by some public-health bodies for its simplicity and appears in research literature.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmi-prime/', title: 'BMI Prime Calculator', desc: 'Compute your BMI Prime.' },
+  { href: '/calculators/bmi/', title: 'Adult BMI Calculator', desc: 'Standard BMI computation.' },
+  { href: '/calculators/ponderal-index/', title: 'Ponderal Index', desc: 'Cube-based alternative.' },
+];
+---
+<ArticleLayout
+  title="BMI Prime: A Simpler Way to Read Your BMI Number | Helthvibe"
+  description="BMI Prime is BMI divided by 25 — a dimensionless score that makes your BMI instantly interpretable. Here's how it works and when to use it."
+  h1="BMI Prime — A Simpler Way to Read Your BMI Number"
+  excerpt="BMI Prime is your BMI divided by 25. A simple dimensionless score that puts your number in immediate context — without memorizing category cutoffs."
+  datePublished="2026-09-29"
+  dateModified="2026-09-29"
+  category="Reference"
+  readTime="5 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>What BMI Prime Is</h2>
+  <p>BMI Prime is the ratio of your actual BMI to the upper bound of the WHO healthy range (25). It collapses the six BMI categories into a single dimensionless number that is easy to interpret:</p>
+  <ul>
+    <li><strong>0.74</strong> — BMI 18.5 (lower bound of healthy range)</li>
+    <li><strong>1.00</strong> — BMI 25 (overweight threshold)</li>
+    <li><strong>1.20</strong> — BMI 30 (obesity Class I threshold)</li>
+    <li><strong>1.40</strong> — BMI 35 (obesity Class II threshold)</li>
+    <li><strong>1.60</strong> — BMI 40 (severe / Class III obesity threshold)</li>
+  </ul>
+
+  <h2>BMI Prime Ranges</h2>
+  <table>
+    <thead><tr><th>Prime</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>&lt; 0.74</td><td>Severely underweight</td></tr>
+      <tr><td>0.74–0.84</td><td>Underweight</td></tr>
+      <tr><td>0.85–0.99</td><td>Healthy range</td></tr>
+      <tr><td>1.00–1.19</td><td>Overweight</td></tr>
+      <tr><td>1.20–1.39</td><td>Obese</td></tr>
+      <tr><td>≥ 1.40</td><td>Severely obese</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Why BMI Prime Is Useful</h2>
+  <p>The standard WHO categories require memorizing five cutoffs and the corresponding clinical thresholds. BMI Prime reduces this cognitive load: a value above 1.0 means above the healthy upper bound, and the magnitude tells you how far above. A BMI Prime of 1.20 is 20% above the healthy threshold — easier to communicate and reason about than "BMI 30, Class I obesity."</p>
+  <p>This makes BMI Prime particularly useful for:</p>
+  <ul>
+    <li><strong>Self-monitoring:</strong> A target of "BMI Prime below 1.0" is clearer than "BMI below 25."</li>
+    <li><strong>Cross-population comparison:</strong> The dimensionless ratio applies equally across metric and imperial users.</li>
+    <li><strong>Public health messaging:</strong> "Keep your BMI Prime below 1.0" is a single rule, easier to communicate than multiple category thresholds.</li>
+  </ul>
+
+  <h2>Where BMI Prime Falls Short</h2>
+  <p>BMI Prime inherits every limitation of BMI itself. It is still a two-compartment model that cannot distinguish muscle from fat, still uses sex- and ethnicity-blind cutoffs, and still misses visceral adiposity. BMI Prime makes the existing BMI categories more interpretable but does not fix the underlying anthropometric limitations.</p>
+
+  <h2>When to Use BMI Prime vs BMI</h2>
+  <p>For clinical communication and personal monitoring, BMI Prime offers a slight readability advantage. For research and clinical documentation, the standard BMI cutoffs are still the convention because they are universally recognized and directly mapped to clinical guidelines. Either is acceptable — choose based on your audience.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Wikipedia contributors. <em>Body mass index — BMI Prime.</em> Wikipedia, The Free Encyclopedia. Accessed 2026.</li>
+    <li>World Health Organization. <em>Obesity: Preventing and Managing the Global Epidemic.</em> WHO Technical Report Series 894, 2000.</li>
+  </ul>
+</ArticleLayout>

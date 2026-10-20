@@ -1,0 +1,34 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe Child & Teen BMI Calculator',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Layout
+  title="Child & Teen BMI Calculator — Age-Specific Percentile Charts | Helthvibe"
+  description="Free BMI calculator for kids and teens with age- and sex-specific percentile (CDC growth charts). Privacy-first."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Child & Teen BMI Calculator — Age-Specific Percentile Charts | Helthvibe"
+    description="Free BMI calculator for kids and teens with age- and sex-specific percentile (CDC growth charts). Privacy-first."
+    h1="Child & Teen BMI Calculator"
+    intro="BMI for kids and teens is interpreted as a percentile, not a category. Enter age, sex, height, and weight to see where your child falls on the CDC growth chart."
+    status="coming-soon"
+    features={[
+      'CDC-aligned percentile for ages 2–19',
+      'Age- and sex-specific interpretation',
+      'Underweight / healthy / overweight / obese percentile bands',
+      'Growth-trend visualization (height/weight over time)',
+      'Parent-friendly explanations',
+    ]}
+    schema={schema}
+  />
+</Layout>

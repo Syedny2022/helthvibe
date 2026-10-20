@@ -1,0 +1,90 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'How do I read a BMI chart?',
+    a: 'Find your height in the left column and your weight in the top row. The cell at the intersection shows your BMI. Color coding typically maps to the four WHO categories: underweight (below 18.5), healthy (18.5–24.9), overweight (25–29.9), obese (30+). Charts are available in both metric (cm/kg) and imperial (in/lb) versions.',
+  },
+  {
+    q: 'Are BMI charts printable?',
+    a: 'Yes — printable PDF or image versions are commonly available from CDC, NHS, and other clinical sources. They are useful as a quick reference, especially for healthcare providers. For personal use, an online calculator is faster and more accurate, but a printable chart works well for routine checks at home.',
+  },
+  {
+    q: 'What is the difference between metric and imperial BMI charts?',
+    a: 'The BMI number is the same regardless of units — both compute kg/m². What differs is the table dimensions: metric charts typically show height in cm (150–200 cm) and weight in kg (40–120 kg); imperial charts show height in inches (60–80 in) and weight in lb (90–250 lb). The resulting BMI in the same cell is identical.',
+  },
+  {
+    q: 'What is the BMI range I should focus on?',
+    a: 'The WHO healthy range for most adults is 18.5–24.9. If you are of South, East, or Southeast Asian heritage, the adjusted range is 18.5–22.9. For adults 65+, the suggested range is roughly 22–27. Athletes should focus on body-fat percentage rather than BMI.',
+  },
+  {
+    q: 'Are there BMI charts for children?',
+    a: 'Yes — pediatric BMI uses percentiles against age- and sex-matched peers, not absolute values. The CDC publishes pediatric growth charts for ages 2–20. The same charts are widely available from WHO for ages 5–19. Adults typically use the WHO adult bands.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmi/', title: 'Adult BMI Calculator', desc: 'Faster than reading a chart.' },
+  { href: '/articles/what-is-a-healthy-bmi/', title: 'What Is a Healthy BMI?', desc: 'Healthy range by age and ethnicity.' },
+  { href: '/calculators/healthy-weight/', title: 'Healthy Weight Calculator', desc: 'See your healthy weight band.' },
+];
+---
+<ArticleLayout
+  title="BMI Chart for Adults – Quick Lookup by Height and Weight | Helthvibe"
+  description="A printable BMI chart for adults — quick lookup by height and weight in metric and imperial. WHO-standard categories color-coded."
+  h1="BMI Chart for Adults — Quick Lookup by Height and Weight"
+  excerpt="A printable, sortable BMI chart for adults. Find your row and column, see your BMI category, and use it as a quick reference."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Reference"
+  readTime="4 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>Understanding the Standard BMI Categories</h2>
+  <p>The WHO BMI classification system — adopted by the CDC, NIH, NHS, and virtually every national health authority — assigns adults to one of six categories based on their calculated BMI. These categories are fixed regardless of age (for adults 20+), sex, or ethnicity (with the exception of the WHO's separate Asian-specific guidance). The thresholds were established by correlating BMI values with all-cause mortality data from large epidemiological cohorts and identifying the inflection points where disease risk begins to rise steeply.</p>
+  <table>
+    <thead><tr><th>BMI Range</th><th>WHO Classification</th><th>Population-Level Cardiometabolic Risk</th></tr></thead>
+    <tbody>
+      <tr><td>Below 18.5</td><td>Underweight</td><td>Elevated (often due to chronic disease, malnutrition, smoking)</td></tr>
+      <tr><td>18.5 – 24.9</td><td>Healthy Weight</td><td>Lowest</td></tr>
+      <tr><td>25.0 – 29.9</td><td>Overweight</td><td>Moderately elevated</td></tr>
+      <tr><td>30.0 – 34.9</td><td>Obesity Class I</td><td>High</td></tr>
+      <tr><td>35.0 – 39.9</td><td>Obesity Class II</td><td>Very High</td></tr>
+      <tr><td>40.0 and above</td><td>Obesity Class III (Severe)</td><td>Extremely High</td></tr>
+    </tbody>
+  </table>
+  <p>The Class III (severe obesity) category is the fastest-growing classification in the United States. Per the CDC's Behavioral Risk Factor Surveillance System (BRFSS) 2020 data, the prevalence of severe obesity (BMI 40+) has increased from approximately 3% in 1990 to over 9% in recent years, representing one of the most significant shifts in population body composition in modern history.</p>
+  <p>The CDC and WHO reference tables for adult BMI use fixed cutoffs applied to the entire adult age range. For individuals under 20, percentile-based classification is used (see <a href="/articles/child-teen-bmi-calculator/">Child &amp; Teen BMI Calculator</a>). For adults 65 and older, the same categories are applied officially, though epidemiological evidence suggests the risk nadir shifts upward (see <a href="/articles/senior-bmi-calculator/">Senior BMI Calculator</a>).</p>
+
+  <h2>The Hidden Bias of Self-Reported Weight</h2>
+  <p>A critical and underappreciated limitation of population-level BMI data — including many prevalence estimates published in clinical journals and public health reports — is the reliance on <strong>self-reported height and weight</strong>. The BRFSS and most large national health surveys collect height and weight through telephone or self-administered questionnaires. This methodology introduces systematic reporting biases that substantially distort the true prevalence of obesity.</p>
+  <p>Research published in <em>Preventing Chronic Disease</em> (CDC, 2023) applied validated bias-correction methods to 2020 BRFSS self-reported data and found that:</p>
+  <ul>
+    <li><strong>Self-reported height is systematically over-reported</strong> — particularly by shorter adults and older men. People tend to round up their height, especially if they have lost height with age-related vertebral compression.</li>
+    <li><strong>Self-reported weight is systematically under-reported</strong> — particularly by heavier adults and women. The social desirability of appearing lighter leads to consistent underestimation.</li>
+    <li>The combined effect: self-reported BMI systematically <strong>underestimates</strong> obesity prevalence. The study found that actual Class III obesity prevalence was <strong>8.8%</strong> compared to a self-reported figure of only <strong>5.3%</strong> — a discrepancy of more than 3 percentage points, representing millions of individuals who are misclassified in national surveys.</li>
+  </ul>
+  <p>This means that published estimates of obesity prevalence — which inform public health policy, resource allocation, and clinical guidelines — are based on systematically biased data. The true prevalence of severe obesity is meaningfully higher than commonly cited figures. Clinical measurement (standing height on a stadiometer, weight on a calibrated scale) remains the gold standard for individual BMI assessment, and this discrepancy is one argument for prioritizing waist circumference and metabolic markers over BMI as screening tools in clinical practice.</p>
+
+  <h2>How to Read a BMI Chart Effectively</h2>
+  <p>A BMI chart presents height on one axis and weight on the other, with BMI values (or color-coded risk categories) in the cells. To use one effectively:</p>
+  <ul>
+    <li><strong>Find your height</strong> in the left column (or row, depending on chart orientation).</li>
+    <li><strong>Find your weight</strong> in the top row (or column).</li>
+    <li><strong>Locate the intersection cell</strong> — this is your approximate BMI.</li>
+    <li><strong>Read the category</strong> from the color coding or label: blue/green for healthy weight, yellow for overweight, orange/red for obesity classes.</li>
+  </ul>
+  <p>Charts are available in both metric (height in cm, weight in kg) and imperial (height in feet/inches, weight in pounds). The BMI number at any given intersection is identical regardless of which chart you use — the units only change how height and weight are expressed.</p>
+  <p>The practical limitation of charts is resolution: most charts are printed with height increments of 2 inches (5 cm) and weight increments of 5–10 kg (10–20 lb). An individual who is 175.3 cm and weighs 72.7 kg must read from the 175 cm / 73 kg cell, introducing rounding error of ±0.1–0.3 BMI units. For clinical precision, an online calculator that accepts exact values is preferable to a printed chart.</p>
+  <p>The chart is most useful as a quick reference and educational tool — for healthcare providers demonstrating BMI concepts to patients, or for individuals who want to understand where their height-weight combination falls on the classification spectrum. For personal tracking over time, consistent measurement on the same scale (ideally the same time of day, weekly or monthly) is more informative than chart-based lookup.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Centers for Disease Control and Prevention. <em>Adult BMI Calculator and Charts.</em> cdc.gov, accessed 2026.</li>
+    <li>National Health Service (UK). <em>BMI Healthy Weight Chart.</em> nhs.uk, accessed 2026.</li>
+    <li>World Health Organization. <em>The WHO Global Database on BMI.</em> who.int.</li>
+  </ul>
+</ArticleLayout>

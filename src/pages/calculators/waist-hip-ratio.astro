@@ -1,0 +1,268 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const title = 'Free Waist-to-Hip Ratio Calculator — WHO Risk Thresholds | Helthvibe';
+const description =
+  'Calculate your waist-to-hip ratio (WHR) with WHO cardiometabolic risk thresholds by sex. Quick, private, and 100% client-side.';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe Waist-to-Hip Ratio Calculator',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  url: 'https://helthvibe.com/calculators/waist-hip-ratio/',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What is a healthy waist-to-hip ratio?', acceptedAnswer: { '@type': 'Answer', text: 'WHO thresholds: for men, below 0.90 indicates low risk; for women, below 0.80 indicates low risk. WHR above 0.99 in men or 0.84 in women signals elevated cardiometabolic risk.' } },
+    { '@type': 'Question', name: 'How do I measure my waist and hip correctly?', acceptedAnswer: { '@type': 'Answer', text: 'Waist: measure at the level of the navel, after a normal exhale, without sucking in. Hip: measure at the widest point of the buttocks, typically over light clothing. Use a flexible tape measure.' } },
+    { '@type': 'Question', name: 'Is WHR better than BMI?', acceptedAnswer: { '@type': 'Answer', text: 'WHR captures fat distribution — specifically visceral fat — that BMI cannot detect. A normal-BMI person with central adiposity (apple shape) has elevated risk that BMI alone misses. WHR is a useful supplement to BMI, not a replacement.' } },
+    { '@type': 'Question', name: 'Is my data private?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All math runs in your browser. Your measurements never leave your device.' } },
+  ],
+};
+
+const faqs = [
+  { q: 'What is a healthy waist-to-hip ratio?', a: 'For men, below 0.90 is low risk. For women, below 0.80 is low risk. WHR is a better visceral-fat signal than BMI alone.' },
+  { q: 'How do I measure correctly?', a: 'Waist at the navel after a normal exhale. Hip at the widest point of the buttocks. Use a flexible tape, no sucking in.' },
+  { q: 'WHR or waist-to-height — which is better?', a: 'Both work. WHtR has a single 0.5 cutoff across populations. WHR is sex-specific. Use WHtR for simplicity; use WHR for sex-specific cardiometabolic risk.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Free · WHO 2008 · Private</span>
+      <h1>Waist-to-Hip Ratio Calculator</h1>
+      <p class="lead">WHR is one of the strongest single predictors of cardiometabolic risk because it captures where you carry fat — not just how much.</p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <div class="whr-calc" data-whr-calc id="whr-calc-main">
+            <form class="whr-form" data-form novalidate>
+              <div class="field">
+                <label class="field-label">Biological sex (for risk thresholds)</label>
+                <div class="sex-toggle">
+                  <button type="button" class="sex-btn" data-sex="female">Female</button>
+                  <button type="button" class="sex-btn active" data-sex="male">Male</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="field">
+                  <label class="field-label" for="whr-waist">Waist circumference (cm)</label>
+                  <input type="number" id="whr-waist" name="waistCm" min="40" max="200" step="0.1" placeholder="85" required />
+                  <p class="field-hint">Measure at the navel, after a normal exhale.</p>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="whr-hip">Hip circumference (cm)</label>
+                  <input type="number" id="whr-hip" name="hipCm" min="60" max="200" step="0.1" placeholder="95" required />
+                  <p class="field-hint">Widest point of the buttocks.</p>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Calculate WHR</button>
+              <p class="privacy-note">🔒 All math runs in your browser. Data never leaves this device.</p>
+            </form>
+
+            <div class="whr-result" data-result hidden>
+              <div class="result-score">
+                <span class="result-label">Your waist-to-hip ratio</span>
+                <span class="result-value" data-whr-value>—</span>
+              </div>
+              <div class="result-category" data-cat-pill>
+                <span class="dot" data-cat-dot></span>
+                <span data-cat-label>—</span>
+              </div>
+              <p class="result-desc" data-cat-desc></p>
+
+              <div class="risk-scale" aria-hidden="true">
+                <div class="scale-track">
+                  <div class="scale-segment seg-low" data-seg="low"></div>
+                  <div class="scale-segment seg-mod" data-seg="mod"></div>
+                  <div class="scale-segment seg-high" data-seg="high"></div>
+                  <div class="scale-marker" data-marker></div>
+                </div>
+                <div class="scale-labels">
+                  <span data-label-low>—</span>
+                  <span data-label-mod>—</span>
+                  <span data-label-high>—</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="calc-side">
+          <div class="info-card">
+            <h3>WHO risk thresholds</h3>
+            <table class="cat-table">
+              <thead><tr><th>Risk</th><th>Men</th><th>Women</th></tr></thead>
+              <tbody>
+                <tr><td>Low</td><td>&lt; 0.90</td><td>&lt; 0.80</td></tr>
+                <tr><td>Moderate</td><td>0.90–0.99</td><td>0.80–0.84</td></tr>
+                <tr><td>High</td><td>≥ 1.00</td><td>≥ 0.85</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="info-card">
+            <h3>Why WHR matters</h3>
+            <p>Visceral fat — the fat stored deep in the abdominal cavity around your organs — is far more metabolically active than subcutaneous fat. WHR captures this better than BMI because it measures distribution, not total mass.</p>
+          </div>
+          <div class="info-card">
+            <h3>Privacy</h3>
+            <p>All calculations happen locally. Your measurements are never sent to a server.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container-narrow">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">{faqs.map((f) => (<details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Keep exploring</h2>
+      <div class="grid grid-3">
+        <a href="/calculators/waist-height-ratio/" class="card"><h3 class="card-title">Waist-to-Height Ratio</h3><p class="card-desc">Single 0.5 cutoff across populations.</p></a>
+        <a href="/calculators/bmi/" class="card"><h3 class="card-title">Adult BMI</h3><p class="card-desc">The starting point for body composition assessment.</p></a>
+        <a href="/articles/bmi-and-health-risks/" class="card"><h3 class="card-title">BMI and Health Risks</h3><p class="card-desc">Cardiometabolic correlations by BMI band.</p></a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero { padding: var(--space-7) 0 var(--space-6); text-align: center; background: radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%), var(--color-bg); }
+  .page-hero .badge { margin-bottom: var(--space-3); }
+  .page-hero h1 { margin-bottom: var(--space-3); }
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+  .calc-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-6); align-items: start; }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+  .calc-main { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card { background: var(--color-bg-soft); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: var(--space-5); }
+  .info-card h3 { font-size: 1rem; margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .cat-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .cat-table th, .cat-table td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid var(--color-border-soft); }
+  .cat-table th { font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.04em; }
+  .cat-table tr:last-child td { border-bottom: none; }
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+  .faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); transition: border-color 0.15s var(--ease-out); }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary { cursor: pointer; font-weight: 600; color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--color-brand); transition: transform 0.15s var(--ease-out); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+
+  .whr-calc { display: grid; gap: var(--space-5); }
+  .whr-form { display: grid; gap: var(--space-4); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+  .field-hint { font-size: 0.78rem; color: var(--color-text-muted); margin: 0; }
+  .sex-toggle { display: grid; grid-template-columns: 1fr 1fr; background: var(--color-bg-soft); border-radius: var(--radius-md); padding: 4px; gap: 4px; }
+  .sex-btn { padding: 0.6rem; font-size: 0.9rem; font-weight: 500; color: var(--color-text-soft); border-radius: var(--radius-sm); transition: all 0.15s var(--ease-out); }
+  .sex-btn.active { background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-sm); }
+  input[type="number"] { padding: 0.75rem 0.9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); width: 100%; }
+  input[type="number"]:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 3px rgba(20, 184, 138, 0.12); }
+  .privacy-note { margin: 0; text-align: center; font-size: 0.82rem; color: var(--color-text-muted); }
+
+  .whr-result { background: var(--color-bg-soft); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; gap: var(--space-4); border: 1px solid var(--color-border-soft); animation: slideIn 0.3s var(--ease-out); }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .result-score { text-align: center; line-height: 1.1; }
+  .result-label { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  .result-value { display: inline-block; font-size: 3.5rem; font-weight: 800; color: var(--color-text); letter-spacing: -0.02em; }
+  .result-category { display: inline-flex; align-self: center; align-items: center; gap: 0.5rem; padding: 0.45rem 1rem; border-radius: 999px; font-weight: 600; background: var(--color-surface); border: 1px solid var(--color-border); font-size: 0.95rem; }
+  .dot { width: 0.6rem; height: 0.6rem; border-radius: 999px; background: currentColor; }
+  .result-desc { margin: 0; text-align: center; color: var(--color-text-soft); font-size: 0.95rem; }
+
+  .risk-scale { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+  .scale-track { position: relative; display: grid; grid-template-columns: 1fr 1fr 1fr; height: 10px; border-radius: 999px; overflow: hidden; }
+  .scale-segment.seg-low { background: #10b981; }
+  .scale-segment.seg-mod { background: #f59e0b; }
+  .scale-segment.seg-high { background: #ef4444; }
+  .scale-marker { position: absolute; top: -4px; width: 4px; height: 18px; background: var(--color-text); border-radius: 2px; transform: translateX(-2px); transition: left 0.4s var(--ease-out); left: 0%; }
+  .scale-labels { display: grid; grid-template-columns: 1fr 1fr 1fr; font-size: 0.72rem; text-align: center; color: var(--color-text-muted); }
+</style>
+
+<script>
+  import { calculateWHR, WHR_CUTOFFS, getWHRRisk, type Sex } from '@lib/health';
+
+  function initWhrCalc(root: HTMLElement) {
+    const form = root.querySelector('[data-form]') as HTMLFormElement;
+    const result = root.querySelector('[data-result]') as HTMLElement;
+    const whrValue = root.querySelector('[data-whr-value]') as HTMLElement;
+    const catPill = root.querySelector('[data-cat-pill]') as HTMLElement;
+    const catLabel = root.querySelector('[data-cat-label]') as HTMLElement;
+    const catDesc = root.querySelector('[data-cat-desc]') as HTMLElement;
+    const catDot = root.querySelector('[data-cat-dot]') as HTMLElement;
+    const marker = root.querySelector('[data-marker]') as HTMLElement;
+    const labelLow = root.querySelector('[data-label-low]') as HTMLElement;
+    const labelMod = root.querySelector('[data-label-mod]') as HTMLElement;
+    const labelHigh = root.querySelector('[data-label-high]') as HTMLElement;
+
+    let sex: Sex = 'male';
+
+    root.querySelectorAll<HTMLButtonElement>('.sex-btn').forEach((b) => {
+      b.addEventListener('click', () => {
+        sex = b.dataset.sex as Sex;
+        root.querySelectorAll('.sex-btn').forEach((x) => x.classList.toggle('active', (x as HTMLElement).dataset.sex === sex));
+        updateLabels();
+      });
+    });
+
+    function updateLabels() {
+      const c = WHR_CUTOFFS[sex];
+      labelLow.textContent = `< ${c.low}`;
+      labelMod.textContent = `${c.low}–${c.moderate}`;
+      labelHigh.textContent = `≥ ${c.high}`;
+    }
+    updateLabels();
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const waistCm = Number(data.get('waistCm'));
+      const hipCm = Number(data.get('hipCm'));
+      if (!waistCm || !hipCm || hipCm < waistCm * 0.5) return;
+
+      const ratio = calculateWHR({ waistCm, hipCm, sex });
+      const risk = getWHRRisk(ratio, sex);
+
+      whrValue.textContent = ratio.toFixed(2);
+      const colors = { low: '#10b981', moderate: '#f59e0b', high: '#ef4444' };
+      const labels = { low: 'Low risk', moderate: 'Moderate risk', high: 'High risk' };
+      const descs = {
+        low: 'Below the WHO threshold for elevated cardiometabolic risk.',
+        moderate: 'Borderline — consider reducing waist circumference through diet and activity.',
+        high: 'Elevated cardiometabolic risk. Discuss with a clinician.',
+      };
+      catPill.style.color = colors[risk];
+      catDot.style.background = colors[risk];
+      catLabel.textContent = labels[risk];
+      catDesc.textContent = descs[risk];
+
+      // Marker position on a 0.6 to 1.1 scale
+      const min = 0.6, max = 1.1;
+      const pct = Math.max(0, Math.min(100, ((ratio - min) / (max - min)) * 100));
+      marker.style.left = `${pct}%`;
+
+      result.hidden = false;
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-whr-calc]').forEach(initWhrCalc);
+</script>

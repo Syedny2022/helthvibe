@@ -1,0 +1,81 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'Do metric and imperial BMI calculations give the same number?',
+    a: 'Yes. BMI is a unit-agnostic ratio: weight ÷ height². Both systems compute the same value. The metric formula is kg/m²; the imperial formula multiplies by a conversion constant (703) to give the same number when using pounds and inches. The category thresholds are identical.',
+  },
+  {
+    q: 'Which is more accurate?',
+    a: 'Neither — both are equally accurate. The WHO publishes the same category cutoffs (18.5, 25, 30) regardless of units. What matters more than units is the precision of your input: weigh yourself in the morning, post-bathroom, pre-meal, on a calibrated scale for the most consistent reading.',
+  },
+  {
+    q: 'How do I convert my height between metric and imperial?',
+    a: '1 inch = 2.54 cm exactly. To convert cm to inches, divide by 2.54. To convert inches to cm, multiply by 2.54. For feet + inches, convert inches to total inches first (5 ft 7 in = 67 in), then multiply by 2.54 to get cm. Most online calculators do this for you; do not round mid-calculation.',
+  },
+  {
+    q: 'Should I use metric or imperial?',
+    a: 'Use whichever units you measure yourself in. If you know your weight in pounds and your height in feet and inches, use imperial. If you weigh in kilograms and measure in centimeters, use metric. The result is the same number — the difference is only in what you type.',
+  },
+  {
+    q: 'Why do some calculators only support one unit system?',
+    a: 'Some calculators are built for a single market (e.g., NHS for the UK uses metric, CDC for the US uses imperial). Others lack the conversion logic in the engineering. A well-built BMI calculator supports both with a single toggle and converts internally.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmi/', title: 'Adult BMI Calculator', desc: 'Toggle between metric and imperial.' },
+  { href: '/articles/how-to-calculate-bmi-2026/', title: 'How to Calculate BMI', desc: 'Both formulas explained.' },
+  { href: '/articles/bmi-chart-for-adults/', title: 'BMI Chart for Adults', desc: 'Quick lookup tables.' },
+];
+---
+<ArticleLayout
+  title="BMI Calculator with Metric & Imperial Units – Instant Results | Helthvibe"
+  description="A BMI calculator that supports both metric and imperial units with a single toggle. Instant results, no signup, fully private."
+  h1="BMI Calculator with Metric &amp; Imperial Units — Instant Results"
+  excerpt="One toggle, instant conversion. Use metric (cm / kg) or imperial (ft / lb) — same result, no math on your end."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Calculator"
+  readTime="3 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>The Metric Formula</h2>
+  <p>BMI is a dimensionless ratio — it has no units because it cancels out in the division. The metric formula is straightforward:</p>
+  <p><strong>BMI = weight (kg) ÷ height (m)<sup>2</sup></strong></p>
+  <p>In clinical and research settings where height is recorded in centimeters, the equivalent formula:</p>
+  <p><strong>BMI = weight (kg) ÷ [height (cm)]<sup>2</sup> × 10,000</strong></p>
+  <p>The multiplication by 10,000 corrects for the fact that height in centimeters is 100 times larger than height in meters — without the correction factor, the result would be 10,000 times too small. Both formulas produce identical results to the precision of the input data.</p>
+  <p>The metric system is the natural language of BMI because the formula was developed using metric units and the WHO category cutoffs (18.5, 25, 30) are expressed in kg/m². Using metric inputs eliminates any potential conversion error that might accumulate when converting between measurement systems.</p>
+
+  <h2>The Imperial Formula</h2>
+  <p>The United States Customary (imperial) system requires a conversion constant to produce the same kg/m² value from pounds and inches. The formula is:</p>
+  <p><strong>BMI = [weight (lb) ÷ height (in)<sup>2</sup>] × 703</strong></p>
+  <p>The constant 703 converts pounds per square inch into the equivalent of kg/m². It is derived from: (1 lb = 0.453592 kg)² ÷ (1 in = 0.0254 m)², which equals approximately 703.07. The constant 703 (rounded to three significant figures) is used in clinical practice and by the CDC in their online imperial BMI calculator.</p>
+  <p>For height expressed in feet and inches separately, first convert to total inches: multiply feet by 12 and add the remaining inches. For example, 5 feet 9 inches = (5 × 12) + 9 = 69 inches. This total-inch value is then used directly in the formula.</p>
+
+  <h2>Conversion Between Systems</h2>
+  <p>The National Institute of Standards and Technology (NIST Handbook 44, 2024) specifies exact conversion factors for all health-related measurements:</p>
+  <ul>
+    <li><strong>1 inch = 2.54 cm exactly</strong> (defined, not approximate)</li>
+    <li><strong>1 pound = 0.45359237 kg</strong> (defined, not approximate)</li>
+    <li><strong>1 kg = 2.20462262 lb</strong></li>
+  </ul>
+  <p>When converting height from imperial to metric, use the exact factor 2.54 cm/inch. The most common source of calculation error is rounding mid-calculation — always use full precision for intermediate values and round only the final BMI result to one decimal place (standard clinical convention).</p>
+  <p>The two systems produce the same category at the same BMI number. A BMI of 25.0 kg/m² is the boundary between healthy weight and overweight in both systems, whether calculated from metric or imperial inputs. The WHO fact sheet on BMI classification (2020) explicitly states that classification thresholds are unit-independent — the same cutoffs apply globally regardless of the measurement system used.</p>
+
+  <h2>Why Precision Matters</h2>
+  <p>BMI thresholds are clinically significant boundaries, not arbitrary lines. A BMI of 24.9 and 25.0 are on opposite sides of the overweight threshold, but the biological difference is negligible. A BMI of 29.9 and 30.0 separate "obese" from "overweight." A BMI of 34.9 and 35.0 separate Class I from Class II obesity.</p>
+  <p>These decimal-level distinctions matter because clinical guidelines are attached to them. A patient with BMI 29.9 is in the overweight category, typically managed with lifestyle intervention. The same patient with BMI 30.1 enters the obesity classification, triggering different clinical considerations, potentially different insurance coverage for intervention programs, and a substantially different population-level mortality risk profile.</p>
+  <p>This is why input precision matters: weighing yourself on a calibrated scale (not a bathroom scale), measuring height without shoes against a wall, and using a calculator that handles the arithmetic precisely will give you the most accurate category assignment. Measuring weight at the same time of day (morning, post-bathroom, pre-meal) eliminates the 1–2 kg daily fluctuation from food and fluid intake.</p>
+  <p>For most clinical and screening purposes, BMI calculated to one decimal place is sufficient. Obsessing over two-decimal precision is not warranted — the population-level thresholds are inherently approximate, and individual metabolic health depends on far more than a single decimal point in a screening formula.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>National Institute of Standards and Technology. <em>Unit Conversions.</em> NIST Handbook 44, 2024.</li>
+    <li>World Health Organization. <em>BMI classification thresholds are unit-independent.</em> WHO Fact Sheet, 2020.</li>
+  </ul>
+</ArticleLayout>

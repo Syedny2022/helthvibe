@@ -1,0 +1,128 @@
+---
+import Layout from '@layouts/Layout.astro';
+const title = 'Free BMI Prime Calculator — Quick Comparison to Healthy Range | Helthvibe';
+const description = 'Calculate your BMI Prime — the ratio of your BMI to 25. A simple dimensionless score that puts your BMI in context.';
+const softwareSchema = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Helthvibe BMI Prime Calculator', applicationCategory: 'HealthApplication', operatingSystem: 'Web', url: 'https://helthvibe.com/calculators/bmi-prime/', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } };
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+  { '@type': 'Question', name: 'What is BMI Prime?', acceptedAnswer: { '@type': 'Answer', text: 'BMI Prime is your BMI divided by 25 — the upper bound of the WHO healthy range. A BMI Prime of 1.0 means you are exactly at the overweight threshold. Values below 1.0 are in the healthy range; above 1.0 are above it.' } },
+  { '@type': 'Question', name: 'How is BMI Prime different from BMI?', acceptedAnswer: { '@type': 'Answer', text: 'BMI Prime is a dimensionless ratio that makes cross-population comparison easier. A BMI Prime of 1.20 means 20% above the healthy upper bound, regardless of the units used to calculate BMI.' } },
+  { '@type': 'Question', name: 'Is my data private?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.' } },
+] };
+const faqs = [
+  { q: 'What is BMI Prime?', a: 'Your BMI divided by 25. A BMI Prime of 1.0 means you are at the overweight threshold.' },
+  { q: 'Why use BMI Prime instead of BMI?', a: 'It is easier to interpret at a glance. "1.2× the upper healthy bound" is more intuitive than "BMI 30".' },
+  { q: 'Is BMI Prime used clinically?', a: 'It is not widely used in clinical practice but appears in research literature and is endorsed by some public-health bodies for its simplicity.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Free · Quick · Private</span>
+      <h1>BMI Prime Calculator</h1>
+      <p class="lead">BMI divided by 25 — a dimensionless score that puts your weight status in immediate context.</p>
+    </div>
+  </section>
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <div class="calc" data-bp-calc id="bp-main">
+            <form class="form" data-form novalidate>
+              <div class="row">
+                <div class="field"><label class="field-label" for="bp-h">Height (cm)</label><input type="number" id="bp-h" name="h" min="100" max="250" step="0.1" placeholder="175" required /></div>
+                <div class="field"><label class="field-label" for="bp-w">Weight (kg)</label><input type="number" id="bp-w" name="w" min="30" max="300" step="0.1" placeholder="70" required /></div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Calculate BMI Prime</button>
+              <p class="privacy-note">🔒 All math runs in your browser. Data never leaves this device.</p>
+            </form>
+            <div class="result" data-result hidden>
+              <div class="result-score"><span class="result-label">Your BMI Prime</span><span class="result-value" data-value>—</span></div>
+              <div class="result-category" data-pill><span class="dot" data-dot></span><span data-label>—</span></div>
+              <p class="result-desc" data-desc></p>
+              <p class="result-note" data-note></p>
+            </div>
+          </div>
+        </div>
+        <aside class="calc-side">
+          <div class="info-card"><h3>BMI Prime ranges</h3>
+            <table class="cat-table"><tbody><tr><th>Prime</th><th>Category</th></tr><tr><td>&lt; 0.74</td><td>Severely underweight</td></tr><tr><td>0.74–0.84</td><td>Underweight</td></tr><tr><td>0.85–0.99</td><td>Healthy range</td></tr><tr><td>1.00–1.19</td><td>Overweight</td></tr><tr><td>1.20–1.39</td><td>Obese</td></tr><tr><td>≥ 1.40</td><td>Severely obese</td></tr></tbody></table>
+          </div>
+          <div class="info-card"><h3>Why use it?</h3><p>BMI Prime makes it easy to see how far above or below the healthy range you are — without memorizing multiple BMI cutoffs.</p></div>
+          <div class="info-card"><h3>Privacy</h3><p>All calculations happen locally. Nothing is sent to a server.</p></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <section class="section section-soft"><div class="container-narrow"><h2>Frequently asked questions</h2><div class="faq-list">{faqs.map((f) => (<details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div></div></section>
+  <section class="section"><div class="container"><h2>Keep exploring</h2><div class="grid grid-3"><a href="/calculators/bmi/" class="card"><h3 class="card-title">Adult BMI</h3><p class="card-desc">The starting-point mass-to-height measure.</p></a><a href="/calculators/ponderal-index/" class="card"><h3 class="card-title">Ponderal Index</h3><p class="card-desc">The cube-based alternative to BMI.</p></a><a href="/articles/bmi-categories-explained/" class="card"><h3 class="card-title">BMI Categories</h3><p class="card-desc">All six WHO categories explained.</p></a></div></div></section>
+</Layout>
+<style>
+  .page-hero { padding: var(--space-7) 0 var(--space-6); text-align: center; background: radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%), var(--color-bg); }
+  .page-hero .badge { margin-bottom: var(--space-3); } .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+  .calc-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-6); align-items: start; }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+  .calc-main { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card { background: var(--color-bg-soft); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: var(--space-5); }
+  .info-card h3 { font-size: 1rem; margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .cat-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .cat-table th, .cat-table td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid var(--color-border-soft); }
+  .cat-table th { font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.04em; }
+  .cat-table tr:last-child td { border-bottom: none; }
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+  .faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary { cursor: pointer; font-weight: 600; color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--color-brand); transition: transform 0.15s var(--ease-out); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+  .calc { display: grid; gap: var(--space-5); }
+  .form { display: grid; gap: var(--space-4); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+  input[type="number"] { padding: 0.75rem 0.9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); width: 100%; }
+  input[type="number"]:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 3px rgba(20, 184, 138, 0.12); }
+  .privacy-note { margin: 0; text-align: center; font-size: 0.82rem; color: var(--color-text-muted); }
+  .result { background: var(--color-bg-soft); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; gap: var(--space-4); border: 1px solid var(--color-border-soft); animation: slideIn 0.3s var(--ease-out); }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .result-score { text-align: center; }
+  .result-label { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  .result-value { display: inline-block; font-size: 3.5rem; font-weight: 800; color: var(--color-text); letter-spacing: -0.02em; }
+  .result-category { display: inline-flex; align-self: center; align-items: center; gap: 0.5rem; padding: 0.45rem 1rem; border-radius: 999px; font-weight: 600; background: var(--color-surface); border: 1px solid var(--color-border); font-size: 0.95rem; }
+  .dot { width: 0.6rem; height: 0.6rem; border-radius: 999px; background: currentColor; }
+  .result-desc { margin: 0; text-align: center; color: var(--color-text-soft); font-size: 0.95rem; }
+  .result-note { margin: 0; text-align: center; color: var(--color-text-muted); font-size: 0.85rem; }
+</style>
+<script>
+  import { calculateBMI, calculateBMIPrime, getBMIPrimeCategory } from '@lib/health';
+  function init(root: HTMLElement) {
+    const form = root.querySelector('[data-form]') as HTMLFormElement;
+    const result = root.querySelector('[data-result]') as HTMLElement;
+    const valueEl = root.querySelector('[data-value]') as HTMLElement;
+    const pill = root.querySelector('[data-pill]') as HTMLElement;
+    const label = root.querySelector('[data-label]') as HTMLElement;
+    const dot = root.querySelector('[data-dot]') as HTMLElement;
+    const desc = root.querySelector('[data-desc]') as HTMLElement;
+    const note = root.querySelector('[data-note]') as HTMLElement;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(form);
+      const h = Number(d.get('h'));
+      const w = Number(d.get('w'));
+      if (!h || !w || h < 100) return;
+      const bmiR = calculateBMI({ heightCm: h, weightKg: w });
+      const prime = calculateBMIPrime(bmiR.bmi);
+      const cat = getBMIPrimeCategory(prime);
+      const colors = { severe_under: '#3b82f6', under: '#3b82f6', normal: '#10b981', over: '#f59e0b', obese: '#ef4444', severe_obese: '#ef4444' };
+      valueEl.textContent = prime.toFixed(2);
+      pill.style.color = colors[cat.id];
+      dot.style.background = colors[cat.id];
+      label.textContent = cat.label;
+      desc.textContent = `BMI ${bmiR.bmi.toFixed(1)} (${bmiR.category.label}). A BMI Prime of 1.0 = the WHO overweight threshold.`;
+      note.textContent = `At BMI Prime 1.0, your BMI is 25.0. Values above 1.0 indicate you are above the WHO healthy upper bound.`;
+      result.hidden = false;
+    });
+  }
+  document.querySelectorAll<HTMLElement>('[data-bp-calc]').forEach(init);
+</script>

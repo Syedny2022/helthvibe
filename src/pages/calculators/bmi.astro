@@ -1,0 +1,278 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BMICalculator from '@components/BMICalculator.astro';
+
+const title = 'Free Adult BMI Calculator – Instant Results + Healthy Range | Helthvibe';
+const description =
+  'Calculate your Body Mass Index instantly. See healthy range, category, and next steps. Works with metric and imperial units. No signup required.';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe Adult BMI Calculator',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  url: 'https://helthvibe.com/calculators/bmi/',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  description:
+    'Free, accurate Adult BMI Calculator with healthy range, metric & imperial units. 100% client-side.',
+  featureList: [
+    'Metric and imperial units',
+    'Healthy weight range calculation',
+    'WHO-standard BMI categories',
+    'Color-coded category indicator',
+    '100% client-side for privacy',
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is BMI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'BMI (Body Mass Index) is a simple number calculated from your height and weight: weight (kg) ÷ height (m)². It is a screening tool used to categorize weight status.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is a healthy BMI range?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For most adults, a BMI between 18.5 and 24.9 is considered the healthy range. Below 18.5 is underweight, 25–29.9 is overweight, and 30 or above falls into obesity categories.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is BMI accurate?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'BMI is a useful population-level screening tool but has limitations. It does not distinguish between muscle and fat mass, and may misclassify athletes, very muscular individuals, and some ethnic groups.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does Helthvibe store my data?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. All BMI calculations happen in your browser. Your height and weight are never sent to a server.',
+      },
+    },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'How is BMI calculated?',
+    a: 'BMI is your weight in kilograms divided by your height in meters squared (kg/m²). For imperial, multiply your weight in pounds by 703, then divide by your height in inches squared.',
+  },
+  {
+    q: 'What BMI is considered healthy?',
+    a: 'For most adults, 18.5–24.9 is the healthy range. Below 18.5 is underweight; 25–29.9 is overweight; 30+ is obese.',
+  },
+  {
+    q: 'Is BMI accurate for muscular or athletic people?',
+    a: 'No. BMI does not distinguish between muscle and fat, so athletes and very muscular individuals often read as overweight or obese despite being healthy. Use our Athlete BMI tool or a body-fat measurement for a clearer picture.',
+  },
+  {
+    q: 'Does BMI differ for men and women?',
+    a: 'The formula is the same, but body composition differs. Women typically have more essential fat. Use our Women-specific calculator for context.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All math runs in your browser. We never see, store, or transmit your height or weight.',
+  },
+];
+---
+<Layout
+  title={title}
+  description={description}
+  schema={[softwareSchema, faqSchema]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Free · WHO-standard · Private</span>
+      <h1>Adult BMI Calculator</h1>
+      <p class="lead">
+        Enter your height and weight. Get your BMI, your category, and your healthy weight range — instantly, in your browser.
+      </p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <BMICalculator variant="full" showAsianToggle={true} id="main-bmi" />
+        </div>
+
+        <aside class="calc-side">
+          <div class="info-card">
+            <h3>BMI categories (WHO adult)</h3>
+            <table class="cat-table">
+              <tbody>
+                <tr><th>BMI</th><th>Category</th></tr>
+                <tr><td>Below 18.5</td><td>Underweight</td></tr>
+                <tr><td>18.5 – 24.9</td><td>Healthy range</td></tr>
+                <tr><td>25.0 – 29.9</td><td>Overweight</td></tr>
+                <tr><td>30.0+</td><td>Obese</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="info-card">
+            <h3>How to use</h3>
+            <ol>
+              <li>Pick <strong>metric</strong> or <strong>imperial</strong>.</li>
+              <li>Enter your height and weight.</li>
+              <li>Click <strong>Calculate BMI</strong>.</li>
+              <li>See your score, category, and healthy weight range.</li>
+            </ol>
+          </div>
+
+          <div class="info-card">
+            <h3>Privacy</h3>
+            <p>All calculations happen locally in your browser. Your data is never sent to a server.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-soft">
+    <div class="container-narrow">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="section">
+    <div class="container">
+      <h2>Keep exploring</h2>
+      <div class="grid grid-3">
+        <a href="/calculators/ideal-weight/" class="card">
+          <h3 class="card-title">Ideal Weight Calculator</h3>
+          <p class="card-desc">Find your healthy weight with 5 evidence-based formulas.</p>
+        </a>
+        <a href="/articles/how-to-calculate-bmi-2026/" class="card">
+          <h3 class="card-title">How to Calculate BMI</h3>
+          <p class="card-desc">The formula, the chart, and the limitations, explained.</p>
+        </a>
+        <a href="/articles/is-bmi-accurate-in-2026/" class="card">
+          <h3 class="card-title">Is BMI Accurate in 2026?</h3>
+          <p class="card-desc">Where BMI works — and where it falls short.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: var(--space-7) 0 var(--space-6);
+    text-align: center;
+    background:
+      radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%),
+      var(--color-bg);
+  }
+  .page-hero .badge { margin-bottom: var(--space-3); }
+  .page-hero h1 { margin-bottom: var(--space-3); }
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+
+  .calc-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+  @media (max-width: 880px) {
+    .calc-layout { grid-template-columns: 1fr; }
+  }
+
+  .calc-main {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .calc-side {
+    display: grid;
+    gap: var(--space-4);
+  }
+  .info-card {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .info-card h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+  }
+  .cat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .cat-table th, .cat-table td {
+    padding: 0.5rem 0.6rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .cat-table th {
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+  .cat-table tr:last-child td { border-bottom: none; }
+
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--color-brand);
+    transition: transform 0.15s var(--ease-out);
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+</style>

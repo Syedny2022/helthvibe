@@ -1,0 +1,286 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const title = 'Free Body Fat Percentage Calculator — Deurenberg Formula | Helthvibe';
+const description =
+  'Estimate your body fat percentage from BMI, age, and sex using the validated Deurenberg (1991) formula. See your healthy BF% range by sex.';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe Body Fat Percentage Calculator',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  url: 'https://helthvibe.com/calculators/body-fat/',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: 'Estimate body fat percentage from BMI, age, and sex using the Deurenberg formula. 100% client-side, no signup.',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How accurate is the Deurenberg body fat formula?',
+      acceptedAnswer: { '@type': 'Answer', text: 'The Deurenberg equation has a standard error of estimate of approximately 4 percentage points compared with DEXA. It is accurate enough for population estimates and personal trend tracking, but not a substitute for a clinical measurement.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is a healthy body fat percentage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'For adult men, a healthy range is typically 14–24% (athletes 6–13%). For adult women, 21–31% (athletes 14–20%). Below essential fat — 2–5% in men, 10–13% in women — is incompatible with health.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does this calculator need my age?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Body composition changes with age. The Deurenberg equation includes age because the relationship between BMI and body fat percentage shifts systematically over the adult lifespan.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is my data private?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.' },
+    },
+  ],
+};
+
+const faqs = [
+  { q: 'How accurate is the Deurenberg body fat formula?', a: 'Standard error of estimate is ~4% compared with DEXA — accurate enough for tracking trends, not a substitute for clinical measurement.' },
+  { q: 'Why does this need my age?', a: 'Body composition shifts with age. Including age in the formula improves accuracy across the adult lifespan.' },
+  { q: 'Can I use this if I am very muscular?', a: 'Not reliably. The Deurenberg equation derives body fat from BMI, so anyone with high muscle mass relative to weight will get an inflated BF% reading. Use DEXA, hydrostatic weighing, or Bod Pod instead.' },
+  { q: 'What is essential fat?', a: 'The minimum body fat needed for basic physiological function. For men this is 2–5%; for women, 10–13%. Going below this disrupts hormonal and immune function.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Free · Deurenberg 1991 · Private</span>
+      <h1>Body Fat Percentage Calculator</h1>
+      <p class="lead">Estimate your body fat % from BMI, age, and sex using a clinically validated equation. See where you sit relative to healthy ranges.</p>
+    </div>
+  </section>
+
+  <section class="section calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <div class="calc-main">
+          <div class="bf-calc" data-bf-calc id="bf-calc-main">
+            <form class="bf-form" data-form novalidate>
+              <div class="field">
+                <label class="field-label" for="bf-units">Unit system</label>
+                <div class="unit-toggle">
+                  <button type="button" class="unit-btn active" data-unit="metric">Metric</button>
+                  <button type="button" class="unit-btn" data-unit="imperial">Imperial</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="field">
+                  <label class="field-label" for="bf-height">Height (cm)</label>
+                  <input type="number" id="bf-height" name="heightCm" min="100" max="250" step="0.1" placeholder="175" required />
+                </div>
+                <div class="field">
+                  <label class="field-label" for="bf-weight">Weight (kg)</label>
+                  <input type="number" id="bf-weight" name="weightKg" min="30" max="300" step="0.1" placeholder="70" required />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="field">
+                  <label class="field-label" for="bf-age">Age</label>
+                  <input type="number" id="bf-age" name="age" min="18" max="100" step="1" placeholder="30" required />
+                </div>
+                <div class="field">
+                  <label class="field-label">Biological sex</label>
+                  <div class="sex-toggle">
+                    <button type="button" class="sex-btn" data-sex="female">Female</button>
+                    <button type="button" class="sex-btn active" data-sex="male">Male</button>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Calculate body fat %</button>
+              <p class="privacy-note">🔒 All math runs in your browser. Data never leaves this device.</p>
+            </form>
+
+            <div class="bf-result" data-result hidden>
+              <div class="result-score">
+                <span class="result-label">Your body fat</span>
+                <span class="result-value" data-bf-value>—</span>
+                <span class="result-unit">%</span>
+              </div>
+              <div class="result-category" data-cat-pill>
+                <span class="dot" data-cat-dot></span>
+                <span data-cat-label>—</span>
+              </div>
+              <p class="result-desc" data-cat-desc></p>
+              <p class="result-note" data-bmi-note></p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="calc-side">
+          <div class="info-card">
+            <h3>Healthy BF% ranges</h3>
+            <table class="cat-table">
+              <thead><tr><th>Category</th><th>Men</th><th>Women</th></tr></thead>
+              <tbody>
+                <tr><td>Essential fat</td><td>2–5%</td><td>10–13%</td></tr>
+                <tr><td>Athletes</td><td>6–13%</td><td>14–20%</td></tr>
+                <tr><td>Fitness</td><td>14–17%</td><td>21–24%</td></tr>
+                <tr><td>Average</td><td>18–24%</td><td>25–31%</td></tr>
+                <tr><td>Elevated</td><td>≥ 25%</td><td>≥ 32%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="info-card">
+            <h3>How to use</h3>
+            <ol>
+              <li>Enter your height, weight, and age.</li>
+              <li>Select biological sex (used for formula constants).</li>
+              <li>Click <strong>Calculate</strong>.</li>
+              <li>See your estimated BF% and the healthy range.</li>
+            </ol>
+          </div>
+          <div class="info-card">
+            <h3>Privacy</h3>
+            <p>All calculations happen locally in your browser. Your data is never sent to a server.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container-narrow">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (<details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Keep exploring</h2>
+      <div class="grid grid-3">
+        <a href="/calculators/bmi/" class="card"><h3 class="card-title">Adult BMI Calculator</h3><p class="card-desc">The starting point for any body composition assessment.</p></a>
+        <a href="/calculators/lean-body-mass/" class="card"><h3 class="card-title">Lean Body Mass</h3><p class="card-desc">Estimate fat-free mass using the Boer equation.</p></a>
+        <a href="/articles/bmi-vs-body-fat-percentage/" class="card"><h3 class="card-title">BMI vs Body Fat %</h3><p class="card-desc">When each measure works, when each fails.</p></a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero { padding: var(--space-7) 0 var(--space-6); text-align: center; background: radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%), var(--color-bg); }
+  .page-hero .badge { margin-bottom: var(--space-3); }
+  .page-hero h1 { margin-bottom: var(--space-3); }
+  .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+  .calc-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-6); align-items: start; }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+  .calc-main { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card { background: var(--color-bg-soft); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: var(--space-5); }
+  .info-card h3 { font-size: 1rem; margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .cat-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .cat-table th, .cat-table td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid var(--color-border-soft); }
+  .cat-table th { font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.04em; }
+  .cat-table tr:last-child td { border-bottom: none; }
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+  .faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); transition: border-color 0.15s var(--ease-out); }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary { cursor: pointer; font-weight: 600; color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--color-brand); transition: transform 0.15s var(--ease-out); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+
+  /* Calculator-specific styles */
+  .bf-calc { display: grid; gap: var(--space-5); }
+  .bf-form { display: grid; gap: var(--space-4); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+  .unit-toggle, .sex-toggle { display: grid; background: var(--color-bg-soft); border-radius: var(--radius-md); padding: 4px; gap: 4px; }
+  .sex-toggle { grid-template-columns: 1fr 1fr; }
+  .unit-btn, .sex-btn { padding: 0.6rem; font-size: 0.9rem; font-weight: 500; color: var(--color-text-soft); border-radius: var(--radius-sm); transition: all 0.15s var(--ease-out); }
+  .unit-btn.active, .sex-btn.active { background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-sm); }
+  input[type="number"] { padding: 0.75rem 0.9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); width: 100%; }
+  input[type="number"]:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 3px rgba(20, 184, 138, 0.12); }
+  .privacy-note { margin: 0; text-align: center; font-size: 0.82rem; color: var(--color-text-muted); }
+
+  .bf-result { background: var(--color-bg-soft); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; gap: var(--space-4); border: 1px solid var(--color-border-soft); animation: slideIn 0.3s var(--ease-out); }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .result-score { text-align: center; line-height: 1.1; }
+  .result-label { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  .result-value { display: inline-block; font-size: 3.5rem; font-weight: 800; color: var(--color-text); letter-spacing: -0.02em; }
+  .result-unit { display: block; margin-top: var(--space-1); color: var(--color-text-muted); font-size: 0.9rem; }
+  .result-category { display: inline-flex; align-self: center; align-items: center; gap: 0.5rem; padding: 0.45rem 1rem; border-radius: 999px; font-weight: 600; background: var(--color-surface); border: 1px solid var(--color-border); font-size: 0.95rem; }
+  .dot { width: 0.6rem; height: 0.6rem; border-radius: 999px; background: currentColor; }
+  .result-desc { margin: 0; text-align: center; color: var(--color-text-soft); font-size: 0.95rem; }
+  .result-note { margin: 0; text-align: center; color: var(--color-text-muted); font-size: 0.85rem; }
+</style>
+
+<script>
+  import { calculateBMI, calculateBodyFatDeurenberg, getBfCategory, ftInToCm, lbToKg, type Sex } from '@lib/health';
+
+  function initBfCalc(root: HTMLElement) {
+    const form = root.querySelector('[data-form]') as HTMLFormElement;
+    const result = root.querySelector('[data-result]') as HTMLElement;
+    const bfValue = root.querySelector('[data-bf-value]') as HTMLElement;
+    const catPill = root.querySelector('[data-cat-pill]') as HTMLElement;
+    const catLabel = root.querySelector('[data-cat-label]') as HTMLElement;
+    const catDesc = root.querySelector('[data-cat-desc]') as HTMLElement;
+    const catDot = root.querySelector('[data-cat-dot]') as HTMLElement;
+    const bmiNote = root.querySelector('[data-bmi-note]') as HTMLElement;
+
+    let unit: 'metric' | 'imperial' = 'metric';
+    let sex: Sex = 'male';
+
+    root.querySelectorAll<HTMLButtonElement>('.unit-btn').forEach((b) => {
+      b.addEventListener('click', () => {
+        unit = b.dataset.unit as 'metric' | 'imperial';
+        root.querySelectorAll('.unit-btn').forEach((x) => x.classList.toggle('active', (x as HTMLElement).dataset.unit === unit));
+      });
+    });
+    root.querySelectorAll<HTMLButtonElement>('.sex-btn').forEach((b) => {
+      b.addEventListener('click', () => {
+        sex = b.dataset.sex as Sex;
+        root.querySelectorAll('.sex-btn').forEach((x) => x.classList.toggle('active', (x as HTMLElement).dataset.sex === sex));
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      let heightCm = Number(data.get('heightCm'));
+      let weightKg = Number(data.get('weightKg'));
+      const age = Number(data.get('age'));
+
+      if (unit === 'imperial') {
+        // For imperial, we treat heightCm as the field but it's actually inches when unit=imperial.
+        // To keep markup simple we use heightCm field but treat as inches in imperial mode.
+        const heightIn = heightCm;
+        const weightLb = weightKg;
+        heightCm = heightIn * 2.54;
+        weightKg = lbToKg(weightLb);
+      }
+
+      if (!heightCm || !weightKg || !age || heightCm < 100 || weightKg < 30 || age < 18) return;
+
+      const bmiResult = calculateBMI({ heightCm, weightKg });
+      const bf = calculateBodyFatDeurenberg({ bmi: bmiResult.bmi, age, sex });
+      const cat = getBfCategory(bf, sex);
+
+      bfValue.textContent = bf.toFixed(1);
+      catPill.style.color = '#10b981';
+      catDot.style.background = '#10b981';
+      catLabel.textContent = cat.label;
+      catDesc.textContent = cat.description;
+      bmiNote.textContent = `Based on BMI ${bmiResult.bmi.toFixed(1)} (${bmiResult.category.label}). Deurenberg equation ±4 percentage points vs DEXA.`;
+
+      result.hidden = false;
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-bf-calc]').forEach(initBfCalc);
+</script>

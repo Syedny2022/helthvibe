@@ -1,0 +1,99 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is BMR?',
+    a: 'Basal Metabolic Rate is the number of calories your body burns at complete rest to maintain basic physiological functions. It is the foundation of any calorie target.',
+  },
+  {
+    q: 'Mifflin-St Jeor vs Harris-Benedict?',
+    a: 'Mifflin-St Jeor is more accurate for modern, non-obese populations. Harris-Benedict was developed in 1919 and tends to overestimate BMR.',
+  },
+  {
+    q: 'Does BMR change with age?',
+    a: 'Yes — BMR decreases ~1–2% per decade after age 20 due to loss of metabolically active lean mass.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmr/', title: 'BMR Calculator', desc: 'Mifflin-St Jeor resting energy.' },
+  { href: '/calculators/tdee/', title: 'TDEE Calculator', desc: 'BMR + activity factor.' },
+  { href: '/calculators/lean-body-mass/', title: 'Lean Body Mass', desc: 'The driver of BMR.' },
+];
+---
+<ArticleLayout
+  title="Basal Metabolic Rate (BMR): What It Is and How to Calculate It | Helthvibe"
+  description="BMR is the calories your body burns at rest. The Mifflin-St Jeor equation is the most accurate predictive formula for healthy adults. Here's how it works."
+  h1="Basal Metabolic Rate (BMR) — What It Is and How to Calculate It"
+  excerpt="BMR is the calories your body burns at complete rest — the floor for any calorie target. The Mifflin-St Jeor equation is the most accurate predictive formula for modern adults."
+  datePublished="2026-09-29"
+  dateModified="2026-09-29"
+  category="Reference"
+  readTime="7 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>What BMR Actually Measures</h2>
+  <p>Basal Metabolic Rate (BMR) is the number of calories your body requires each day to maintain basic physiological functions at complete rest: breathing, circulation, cell production, brain activity, and thermoregulation. It excludes physical activity, digestion, and the thermic effect of food.</p>
+  <p>BMR is typically the largest component of total daily energy expenditure — usually 60–75% of total calories burned for sedentary adults. The remainder comes from physical activity (15–30%) and the thermic effect of food (~10%).</p>
+
+  <h2>The Mifflin-St Jeor Equation (1990)</h2>
+  <p>The most accurate predictive equation for BMR in healthy, non-obese adults is the Mifflin-St Jeor equation, published in the <em>American Journal of Clinical Nutrition</em> in 1990:</p>
+  <p><strong>Men:</strong> BMR = (10 × weight_kg) + (6.25 × height_cm) − (5 × age) + 5</p>
+  <p><strong>Women:</strong> BMR = (10 × weight_kg) + (6.25 × height_cm) − (5 × age) − 161</p>
+  <p>For a 30-year-old man at 175 cm and 75 kg:</p>
+  <p><code>BMR = 750 + 1093.75 − 150 + 5 = 1,699 kcal/day</code></p>
+  <p>For a 30-year-old woman at 165 cm and 60 kg:</p>
+  <p><code>BMR = 600 + 1031.25 − 150 − 161 = 1,320 kcal/day</code></p>
+  <p>The Mifflin-St Jeor equation is accurate to within ±10% of indirect calorimetry measurements — better than the older Harris-Benedict equation (1919, revised 1984), which tends to overestimate BMR by 5–10% in modern populations.</p>
+
+  <h2>What Drives BMR</h2>
+  <p>BMR is determined primarily by fat-free mass (muscle, bone, organs). Lean body mass is the most metabolically active tissue — burning approximately 13 kcal/kg/day at rest, compared to 4.5 kcal/kg/day for adipose tissue. This is why athletes with high muscle mass have higher BMRs, and why BMR declines with age as sarcopenia progresses.</p>
+  <p>Other factors influencing BMR include:</p>
+  <ul>
+    <li><strong>Age:</strong> BMR decreases approximately 1–2% per decade after age 20, largely due to loss of fat-free mass.</li>
+    <li><strong>Sex:</strong> Men have higher BMR than women at the same height and weight because of greater muscle mass and lower body fat percentage.</li>
+    <li><strong>Genetics:</strong> Heritability of BMR is estimated at 40–60%. Some people genuinely have higher or lower metabolic rates at the same body composition.</li>
+    <li><strong>Hormones:</strong> Thyroid hormone, catecholamines, and testosterone all increase BMR. Hypothyroidism can reduce BMR by 20–40%.</li>
+    <li><strong>Temperature:</strong> Both cold and fever increase BMR through thermoregulatory activity.</li>
+  </ul>
+
+  <h2>BMR vs RMR vs TDEE</h2>
+  <p>These terms are often used interchangeably but technically differ:</p>
+  <ul>
+    <li><strong>BMR (Basal Metabolic Rate):</strong> Strictly measured after an overnight fast, lying at complete rest in a thermoneutral environment. Closest to "true minimum."</li>
+    <li><strong>RMR (Resting Metabolic Rate):</strong> Measured under less strict conditions — typically 10–20% higher than BMR due to residual digestion and slight movement.</li>
+    <li><strong>TDEE (Total Daily Energy Expenditure):</strong> BMR or RMR multiplied by an activity factor. Represents the calories you actually burn in a day.</li>
+  </ul>
+  <p>Practical calculators often use Mifflin-St Jeor as a TDEE baseline when activity factor is included, or as a BMR estimate when activity is excluded. The distinction is academic for most uses.</p>
+
+  <h2>When Mifflin-St Jeor Fails</h2>
+  <p>The Mifflin-St Jeor equation loses accuracy in several populations:</p>
+  <ul>
+    <li><strong>Very obese individuals (BMI ≥ 40):</strong> Tends to overestimate BMR. Use the adjusted body weight in clinical contexts.</li>
+    <li><strong>Highly muscular athletes:</strong> May underestimate BMR because fat-free mass is unusually high relative to body weight.</li>
+    <li><strong>Elderly with sarcopenia:</strong> May overestimate BMR because muscle loss is not captured by height/weight alone.</li>
+    <li><strong>Specific ethnic groups:</strong> Some evidence of systematic differences, though the equation is widely applied across populations.</li>
+  </ul>
+  <p>For these populations, indirect calorimetry (measured oxygen consumption) is the gold standard. Most individuals can rely on Mifflin-St Jeor with confidence.</p>
+
+  <h2>How to Use Your BMR</h2>
+  <p>BMR is the floor of any calorie target. Multiply by an activity factor (1.2 sedentary → 1.9 very active) to estimate TDEE, then add or subtract to set weight goals:</p>
+  <ul>
+    <li><strong>Maintain:</strong> Eat at TDEE.</li>
+    <li><strong>Lose:</strong> Eat 300–500 kcal below TDEE for sustainable loss (~0.5 kg/week).</li>
+  </ul>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Mifflin MD, St Jeor ST, Hill LA, Scott BJ, Daugherty SA, Koh YO. <em>A new predictive equation for resting energy expenditure in healthy individuals.</em> Am J Clin Nutr. 1990;51(2):241–247.</li>
+    <li>Frankenfield D, Roth-Yousey L, Compher C. <em>Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review.</em> J Am Diet Assoc. 2005;105(5):775–789.</li>
+    <li>Wang Z, et al. <em>Specific metabolic rates of major organs and tissues across adulthood.</em> Obesity. 2010;18(4):757–764.</li>
+  </ul>
+</ArticleLayout>

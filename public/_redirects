@@ -1,0 +1,4 @@
+# Canonical host redirect — www to apex.
+# Cloudflare also auto-redirects www once both hosts are attached to the
+# Pages project; this rule guarantees it even before that is configured.
+https://www.helthvibe.com/*  https://helthvibe.com/:splat  301

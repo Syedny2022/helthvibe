@@ -1,0 +1,96 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is the Ponderal Index?',
+    a: 'Ponderal Index (PI), also called Rohrer Index, is weight divided by height cubed. Unlike BMI which divides by height squared, PI scales mass with the cube — the geometrically correct relationship for three-dimensional objects.',
+  },
+  {
+    q: 'Is Ponderal Index better than BMI?',
+    a: 'For very tall or very short individuals, PI is theoretically better than BMI because it scales correctly with mass-volume relationships. In practice, both are screening tools with similar predictive value for population-level adiposity.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.',
+  },
+];
+
+const related = [
+  { href: '/calculators/ponderal-index/', title: 'Ponderal Index Calculator', desc: 'Compute your PI.' },
+  { href: '/calculators/bmi/', title: 'Adult BMI', desc: 'The square-based standard.' },
+  { href: '/calculators/bmi-prime/', title: 'BMI Prime', desc: 'BMI / 25 comparison.' },
+];
+---
+<ArticleLayout
+  title="Ponderal Index: The Cube-Based Alternative to BMI | Helthvibe"
+  description="The Ponderal Index divides weight by height cubed — geometrically correct scaling that produces less distortion than BMI at height extremes."
+  h1="Ponderal Index — The Cube-Based Alternative to BMI"
+  excerpt="Mass scales with the cube of linear dimensions. BMI divides by the square, which distorts results at height extremes. Ponderal Index divides by the cube — geometrically correct."
+  datePublished="2026-09-29"
+  dateModified="2026-09-29"
+  category="Reference"
+  readTime="6 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>The Mathematical Problem with BMI</h2>
+  <p>BMI divides weight by height squared. The problem: mass scales with the cube of linear dimensions (volume), not the square. A 10% increase in height produces approximately a 33% increase in volume and (assuming constant density) mass. BMI's square-based denominator systematically distorts results at the height extremes:</p>
+  <ul>
+    <li><strong>Shorter adults:</strong> BMI underestimates adiposity. A 5'2" woman at BMI 24 may have more visceral fat than a 5'9" woman at the same BMI.</li>
+    <li><strong>Taller adults:</strong> BMI overestimates adiposity. A 6'4" man at BMI 28 may be leaner than a 5'10" man at BMI 28.</li>
+  </ul>
+  <p>This height-based bias is inherent in the formula. It cannot be fixed by adjusting cutoffs — the math itself is off.</p>
+
+  <h2>The Ponderal Index Fix</h2>
+  <p>The Ponderal Index (PI), also called the Rohrer Index after its 1921 publication, divides weight by height cubed:</p>
+  <p><code>PI = weight_kg / height_m³</code></p>
+  <p>For a 175 cm, 70 kg adult:</p>
+  <p><code>PI = 70 / 1.75³ = 70 / 5.36 = 13.06 kg/m³</code></p>
+  <p>The cube-based denominator is geometrically consistent with mass-volume scaling, producing less bias at the height extremes.</p>
+
+  <h2>Reference Ranges</h2>
+  <table>
+    <thead><tr><th>PI</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>&lt; 11</td><td>Underweight</td></tr>
+      <tr><td>11–14</td><td>Healthy range</td></tr>
+      <tr><td>≥ 14</td><td>Above typical range</td></tr>
+    </tbody>
+  </table>
+  <p>Note that PI categories are looser than BMI categories because PI has fewer historical population-level datasets to anchor precise cutoffs. The 11–14 range is the typical adult distribution; values outside this range warrant clinical attention.</p>
+
+  <h2>Where PI Outperforms BMI</h2>
+  <p>Ponderal Index shows its advantage most clearly at the height extremes:</p>
+  <ul>
+    <li><strong>Pediatric populations:</strong> Children's bodies change shape as they grow, and the cube-scaling of PI captures this better than BMI's square scaling. PI has been used historically in pediatric growth assessment.</li>
+    <li><strong>Very tall or very short adults:</strong> Where BMI's bias is most pronounced.</li>
+    <li><strong>Cross-population comparison:</strong> PI's theoretical framework generalizes more cleanly than BMI's.</li>
+  </ul>
+
+  <h2>Why BMI Persists Anyway</h2>
+  <p>Despite PI's theoretical superiority at height extremes, BMI remains the dominant anthropometric measure in clinical practice and epidemiology for practical reasons:</p>
+  <ul>
+    <li><strong>Decades of validation data.</strong> BMI's relationships with cardiovascular disease, diabetes, and mortality are extensively documented across hundreds of cohort studies. PI has far less.</li>
+    <li><strong>Simplicity of categories.</strong> The WHO BMI categories (underweight, healthy, overweight, obese) are universally recognized. PI's categories are not.</li>
+    <li><strong>Population-level performance.</strong> For the average adult at average height, BMI and PI give very similar signals.</li>
+  </ul>
+  <p>PI is best understood as a useful supplement to BMI in specific contexts, not a wholesale replacement.</p>
+
+  <h2>When to Use PI</h2>
+  <p>Use Ponderal Index when:</p>
+  <ul>
+    <li>You are at an extreme of height distribution (taller than 6'3" or shorter than 5'4") and BMI seems inconsistent with other health indicators.</li>
+    <li>You want a second opinion on a borderline BMI result.</li>
+    <li>You are tracking a child's growth and BMI percentiles seem off.</li>
+    <li>You are curious about the math behind BMI and want to see the alternative formulation.</li>
+  </ul>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Rohrer F. <em>Der Index der Körperfülle als Maß des Ernährungszustandes.</em> Münch Med Wschr. 1921;68:580–582.</li>
+    <li>Wikipedia contributors. <em>Ponderal index.</em> Wikipedia, The Free Encyclopedia. Accessed 2026.</li>
+    <li>Cole TJ. <em>Weight/heightᵖ compared to weight/height² for assessing adiposity in childhood.</em> Int J Obes. 2002;26(7):983–993.</li>
+  </ul>
+</ArticleLayout>

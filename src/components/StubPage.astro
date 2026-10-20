@@ -1,0 +1,110 @@
+---
+// ============================================================
+// StubPage — placeholder for routes that are scaffolded but not
+// fully built yet. Keeps the architecture visible and gives
+// consistent UX without lying about completeness.
+// ============================================================
+
+export interface Props {
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  features?: string[];
+  status?: 'draft' | 'coming-soon' | 'reference';
+  schema?: object | object[];
+  ctaHref?: string;
+  ctaLabel?: string;
+}
+
+const {
+  title,
+  description,
+  h1,
+  intro,
+  features = [],
+  status = 'coming-soon',
+  schema,
+  ctaHref = '/calculators/bmi/',
+  ctaLabel = 'Try the Adult BMI Calculator',
+} = Astro.props;
+
+const statusLabel = {
+  draft: 'In progress',
+  'coming-soon': 'Coming soon',
+  reference: 'Reference page',
+}[status];
+---
+<div class="stub-page">
+  <section class="page-hero">
+    <div class="container-narrow text-center">
+      <span class:list={['stub-badge', `stub-badge--${status}`]}>{statusLabel}</span>
+      <h1>{h1}</h1>
+      <p class="lead">{intro}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow">
+      {features.length > 0 && (
+        <div class="stub-features card">
+          <h2>Planned features</h2>
+          <ul>
+            {features.map((f) => <li>{f}</li>)}
+          </ul>
+        </div>
+      )}
+
+      <div class="stub-cta card text-center">
+        <h2>Need this now?</h2>
+        <p>Our full Adult BMI Calculator is live and ready. The pages below will follow the same architecture.</p>
+        <a href={ctaHref} class="btn btn-primary">{ctaLabel}</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .stub-badge {
+    display: inline-block;
+    margin-bottom: var(--space-3);
+    padding: 0.3rem 0.8rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 999px;
+  }
+  .stub-badge--draft {
+    background: rgba(245, 158, 11, 0.15);
+    color: #b45309;
+  }
+  .stub-badge--coming-soon {
+    background: var(--color-brand-soft);
+    color: var(--color-brand-dark);
+  }
+  .stub-badge--reference {
+    background: rgba(99, 102, 241, 0.12);
+    color: #4f46e5;
+  }
+
+  .stub-features {
+    margin-bottom: var(--space-5);
+  }
+  .stub-features h2 {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-3);
+  }
+  .stub-features ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .stub-features li {
+    margin-bottom: 0.4rem;
+  }
+
+  .stub-cta {
+    background: linear-gradient(180deg, var(--color-surface), var(--color-bg-soft));
+  }
+  .stub-cta h2 { font-size: 1.25rem; margin-bottom: var(--space-2); }
+</style>

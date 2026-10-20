@@ -1,0 +1,35 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'CDC Adult BMI Calculator — Official Reference',
+  datePublished: '2026-09-27',
+  dateModified: '2026-09-27',
+  author: { '@type': 'Organization', name: 'Helthvibe' },
+  publisher: { '@type': 'Organization', name: 'Helthvibe', logo: { '@type': 'ImageObject', url: 'https://helthvibe.com/logo.png' } },
+};
+---
+<Layout
+  title="CDC Adult BMI Calculator — Official Reference | Helthvibe"
+  description="The CDC adult BMI calculator — official reference, methodology, and how Helthvibe aligns with it."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="CDC Adult BMI Calculator — Official Reference | Helthvibe"
+    description="The CDC adult BMI calculator — official reference, methodology, and how Helthvibe aligns with it."
+    h1="CDC Adult BMI Calculator — Official Reference"
+    intro="The CDC adult BMI calculator is a US reference. Here's how it's built and how Helthvibe's adult calculator aligns with it."
+    status="reference"
+    features={[
+      'CDC adult BMI methodology',
+      'CDC child/teen percentile methodology',
+      'How Helthvibe aligns with each',
+      'Source citations',
+      'Differences in interpretation',
+    ]}
+    schema={schema}
+  />
+</Layout>

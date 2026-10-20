@@ -1,0 +1,536 @@
+---
+// ============================================================
+// IdealWeightCalculator — five formulas side-by-side
+// Devine · Robinson · Miller · Hamwi · BMI-range
+// All math runs client-side; data never leaves the browser.
+// ============================================================
+
+export interface Props {
+  id?: string;
+}
+
+const { id = 'ideal-weight-calc' } = Astro.props;
+---
+<div class="ideal-calc" data-ideal-calc id={id}>
+  <form class="ideal-form" data-form novalidate>
+    <!-- Sex selector -->
+    <div class="field">
+      <label class="field-label">Biological sex (used for formula constants)</label>
+      <div class="sex-toggle" role="tablist" aria-label="Sex">
+        <button type="button" class="sex-btn active" data-sex="female" role="tab" aria-selected="true">Female</button>
+        <button type="button" class="sex-btn" data-sex="male" role="tab" aria-selected="false">Male</button>
+      </div>
+    </div>
+
+    <!-- Unit toggle -->
+    <div class="field">
+      <label class="field-label">Unit system</label>
+      <div class="unit-toggle" role="tablist" aria-label="Units">
+        <button type="button" class="unit-btn active" data-unit="metric" role="tab" aria-selected="true">Metric (cm)</button>
+        <button type="button" class="unit-btn" data-unit="imperial" role="tab" aria-selected="false">Imperial (ft / in)</button>
+      </div>
+    </div>
+
+    <!-- Height -->
+    <div class="field">
+      <label class="field-label" for={`${id}-height-cm`}>
+        Height <span class="field-hint" data-hint-metric>cm</span><span class="field-hint" data-hint-imperial hidden>ft / in</span>
+      </label>
+      <div class="field-inputs" data-inputs-metric>
+        <input type="number" id={`${id}-height-cm`} name="heightCm" inputmode="decimal" min="100" max="250" step="0.1" placeholder="e.g. 165" required />
+      </div>
+      <div class="field-inputs ft-in" data-inputs-imperial hidden>
+        <input type="number" name="heightFt" inputmode="numeric" min="3" max="8" step="1" placeholder="ft" required />
+        <input type="number" name="heightIn" inputmode="numeric" min="0" max="11" step="1" placeholder="in" required />
+      </div>
+    </div>
+
+    <!-- Frame size -->
+    <div class="field">
+      <label class="field-label">Body frame size</label>
+      <div class="frame-toggle" role="tablist" aria-label="Frame size">
+        <button type="button" class="frame-btn" data-frame="small" role="tab" aria-selected="false">Small</button>
+        <button type="button" class="frame-btn active" data-frame="medium" role="tab" aria-selected="true">Medium</button>
+        <button type="button" class="frame-btn" data-frame="large" role="tab" aria-selected="false">Large</button>
+      </div>
+      <p class="field-note">
+        Approximate based on wrist or elbow breadth. Small frame = thinner build; large = broader build.
+      </p>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary btn-block">Calculate ideal weight</button>
+      <button type="reset" class="btn btn-secondary btn-block">Reset</button>
+    </div>
+
+    <p class="privacy-note" aria-live="polite">
+      🔒 All math runs in your browser. Your data never leaves this device.
+    </p>
+  </form>
+
+  <!-- Results -->
+  <div class="ideal-result" data-result hidden>
+    <header class="result-head">
+      <span class="result-eyebrow">Your inputs</span>
+      <h3 data-summary>—</h3>
+    </header>
+
+    <!-- 5-formula comparison table -->
+    <div class="result-table-wrap">
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Formula</th>
+            <th>Ideal weight</th>
+            <th>What it is</th>
+          </tr>
+        </thead>
+        <tbody data-formula-rows>
+          <tr data-row="devine"><td>Devine (1974)</td><td data-weight>—</td><td>The most-cited clinical formula.</td></tr>
+          <tr data-row="robinson"><td>Robinson (1983)</td><td data-weight>—</td><td>A revision of Devine using newer data.</td></tr>
+          <tr data-row="miller"><td>Miller (1983)</td><td data-weight>—</td><td>Another revision. Tends to run lower.</td></tr>
+          <tr data-row="hamwi"><td>Hamwi (1964)</td><td data-weight>—</td><td>One of the earliest formulas. Tends to run higher.</td></tr>
+          <tr data-row="bmi-range" class="bmi-row">
+            <td>BMI 18.5 – 24.9</td>
+            <td data-weight>—</td>
+            <td>WHO healthy range for your height.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Spread visualization -->
+    <div class="result-spread" data-spread>
+      <span class="spread-eyebrow">Across formulas</span>
+      <div class="spread-bar" aria-hidden="true">
+        <div class="spread-track">
+          <div class="spread-marker" data-spread-marker></div>
+        </div>
+        <div class="spread-labels">
+          <span data-spread-min>— kg</span>
+          <span data-spread-max>— kg</span>
+        </div>
+      </div>
+      <p class="spread-note">
+        The 5 formulas disagree by <strong data-spread-range>—</strong>. That spread is normal — no single formula is "the" answer.
+      </p>
+    </div>
+
+    <details class="formula-explain">
+      <summary>About these formulas</summary>
+      <p>
+        Devine (1974) was originally developed for drug-dosing calculations. Robinson, Miller, and Hamwi are revisions
+        using more recent population data. Each gives a single-point estimate and treats frame size as an optional
+        adjustment. The BMI 18.5–24.9 row is fundamentally different — it gives a <em>range</em> based on the WHO healthy
+        band rather than a single number.
+      </p>
+      <p>
+        For most people, none of these formulas is "right." They're a starting point for a conversation with a clinician
+        about what a healthy weight means for your body, your build, and your goals.
+      </p>
+    </details>
+
+    <div class="result-cta" data-cta-block hidden>
+      <p>Want a personalized guide to interpret these numbers?</p>
+      <form class="cta-form" data-newsletter>
+        <input type="email" name="email" placeholder="your@email.com" required />
+        <button type="submit" class="btn btn-primary">Get the guide</button>
+      </form>
+      <p class="cta-fineprint">No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ideal-calc { display: grid; gap: var(--space-5); }
+
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+  .field-hint { font-weight: 400; font-size: 0.8rem; color: var(--color-text-muted); margin-left: 0.5rem; }
+  .field-note { font-size: 0.78rem; color: var(--color-text-muted); margin: 0; }
+  .field-inputs { display: grid; gap: var(--space-2); grid-template-columns: 1fr; }
+  .field-inputs.ft-in { grid-template-columns: 1fr 1fr; }
+  input[type="number"] {
+    padding: 0.75rem 0.9rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    transition: border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+    width: 100%;
+  }
+  input[type="number"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 3px rgba(20, 184, 138, 0.12);
+  }
+
+  .sex-toggle, .unit-toggle, .frame-toggle {
+    display: grid;
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-md);
+    padding: 4px;
+    gap: 4px;
+  }
+  .frame-toggle { grid-template-columns: 1fr 1fr 1fr; }
+  .sex-btn, .unit-btn, .frame-btn {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-soft);
+    border-radius: var(--radius-sm);
+    transition: all 0.15s var(--ease-out);
+  }
+  .sex-btn.active, .unit-btn.active, .frame-btn.active {
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .form-actions {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-3);
+  }
+  @media (max-width: 480px) { .form-actions { grid-template-columns: 1fr; } }
+
+  .privacy-note {
+    margin: 0;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Result */
+  .ideal-result {
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: grid;
+    gap: var(--space-4);
+    border: 1px solid var(--color-border-soft);
+    animation: slideIn 0.3s var(--ease-out);
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-head { text-align: center; }
+  .result-eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+  .result-head h3 {
+    font-size: 1.15rem;
+    margin: 0;
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  /* Comparison table */
+  .result-table-wrap { overflow-x: auto; border-radius: var(--radius-md); border: 1px solid var(--color-border-soft); }
+  .result-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-surface);
+    font-size: 0.95rem;
+  }
+  .result-table th {
+    background: var(--color-bg-soft);
+    text-align: left;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    padding: 0.7rem 1rem;
+    font-weight: 600;
+  }
+  .result-table td {
+    padding: 0.85rem 1rem;
+    border-top: 1px solid var(--color-border-soft);
+    color: var(--color-text);
+  }
+  .result-table td:first-child { font-weight: 600; }
+  .result-table td[data-weight] {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+  .bmi-row td[data-weight] {
+    color: var(--color-brand-dark);
+  }
+
+  /* Spread visualization */
+  .result-spread {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+  .spread-eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+  .spread-bar { display: grid; gap: var(--space-2); }
+  .spread-track {
+    position: relative;
+    height: 8px;
+    background: linear-gradient(to right, var(--color-brand-soft), var(--color-brand));
+    border-radius: 999px;
+  }
+  .spread-marker {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background: var(--color-text);
+    border-radius: 999px;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 4px var(--color-surface);
+  }
+  .spread-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--color-text-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  .spread-note {
+    margin: var(--space-3) 0 0;
+    font-size: 0.9rem;
+    color: var(--color-text-soft);
+    text-align: center;
+  }
+  .spread-note strong { color: var(--color-text); }
+
+  /* Explain */
+  .formula-explain {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+  }
+  .formula-explain summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .formula-explain summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--color-brand);
+  }
+  .formula-explain[open] summary::after { transform: rotate(45deg); }
+  .formula-explain p { margin: var(--space-3) 0 0; font-size: 0.95rem; }
+
+  /* Email CTA */
+  .result-cta {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    text-align: center;
+  }
+  .result-cta p { margin: 0 0 var(--space-3); font-size: 0.95rem; color: var(--color-text); }
+  .cta-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-2);
+  }
+  @media (max-width: 480px) { .cta-form { grid-template-columns: 1fr; } }
+  .cta-form input {
+    padding: 0.6rem 0.8rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+  .cta-fineprint {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: var(--space-2) 0 0 !important;
+  }
+</style>
+
+<script>
+  import { calculateIdealWeight, getBmiRangeIdeal, ftInToCm, type Sex, type Frame } from '@lib/bmi';
+
+  function initIdealCalc(root: HTMLElement) {
+    const form = root.querySelector('[data-form]') as HTMLFormElement | null;
+    const result = root.querySelector('[data-result]') as HTMLElement | null;
+    const summary = root.querySelector('[data-summary]') as HTMLElement | null;
+    const spreadMin = root.querySelector<HTMLElement>('[data-spread-min]');
+    const spreadMax = root.querySelector<HTMLElement>('[data-spread-max]');
+    const spreadRange = root.querySelector<HTMLElement>('[data-spread-range]');
+    const ctaBlock = root.querySelector<HTMLElement>('[data-cta-block]');
+
+    if (!form || !result || !summary) return;
+
+    let unit: 'metric' | 'imperial' = 'metric';
+    let sex: Sex = 'female';
+    let frame: Frame = 'medium';
+
+    // Wire toggles
+    root.querySelectorAll<HTMLButtonElement>('.sex-btn').forEach((b) => {
+      b.addEventListener('click', () => {
+        sex = b.dataset.sex as Sex;
+        root.querySelectorAll<HTMLElement>('.sex-btn').forEach((x) => {
+          const a = x.dataset.sex === sex;
+          x.classList.toggle('active', a);
+          x.setAttribute('aria-selected', String(a));
+        });
+      });
+    });
+
+    root.querySelectorAll<HTMLButtonElement>('.frame-btn').forEach((b) => {
+      b.addEventListener('click', () => {
+        frame = b.dataset.frame as Frame;
+        root.querySelectorAll<HTMLElement>('.frame-btn').forEach((x) => {
+          const a = x.dataset.frame === frame;
+          x.classList.toggle('active', a);
+          x.setAttribute('aria-selected', String(a));
+        });
+      });
+    });
+
+    root.querySelectorAll<HTMLButtonElement>('.unit-btn').forEach((b) => {
+      b.addEventListener('click', () => {
+        unit = b.dataset.unit as 'metric' | 'imperial';
+        root.querySelectorAll<HTMLElement>('.unit-btn').forEach((x) => {
+          const a = x.dataset.unit === unit;
+          x.classList.toggle('active', a);
+          x.setAttribute('aria-selected', String(a));
+        });
+        root.querySelectorAll('[data-hint-metric]').forEach((el) => ((el as HTMLElement).hidden = unit !== 'metric'));
+        root.querySelectorAll('[data-hint-imperial]').forEach((el) => ((el as HTMLElement).hidden = unit !== 'imperial'));
+        root.querySelectorAll('[data-inputs-metric]').forEach((el) => ((el as HTMLElement).hidden = unit !== 'metric'));
+        root.querySelectorAll('[data-inputs-imperial]').forEach((el) => ((el as HTMLElement).hidden = unit !== 'imperial'));
+      });
+    });
+
+    function readHeight(): number | null {
+      const data = new FormData(form!);
+      if (unit === 'metric') {
+        const cm = Number(data.get('heightCm'));
+        return cm >= 100 && cm <= 250 ? cm : null;
+      }
+      const ft = Number(data.get('heightFt'));
+      const inches = Number(data.get('heightIn'));
+      if (!ft && ft !== 0) return null;
+      const cm = ftInToCm(ft || 0, inches || 0);
+      return cm >= 100 && cm <= 250 ? cm : null;
+    }
+
+    function renderResult() {
+      const heightCm = readHeight();
+      if (!heightCm) return;
+
+      const formulas = calculateIdealWeight({ heightCm, sex, frame });
+      const range = getBmiRangeIdeal({ heightCm, sex, frame });
+
+      // Summary
+      summary!.textContent = `${sex === 'male' ? 'Male' : 'Female'}, ${frame} frame, ${Math.round(heightCm)} cm tall`;
+
+      // Fill table rows
+      const fillWeight = (rowKey: string, value: string) => {
+        const row = root.querySelector(`[data-row="${rowKey}"]`);
+        const cell = row?.querySelector('[data-weight]');
+        if (cell) cell.textContent = value;
+      };
+
+      const devineKg = formulas[0].weightKg;
+      const robinsonKg = formulas[1].weightKg;
+      const millerKg = formulas[2].weightKg;
+      const hamwiKg = formulas[3].weightKg;
+
+      const w = (kg: number) =>
+        unit === 'metric' ? `${kg.toFixed(1)} kg` : `${(kg * 2.20462).toFixed(1)} lb`;
+
+      fillWeight('devine', w(devineKg));
+      fillWeight('robinson', w(robinsonKg));
+      fillWeight('miller', w(millerKg));
+      fillWeight('hamwi', w(hamwiKg));
+      fillWeight('bmi-range',
+        unit === 'metric'
+          ? `${range.minKg}–${range.maxKg} kg`
+          : `${range.minLb}–${range.maxLb} lb`
+      );
+
+      // Spread
+      const pointVals = [devineKg, robinsonKg, millerKg, hamwiKg];
+      const lo = Math.min(...pointVals);
+      const hi = Math.max(...pointVals);
+      if (spreadMin) spreadMin.textContent = unit === 'metric' ? `${lo.toFixed(1)} kg` : `${(lo * 2.20462).toFixed(1)} lb`;
+      if (spreadMax) spreadMax.textContent = unit === 'metric' ? `${hi.toFixed(1)} kg` : `${(hi * 2.20462).toFixed(1)} lb`;
+      if (spreadRange) {
+        const diff = hi - lo;
+        spreadRange.textContent = unit === 'metric'
+          ? `${diff.toFixed(1)} kg`
+          : `${(diff * 2.20462).toFixed(1)} lb`;
+      }
+
+      if (ctaBlock) ctaBlock.hidden = false;
+      result!.hidden = false;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      renderResult();
+    });
+
+    form.addEventListener('reset', () => {
+      setTimeout(() => {
+        result!.hidden = true;
+        if (ctaBlock) ctaBlock.hidden = true;
+        sex = 'female';
+        frame = 'medium';
+        unit = 'metric';
+        root.querySelectorAll('.sex-btn').forEach((b, i) => {
+          const active = (b as HTMLElement).dataset.sex === 'female';
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', String(active));
+        });
+        root.querySelectorAll('.frame-btn').forEach((b) => {
+          const active = (b as HTMLElement).dataset.frame === 'medium';
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', String(active));
+        });
+        root.querySelectorAll('.unit-btn').forEach((b) => {
+          const active = (b as HTMLElement).dataset.unit === 'metric';
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', String(active));
+        });
+        root.querySelectorAll('[data-hint-metric]').forEach((el) => ((el as HTMLElement).hidden = false));
+        root.querySelectorAll('[data-hint-imperial]').forEach((el) => ((el as HTMLElement).hidden = true));
+        root.querySelectorAll('[data-inputs-metric]').forEach((el) => ((el as HTMLElement).hidden = false));
+        root.querySelectorAll('[data-inputs-imperial]').forEach((el) => ((el as HTMLElement).hidden = true));
+      }, 0);
+    });
+
+    // Newsletter stub
+    const newsletterForm = root.querySelector<HTMLFormElement>('[data-newsletter]');
+    newsletterForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = new FormData(newsletterForm).get('email');
+      console.info('Newsletter opt-in (stub):', email);
+      const success = document.createElement('p');
+      success.textContent = "Thanks — check your inbox for confirmation.";
+      success.style.cssText = 'color:#10b981;font-weight:600;margin:0;';
+      newsletterForm.replaceWith(success);
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-ideal-calc]').forEach(initIdealCalc);
+</script>

@@ -1,0 +1,274 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What are the four BMI categories?',
+    a: 'Underweight (BMI below 18.5), healthy range (18.5–24.9), overweight (25.0–29.9), and obese (30.0+). Obese is often broken into Class I, II, and III.',
+  },
+  {
+    q: 'What BMI is obese?',
+    a: 'A BMI of 30.0 or higher falls into the obese category. Class I is 30–34.9, Class II is 35–39.9, and Class III (sometimes called "severe" or "morbid" obesity) is 40 and above.',
+  },
+  {
+    q: 'What does "overweight" actually mean?',
+    a: 'It means a BMI of 25.0–29.9. It is a population-level statistical signal that your weight may be associated with elevated health risk — it is not a diagnosis.',
+  },
+  {
+    q: 'What should I do if my BMI is overweight or obese?',
+    a: 'Talk to a healthcare provider about a plan that fits your situation. Sustainable changes to nutrition and movement are the foundation; medical or surgical options exist for higher classes.',
+  },
+  {
+    q: 'What should I do if my BMI is underweight?',
+    a: 'Talk to a healthcare provider. Unintentional weight loss or persistent underweight can reflect an underlying condition that deserves attention.',
+  },
+];
+
+const related = [
+  { href: '/articles/how-to-calculate-bmi-2026/', title: 'How to Calculate BMI', desc: 'The formula, worked examples, and the official chart.' },
+  { href: '/articles/what-is-a-healthy-bmi/', title: 'What Is a Healthy BMI?', desc: 'The healthy range by age, gender, and ethnicity.' },
+  { href: '/articles/from-bmi-to-action/', title: 'From BMI to Action', desc: 'What to do based on your category.' },
+];
+---
+<ArticleLayout
+  title="BMI Categories Explained – Underweight, Normal, Overweight, Obese | Helthvibe"
+  description="Every WHO BMI category explained — underweight, healthy, overweight, and obese sub-classes — with what each one means for health and what to do next."
+  h1="BMI Categories Explained — Underweight, Normal, Overweight, Obese"
+  excerpt="Every WHO BMI band, broken down with what each one means for health risk and what to actually do about it."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Reference"
+  readTime="9 min"
+  showCalculator={true}
+  faqs={faqs}
+  related={related}
+>
+  <p>
+    BMI is a single number that maps to one of four (or, with sub-classes, seven) categories. Each category reflects a
+    different level of population-level health risk and points to a different set of next steps. This guide walks through
+    every band — underweight through Class III obese — with what each means and what to actually do.
+  </p>
+
+  <h2>The four main BMI categories</h2>
+  <p>
+    The WHO defines four adult BMI categories. These cutoffs are the same for men and women, are widely used globally, and
+    form the basis of most clinical guidelines.
+  </p>
+
+  <table>
+    <caption>WHO adult BMI categories</caption>
+    <thead><tr><th>BMI</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>Below 18.5</td><td>Underweight</td></tr>
+      <tr><td>18.5 – 24.9</td><td>Healthy range</td></tr>
+      <tr><td>25.0 – 29.9</td><td>Overweight</td></tr>
+      <tr><td>30.0 and above</td><td>Obese</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Obesity is itself broken into three sub-classes by most clinical guidelines (NIH, CDC, WHO) — see below.
+  </p>
+
+  <h2>Underweight (BMI below 18.5)</h2>
+  <p>
+    A BMI below 18.5 signals that your weight may be low enough to pose health risks. Causes range from a naturally slender
+    build (sometimes called a "healthy ectomorph") to inadequate nutrition, eating disorders, hyperthyroidism, chronic
+    illness, or malabsorption.
+  </p>
+
+  <h3>What the research shows</h3>
+  <ul>
+    <li><strong>Mortality risk:</strong> Multiple large studies show a U-shaped curve — mortality rises below 18.5 as well as above 30.</li>
+    <li><strong>Osteoporosis:</strong> Low weight is a known risk factor, especially in postmenopausal women.</li>
+    <li><strong>Immune function:</strong> Underweight individuals are more susceptible to infections and slower wound healing.</li>
+    <li><strong>Fertility:</strong> Low BMI is associated with irregular or absent menstruation and reduced fertility in women.</li>
+  </ul>
+
+  <h3>Action steps</h3>
+  <ol>
+    <li><strong>See a clinician</strong> to rule out underlying causes — thyroid issues, GI disorders, eating disorders, chronic disease.</li>
+    <li><strong>Track intake.</strong> A food diary for 1–2 weeks often reveals how little is actually being eaten.</li>
+    <li><strong>Prioritize protein and nutrient density.</strong> Aim for 1.2–1.6 g of protein per kg of target body weight, with calorie-dense whole foods (nuts, nut butter, avocado, full-fat dairy, olive oil).</li>
+    <li><strong>Resistance training.</strong> Builds muscle mass and stimulates appetite.</li>
+    <li><strong>Address eating disorders</strong> with professional support if relevant — they're medical conditions, not choices.</li>
+  </ol>
+
+  <div class="callout callout--warning">
+    <strong>When to act urgently:</strong> Unintentional weight loss, persistent fatigue, hair loss, missed periods,
+    or frequent illness are all signals that a clinician visit shouldn't wait.
+  </div>
+
+  <h2>Healthy range (BMI 18.5 – 24.9)</h2>
+  <p>
+    The healthy range is exactly that — a range, not a single number. There's no evidence that 21.5 is meaningfully
+    "healthier" than 23.5. Mortality is roughly flat across most of the band, with a slight uptick at both ends.
+  </p>
+
+  <h3>What "healthy range" does and doesn't mean</h3>
+  <ul>
+    <li><strong>It does mean</strong> that at a population level, people in this band tend to have lower cardiometabolic risk than people above or below it.</li>
+    <li><strong>It doesn't mean</strong> that everyone in the band is healthy. A sedentary person with poor nutrition at BMI 22 has higher risk than an active person with good nutrition at BMI 27.</li>
+    <li><strong>It doesn't mean</strong> that everyone outside the band is unhealthy. Athletes, muscular individuals, and older adults often fall outside the band for benign reasons.</li>
+  </ul>
+
+  <h3>Action steps</h3>
+  <ol>
+    <li><strong>Maintain, don't optimize.</strong> Worrying about moving from 23.5 to 22.5 is rarely useful.</li>
+    <li><strong>Focus on what you can control:</strong> regular movement, mostly whole-food nutrition, sleep, stress, and routine checkups.</li>
+    <li><strong>Don't ignore other signals</strong> — waist circumference, bloodwork, blood pressure, and how you feel.</li>
+  </ol>
+
+  <h2>Overweight (BMI 25.0 – 29.9)</h2>
+  <p>
+    A BMI in the overweight band signals elevated population-level cardiometabolic risk — but it is not a diagnosis. Many
+    people are technically "overweight" by BMI and metabolically healthy. Others are normal-weight and metabolically
+    unhealthy.
+  </p>
+
+  <h3>Subtle distinctions within the band</h3>
+  <ul>
+    <li><strong>25.0 – 27.4</strong> is sometimes called "low-overweight." Risk is mildly elevated; many fit individuals land here.</li>
+    <li><strong>27.5 – 29.9</strong> is closer to the obese threshold and carries meaningfully higher cardiometabolic risk, especially with central adiposity (high waist circumference).</li>
+  </ul>
+
+  <h3>What the research shows</h3>
+  <ul>
+    <li><strong>Cardiovascular disease:</strong> Risk begins to rise above a BMI of 25, particularly in those with high waist circumference.</li>
+    <li><strong>Type 2 diabetes:</strong> Risk rises sharply with BMI. The risk is amplified by inactivity and family history.</li>
+    <li><strong>Hypertension and sleep apnea:</strong> Both are more common in the overweight and obese bands.</li>
+    <li><strong>The "obesity paradox":</strong> For some chronic conditions (e.g., heart failure, advanced kidney disease), overweight patients have <em>better</em> outcomes. This doesn't mean overweight is protective — it means BMI is a blunt tool.</li>
+  </ul>
+
+  <h3>Action steps</h3>
+  <ol>
+    <li><strong>Look at waist circumference</strong> — above 40 in (102 cm) for men or 35 in (88 cm) for women is the more important signal.</li>
+    <li><strong>Focus on movement</strong> — 150+ minutes/week of moderate activity (or 75 minutes of vigorous) is a strong starting point.</li>
+    <li><strong>Build a sustainable nutrition pattern</strong> — whole foods, adequate protein, fiber, and calorie awareness without extreme restriction.</li>
+    <li><strong>Sleep and stress</strong> — both meaningfully affect weight regulation and cardiometabolic risk.</li>
+    <li><strong>Talk to a clinician</strong> about bloodwork (fasting glucose, lipids, blood pressure) if you haven't recently.</li>
+  </ol>
+
+  <h2>Obese (BMI 30.0+)</h2>
+  <p>
+    The obese category is broken into three sub-classes, reflecting meaningfully different levels of risk. Higher classes
+    are also more likely to involve medical or surgical treatment.
+  </p>
+
+  <table>
+    <caption>Obesity sub-classes</caption>
+    <thead><tr><th>Class</th><th>BMI</th><th>Risk level</th></tr></thead>
+    <tbody>
+      <tr><td>Class I</td><td>30.0 – 34.9</td><td>Elevated</td></tr>
+      <tr><td>Class II</td><td>35.0 – 39.9</td><td>High</td></tr>
+      <tr><td>Class III</td><td>40.0 and above</td><td>Very high (sometimes called "severe" or "morbid")</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Class I obesity (BMI 30.0 – 34.9)</h3>
+  <p>
+    Risk for type 2 diabetes, hypertension, cardiovascular disease, sleep apnea, and certain cancers is meaningfully elevated.
+    Behavioral change (nutrition, movement) can produce 5–10% weight loss, which is enough to substantially reduce risk.
+  </p>
+
+  <h4>Action steps</h4>
+  <ol>
+    <li><strong>Work with a clinician</strong> — establish a baseline (bloodwork, BP, waist circumference).</li>
+    <li><strong>Structured nutrition plan</strong> — Mediterranean, DASH, or a modest calorie deficit (300–500 kcal/day).</li>
+    <li><strong>Progressive movement</strong> — start where you are; 150 min/week of moderate activity is the long-term target.</li>
+    <li><strong>Behavioral support</strong> — counseling, group programs, or coaching improve long-term outcomes.</li>
+  </ol>
+
+  <h3>Class II obesity (BMI 35.0 – 39.9)</h3>
+  <p>
+    Risk is high. Lifestyle intervention remains the foundation, but the addition of medical therapy (e.g., GLP-1 receptor
+    agonists where appropriate) or bariatric surgery may be discussed.
+  </p>
+
+  <h4>Action steps</h4>
+  <ol>
+    <li><strong>Multi-disciplinary care</strong> — primary care, registered dietitian, behavioral support.</li>
+    <li><strong>Discuss medication options</strong> with your clinician if lifestyle change alone hasn't been enough.</li>
+    <li><strong>Screen for comorbidities</strong> — sleep apnea, NAFLD, prediabetes, hypertension.</li>
+    <li><strong>Bariatric surgery</strong> is an evidence-based option at this BMI (often considered at BMI 35+ with comorbidity, or 40+ without).</li>
+  </ol>
+
+  <h3>Class III obesity (BMI 40.0+)</h3>
+  <p>
+    Risk is very high. Bariatric surgery produces the largest and most durable weight loss at this BMI, and current
+    guidelines support considering it for adults with BMI ≥40 (or ≥35 with comorbidity).
+  </p>
+
+  <h4>Action steps</h4>
+  <ol>
+    <li><strong>Specialist care</strong> — bariatric medicine, endocrinology, or a dedicated obesity medicine program.</li>
+    <li><strong>Discuss bariatric surgery</strong> — sleeve gastrectomy and Roux-en-Y gastric bypass both have strong evidence.</li>
+    <li><strong>Medication</strong> as appropriate.</li>
+    <li><strong>Comorbidity management</strong> — sleep apnea, cardiovascular risk, joint stress, mental health.</li>
+  </ol>
+
+  <h2>The Asian-adjusted bands</h2>
+  <p>
+    For adults of South, East, or Southeast Asian heritage, the WHO recommends lower cutoffs. The same BMI numbers carry
+    different risk in these populations:
+  </p>
+
+  <table>
+    <caption>WHO Asian-adjusted BMI categories</caption>
+    <thead><tr><th>BMI</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>Below 18.5</td><td>Underweight</td></tr>
+      <tr><td>18.5 – 22.9</td><td>Healthy range</td></tr>
+      <tr><td>23.0 – 27.4</td><td>Overweight</td></tr>
+      <tr><td>27.5 and above</td><td>Obese</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Use our [Asian BMI calculator](/calculators/bmi-asian) with the toggle to see both ranges side by side.
+  </p>
+
+  <h2>The pediatric bands</h2>
+  <p>
+    Children and teens (ages 2–19) are categorized by percentile against age- and sex-matched peers, not by absolute BMI.
+    The CDC cutoffs are:
+  </p>
+
+  <table>
+    <caption>CDC BMI percentile classification (ages 2–19)</caption>
+    <thead><tr><th>Percentile</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>Below 5th</td><td>Underweight</td></tr>
+      <tr><td>5th to 84th</td><td>Healthy weight</td></tr>
+      <tr><td>85th to 94th</td><td>Overweight</td></tr>
+      <tr><td>95th and above</td><td>Obese</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Our [Child & Teen BMI calculator](/calculators/bmi-children) computes this for you.
+  </p>
+
+  <h2>The senior bands</h2>
+  <p>
+    For adults 65 and older, research suggests the lower bound of "healthy" shifts upward. A BMI between 22 and 27 is
+    often considered optimal at this age — slightly higher than the standard 18.5–24.9 range. See our
+    [Senior BMI calculator](/calculators/bmi-seniors) for the adjusted view.
+  </p>
+
+  <h2>One number, many meanings</h2>
+  <p>
+    BMI categories are useful as a starting framework, but they aren't a personal verdict. Two people with the same BMI
+    can have very different health profiles, and a single number can never capture everything that matters.
+  </p>
+
+  <p>
+    For the "what now" decision tree after you have your category, see our [From BMI to Action](/articles/from-bmi-to-action)
+    guide.
+  </p>
+
+  <div class="callout">
+    <strong>Not medical advice.</strong> BMI categories are a population-level screening tool, not a diagnosis.
+    Always consult a qualified healthcare professional for personal medical decisions.
+  </div>
+</ArticleLayout>

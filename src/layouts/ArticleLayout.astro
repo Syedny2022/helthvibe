@@ -1,0 +1,341 @@
+---
+import Layout from '@layouts/Layout.astro';
+import BMICalculator from '@components/BMICalculator.astro';
+
+export interface FAQ {
+  q: string;
+  a: string;
+}
+
+export interface RelatedLink {
+  href: string;
+  title: string;
+  desc: string;
+}
+
+export interface Props {
+  title: string;
+  description: string;
+  h1: string;
+  excerpt: string;
+  datePublished: string;
+  dateModified?: string;
+  category?: string;
+  readTime?: string;
+  bodyClass?: string;
+  faqs?: FAQ[];
+  related?: RelatedLink[];
+  showCalculator?: boolean;
+  schema?: object | object[];
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  h1,
+  excerpt,
+  datePublished,
+  dateModified,
+  category = 'Guide',
+  readTime,
+  faqs = [],
+  related = [],
+  showCalculator = false,
+  schema: extraSchema,
+  canonical,
+  bodyClass,
+} = Astro.props;
+
+const modified = dateModified ?? datePublished;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: h1,
+  description: excerpt,
+  datePublished,
+  dateModified: modified,
+  author: { '@type': 'Organization', name: 'Helthvibe' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Helthvibe',
+    logo: { '@type': 'ImageObject', url: 'https://helthvibe.com/logo.png' },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonical ?? `https://helthvibe.com${Astro.url.pathname}`,
+  },
+};
+
+const faqSchema = faqs.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+
+const allSchemas = [articleSchema, ...(faqSchema ? [faqSchema] : []), ...(extraSchema ? (Array.isArray(extraSchema) ? extraSchema : [extraSchema]) : [])];
+---
+<Layout title={title} description={description} schema={allSchemas} canonical={canonical} bodyClass={bodyClass}>
+  <!-- Article header -->
+  <article class="article">
+    <header class="article-header">
+      <div class="container-narrow">
+        <div class="article-meta">
+          <span class="article-cat">{category}</span>
+          {readTime && (
+            <>
+              <span class="dot" aria-hidden="true">·</span>
+              <span>{readTime}</span>
+            </>
+          )}
+          <span class="dot" aria-hidden="true">·</span>
+          <time datetime={datePublished}>
+            {new Date(datePublished).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+        </div>
+        <h1>{h1}</h1>
+        <p class="article-excerpt">{excerpt}</p>
+      </div>
+    </header>
+
+    <!-- Optional embedded calculator -->
+    {showCalculator && (
+      <div class="container">
+        <div class="article-calc">
+          <BMICalculator variant="full" showAsianToggle={true} id="article-bmi" />
+        </div>
+      </div>
+    )}
+
+    <!-- Body -->
+    <div class="article-body">
+      <div class="container-narrow article-prose">
+        <slot />
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    {faqs.length > 0 && (
+      <section class="section section-soft article-faq">
+        <div class="container-narrow">
+          <h2>Frequently asked questions</h2>
+          <div class="faq-list">
+            {faqs.map((f) => (
+              <details class="faq-item">
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Related -->
+    {related.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <h2>Keep exploring</h2>
+          <div class="grid grid-3">
+            {related.map((r) => (
+              <a href={r.href} class="card">
+                <h3 class="card-title">{r.title}</h3>
+                <p class="card-desc">{r.desc}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+  </article>
+</Layout>
+
+<style>
+  .article-header {
+    padding: var(--space-7) 0 var(--space-6);
+    background:
+      radial-gradient(ellipse at top, rgba(20, 184, 138, 0.06) 0%, transparent 60%),
+      var(--color-bg);
+    text-align: center;
+  }
+  .article-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .article-cat {
+    background: var(--color-brand-soft);
+    color: var(--color-brand-dark);
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .article-meta .dot { color: var(--color-border); }
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+  .article-excerpt {
+    font-size: 1.125rem;
+    color: var(--color-text-soft);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .article-calc {
+    margin: var(--space-6) auto;
+    max-width: 800px;
+  }
+
+  .article-body {
+    padding: var(--space-6) 0 var(--space-7);
+  }
+
+  /* Prose styles */
+  .article-prose :global(h2) {
+    font-size: 1.65rem;
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-4);
+    padding-top: var(--space-4);
+  }
+  .article-prose :global(h2:first-of-type) {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .article-prose :global(h3) {
+    font-size: 1.25rem;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-3);
+  }
+  .article-prose :global(p) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: var(--space-4);
+  }
+  .article-prose :global(ul),
+  .article-prose :global(ol) {
+    margin-bottom: var(--space-4);
+    padding-left: 1.5rem;
+  }
+  .article-prose :global(li) {
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+  .article-prose :global(a) {
+    color: var(--color-brand-dark);
+    text-decoration: underline;
+    text-decoration-color: rgba(20, 184, 138, 0.3);
+    text-underline-offset: 3px;
+  }
+  .article-prose :global(a:hover) {
+    text-decoration-color: var(--color-brand);
+  }
+  .article-prose :global(strong) {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  /* Callouts */
+  .article-prose :global(.callout) {
+    background: var(--color-bg-soft);
+    border-left: 3px solid var(--color-brand);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    margin: var(--space-5) 0;
+    font-size: 0.98rem;
+  }
+  .article-prose :global(.callout--warning) {
+    border-left-color: var(--color-warning);
+    background: rgba(245, 158, 11, 0.06);
+  }
+  .article-prose :global(.callout--info) {
+    border-left-color: var(--color-accent);
+    background: rgba(99, 102, 241, 0.06);
+  }
+  .article-prose :global(.callout strong) {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  /* Tables */
+  .article-prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-5) 0;
+    font-size: 0.95rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .article-prose :global(table th),
+  .article-prose :global(table td) {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .article-prose :global(table th) {
+    background: var(--color-bg-soft);
+    font-weight: 600;
+    color: var(--color-text);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .article-prose :global(table tr:last-child td) {
+    border-bottom: none;
+  }
+  .article-prose :global(table caption) {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-align: left;
+    padding: 0.6rem 1rem;
+    background: var(--color-bg-soft);
+    caption-side: top;
+  }
+
+  /* FAQ reuse */
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    transition: border-color 0.15s var(--ease-out);
+  }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--color-brand);
+    transition: transform 0.15s var(--ease-out);
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+</style>

@@ -1,0 +1,112 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'How is BMI calculated for children differently?',
+    a: 'For ages 2–19, BMI is interpreted as a percentile against age- and sex-matched peers, not as a fixed category. The CDC provides growth-chart data; a BMI at the 85th percentile or higher is "overweight," at the 95th percentile or above is "obese." Below the 5th percentile is "underweight." The formula itself (kg/m²) is identical to adults.',
+  },
+  {
+    q: 'What is a healthy BMI percentile for my child?',
+    a: 'BMI between the 5th and 84th percentile is considered healthy weight. The 50th percentile is the median — exactly half of age- and sex-matched peers have a higher BMI, half lower. A child tracking at the 75th percentile consistently over years is following their growth curve, which is the more important signal than a single reading.',
+  },
+  {
+    q: 'When should I be concerned about my child\'s BMI?',
+    a: 'Persistent readings above the 85th percentile, sudden jumps across percentile bands (e.g., from 50th to 85th in a year), or BMI below the 5th percentile warrant a conversation with your pediatrician. Single high or low readings in active children (very muscular, growth spurts) are often normal.',
+  },
+  {
+    q: 'How often should my child\'s BMI be checked?',
+    a: 'Pediatricians typically plot BMI at every well-child visit (annually for ages 3+). The growth trend over years matters more than any single reading. Parents should not place children on restrictive diets without clinical guidance — kids have specific nutritional needs for growth.',
+  },
+  {
+    q: 'Does puberty affect BMI percentile?',
+    a: 'Yes. BMI typically dips slightly around ages 5–6 ("adiposity rebound") then rises steadily through puberty. A child who has their adiposity rebound earlier than average (before age 5–6) may be at higher lifetime obesity risk, per several longitudinal studies.',
+  },
+];
+
+const related = [
+  { href: '/calculators/bmi-children/', title: 'Child & Teen BMI Calculator', desc: 'Age- and sex-specific percentile.' },
+  { href: '/articles/how-to-interpret-your-bmi-result/', title: 'How to Interpret Your BMI Result', desc: 'Putting the number in context.' },
+  { href: '/articles/bmi-categories-explained/', title: 'BMI Categories Explained', desc: 'All bands with action steps.' },
+];
+---
+<ArticleLayout
+  title="Child & Teen BMI Calculator – Age-Specific Percentile Charts | Helthvibe"
+  description="Free BMI calculator for kids and teens (ages 2–19) with CDC-aligned percentile, growth-trend context, and parent-friendly explanations."
+  h1="Child & Teen BMI Calculator — Age-Specific Percentile Charts"
+  excerpt="BMI for kids and teens uses percentiles, not categories. Get your child's percentile against the CDC growth chart and what it means."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Calculator"
+  readTime="6 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>Why Children Use BMI Percentiles</h2>
+  <p>Body composition in children is not a static target — it is a moving process shaped by growth, puberty, and hormonal development. An adult's BMI of 25 means the same thing at age 25 and age 45. A 10-year-old's BMI of 25 means something entirely different from a 10-year-old's BMI of 28 if one child is 10 years and 3 months old and the other is 10 years and 11 months old, or if one is male and the other female. This is why adult BMI categories cannot be applied to anyone under 20.</p>
+  <p>Instead, pediatric BMI is expressed as an <strong>age- and sex-specific percentile</strong> — a ranking relative to a reference population of the same sex and age in months. The reference population used by the CDC and WHO is drawn from nationally representative survey data (NHANES for the CDC) and is updated periodically to reflect current population trends.</p>
+  <p>The percentile indicates where a child falls relative to 100 children of the same sex and age in the reference population. A BMI at the 60th percentile means that 60 children in the reference population have a lower BMI, and 39 have a higher one. The 50th percentile is the median — the exact midpoint of the population.</p>
+  <p>The reference data for the CDC growth charts come from the <strong>National Health Examination Survey and NHANES</strong>, pooled across multiple survey cycles to generate stable LMS parameters for each age and sex. These charts are sex-specific because body composition differs between boys and girls from early childhood, and the gap widens substantially during puberty.</p>
+
+  <h2>Child and Teen BMI Percentile Categories</h2>
+  <p>The clinical categories for pediatric BMI percentiles are:</p>
+  <table>
+    <thead><tr><th>Category</th><th>Percentile Range</th><th>Clinical Action</th></tr></thead>
+    <tbody>
+      <tr><td>Underweight</td><td>Below 5th percentile</td><td>Rule out underlying pathology, nutritional deficiency, or eating disorder</td></tr>
+      <tr><td>Healthy Weight</td><td>5th to below 85th percentile</td><td>Maintain and monitor growth trajectory</td></tr>
+      <tr><td>Overweight</td><td>85th to below 95th percentile</td><td>Lifestyle counseling; monitor trajectory</td></tr>
+      <tr><td>Obesity</td><td>95th percentile and above</td><td>Clinical assessment; behavioral intervention; 2023 AAP guidelines recommend discussion with pediatrician</td></tr>
+      <tr><td>Severe Obesity (Class II)</td><td>≥ 120% of 95th percentile</td><td>Intensive intervention; consider specialist referral</td></tr>
+      <tr><td>Severe Obesity (Class III)</td><td>≥ 140% of 95th percentile</td><td>Specialist-level care; comprehensive metabolic and behavioral assessment</td></tr>
+    </tbody>
+  </table>
+  <p>The 2022 CDC Extended BMI-for-Age Growth Charts introduced Class II and Class III severe obesity categories. The original 2000 CDC growth charts performed poorly at extreme percentiles — values beyond the 97th were compressed and poorly differentiated. The extended charts use a <strong>half-normal distribution model</strong> with a distinct variance parameter (σ) to accurately classify the severity of severe obesity, enabling better clinical differentiation and tracking of the most at-risk pediatric patients.</p>
+
+  <h2>How Age and Sex Affect the Result</h2>
+  <p>The LMS method — developed by Cole and Green and adopted by the CDC — is the mathematical engine behind pediatric BMI percentile calculation. It models the age-specific distribution of BMI as a function of three parameters:</p>
+  <ul>
+    <li><strong>L (Lambda):</strong> The power in the Box-Cox transformation that normalizes the BMI distribution at each age. When L = 1, the distribution is approximately normal; when L is close to 0, a log transformation is applied.</li>
+    <li><strong>M (Mu):</strong> The median BMI at a given age and sex.</li>
+    <li><strong>S (Sigma):</strong> The coefficient of variation — the spread of the distribution around the median.</li>
+  </ul>
+  <p>These three parameters vary continuously with age and differ between sexes. The Z-score is computed as:</p>
+  <p><code>Z = [(BMI/M)<sup>L</sup> − 1] / (L × S)</code></p>
+  <p>This Z-score is then mapped to a percentile using the standard normal cumulative distribution function. The result — the "BMI-for-age percentile" — is what makes the CDC charts clinically interpretable across the full age range from 2 to 20 years.</p>
+  <p>Puberty is a major confounder. The pubertal growth spurt simultaneously increases height velocity and changes body composition in ways that can transiently alter BMI percentiles without reflecting a permanent shift in weight status. A child who is early-maturing may have a temporarily elevated BMI percentile during the peak of the growth spurt that normalizes afterward. This is why a <em>trend</em> over years matters more than a single measurement.</p>
+
+  <h2>How to Measure Height and Weight Correctly</h2>
+  <p>Measurement error in pediatric BMI is often overlooked but can meaningfully affect classification. Key standards:</p>
+  <ul>
+    <li><strong>Height:</strong> Measure without shoes, standing fully upright against a wall-mounted stadiometer, with heels together and head in the Frankfort horizontal plane. Record to the nearest 0.1 cm. Two measurements should be taken and averaged; if they differ by more than 0.5 cm, take a third.</li>
+    <li><strong>Weight:</strong> Measure in minimal indoor clothing, without shoes, on a calibrated scale. Record to the nearest 0.1 kg. Scale calibration should be verified regularly, particularly in clinical settings where the scale is used daily.</li>
+    <li><strong>Timing:</strong> Weigh in the morning, post-bathroom, before meals, for the most consistent reading. Afternoon weights can be 0.5–1 kg higher due to food and fluid intake.</li>
+    <li><strong>Age calculation:</strong> Use exact age in months, not years. A child who is 10 years and 11 months old has a different reference range than one who is 10 years and 1 month old. Clinical software typically calculates this automatically; parents using online calculators should enter the exact birth date.</li>
+  </ul>
+
+  <h2>How to Read the Growth-Chart Result</h2>
+  <p>The CDC and WHO growth charts display percentile curves from the 3rd to the 97th. When reviewing your child's BMI percentile:</p>
+  <ul>
+    <li><strong>Consistency is more important than position.</strong> A child who tracks consistently at the 75th percentile over several years is following their growth curve and is typically in a healthy trajectory. The concern is a <em>jump</em> in percentile — a child moving from the 50th to the 85th percentile within 12–18 months — which may signal a meaningful change in energy balance.</li>
+    <li><strong>The adiposity rebound matters.</strong> BMI typically reaches its lowest point around ages 5–6, then begins rising ("adiposity rebound"). Children who experience adiposity rebound <em>before</em> age 5–6 are at elevated lifetime risk for obesity, per longitudinal studies including Whitaker et al. (<em>Pediatrics</em>, 1998). The BMI curve in early childhood can be a leading indicator of later obesity risk.</li>
+    <li><strong>Genetics set the range; environment fills it.</strong> Parental BMI is the strongest predictor of child BMI percentile, reflecting both genetic and household environmental factors. A child of two parents with obesity has approximately a 70–80% probability of developing obesity; a child of two parents with healthy weight has approximately 10–20% probability.</li>
+  </ul>
+
+  <h2>When to Discuss the Result With a Pediatrician</h2>
+  <p>The 2023 AAP Clinical Practice Guideline for the Evaluation and Management of Obesity in Children and Adolescents recommends that any BMI at or above the 95th percentile warrants a conversation with the child's pediatrician. Specifically:</p>
+  <ul>
+    <li><strong>BMI at or above 95th percentile:</strong> Brief motivational interviewing in the clinical setting, with referral to intensive behavioral intervention if appropriate.</li>
+    <li><strong>BMI at or above 120% of the 95th percentile (Class II severe obesity):</strong> More intensive evaluation; consider referral to a pediatric obesity specialist or academic medical center.</li>
+    <li><strong>BMI at or above 140% of the 95th percentile (Class III severe obesity):</strong> Comprehensive metabolic assessment; consideration of pharmacotherapy (e.g., liraglutide, semaglutide in adolescents) or referral to a pediatric bariatric surgery program for those approaching adulthood.</li>
+  </ul>
+  <p>Parents should not implement restrictive diets for children without clinical guidance. Children have specific caloric and nutritional requirements for growth and development. Weight maintenance (allowing height to "grow into" current weight) is often the preferred goal over active weight loss in growing children.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Centers for Disease Control and Prevention. <em>2000 CDC Growth Charts for the United States.</em> National Center for Health Statistics, 2000.</li>
+    <li>American Academy of Pediatrics. <em>Clinical Report: Pediatric Obesity.</em> Pediatrics, 2023.</li>
+    <li>Whitaker RC, et al. <em>Early Adiposity Rebound and the Risk of Adult Obesity.</em> Pediatrics, 1998.</li>
+    <li>Barlow SE. <em>Expert Committee Recommendations Regarding the Prevention, Assessment, and Treatment of Child and Adolescent Overweight and Obesity.</em> Pediatrics, 2007.</li>
+  </ul>
+</ArticleLayout>

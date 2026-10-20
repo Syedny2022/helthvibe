@@ -1,0 +1,82 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'How are macros converted from calories?',
+    a: 'Protein and carbs each provide 4 kcal per gram. Fat provides 9 kcal per gram. Total protein grams = (calories × protein%) / 4.',
+  },
+  {
+    q: 'Which macro split is best?',
+    a: 'There is no single best split. For general health, balanced (30/40/30) or Mediterranean (20/50/30). For weight loss with preserved muscle, high-protein (35/35/30).',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.',
+  },
+];
+
+const related = [
+  { href: '/calculators/macro-split/', title: 'Macro Split Calculator', desc: 'Convert calories to grams.' },
+  { href: '/calculators/tdee/', title: 'TDEE Calculator', desc: 'Find your calorie target.' },
+  { href: '/calculators/calorie-deficit/', title: 'Calorie Deficit', desc: 'Plan a safe weight-loss deficit.' },
+];
+---
+<ArticleLayout
+  title="Macro Split: How to Convert Calories Into Protein, Carbs, and Fat | Helthvibe"
+  description="Macros convert calories into grams: protein 4 kcal/g, carbs 4 kcal/g, fat 9 kcal/g. Five evidence-based strategies for any goal."
+  h1="Macro Split — How to Convert Calories Into Protein, Carbs, and Fat"
+  excerpt="Once you have a calorie target, you need to split it into protein, carbs, and fat grams. Five evidence-based strategies — from balanced to keto."
+  datePublished="2026-09-29"
+  dateModified="2026-09-29"
+  category="Reference"
+  readTime="6 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>How Macros Convert from Calories</h2>
+  <p>The arithmetic is fixed by biochemistry. Macronutrients provide energy at these rates:</p>
+  <ul>
+    <li><strong>Protein:</strong> 4 kcal per gram</li>
+    <li><strong>Carbohydrates:</strong> 4 kcal per gram</li>
+    <li><strong>Fat:</strong> 9 kcal per gram</li>
+  </ul>
+  <p>Given a calorie target and a percentage split, the gram targets are:</p>
+  <p><code>protein_g = (calories × protein%) / 4</code></p>
+  <p><code>carbs_g = (calories × carbs%) / 4</code></p>
+  <p><code>fat_g = (calories × fat%) / 9</code></p>
+
+  <h2>Common Macro Strategies</h2>
+  <table>
+    <thead><tr><th>Strategy</th><th>Protein</th><th>Carbs</th><th>Fat</th><th>Best for</th></tr></thead>
+    <tbody>
+      <tr><td>Balanced</td><td>30%</td><td>40%</td><td>30%</td><td>General health</td></tr>
+      <tr><td>High-protein</td><td>35%</td><td>35%</td><td>30%</td><td>Weight loss, muscle preservation</td></tr>
+      <tr><td>Low-carb</td><td>30%</td><td>20%</td><td>50%</td><td>Glycemic control, weight loss</td></tr>
+      <tr><td>Mediterranean</td><td>20%</td><td>50%</td><td>30%</td><td>Long-term metabolic health</td></tr>
+      <tr><td>Keto</td><td>25%</td><td>5%</td><td>70%</td><td>Epilepsy, refractory metabolic conditions</td></tr>
+    </tbody>
+  </table>
+
+  <h2>When High Protein Matters Most</h2>
+  <p>Protein needs scale up during caloric restriction. When you eat less, your body draws on both fat and muscle for energy. Adequate protein intake (1.2–1.6 g per kg of target body weight per day, up to 1.6–2.2 g/kg during active weight loss) signals the body to preserve muscle mass even as fat mass declines.</p>
+  <p>High-protein splits are the standard recommendation during weight loss for this reason. The 35/35/30 split (or even 40/30/30 for very lean targets) gives 105 g protein at 1,200 kcal or 175 g protein at 2,000 kcal — within the protective range for most adults.</p>
+
+  <h2>Low-Carb and Keto</h2>
+  <p>Very-low-carbohydrate diets (&lt;50 g carbs/day) induce nutritional ketosis — the metabolic state in which the body shifts from glucose to ketone bodies for fuel. Therapeutic ketogenic diets are well-established for refractory epilepsy and are increasingly studied for type 2 diabetes and certain neurological conditions.</p>
+  <p>For general weight loss, low-carb diets produce similar results to low-fat diets on average (per multiple meta-analyses), but individual responses vary substantially. Some people thrive on low-carb; others find the restriction unsustainable. Macro strategy should match individual preference and metabolic context.</p>
+
+  <h2>Mediterranean-Style Eating</h2>
+  <p>The Mediterranean dietary pattern — rich in olive oil, vegetables, legumes, fish, and whole grains — is the most consistently supported eating pattern in long-term observational research for cardiovascular and metabolic outcomes. The macro profile (20P / 50C / 30F) reflects this: more carbohydrates than low-carb diets, but with emphasis on fiber-rich sources and unsaturated fats.</p>
+
+  <h2>Should You Track Macros at All?</h2>
+  <p>Macro tracking is most useful during a structured weight-loss phase or recomposition. Outside those windows, habit-based eating patterns (whole foods, adequate protein, mostly plants) generally outperform obsessive tracking for long-term adherence and psychological well-being. Use the calculator as a planning tool, not a daily ledger.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Helms ER, Zinn C, Rowlands DS, Brown SR. <em>A systematic review of dietary protein during caloric restriction in resistance trained lean athletes.</em> Int J Sport Nutr Exerc Metab. 2014;24(2):127–138.</li>
+    <li>Trumbo P, Schlicker S, Yates AA, Poos M. <em>Dietary reference intakes for energy, carbohydrate, fiber, fat, fatty acids, cholesterol, protein and amino acids.</em> J Am Diet Assoc. 2002;102(11):1621–1630.</li>
+    <li>Estruch R, et al. <em>Primary prevention of cardiovascular disease with a Mediterranean diet.</em> N Engl J Med. 2013;368(14):1279–1290.</li>
+  </ul>
+</ArticleLayout>

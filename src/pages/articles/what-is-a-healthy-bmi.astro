@@ -1,0 +1,243 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What BMI is considered healthy for most adults?',
+    a: 'For most adults, 18.5 to 24.9 is the WHO-defined healthy range. This is the same band used by the CDC, NHS, and most clinical guidelines.',
+  },
+  {
+    q: 'Does a healthy BMI differ by age?',
+    a: 'Slightly. For adults 65 and older, a BMI between 22 and 27 may be more protective than the standard 18.5–24.9 range. Children and teens use percentile, not BMI categories.',
+  },
+  {
+    q: 'Does a healthy BMI differ by gender?',
+    a: 'The official cutoffs are the same for men and women. However, body composition differs, so a given BMI can mean different things for men vs. women.',
+  },
+  {
+    q: 'Does a healthy BMI differ by ethnicity?',
+    a: 'Yes. The WHO recommends lower cutoffs for Asian populations: 18.5–22.9 healthy, 23–27.5 overweight, 27.5+ obese.',
+  },
+  {
+    q: 'What if my BMI is in the healthy range but I feel unhealthy?',
+    a: 'BMI is one signal — not the only one. Look at waist circumference, blood pressure, bloodwork, and how you feel day-to-day. A clinician can give you the full picture.',
+  },
+];
+
+const related = [
+  { href: '/articles/how-to-calculate-bmi-2026/', title: 'How to Calculate BMI', desc: 'The formula, worked examples, and the official WHO chart.' },
+  { href: '/articles/bmi-categories-explained/', title: 'BMI Categories Explained', desc: 'Every band with what each one means for health risk.' },
+  { href: '/calculators/bmi/', title: 'Adult BMI Calculator', desc: 'Get your number with healthy range and category.' },
+];
+---
+<ArticleLayout
+  title="What Is a Healthy BMI? Chart by Age, Gender & Height | Helthvibe"
+  description="What BMI is considered healthy? See charts broken down by age, gender, height, and ethnicity, with the limits of a single healthy BMI number."
+  h1="What Is a Healthy BMI? Chart by Age, Gender & Height"
+  excerpt="A single healthy BMI number doesn't fit everyone. Here's how age, gender, height, and ethnicity shift the optimal range."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Reference"
+  readTime="9 min"
+  showCalculator={true}
+  faqs={faqs}
+  related={related}
+>
+  <p>
+    The World Health Organization defines a healthy adult BMI as 18.5 to 24.9. That's the number most guidelines use.
+    But it isn't the same number for everyone — a healthy BMI shifts with age, gender, ethnicity, and what we're using the
+    number to predict.
+  </p>
+
+  <p>
+    Below, we walk through the standard healthy range, then break it down by age group, by gender, by ethnicity (with the
+    WHO-aligned Asian cutoffs), and by height. We close with how to think about BMI as one of several health signals,
+    rather than a verdict.
+  </p>
+
+  <h2>The standard healthy BMI range</h2>
+  <p>
+    The WHO adult BMI classification, in widespread use globally since the 1990s, defines:
+  </p>
+
+  <table>
+    <caption>WHO adult BMI classification</caption>
+    <thead><tr><th>BMI</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>Below 18.5</td><td>Underweight</td></tr>
+      <tr><td><strong>18.5 – 24.9</strong></td><td><strong>Healthy range</strong></td></tr>
+      <tr><td>25.0 – 29.9</td><td>Overweight</td></tr>
+      <tr><td>30.0 and above</td><td>Obese</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Most clinical guidelines — including the CDC in the US, NHS in the UK, and national bodies across Europe, Asia, and
+    Oceania — use this same band. If you've ever checked your BMI and gotten a "you're in the healthy range" message, this
+    is the band it's referring to.
+  </p>
+
+  <h2>Healthy BMI by age group</h2>
+  <p>
+    For children and teens (ages 2–19), BMI is interpreted as a percentile against age- and sex-matched peers, not as a
+    fixed category. A BMI at the 85th percentile or higher is "overweight"; at the 95th percentile or higher is "obese."
+  </p>
+
+  <p>
+    For adults, the standard 18.5–24.9 range holds steady from age 20 through 64. After 65, the picture changes — see
+    below.
+  </p>
+
+  <h3>Adults 65 and older</h3>
+  <p>
+    Several large studies suggest that older adults fare better with a BMI slightly above the standard range. A 2014
+    meta-analysis in the <em>American Journal of Clinical Nutrition</em> found that adults over 65 with a BMI between
+    22 and 27 had the lowest all-cause mortality. Below 22, mortality risk rose — likely reflecting malnutrition, sarcopenia,
+    or chronic illness.
+  </p>
+
+  <p>
+    This doesn't mean "more weight is always better" for seniors. It means the lower bound of "healthy" likely shifts up
+    for older adults. Our [Senior BMI calculator](/calculators/bmi-seniors) uses 22–27 as the healthy range for adults 65+.
+  </p>
+
+  <h3>Children and teens (ages 2–19)</h3>
+  <p>
+    Pediatric BMI uses age- and sex-specific percentiles, calculated against CDC growth charts:
+  </p>
+
+  <table>
+    <caption>CDC BMI percentile classification (ages 2–19)</caption>
+    <thead><tr><th>Percentile</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>Below the 5th percentile</td><td>Underweight</td></tr>
+      <tr><td>5th to 84th percentile</td><td>Healthy weight</td></tr>
+      <tr><td>85th to 94th percentile</td><td>Overweight</td></tr>
+      <tr><td>95th percentile and above</td><td>Obese</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Our [Child & Teen BMI calculator](/calculators/bmi-children) computes this percentile for you.
+  </p>
+
+  <h2>Healthy BMI by gender</h2>
+  <p>
+    The WHO cutoffs are the same for men and women — but body composition differs in ways that matter.
+  </p>
+
+  <ul>
+    <li><strong>Women</strong> carry a higher percentage of essential fat (12% vs. 3% in men). A given BMI in the healthy range typically reflects a higher body-fat percentage for women than for men.</li>
+    <li><strong>Men</strong> tend to carry weight around the abdomen; <strong>women</strong> tend to carry it around the hips and thighs. Abdominal (visceral) fat carries higher cardiometabolic risk.</li>
+    <li><strong>Waist circumference</strong> is therefore a useful complement to BMI: above 40 in (102 cm) for men or 35 in (88 cm) for women signals elevated risk regardless of BMI.</li>
+  </ul>
+
+  <p>
+    For a BMI calculator that adds female-specific context, see our [Women BMI calculator](/calculators/bmi-women).
+    For male-specific context, see [BMI for Men](/calculators/bmi-men).
+  </p>
+
+  <h2>Healthy BMI by ethnicity</h2>
+  <p>
+    Different ethnic groups develop weight-related health complications at different BMIs. The strongest and most studied
+    case is Asian populations, where the WHO has issued adjusted cutoffs.
+  </p>
+
+  <h3>Asian populations</h3>
+  <p>
+    Studies in the 1990s and 2000s showed that South, East, and Southeast Asian populations tend to develop type 2 diabetes,
+    hypertension, and cardiovascular disease at BMIs well below the standard 25 cutoff. The WHO recommends lower thresholds:
+  </p>
+
+  <table>
+    <caption>WHO Asian-adjusted BMI classification</caption>
+    <thead><tr><th>BMI</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>Below 18.5</td><td>Underweight</td></tr>
+      <tr><td><strong>18.5 – 22.9</strong></td><td><strong>Healthy range</strong></td></tr>
+      <tr><td>23.0 – 27.4</td><td>Overweight</td></tr>
+      <tr><td>27.5 and above</td><td>Obese</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    A BMI of 24, "healthy" by the standard chart, would be classified as overweight for an Asian adult. Use our
+    [Asian BMI calculator](/calculators/bmi-asian) with the Asian-threshold toggle to see both ranges side by side.
+  </p>
+
+  <h3>Other ethnic considerations</h3>
+  <p>
+    Research is ongoing for Black, Hispanic, and other populations. Some studies suggest that the standard cutoffs may also
+    misclassify risk in these groups, though no consensus has produced new official cutoffs. A clinician who knows your
+    personal and family history can give you better guidance than a single number.
+  </p>
+
+  <h2>Healthy BMI by height</h2>
+  <p>
+    BMI is calculated from height and weight, but the "healthy" range itself doesn't change by height — 18.5 to 24.9
+    applies to a person who is 5'2" (157 cm) just as it does to someone who is 6'3" (191 cm).
+  </p>
+
+  <p>
+    What does change is the absolute weight that corresponds to that BMI. The healthy weight range for different heights:
+  </p>
+
+  <table>
+    <caption>Healthy weight range for common heights (BMI 18.5–24.9)</caption>
+    <thead>
+      <tr><th>Height</th><th>Healthy weight range (kg)</th><th>Healthy weight range (lb)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>5'0" (152 cm)</td><td>42.8 – 57.6</td><td>94 – 127</td></tr>
+      <tr><td>5'2" (157 cm)</td><td>45.6 – 61.4</td><td>100 – 135</td></tr>
+      <tr><td>5'4" (163 cm)</td><td>49.1 – 66.1</td><td>108 – 146</td></tr>
+      <tr><td>5'6" (168 cm)</td><td>52.2 – 70.3</td><td>115 – 155</td></tr>
+      <tr><td>5'8" (173 cm)</td><td>55.4 – 74.6</td><td>122 – 164</td></tr>
+      <tr><td>5'10" (178 cm)</td><td>58.6 – 78.9</td><td>129 – 174</td></tr>
+      <tr><td>6'0" (183 cm)</td><td>62.0 – 83.4</td><td>137 – 184</td></tr>
+      <tr><td>6'2" (188 cm)</td><td>65.4 – 88.1</td><td>144 – 194</td></tr>
+      <tr><td>6'4" (193 cm)</td><td>68.9 – 92.8</td><td>152 – 205</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Use our [Healthy Weight calculator](/calculators/healthy-weight) for a customized version based on your exact height.
+  </p>
+
+  <h2>Why the "healthy range" is a range, not a single number</h2>
+  <p>
+    The 18.5–24.9 band is a population-level statistical range, not a personalized target. Within that range, there's no
+    evidence that 21.5 is "healthier" than 23.5. The body of epidemiological research shows roughly the lowest mortality risk
+    across most of the band, with a slight U-shape — risk rises slightly at both ends.
+  </p>
+
+  <p>
+    So if you're at 19.5 or 24.5, you're not at the "edge" of healthy in any meaningful sense. You're in the range.
+    Worrying about a number within the band is rarely useful.
+  </p>
+
+  <h2>Beyond BMI: other health signals</h2>
+  <p>
+    A growing body of research suggests that several other measurements predict health risk as well as, or better than,
+    BMI:
+  </p>
+
+  <ul>
+    <li><strong>Waist-to-height ratio:</strong> divide your waist circumference by your height. A ratio below 0.5 is generally considered low risk; above 0.5 is elevated.</li>
+    <li><strong>Body-fat percentage:</strong> a more direct measure of adiposity, though methods vary in accuracy.</li>
+    <li><strong>Waist circumference alone:</strong> above 40 in (102 cm) for men or 35 in (88 cm) for women signals elevated cardiometabolic risk.</li>
+    <li><strong>Bloodwork:</strong> fasting glucose, HbA1c, lipid panel, and blood pressure are far better predictors of cardiometabolic disease than BMI alone.</li>
+    <li><strong>Cardiorespiratory fitness:</strong> "Fit and fat" people consistently have lower mortality than "unfit and thin" people, even at the same BMI.</li>
+  </ul>
+
+  <p>
+    See our [BMI vs. body-fat guide](/articles/bmi-vs-body-fat-percentage) and [Is BMI Accurate in 2026?](/articles/is-bmi-accurate-in-2026)
+    for more on this.
+  </p>
+
+  <div class="callout">
+    <strong>The takeaway:</strong> The 18.5–24.9 BMI band is a useful population-level signal, but it isn't a personal
+    target. The healthiest BMI for <em>you</em> depends on your age, ethnicity, body composition, fitness, and overall
+    health profile. Use BMI as one input — not the only one.
+  </div>
+</ArticleLayout>

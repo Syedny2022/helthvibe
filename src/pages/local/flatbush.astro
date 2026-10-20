@@ -1,0 +1,33 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'BMI Calculator for Flatbush, Brooklyn',
+  description: 'Free BMI calculator for Flatbush, Brooklyn. Privacy-first.',
+};
+---
+<Layout
+  title="Free BMI Calculator for Flatbush, Brooklyn | Helthvibe"
+  description="Free BMI calculator for Flatbush, Brooklyn residents — instant results, healthy range, privacy-first."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Free BMI Calculator for Flatbush, Brooklyn | Helthvibe"
+    description="Free BMI calculator for Flatbush, Brooklyn residents — instant results, healthy range, privacy-first."
+    h1="BMI Calculator for Flatbush"
+    intro="A BMI calculator tailored for Flatbush, Brooklyn — fast, private, and built on WHO standards."
+    status="coming-soon"
+    features={[
+      'WHO-standard BMI calculation',
+      'Healthy weight range for your height',
+      'Flatbush and Brooklyn-specific lifestyle notes',
+      'Privacy-first — all math runs locally',
+      'Metric and imperial units',
+    ]}
+    schema={schema}
+    ctaHref="/calculators/bmi/"
+  />
+</Layout>

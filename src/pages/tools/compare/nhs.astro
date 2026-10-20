@@ -1,0 +1,35 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'NHS BMI Calculator — Review & Comparison',
+  datePublished: '2026-09-27',
+  dateModified: '2026-09-27',
+  author: { '@type': 'Organization', name: 'Helthvibe' },
+  publisher: { '@type': 'Organization', name: 'Helthvibe', logo: { '@type': 'ImageObject', url: 'https://helthvibe.com/logo.png' } },
+};
+---
+<Layout
+  title="NHS BMI Calculator — Review & Comparison | Helthvibe"
+  description="An independent review of the NHS BMI healthy weight calculator — features, accuracy, privacy, and how it compares to Helthvibe."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="NHS BMI Calculator — Review & Comparison | Helthvibe"
+    description="An independent review of the NHS BMI healthy weight calculator — features, accuracy, privacy, and how it compares to Helthvibe."
+    h1="NHS BMI Calculator — Review & Comparison"
+    intro="The UK's NHS healthy weight calculator is one of the most-used BMI tools in the world. Here's how it works and how it compares to Helthvibe."
+    status="reference"
+    features={[
+      'NHS healthy weight calculator breakdown',
+      'Side-by-side comparison with Helthvibe',
+      'Differences in thresholds and ranges',
+      'Privacy and data-handling comparison',
+      'Affiliate-friendly disclosures',
+    ]}
+    schema={schema}
+  />
+</Layout>

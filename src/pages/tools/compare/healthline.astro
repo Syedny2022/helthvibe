@@ -1,0 +1,35 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Healthline BMI Calculator — Review & Comparison',
+  datePublished: '2026-09-27',
+  dateModified: '2026-09-27',
+  author: { '@type': 'Organization', name: 'Helthvibe' },
+  publisher: { '@type': 'Organization', name: 'Helthvibe', logo: { '@type': 'ImageObject', url: 'https://helthvibe.com/logo.png' } },
+};
+---
+<Layout
+  title="Healthline BMI Calculator — Review & Comparison | Helthvibe"
+  description="An independent review of the Healthline BMI calculator — features, accuracy, privacy, and how it compares to Helthvibe."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Healthline BMI Calculator — Review & Comparison | Helthvibe"
+    description="An independent review of the Healthline BMI calculator — features, accuracy, privacy, and how it compares to Helthvibe."
+    h1="Healthline BMI Calculator — Review & Comparison"
+    intro="Healthline's BMI calculator is widely cited. Here's how it works, what it does well, and how it compares to Helthvibe."
+    status="reference"
+    features={[
+      'Healthline calculator feature breakdown',
+      'Side-by-side comparison with Helthvibe',
+      'Editorial source comparison',
+      'Privacy and data-handling comparison',
+      'Affiliate-friendly disclosures',
+    ]}
+    schema={schema}
+  />
+</Layout>

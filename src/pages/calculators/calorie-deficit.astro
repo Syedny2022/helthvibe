@@ -1,0 +1,129 @@
+---
+import Layout from '@layouts/Layout.astro';
+const title = 'Free Calorie Deficit Calculator — Safe Weight Loss Planning | Helthvibe';
+const description = 'Plan a safe weight-loss calorie deficit. Get daily deficit, weekly pace, and projected BMI change from current weight to target.';
+const softwareSchema = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Helthvibe Calorie Deficit Calculator', applicationCategory: 'HealthApplication', operatingSystem: 'Web', url: 'https://helthvibe.com/calculators/calorie-deficit/', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } };
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+  { '@type': 'Question', name: 'What is a safe calorie deficit?', acceptedAnswer: { '@type': 'Answer', text: 'A safe daily deficit is 300–500 kcal for most adults — producing about 0.5 kg (1 lb) of weight loss per week. Larger deficits of 500–1,000 kcal/day are still considered safe for shorter periods. Above 1,000 kcal/day is rarely sustainable and increases muscle loss.' } },
+  { '@type': 'Question', name: 'How fast will I lose weight?', acceptedAnswer: { '@type': 'Answer', text: 'A kilogram of body fat is roughly equivalent to 7,700 kcal. A 500 kcal/day deficit produces about 0.5 kg/week. A 1,000 kcal/day deficit produces about 1 kg/week. Faster loss is usually partial water and muscle, not just fat.' } },
+  { '@type': 'Question', name: 'Is my data private?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.' } },
+] };
+const faqs = [
+  { q: 'What is a safe calorie deficit?', a: '300–500 kcal/day for slow loss (~0.5 kg/wk). 500–1,000 kcal/day for moderate loss (~1 kg/wk).' },
+  { q: 'How fast should I lose weight?', a: '0.5–1 kg per week is the safe, sustainable range. Faster loss usually includes water and muscle.' },
+  { q: 'What is minimum safe calorie intake?', a: 'Women: typically 1,200 kcal/day. Men: 1,500 kcal/day. Below this, medical supervision is required.' },
+];
+---
+<Layout title={title} description={description} schema={[softwareSchema, faqSchema]}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Free · Mifflin · Private</span>
+      <h1>Calorie Deficit Calculator</h1>
+      <p class="lead">Plan a safe weight-loss calorie deficit. Get daily deficit, weekly pace, and projected timeline.</p>
+    </div>
+  </section>
+  <section class="section calc-section"><div class="container"><div class="calc-layout">
+    <div class="calc-main"><div class="calc" data-cd-calc id="cd-main">
+      <form class="form" data-form novalidate>
+        <div class="row">
+          <div class="field"><label class="field-label" for="cd-start">Current weight (kg)</label><input type="number" id="cd-start" name="start" min="40" max="300" step="0.1" placeholder="90" required /></div>
+          <div class="field"><label class="field-label" for="cd-target">Target weight (kg)</label><input type="number" id="cd-target" name="target" min="40" max="300" step="0.1" placeholder="80" required /></div>
+        </div>
+        <div class="row">
+          <div class="field"><label class="field-label" for="cd-days">Timeframe (days)</label><input type="number" id="cd-days" name="days" min="7" max="730" step="1" placeholder="120" required /></div>
+          <div class="field"><label class="field-label" for="cd-current">Current intake (kcal/day)</label><input type="number" id="cd-current" name="current" min="1000" max="5000" step="50" placeholder="2400" required /></div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Calculate deficit</button>
+        <p class="privacy-note">🔒 All math runs in your browser. Data never leaves this device.</p>
+      </form>
+      <div class="result" data-result hidden>
+        <div class="result-grid">
+          <div class="r-card"><span class="r-label">To lose</span><span class="r-value" data-tolose>—</span><span class="r-unit">kg</span></div>
+          <div class="r-card"><span class="r-label">Daily deficit</span><span class="r-value" data-deficit>—</span><span class="r-unit">kcal</span></div>
+          <div class="r-card"><span class="r-label">Daily intake</span><span class="r-value" data-intake>—</span><span class="r-unit">kcal</span></div>
+          <div class="r-card"><span class="r-label">Pace</span><span class="r-value" data-pace>—</span><span class="r-unit">kg/wk</span></div>
+        </div>
+        <div class="safety-callout" data-callout></div>
+      </div>
+    </div></div>
+    <aside class="calc-side">
+      <div class="info-card"><h3>Sustainable pace</h3>
+        <table class="cat-table"><tbody><tr><th>Pace</th><th>Daily deficit</th></tr><tr><td>Slow (recommended)</td><td>300–500 kcal</td></tr><tr><td>Moderate</td><td>500–750 kcal</td></tr><tr><td>Aggressive</td><td>750–1,000 kcal</td></tr><tr><td>Crash (unsafe)</td><td>&gt;1,000 kcal</td></tr></tbody></table>
+      </div>
+      <div class="info-card"><h3>Minimum intakes</h3><p>Women: 1,200 kcal/day. Men: 1,500 kcal/day. Below these thresholds, weight loss is no longer safe without medical supervision.</p></div>
+      <div class="info-card"><h3>Privacy</h3><p>All calculations happen locally. Nothing is sent to a server.</p></div>
+    </aside>
+  </div></div></section>
+  <section class="section section-soft"><div class="container-narrow"><h2>Frequently asked questions</h2><div class="faq-list">{faqs.map((f) => (<details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}</div></div></section>
+  <section class="section"><div class="container"><h2>Keep exploring</h2><div class="grid grid-3"><a href="/calculators/tdee/" class="card"><h3 class="card-title">TDEE</h3><p class="card-desc">Find your maintenance calories.</p></a><a href="/calculators/bmr/" class="card"><h3 class="card-title">BMR</h3><p class="card-desc">Resting energy expenditure.</p></a><a href="/calculators/macro-split/" class="card"><h3 class="card-title">Macro Split</h3><p class="card-desc">Convert deficit to macros.</p></a></div></div></section>
+</Layout>
+<style>
+  .page-hero { padding: var(--space-7) 0 var(--space-6); text-align: center; background: radial-gradient(ellipse at top, rgba(20, 184, 138, 0.08) 0%, transparent 60%), var(--color-bg); }
+  .page-hero .badge { margin-bottom: var(--space-3); } .lead { font-size: 1.1rem; color: var(--color-text-soft); max-width: 640px; margin: 0 auto; }
+  .calc-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-6); align-items: start; }
+  @media (max-width: 880px) { .calc-layout { grid-template-columns: 1fr; } }
+  .calc-main { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .calc-side { display: grid; gap: var(--space-4); }
+  .info-card { background: var(--color-bg-soft); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: var(--space-5); }
+  .info-card h3 { font-size: 1rem; margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .cat-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .cat-table th, .cat-table td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid var(--color-border-soft); }
+  .cat-table th { font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.04em; }
+  .cat-table tr:last-child td { border-bottom: none; }
+  .faq-list { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+  .faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
+  .faq-item[open] { border-color: var(--color-brand); }
+  .faq-item summary { cursor: pointer; font-weight: 600; color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--color-brand); transition: transform 0.15s var(--ease-out); }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { margin: var(--space-3) 0 0; }
+  .calc { display: grid; gap: var(--space-5); }
+  .form { display: grid; gap: var(--space-4); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-label { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+  input[type="number"] { padding: 0.75rem 0.9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); width: 100%; }
+  input[type="number"]:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 3px rgba(20, 184, 138, 0.12); }
+  .privacy-note { margin: 0; text-align: center; font-size: 0.82rem; color: var(--color-text-muted); }
+  .result { background: var(--color-bg-soft); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; gap: var(--space-4); border: 1px solid var(--color-border-soft); animation: slideIn 0.3s var(--ease-out); }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  @media (max-width: 480px) { .result-grid { grid-template-columns: 1fr; } }
+  .r-card { background: var(--color-surface); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: var(--space-4); text-align: center; }
+  .r-label { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  .r-value { display: inline-block; font-size: 2rem; font-weight: 800; color: var(--color-text); }
+  .r-unit { display: block; font-size: 0.85rem; color: var(--color-text-muted); margin-top: 2px; }
+  .safety-callout { padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); font-size: 0.9rem; }
+  .safety-callout.safe { background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; color: var(--color-text); }
+  .safety-callout.warn { background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; color: var(--color-text); }
+</style>
+<script>
+  import { calculateCalorieDeficit } from '@lib/health';
+  function init(root: HTMLElement) {
+    const form = root.querySelector('[data-form]') as HTMLFormElement;
+    const result = root.querySelector('[data-result]') as HTMLElement;
+    const tolose = root.querySelector('[data-tolose]') as HTMLElement;
+    const deficit = root.querySelector('[data-deficit]') as HTMLElement;
+    const intake = root.querySelector('[data-intake]') as HTMLElement;
+    const pace = root.querySelector('[data-pace]') as HTMLElement;
+    const callout = root.querySelector('[data-callout]') as HTMLElement;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(form);
+      const start = Number(d.get('start'));
+      const target = Number(d.get('target'));
+      const days = Number(d.get('days'));
+      const current = Number(d.get('current'));
+      if (!start || !target || !days || !current || target >= start || days < 7) return;
+      const r = calculateCalorieDeficit({ startWeightKg: start, targetWeightKg: target, days, currentDailyCalories: current, tdee: current });
+      tolose.textContent = r.toLoseKg.toFixed(1);
+      deficit.textContent = r.dailyDeficit.toLocaleString();
+      intake.textContent = r.requiredDailyIntake.toLocaleString();
+      pace.textContent = r.weeklyPaceKg.toFixed(2);
+      callout.className = 'safety-callout ' + (r.isSafe ? 'safe' : 'warn');
+      callout.textContent = r.safetyNote;
+      result.hidden = false;
+    });
+  }
+  document.querySelectorAll<HTMLElement>('[data-cd-calc]').forEach(init);
+</script>

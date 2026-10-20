@@ -1,0 +1,93 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is a safe calorie deficit?',
+    a: '300–500 kcal/day for slow loss (~0.5 kg/wk). 500–1,000 kcal/day for moderate loss (~1 kg/wk). Above 1,000 kcal/day is rarely sustainable and increases muscle loss.',
+  },
+  {
+    q: 'How fast should I lose weight?',
+    a: '0.5–1 kg per week is the safe, sustainable range. Faster loss usually includes water and muscle, not just fat.',
+  },
+  {
+    q: 'What is minimum safe calorie intake?',
+    a: 'Women: typically 1,200 kcal/day. Men: 1,500 kcal/day. Below these thresholds, medical supervision is required.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.',
+  },
+];
+
+const related = [
+  { href: '/calculators/calorie-deficit/', title: 'Calorie Deficit Calculator', desc: 'Plan a safe deficit.' },
+  { href: '/calculators/tdee/', title: 'TDEE Calculator', desc: 'Maintenance calories.' },
+  { href: '/articles/how-to-lower-your-bmi-safely/', title: 'How to Lower BMI Safely', desc: 'Sustainable weight loss.' },
+];
+---
+<ArticleLayout
+  title="Calorie Deficit: How to Plan a Safe Weight-Loss Diet | Helthvibe"
+  description="A safe calorie deficit is 300–500 kcal/day for slow loss or 500–1,000 kcal/day for moderate loss. Here's how to calculate one for your goals."
+  h1="Calorie Deficit — How to Plan a Safe Weight-Loss Diet"
+  excerpt="A calorie deficit is the foundation of weight loss. Here's how to size one safely, avoid muscle loss, and not crash your metabolism."
+  datePublished="2026-09-29"
+  dateModified="2026-09-29"
+  category="Action"
+  readTime="7 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>The Math Behind Weight Loss</h2>
+  <p>Body fat is roughly equivalent to 7,700 kcal per kilogram (this convention comes from the original Mifflin-St Jeor analysis). A daily calorie deficit of 500 kcal produces approximately 0.5 kg of weight loss per week. A daily deficit of 1,000 kcal produces approximately 1 kg per week.</p>
+  <p>This is the simple version of the math. The complete version accounts for metabolic adaptation — the body's tendency to lower its energy expenditure in response to sustained caloric restriction, partly through hormonal changes (decreased leptin, thyroid hormone, sympathetic tone) and partly through reduced non-exercise activity. This is why very-low-calorie diets often produce short-term rapid loss followed by a plateau or rebound.</p>
+
+  <h2>Sustainable vs Aggressive Deficits</h2>
+  <table>
+    <thead><tr><th>Deficit</th><th>Weekly loss</th><th>Use case</th></tr></thead>
+    <tbody>
+      <tr><td>300–500 kcal/day</td><td>~0.3–0.5 kg/wk</td><td>Slow loss; preserves muscle, sustainable long-term</td></tr>
+      <tr><td>500–750 kcal/day</td><td>~0.5–0.75 kg/wk</td><td>Moderate loss; standard clinical target</td></tr>
+      <tr><td>750–1,000 kcal/day</td><td>~0.75–1 kg/wk</td><td>Aggressive loss; only for higher-BMI individuals with clinical guidance</td></tr>
+      <tr><td>&gt;1,000 kcal/day</td><td>&gt;1 kg/wk</td><td>Crash dieting; not sustainable, high muscle loss</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Minimum Safe Calorie Intakes</h2>
+  <p>The body's basal functions require a floor of calories. Below this floor, weight loss is no longer safe without medical supervision:</p>
+  <ul>
+    <li><strong>Women:</strong> Typically 1,200 kcal/day minimum. Below this, risk of nutritional deficiency, muscle loss, and metabolic adaptation increases substantially.</li>
+    <li><strong>Men:</strong> Typically 1,500 kcal/day minimum. Higher absolute floor because men generally have higher BMRs at the same activity level.</li>
+  </ul>
+  <p>Very-low-calorie diets (VLCDs) under 800 kcal/day exist for clinical obesity treatment but require medical supervision, regular monitoring, and typically use meal replacement protocols.</p>
+
+  <h2>How to Set a Deficit</h2>
+  <p>Step-by-step approach using the calculators on this site:</p>
+  <ol>
+    <li>Compute your TDEE using the BMR × activity factor method.</li>
+    <li>Decide your weekly weight-loss target (0.5 kg/week is the safe default).</li>
+    <li>Multiply weekly loss by 7,700 / 7 to get daily deficit (~550 kcal for 0.5 kg/week).</li>
+    <li>Subtract from TDEE to get daily calorie target.</li>
+    <li>Verify daily calorie target is above the minimum safe intake for your sex.</li>
+    <li>Track weight weekly. Adjust intake if rate deviates significantly.</li>
+  </ol>
+
+  <h2>Why Crash Diets Fail</h2>
+  <p>Aggressive deficits of 1,000+ kcal/day produce initial rapid weight loss — but 20–30% of that loss is lean mass, not fat. The body also downregulates thyroid hormone and resting metabolic rate, slowing further loss. When the diet ends (and crash diets rarely last), the now-lower BMR means rapid regain.</p>
+  <p>This is the physiology behind the yo-yo pattern. Sustainable deficits (300–500 kcal/day) preserve lean mass, maintain metabolic rate, and produce slower but durable loss.</p>
+
+  <h2>Deficits and Exercise</h2>
+  <p>Combining caloric restriction with resistance training produces the best body composition outcomes during weight loss — preserved or even increased lean mass while fat mass declines. Exercise alone rarely produces meaningful weight loss (the energy expenditure is easy to offset by increased appetite) but is critical for what happens to the weight you do lose.</p>
+  <p>Recommended during a deficit: 2–3 resistance training sessions per week plus 150+ minutes of moderate aerobic activity. Protein intake of 1.6–2.2 g/kg target body weight to support muscle preservation.</p>
+
+  <h2>When to Stop Dieting</h2>
+  <p>A weight-loss phase should be time-limited (3–6 months) followed by a maintenance phase at the new weight. Sustained aggressive deficits longer than 6 months are associated with persistent metabolic adaptation that can take months to reverse. Plan breaks — eat at maintenance for 1–2 weeks every 6–12 weeks of deficit.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Hall KD, et al. <em>Quantification of the effect of energy imbalance on bodyweight.</em> Lancet. 2011;378(9793):826–837.</li>
+    <li>Helms ER, Zinn C, Rowlands DS, Brown SR. <em>A systematic review of dietary protein during caloric restriction in resistance trained lean athletes.</em> Int J Sport Nutr Exerc Metab. 2014;24(2):127–138.</li>
+    <li>Trexler ET, Smith-Ryan AE, Norton LE. <em>Metabolic adaptation to weight loss: implications for the athlete.</em> J Int Soc Sports Nutr. 2014;11(1):7.</li>
+  </ul>
+</ArticleLayout>

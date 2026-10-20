@@ -1,0 +1,160 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'How fast can I get my BMI?',
+    a: 'Five seconds. Enter your height and weight above, click Calculate, and you\'ll see your BMI, category, and healthy weight range immediately.',
+  },
+  {
+    q: 'Do I need to sign up?',
+    a: 'No. The calculator is completely free, with no account required. We don\'t ask for your email to use it.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All calculations run 100% locally in your browser. We never see, store, or transmit your height or weight.',
+  },
+  {
+    q: 'Does the calculator work in metric and imperial?',
+    a: 'Yes — both. There\'s a single toggle at the top of the form. Switch any time without losing your input.',
+  },
+  {
+    q: 'What does the result include?',
+    a: 'Your BMI number, your BMI category (underweight, healthy, overweight, or obese), a short description of what the category means, and your healthy weight range for your height.',
+  },
+  {
+    q: 'Can I use this on my phone?',
+    a: 'Yes. The calculator is mobile-optimized. Use it on iOS, Android, or any modern mobile browser.',
+  },
+];
+
+const related = [
+  { href: '/articles/how-to-calculate-bmi-2026/', title: 'How to Calculate BMI', desc: 'The formula, worked examples, and the official chart.' },
+  { href: '/articles/what-is-a-healthy-bmi/', title: 'What Is a Healthy BMI?', desc: 'Healthy range by age, gender, and ethnicity.' },
+  { href: '/articles/bmi-categories-explained/', title: 'BMI Categories Explained', desc: 'Every BMI band with what each one means.' },
+];
+---
+<ArticleLayout
+  title="Free BMI Calculator – Instant Body Mass Index Check with Healthy Range | Helthvibe"
+  description="Get your BMI in 5 seconds. Free, no signup, privacy-first. Includes healthy weight range and category guidance."
+  h1="Free BMI Calculator — Instant Body Mass Index Check"
+  excerpt="The fastest way to check your BMI online. Enter your height and weight, get your number, category, and healthy weight range in seconds."
+  datePublished="2026-09-27"
+  dateModified="2026-09-27"
+  category="Calculator"
+  readTime="3 min"
+  showCalculator={true}
+  faqs={faqs}
+  related={related}
+>
+  <p>
+    Use the calculator above to check your BMI in seconds — no signup, no email required, no data stored. Enter your height
+    and weight, hit Calculate, and you'll see your BMI score, your category, and the healthy weight range for your
+    height.
+  </p>
+
+  <h2>What you get with the calculator</h2>
+  <p>
+    Unlike most BMI calculators that just give you a number, our calculator shows you:
+  </p>
+
+  <ul>
+    <li><strong>Your BMI score</strong> — the standard kg/m² value.</li>
+    <li><strong>Your category</strong> — underweight, healthy range, overweight, or obese — with a one-line description of what the category means.</li>
+    <li><strong>Your healthy weight range</strong> — the weight range that puts your BMI in the WHO healthy band for your specific height.</li>
+    <li><strong>A visual scale</strong> — see where your BMI falls on the 14–40 BMI scale, color-coded by category.</li>
+    <li><strong>Optional Asian-adjusted thresholds</strong> — toggle if you have South, East, or Southeast Asian heritage.</li>
+  </ul>
+
+  <h2>How to use the calculator</h2>
+  <ol>
+    <li><strong>Pick your units.</strong> Use the toggle at the top — Metric (cm/kg) or Imperial (ft/lb). You can switch any time without losing your input.</li>
+    <li><strong>Enter your height.</strong> In metric, that's centimeters. In imperial, that's feet and inches (5'7" = 5 ft, 7 in).</li>
+    <li><strong>Enter your weight.</strong> In metric, kilograms. In imperial, pounds.</li>
+    <li><strong>(Optional) Toggle Asian-adjusted thresholds.</strong> If you have South, East, or Southeast Asian heritage, use the lower cutoffs.</li>
+    <li><strong>Click Calculate.</strong> Your BMI, category, healthy range, and visual position appear below the form.</li>
+  </ol>
+
+  <h2>Why this calculator is different</h2>
+
+  <h3>Privacy-first</h3>
+  <p>
+    Most online BMI calculators send your height and weight to a server. Some log it. A few share it with advertising
+    partners. Ours doesn't, because all the math runs in your browser using a small JavaScript snippet — the page never
+    asks a server for the result.
+  </p>
+
+  <p>
+    You can verify this by opening your browser's network tab and using the calculator. You'll see no outbound request
+    carrying your data.
+  </p>
+
+  <h3>No signup, no friction</h3>
+  <p>
+    We don't ask for your email to use the calculator. We don't require an account. We don't gate the result behind a
+    "subscribe to see your number" wall. You should be able to check your BMI as fast as a calculator app on your phone —
+    without giving up your information.
+  </p>
+
+  <h3>Honest context, not just a number</h3>
+  <p>
+    BMI is a useful signal, but it isn't the full picture. We show you the category, the description, and the healthy
+    range — and we link to deeper guides on the limits of BMI, what your number means by age and ethnicity, and what
+    alternatives exist.
+  </p>
+
+  <h2>Common questions</h2>
+
+  <h3>What's a healthy BMI?</h3>
+  <p>
+    For most adults, 18.5 to 24.9 is the WHO-defined healthy range. For Asian populations, 18.5 to 22.9 is recommended.
+    For adults 65 and older, 22 to 27 may be more appropriate. See our [healthy BMI guide](/articles/what-is-a-healthy-bmi)
+    for the full breakdown by age, gender, and ethnicity.
+  </p>
+
+  <h3>What if my BMI says I'm overweight or obese?</h3>
+  <p>
+    The first step is to read the [categories guide](/articles/bmi-categories-explained) — each band has different action
+    steps. The next is to talk to a clinician about your personal situation. BMI is one signal; bloodwork, waist
+    circumference, fitness, and family history all matter too.
+  </p>
+
+  <h3>What if I'm muscular or athletic?</h3>
+  <p>
+    Standard BMI overstates body fat in muscular individuals. Use our [Athlete BMI calculator](/calculators/bmi-athletes)
+    for muscle-mass context, or pair your BMI with a body-fat percentage measurement (calipers, BIA, or DEXA) for a
+    clearer picture.
+  </p>
+
+  <h3>How often should I check my BMI?</h3>
+  <p>
+    Every few months is plenty for most adults. Day-to-day weight fluctuates from water, food, and digestion, which makes
+    daily BMI checks noisy.
+  </p>
+
+  <h2>Beyond the calculator</h2>
+  <p>
+    Helthvibe also offers specialized calculators for:
+  </p>
+
+  <ul>
+    <li><a href="/calculators/bmi-women/">BMI for Women</a> — with female-specific context</li>
+    <li><a href="/calculators/bmi-men/">BMI for Men</a> — with muscle-mass notes</li>
+    <li><a href="/calculators/bmi-children/">Child & Teen BMI</a> — age- and sex-specific percentile</li>
+    <li><a href="/calculators/bmi-seniors/">Senior BMI</a> — adjusted healthy range for adults 65+</li>
+    <li><a href="/calculators/bmi-asian/">Asian BMI</a> — WHO-aligned thresholds for Asian populations</li>
+    <li><a href="/calculators/bmi-athletes/">Athlete BMI</a> — with body-fat % cross-reference</li>
+    <li><a href="/calculators/ideal-weight/">Ideal Weight Calculator</a> — five evidence-based formulas</li>
+    <li><a href="/calculators/healthy-weight/">Healthy Weight Range</a> — based on WHO BMI standards</li>
+  </ul>
+
+  <h2>The bottom line</h2>
+  <p>
+    A BMI check should take seconds, give you a clear answer, and not cost you your privacy. That's the calculator
+    above. Use it as often or as rarely as you want — we won't know, and we don't want to.
+  </p>
+
+  <div class="callout">
+    <strong>Not medical advice.</strong> BMI is a screening tool, not a diagnosis. Always consult a qualified healthcare professional for personal medical decisions.
+  </div>
+</ArticleLayout>

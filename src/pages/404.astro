@@ -1,0 +1,28 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const title = 'Page Not Found | Helthvibe';
+const description = 'The page you are looking for could not be found.';
+---
+<Layout title={title} description={description} robots="noindex, follow">
+  <section class="page-hero">
+    <div class="container-narrow text-center">
+      <h1>404 — Page not found</h1>
+      <p class="lead">The page you're looking for doesn't exist (or hasn't been built yet).</p>
+      <div class="cta-row">
+        <a href="/" class="btn btn-primary">Back to home</a>
+        <a href="/calculators/bmi/" class="btn btn-secondary">Open BMI calculator</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .cta-row {
+    margin-top: var(--space-5);
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+</style>

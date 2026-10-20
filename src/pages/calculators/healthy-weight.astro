@@ -1,0 +1,34 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Helthvibe Healthy Weight Calculator',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Layout
+  title="Healthy Weight Range Calculator — Find Your Ideal Weight by Height | Helthvibe"
+  description="Free healthy weight range calculator based on WHO BMI standards. See the full healthy weight range for your height, in metric and imperial."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Healthy Weight Range Calculator — Find Your Ideal Weight by Height | Helthvibe"
+    description="Free healthy weight range calculator based on WHO BMI standards. See the full healthy weight range for your height, in metric and imperial."
+    h1="Healthy Weight Range Calculator"
+    intro="Find the weight range that puts your BMI between 18.5 and 24.9 — the WHO healthy range for most adults."
+    status="coming-soon"
+    features={[
+      'Height-based healthy weight range',
+      'Switchable to Asian-adjusted thresholds',
+      'Metric and imperial units',
+      'Range visualization',
+      'Optional age/gender refinement',
+    ]}
+    schema={schema}
+  />
+</Layout>

@@ -1,0 +1,107 @@
+---
+// ============================================================
+// CookieConsent — lightweight Consent Mode v2 banner.
+// Only rendered when GA4 is enabled (PUBLIC_GA_ID is set).
+// No cookies are set until the visitor accepts.
+// ============================================================
+---
+
+<aside id="consent-banner" class="consent-banner" role="dialog" aria-live="polite" aria-label="Cookie preferences" hidden>
+  <div class="consent-inner">
+    <p class="consent-text">
+      We use Google Analytics to understand which calculators are useful. It runs only after you accept, and
+      your height and weight never leave your browser.
+    </p>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost" data-consent="denied">Decline</button>
+      <button type="button" class="btn btn-primary" data-consent="granted">Accept analytics</button>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .consent-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: var(--color-surface, #ffffff);
+    border-top: 1px solid var(--color-border, #e3e8ef);
+    box-shadow: 0 -4px 24px rgba(15, 27, 45, 0.08);
+    padding: var(--space-4, 1rem) var(--space-5, 1.5rem);
+  }
+
+  .consent-banner[hidden] {
+    display: none;
+  }
+
+  .consent-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4, 1rem);
+  }
+
+  .consent-text {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-soft, #4a5b73);
+    max-width: 620px;
+  }
+
+  .consent-actions {
+    display: flex;
+    gap: var(--space-2, 0.5rem);
+    flex-shrink: 0;
+  }
+</style>
+
+<script>
+  const banner = document.getElementById('consent-banner');
+  const STORAGE_KEY = 'helthvibe-consent';
+
+  const readConsent = (): string | null => {
+    try {
+      return window.localStorage.getItem(STORAGE_KEY);
+    } catch {
+      return null;
+    }
+  };
+
+  const writeConsent = (value: string) => {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, value);
+    } catch {
+      /* storage unavailable — consent applies to this page view only */
+    }
+  };
+
+  const applyConsent = (value: string) => {
+    const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+    if (typeof gtag !== 'function') return;
+    gtag('consent', 'update', {
+      ad_storage: value,
+      ad_user_data: value,
+      ad_personalization: value,
+      analytics_storage: value,
+      personalization_storage: value,
+    });
+  };
+
+  if (banner && !readConsent()) {
+    banner.hidden = false;
+  }
+
+  banner?.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const value = button.dataset.consent === 'granted' ? 'granted' : 'denied';
+      writeConsent(value);
+      applyConsent(value);
+      if (banner) banner.hidden = true;
+    });
+  });
+</script>

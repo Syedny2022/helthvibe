@@ -1,0 +1,94 @@
+---
+import ArticleLayout from '@layouts/ArticleLayout.astro';
+
+const faqs = [
+  {
+    q: 'What is TDEE?',
+    a: 'Total Daily Energy Expenditure is the total number of calories you burn in a day, including BMR plus activity. It is the foundation for setting calorie targets for weight loss, maintenance, or gain.',
+  },
+  {
+    q: 'How do I choose the right activity factor?',
+    a: 'Sedentary (1.2): desk job, no exercise. Light (1.375): light exercise 1–3 days/wk. Moderate (1.55): exercise 3–5 days/wk. Very active (1.725): exercise 6–7 days/wk. Extra active (1.9): athlete + physical job.',
+  },
+  {
+    q: 'Should I eat at TDEE to maintain?',
+    a: 'Yes. To lose weight, eat 300–500 kcal below TDEE. To gain, 300–500 above. TDEE is your maintenance reference.',
+  },
+  {
+    q: 'Is my data private?',
+    a: 'Yes. All math runs in your browser. We never see, store, or transmit your inputs.',
+  },
+];
+
+const related = [
+  { href: '/calculators/tdee/', title: 'TDEE Calculator', desc: 'BMR + activity factor.' },
+  { href: '/calculators/bmr/', title: 'BMR Calculator', desc: 'Resting energy expenditure.' },
+  { href: '/calculators/macro-split/', title: 'Macro Split', desc: 'Convert calories to grams.' },
+];
+---
+<ArticleLayout
+  title="TDEE: How to Calculate Your Total Daily Energy Expenditure | Helthvibe"
+  description="TDEE is the total calories you burn each day — the starting point for any weight management plan. Here's how to calculate it and what to do with it."
+  h1="TDEE — How to Calculate Your Total Daily Energy Expenditure"
+  excerpt="TDEE is the calories you actually burn in a day. Multiply your BMR by an activity factor. From there, set any calorie target — loss, maintenance, or gain."
+  datePublished="2026-09-29"
+  dateModified="2026-09-29"
+  category="Reference"
+  readTime="7 min"
+  showCalculator={false}
+  faqs={faqs}
+  related={related}
+>
+  <h2>What TDEE Is and Why It Matters</h2>
+  <p>Total Daily Energy Expenditure (TDEE) is the total number of calories you burn in a 24-hour day. It includes your basal metabolic rate plus everything else — walking, exercise, fidgeting, digestion, and the thermic effect of food. TDEE is your maintenance number: eat at TDEE and your weight stays stable over time.</p>
+  <p>Every calorie target for weight loss, gain, or recomposition starts with TDEE. Get this right, and the rest of the math is simple. Get it wrong (which is easy if you overestimate activity), and you'll spend months wondering why your numbers don't match reality.</p>
+
+  <h2>How TDEE Is Calculated</h2>
+  <p>The standard method is to compute BMR (typically Mifflin-St Jeor) and multiply by an activity factor. The activity factors are derived from doubly labeled water studies that measured actual energy expenditure across populations of varying activity levels:</p>
+  <table>
+    <thead><tr><th>Activity level</th><th>Factor</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Sedentary</td><td>1.2</td><td>Desk job, no structured exercise</td></tr>
+      <tr><td>Lightly active</td><td>1.375</td><td>Light exercise 1–3 days/wk</td></tr>
+      <tr><td>Moderately active</td><td>1.55</td><td>Moderate exercise 3–5 days/wk</td></tr>
+      <tr><td>Very active</td><td>1.725</td><td>Hard exercise 6–7 days/wk</td></tr>
+      <tr><td>Extra active</td><td>1.9</td><td>Very hard exercise + physical job</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The 3,500 kcal Myth</h2>
+  <p>Conventional weight-loss advice cites a "3,500 kcal per pound of fat" rule. This is an oversimplification. Modern research (Hall et al., 2011) shows that the actual energy content of fat tissue varies, and that metabolic adaptation — the body lowering its TDEE in response to caloric restriction — means that the simple "calories in, calories out" model doesn't perfectly predict weight change over time.</p>
+  <p>The Mifflin-St Jeor equation with activity factor gives a reasonable starting estimate, but real-world TDEE can vary by ±15–20% from the calculated value due to:</p>
+  <ul>
+    <li>Non-exercise activity thermogenesis (NEAT) — fidgeting, posture maintenance, spontaneous movement. Highly variable between individuals.</li>
+    <li>Adaptive thermogenesis — the body reduces TDEE during caloric restriction to defend body weight.</li>
+    <li>Hormonal status — thyroid, cortisol, leptin, and other hormones shift TDEE by 5–20%.</li>
+  </ul>
+
+  <h2>How to Use TDEE for Any Goal</h2>
+  <p>Once you have a TDEE estimate, setting calorie targets is straightforward:</p>
+  <ul>
+    <li><strong>Weight loss:</strong> TDEE − 300 to 500 kcal. Sustainable rate of about 0.5 kg/week. Below TDEE − 1,000 kcal/day is rarely sustainable and increases muscle loss.</li>
+    <li><strong>Maintenance:</strong> Eat at TDEE. Track weight weekly; adjust intake if trend is upward or downward.</li>
+    <li><strong>Weight gain:</strong> TDEE + 300 to 500 kcal. Slow lean-mass gain (mostly relevant for underweight individuals or hardgainers).</li>
+  </ul>
+
+  <h2>Verifying Your TDEE in Practice</h2>
+  <p>The calculated TDEE is an estimate. Verify with real-world data:</p>
+  <ol>
+    <li>Eat at the calculated TDEE for 2–3 weeks.</li>
+    <li>Weigh yourself daily at the same time (morning, post-bathroom, pre-meal). Average weekly.</li>
+    <li>If weight is stable, your TDEE estimate is accurate. If trending up, you are eating above TDEE; if down, below.</li>
+    <li>Adjust intake accordingly. Many people find their actual TDEE is 100–300 kcal below the calculated value.</li>
+  </ol>
+
+  <h2>Limitations of TDEE Calculators</h2>
+  <p>TDEE calculators work well for average cases but underestimate variance. Two people with identical height, weight, age, sex, and reported activity levels can have TDEEs that differ by 300–500 kcal/day due to NEAT, thyroid function, sleep quality, and genetic factors. Use the calculator as a starting estimate, then verify with real-world weight tracking.</p>
+
+  <h2>Resources and references</h2>
+  <ul>
+    <li>Harris JA, Benedict FG. <em>A biometric study of basal metabolism in man.</em> Carnegie Institution of Washington, 1919.</li>
+    <li>Hall KD, et al. <em>Quantification of the effect of energy imbalance on bodyweight.</em> Lancet. 2011;378(9793):826–837.</li>
+    <li>Levine JA. <em>Nonexercise activity thermogenesis (NEAT): environment and biology.</em> Am J Physiol Endocrinol Metab. 2004;286(5):E675–E685.</li>
+  </ul>
+</ArticleLayout>

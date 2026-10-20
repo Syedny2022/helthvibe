@@ -1,0 +1,33 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'BMI Calculator for Washington DC',
+  description: 'Free BMI calculator for Washington DC residents. Privacy-first.',
+};
+---
+<Layout
+  title="Free BMI Calculator for Washington DC | Helthvibe"
+  description="Free BMI calculator for Washington DC residents — instant results, healthy range, privacy-first."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Free BMI Calculator for Washington DC | Helthvibe"
+    description="Free BMI calculator for Washington DC residents — instant results, healthy range, privacy-first."
+    h1="BMI Calculator for Washington DC"
+    intro="A BMI calculator tailored for DC residents — fast, ad-free, privacy-first."
+    status="coming-soon"
+    features={[
+      'WHO-standard BMI calculation',
+      'Healthy weight range for your height',
+      'DC-specific lifestyle notes',
+      'Privacy-first — all math runs locally',
+      'Metric and imperial units',
+    ]}
+    schema={schema}
+    ctaHref="/calculators/bmi/"
+  />
+</Layout>

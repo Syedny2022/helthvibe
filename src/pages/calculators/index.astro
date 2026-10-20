@@ -1,0 +1,157 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const title = 'All Health Calculators | Helthvibe';
+const description = 'Browse the full Helthvibe calculator suite: Adult, Women, Men, Child, Senior, Asian, and Athlete BMI, plus ideal weight and healthy range tools.';
+
+const calculators = [
+  {
+    href: '/calculators/bmi/',
+    title: 'Adult BMI Calculator',
+    desc: 'The standard WHO BMI calculation with healthy range and category.',
+    badge: 'Most popular',
+  },
+  {
+    href: '/calculators/bmi-women/',
+    title: 'BMI for Women',
+    desc: 'BMI with female-specific ranges and body composition context.',
+  },
+  {
+    href: '/calculators/bmi-men/',
+    title: 'BMI for Men',
+    desc: 'BMI for adult men with muscle-mass notes and healthy range.',
+  },
+  {
+    href: '/calculators/bmi-children/',
+    title: 'Child & Teen BMI',
+    desc: 'Age- and sex-specific BMI percentile for kids and teens.',
+  },
+  {
+    href: '/calculators/bmi-seniors/',
+    title: 'Senior BMI',
+    desc: 'Adjusted healthy range for adults 65+.',
+  },
+  {
+    href: '/calculators/bmi-asian/',
+    title: 'Asian BMI',
+    desc: 'WHO-aligned thresholds for Asian populations.',
+  },
+  {
+    href: '/calculators/bmi-athletes/',
+    title: 'Athlete BMI',
+    desc: 'BMI with muscle-mass context for athletic builds.',
+  },
+  {
+    href: '/calculators/ideal-weight/',
+    title: 'Ideal Weight',
+    desc: 'Find your healthy weight with 5 evidence-based formulas.',
+  },
+  {
+    href: '/calculators/healthy-weight/',
+    title: 'Healthy Weight Range',
+    desc: 'See your healthy weight range based on a target BMI.',
+  },
+  {
+    href: '/calculators/body-fat/',
+    title: 'Body Fat Percentage',
+    desc: 'Estimate BF% from BMI, age, and sex (Deurenberg 1991).',
+  },
+  {
+    href: '/calculators/waist-hip-ratio/',
+    title: 'Waist-to-Hip Ratio',
+    desc: 'WHO cardiometabolic risk thresholds by sex.',
+  },
+  {
+    href: '/calculators/waist-height-ratio/',
+    title: 'Waist-to-Height Ratio',
+    desc: 'Single 0.5 cutoff across populations (Ashwell & Hsieh).',
+  },
+  {
+    href: '/calculators/bmi-prime/',
+    title: 'BMI Prime',
+    desc: 'BMI / 25 — quick relative-to-healthy comparison.',
+  },
+  {
+    href: '/calculators/bsa/',
+    title: 'Body Surface Area',
+    desc: 'Mosteller formula. Used in chemo dosing, cardiac index.',
+  },
+  {
+    href: '/calculators/bmr/',
+    title: 'BMR Calculator',
+    desc: 'Mifflin-St Jeor resting energy expenditure.',
+  },
+  {
+    href: '/calculators/tdee/',
+    title: 'TDEE Calculator',
+    desc: 'Total daily calories with activity factor (1.2–1.9).',
+  },
+  {
+    href: '/calculators/macro-split/',
+    title: 'Macro Split',
+    desc: 'Convert calorie target to grams of protein/carbs/fat.',
+  },
+  {
+    href: '/calculators/calorie-deficit/',
+    title: 'Calorie Deficit',
+    desc: 'Plan a safe weight-loss deficit and timeline.',
+  },
+  {
+    href: '/calculators/lean-body-mass/',
+    title: 'Lean Body Mass',
+    desc: 'Estimate fat-free mass via the Boer equation.',
+  },
+  {
+    href: '/calculators/ponderal-index/',
+    title: 'Ponderal Index',
+    desc: 'The cube-based alternative to BMI (Rohrer).',
+  },
+];
+---
+<Layout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container text-center">
+      <h1>All calculators</h1>
+      <p class="lead">One for every body and life stage — all free, all private.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        {calculators.map((c) => (
+          <a href={c.href} class="card tool-card">
+            {c.badge && <span class="badge tool-badge">{c.badge}</span>}
+            <h3 class="card-title">{c.title}</h3>
+            <p class="card-desc">{c.desc}</p>
+            <span class="tool-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .tool-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+  .tool-card:hover { color: inherit; }
+  .tool-badge {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+  }
+  .tool-arrow {
+    position: absolute;
+    bottom: var(--space-4);
+    right: var(--space-5);
+    color: var(--color-brand);
+    font-size: 1.2rem;
+    transition: transform 0.15s var(--ease-out);
+  }
+  .tool-card:hover .tool-arrow { transform: translateX(4px); }
+</style>

@@ -1,0 +1,33 @@
+---
+import Layout from '@layouts/Layout.astro';
+import StubPage from '@components/StubPage.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'BMI Calculator for Northern Virginia',
+  description: 'Free BMI calculator for Northern Virginia residents. Privacy-first.',
+};
+---
+<Layout
+  title="Free BMI Calculator for Northern Virginia | Helthvibe"
+  description="Free BMI calculator for Northern Virginia residents — Arlington, Fairfax, Alexandria, and beyond. Instant results + healthy range."
+  schema={schema}
+  robots="noindex, follow">
+  <StubPage
+    title="Free BMI Calculator for Northern Virginia | Helthvibe"
+    description="Free BMI calculator for Northern Virginia residents — Arlington, Fairfax, Alexandria, and beyond. Instant results + healthy range."
+    h1="BMI Calculator for Northern Virginia"
+    intro="A BMI calculator tailored for Northern Virginia — Arlington, Fairfax, Alexandria, and the surrounding communities."
+    status="coming-soon"
+    features={[
+      'WHO-standard BMI calculation',
+      'Healthy weight range for your height',
+      'NOVA commute and lifestyle context',
+      'Privacy-first — all math runs locally',
+      'Metric and imperial units',
+    ]}
+    schema={schema}
+    ctaHref="/calculators/bmi/"
+  />
+</Layout>
