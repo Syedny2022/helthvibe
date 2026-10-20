@@ -433,6 +433,7 @@ const isCompact = variant === 'compact';
 
 <script>
   import { calculateBMI, ftInToCm, lbToKg, BMI_CATEGORIES } from '@lib/bmi';
+  import { requestNewsletterSignup } from '@lib/newsletter';
 
   function initCalculator(root: HTMLElement) {
     const form = root.querySelector('[data-form]') as HTMLFormElement | null;
@@ -542,15 +543,15 @@ const isCompact = variant === 'compact';
       }, 0);
     });
 
-    // Newsletter stub — replace with real endpoint (e.g. Cloudflare Worker → Mailchimp)
+    // Newsletter opt-in — opens the visitor's email client with a
+    // pre-filled signup request (no marketing platform connected yet).
     const newsletterForm = root.querySelector<HTMLFormElement>('[data-newsletter]');
     newsletterForm?.addEventListener('submit', (e) => {
       e.preventDefault();
-      const email = new FormData(newsletterForm).get('email');
-      // TODO: wire to backend / Cloudflare Worker
-      console.info('Newsletter opt-in (stub):', email);
+      const email = String(new FormData(newsletterForm).get('email') ?? '').trim();
+      requestNewsletterSignup(email);
       const success = document.createElement('p');
-      success.textContent = "Thanks — check your inbox for confirmation.";
+      success.textContent = 'Almost there — your email app should open with a pre-filled signup request. Send it and we will add you to the list.';
       success.style.cssText = 'color:#10b981;font-weight:600;margin:0;';
       newsletterForm.replaceWith(success);
     });

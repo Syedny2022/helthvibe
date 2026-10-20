@@ -205,3 +205,34 @@ Live:
 ## 12. Out of scope (explicitly)
 
 Writing real content for the 17 stub pages; creating the GA4/GSC/Bing properties (needs the user's accounts); choosing and wiring a newsletter/email provider; AdSense/affiliate monetisation; IndexNow; hreflang/i18n; a standalone Cloudflare Worker project.
+
+## 13. Implementation status (2026-10-20)
+
+**Done in-repo** (all committed on `main`, clean single-commit history, 122 files):
+
+| Plan item | Status | Notes |
+| --- | --- | --- |
+| A1 legacy artefacts removed | Done | Next.js scaffold, shadcn components, prisma, `.zscripts`, `tests`, `bun.lock`, duplicate old site + zips all deleted |
+| A2 env files | Done | `.env` untracked, `.env.example` added |
+| A3 package.json | Done | `wrangler` + `@fontsource-variable/inter` added, `@astrojs/cloudflare` removed, deploy/check/links/og/cf scripts wired |
+| A4 astro.config | Done | adapter removed (pure static → Pages Functions still possible), `trailingSlash: 'always'`, sitemap filter for stubs |
+| A5 site config | Done | `src/data/site.ts` is the single source of truth; broken `mail.helthvibe` links replaced |
+| A6/A7 headers + redirects | Done | `public/_headers` (CSP, HSTS, nosniff, referrer policy) and `public/_redirects` (www → apex 301) |
+| A8 scripts | Done | `cf-status.mjs`, `cf-setup-dns.mjs`, `setup-cloudflare.mjs`, `generate-og.mjs`, `check-links.mjs` |
+| A9 Layout rewrite | Done | `robots` prop, PNG OG image, `Organization`/`WebSite`/`BreadcrumbList` JSON-LD, self-hosted font, GA4 behind `PUBLIC_GA_ID` |
+| A10 schema fixes | Done | fake `aggregateRating` removed, `SearchAction` removed, JSON-LD URLs normalised to trailing slash, `logo.png` now exists |
+| A11 stub handling | Done | 19 stub routes `noindex, follow` + excluded from the sitemap (`src/data/stub-routes.json`) |
+| A12 contact form | Done | real `mailto:` flow; the newsletter opt-in no longer fakes a confirmation email |
+| A13/A14 docs + CI | Done | README rewrite, `docs/LAUNCH.md` runbook, GitHub Actions CI, dependabot, MIT licence |
+| E SEO hardening | Done | 79 pages, 0 broken internal links, 0 redirecting links, sitemap clean, no third-party font requests |
+| Validation | Done | `npm run build` ✅ · `npm run check` 0 errors ✅ · `npm run links:check` ✅ · `npm run smoke` ✅ · calculator verified in-browser (175 cm / 70 kg → BMI 22.9) |
+
+**Blocked on the user (browser-only steps)** — see `docs/LAUNCH.md`:
+
+1. `gh auth login` → `gh repo create Syedny2022/helthvibe --public --source=. --remote=origin` → `git push -u origin main` (the `gh` token is expired, so the push could not be performed here).
+2. Create a Cloudflare API token → `npm run cf:setup` (creates the Pages project, attaches `helthvibe.com` + `www`, creates the CNAMEs, enables Web Analytics).
+3. Connect the GitHub repo in the Pages dashboard (Settings → Git) with `npm run build` → `dist` and `NODE_VERSION=22`.
+4. Google Search Console: Domain property → publish the TXT record with `npm run cf:dns` → submit the sitemap.
+5. Bing Webmaster Tools: import from GSC (or publish the verification record) → submit the sitemap.
+6. GA4: create the property and set `PUBLIC_GA_ID` in Pages → the consent banner and GA4 activate.
+

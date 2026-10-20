@@ -17,6 +17,7 @@
     "og:generate": "node scripts/generate-og.mjs",
     "links:check": "node scripts/check-links.mjs",
     "cf:status": "node scripts/cf-status.mjs",
+    "cf:setup": "node scripts/setup-cloudflare.mjs",
     "cf:dns": "node scripts/cf-setup-dns.mjs"
   },
   "dependencies": {
