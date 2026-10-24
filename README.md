@@ -35,6 +35,7 @@ Node 22 is required (see `.nvmrc`).
 | `npm run deploy` | Build + `wrangler pages deploy dist --project-name helthvibe --branch main` |
 | `npm run deploy:preview` | Same, on the `preview` branch (separate Pages preview environment) |
 | `npm run cf:status` | Read-only Cloudflare report: account, zone, DNS records, Pages projects |
+| `npm run cf:setup` | One-command Cloudflare setup (Pages project, custom domains, DNS, Web Analytics) |
 | `npm run cf:dns` | Idempotent DNS record creation (used for webmaster verification) |
 
 ## Project structure
@@ -142,6 +143,19 @@ Then submit the same sitemap.
 - **Social images** are raster PNGs (`og-default.png`, 1200×630) because social platforms do not render SVG.
 - **Fonts are self-hosted** (`@fontsource-variable/inter`) — no third-party font requests, no render-blocking CDN.
 - **Security headers** live in `public/_headers` (CSP, HSTS, nosniff, referrer policy).
+
+## Launch
+
+`scripts/launch.ps1` runs the whole end-to-end launch for you — it authenticates with
+GitHub, creates the public repo and pushes `main`, runs the Cloudflare setup, then prints
+the remaining manual steps. Copy `.env.example` to `.env`, paste your `GITHUB_TOKEN` and
+`CLOUDFLARE_API_TOKEN`, and run:
+
+```powershell
+.\scripts\launch.ps1
+```
+
+The full step-by-step runbook (including the browser-only steps) lives in `docs/LAUNCH.md`.
 
 ## Contributing
 
