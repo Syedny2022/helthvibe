@@ -66,7 +66,33 @@ confirm each connection in a browser window — that is normal and expected.
 - `composio google_search_console add site --site helthvibe.com`
 - `composio google_analytics list properties` / `composio google_analytics get data`
 
-## Notes
+## Troubleshooting
+
+### The MCP endpoint rejects my key with "Bearer token rejected"
+
+`https://connect.composio.dev/mcp` expects a **consumer key** (`ck_...`), not a
+project API key (`ak_...`). I tested the key you shared (`ak_LN7Q6NTRpGtqhbJax7ac`):
+
+- `GET https://connect.composio.dev/mcp` → 401
+- `POST .../mcp` with `x-consumer-api-key` → 401
+- `POST .../mcp` with `x-api-key` → 401
+- `GET https://backend.composio.dev/api/v3.1/toolkits?limit=1` with `x-api-key` → **200** (valid project key)
+- `GET .../connected_accounts` → 200, shows 5 auth configs, all **EXPIRED** ("Authorization was started but not completed within 10 minutes")
+
+So the key works for the REST API but is the wrong type for the consumer MCP endpoint, and
+the existing connections never finished their OAuth flow.
+
+**Fix:** in the Composio dashboard go to **For You → AI Clients**, select the client and
+copy the **consumer key** (it starts with `ck_`). Paste it as `x-consumer-api-key` and the
+MCP endpoint will accept it. Then go to **For You → Connect Apps** and connect GitHub,
+Cloudflare, Google Search Console, Bing Webmaster Tools and Google Analytics — each opens
+a browser window where you confirm the connection.
+
+### The sign-in page never opens
+
+That is the OAuth step above. The MCP endpoint returns the auth flow only after the
+consumer key is valid; a wrong key just answers 401, so no sign-in page is ever served.
+Get the `ck_...` key first, then the sign-in flow works.
 
 - Composio-managed OAuth is the default, so you usually do **not** need to create separate
   Cloudflare/GitHub API tokens — the agent asks you to confirm each connection.
