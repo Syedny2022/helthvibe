@@ -158,14 +158,15 @@ const isCompact = variant === 'compact';
       </div>
     </div>
 
-    <!-- Soft email opt-in -->
+    <!-- Honest post-result CTA -->
     <div class="result-cta" data-cta-block hidden>
-      <p>Want a personalized guide to interpret this number?</p>
+      <p><strong>Not sure what your number means?</strong> Get our plain-English guide to BMI categories and what to do next.</p>
       <form class="cta-form" data-newsletter>
         <input type="email" name="email" placeholder="your@email.com" required />
-        <button type="submit" class="btn btn-primary">Get the guide</button>
+        <button type="submit" class="btn btn-primary">Send me the guide</button>
       </form>
-      <p class="cta-fineprint">No spam. Unsubscribe anytime.</p>
+      <p class="cta-fineprint">No spam. Unsubscribe anytime. We never share your email.</p>
+      <p class="cta-success" data-success hidden>Almost there — your email app should open with a pre-filled signup request. Send it and we'll add you to the list.</p>
     </div>
   </div>
 </div>
@@ -550,10 +551,11 @@ const isCompact = variant === 'compact';
       e.preventDefault();
       const email = String(new FormData(newsletterForm).get('email') ?? '').trim();
       requestNewsletterSignup(email);
-      const success = document.createElement('p');
-      success.textContent = 'Almost there — your email app should open with a pre-filled signup request. Send it and we will add you to the list.';
-      success.style.cssText = 'color:#10b981;font-weight:600;margin:0;';
-      newsletterForm.replaceWith(success);
+      const success = root.querySelector<HTMLElement>('[data-success]');
+      if (success) {
+        success.hidden = false;
+        success.style.cssText = 'color:#10b981;font-weight:600;margin:0;';
+      }
     });
   }
 
