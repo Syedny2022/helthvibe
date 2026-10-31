@@ -20,6 +20,9 @@ pnpm-debug.log*
 # astro
 .astro/
 
+# kiro agent definitions (internal tooling, not part of the product)
+.kilo/agent/
+
 # editor
 .vscode/
 .idea/
