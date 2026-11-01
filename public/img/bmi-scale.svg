@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120" role="img" aria-label="BMI category scale">
+  <title>BMI category scale</title>
+  <desc>A four-segment scale showing the WHO BMI categories: underweight, healthy range, overweight, and obese.</desc>
+  <rect x="0" y="44" width="400" height="32" rx="16" fill="#e5e7eb"/>
+  <rect x="0" y="44" width="74" height="32" rx="16" fill="#94a3b8"/>
+  <rect x="74" y="44" width="150" height="32" fill="#14b88a"/>
+  <rect x="224" y="44" width="100" height="32" rx="0 16 16 0" fill="#f59e0b"/>
+  <rect x="324" y="44" width="76" height="32" rx="0 16 16 0" fill="#ef4444"/>
+  <text x="37" y="66" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#475569" text-anchor="middle">&lt;18.5 Underweight</text>
+  <text x="149" y="66" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#064e3b" text-anchor="middle">18.5–24.9 Healthy</text>
+  <text x="274" y="66" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#7c2d12" text-anchor="middle">25–29.9 Overweight</text>
+  <text x="362" y="66" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#7f1d1d" text-anchor="middle">30+ Obese</text>
+  <line x1="140" y1="20" x2="140" y2="40" stroke="#14b88a" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="140" cy="16" r="6" fill="#14b88a"/>
+  <text x="152" y="21" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#064e3b">Your BMI</text>
+</svg>

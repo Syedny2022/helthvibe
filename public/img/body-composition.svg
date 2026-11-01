@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200" role="img" aria-label="Body composition">
+  <title>Body composition — muscle and fat</title>
+  <desc>Abstract shapes representing lean mass and body fat, showing that BMI alone cannot tell them apart.</desc>
+  <g transform="translate(60,20)">
+    <rect x="0" y="0" width="120" height="160" rx="20" fill="#94a3b8" opacity="0.18"/>
+    <rect x="16" y="24" width="88" height="112" rx="14" fill="#64748b"/>
+    <text x="60" y="150" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">Lean mass</text>
+  </g>
+  <g transform="translate(220,20)">
+    <rect x="0" y="0" width="120" height="160" rx="20" fill="#f59e0b" opacity="0.18"/>
+    <rect x="16" y="40" width="88" height="80" rx="14" fill="#f59e0b"/>
+    <text x="60" y="150" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#7c2d12" text-anchor="middle">Body fat</text>
+  </g>
+  <text x="200" y="188" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">BMI measures both — which is why it is a screening tool, not a diagnosis.</text>
+</svg>

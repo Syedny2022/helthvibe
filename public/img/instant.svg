@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200" role="img" aria-label="Instant results">
+  <title>Instant results, no signup</title>
+  <desc>A stopwatch and a checkmark, showing fast, free, no-signup results.</desc>
+  <g transform="translate(80,30)">
+    <circle cx="100" cy="100" r="70" fill="#fff" stroke="#e2e8f0" stroke-width="6"/>
+    <path d="M100 40 A60 60 0 1 0 100 160" fill="none" stroke="#14b88a" stroke-width="6" stroke-linecap="round"/>
+    <line x1="100" y1="100" x2="100" y2="60" stroke="#14b88a" stroke-width="6" stroke-linecap="round"/>
+    <line x1="100" y1="100" x2="140" y2="100" stroke="#14b88a" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="100" cy="100" r="7" fill="#14b88a"/>
+  </g>
+  <g transform="translate(250,60)">
+    <path d="M10 50 L40 80 L90 10" fill="none" stroke="#14b88a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="50" y="110" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#064e3b">Free</text>
+    <text x="50" y="130" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#64748b">No account. No card. No ads.</text>
+  </g>
+</svg>
